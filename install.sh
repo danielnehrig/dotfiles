@@ -32,7 +32,7 @@ else
 fi
 
 ### Brew Dependencies
-brew_depend="vim mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine"
+brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine"
 brew_dev_depend="node ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
 if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
   clear
@@ -81,12 +81,18 @@ chsh -s /usr/local/bin/zsh $(whoami)
 
 # Downloading Private Files if Permission granted
 ### SSH KEYS
-clear
-echo "Downloading SSH Keys"
+if [ -n "$SSH_SERV" ]; then
+  clear
+  echo "Downloading SSH Keys"
+  scp -r $SSH_USER@$SSH_SERV:~/.ssh/$SSH_PRIVATE_KEY ~/.ssh/
+fi
 
 ### Fonts
 clear
 echo "Downloading Fonts"
+font="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
+wget -L $font > /dev/null 2>&1
+mv ./SourceCodePro+Powerline+Awesome+Regular.ttf ./fonts/SourceCodeProAwesome.ttf
 
 # Linking Files
 clear
