@@ -1,0 +1,8 @@
+alias ca='clear && archey'
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias iLock='pmset displaysleepnow'
+alias gatling='vagrant gatling-rsync-auto'
+alias grname='git config --get remote.origin.url'
+alias git-com='gitcommitcheck'
+alias git-pupf='gitcommitcheckpupf'
