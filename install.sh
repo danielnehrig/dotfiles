@@ -42,6 +42,9 @@ else
   sleep 2
 fi
 
+### Brew Cask
+brew tap caskroom/cask
+
 ### Brew Dependencies
 brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine"
 brew_dev_depend="node ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
@@ -58,6 +61,10 @@ else
   echo "Brew not found"
   sleep 2
 fi
+
+### Brew cask Dependencies
+brew_cask_depend="xquartz virtualbox vagrant"
+brew cask install $brew_cask_depend
 
 ### NodeJS NPM Dependencies
 node_depend_global="webpack nodemon"
