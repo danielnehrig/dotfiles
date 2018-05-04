@@ -95,9 +95,11 @@ fi
 ### Fonts
 clear
 echo "Downloading Fonts"
+mkdir fonts
 FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
-wget -L $FONT > /dev/null 2>&1
-mv ./SourceCodePro+Powerline+Awesome+Regular.ttf ./fonts/SourceCodeProAwesome.ttf
+FONT_NAME="SourceCodeProAwesome.ttf"
+wget -L $FONT -O $FONT_NAME > /dev/null 2>&1
+mv $DOTUNIX/$FONT_NAME $DOTUNIX/fonts/$FONT_NAME
 
 # Linking Files
 clear
