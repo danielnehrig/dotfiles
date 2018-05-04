@@ -19,6 +19,9 @@ command -v git >/dev/null 2>&1 || {
   exit 1
 }
 
+### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim)
+git submodule update --init --recursive --remote
+
 CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
 
 # Installing Dependencies
@@ -76,7 +79,7 @@ fi
 # Make ZSH default shell
 clear
 echo "Making ZSH default shell"
-sudo echo "/usr/local/bin/zsh" >> /etc/shells
+echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh $(whoami)
 
 # Downloading Private Files if Permission granted
@@ -85,17 +88,20 @@ if [ -n "$SSH_SERV" ]; then
   clear
   echo "Downloading SSH Keys"
   scp -r $SSH_USER@$SSH_SERV:~/.ssh/$SSH_PRIVATE_KEY ~/.ssh/
+else
+  echo "No SSH Credentials specified"
 fi
 
 ### Fonts
 clear
 echo "Downloading Fonts"
-font="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
-wget -L $font > /dev/null 2>&1
+FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
+wget -L $FONT > /dev/null 2>&1
 mv ./SourceCodePro+Powerline+Awesome+Regular.ttf ./fonts/SourceCodeProAwesome.ttf
 
 # Linking Files
 clear
 echo "Linking Files"
-ln -s $pwd/.vim/vimrc ~/.vimrc
-ln -s $pwd/.zsh/zshrc ~/.zshrc
+ln -s $DOTUNIX/.vim/vimrc ~/.vimrc
+ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
+ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
