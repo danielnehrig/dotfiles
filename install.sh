@@ -24,6 +24,11 @@ git submodule update --init --recursive --remote
 
 CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
 
+if [ -f "config" ]; then
+  echo "Sourced SSH config"
+  source config
+fi
+
 # Installing Dependencies
 ### Brew Install Validation
 echo "Enter Permission Credentials"
