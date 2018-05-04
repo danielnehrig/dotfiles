@@ -27,6 +27,7 @@ CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
 if [ -f "config" ]; then
   echo "Sourced SSH config"
   source config
+  sleep 2
 fi
 
 # Installing Dependencies
@@ -35,8 +36,10 @@ echo "Enter Permission Credentials"
 if ! brew_loc="$(type -p "brew")" || [[ -z $brew_loc ]]; then
   echo "Installing Brew"
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  sleep 2
 else
   echo "Brew is allready installed"
+  sleep 2
 fi
 
 ### Brew Dependencies
@@ -50,8 +53,10 @@ if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
   echo "Install Dev Utilitys"
   echo $brew_dev_depend
   brew install $brew_dev_depend
+  sleep 2
 else
   echo "Brew not found"
+  sleep 2
 fi
 
 ### NodeJS NPM Dependencies
@@ -59,6 +64,7 @@ node_depend_global="webpack nodemon"
 if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
   clear
   npm install $node_depend_global --global
+  sleep 2
 fi
 
 ### Ruby GEM Dependencies
@@ -68,6 +74,7 @@ if ! gem_loc="$(type -p "gem")" || [[ ! -z $gem_loc ]]; then
   echo "Installing Gem Dependencies"
   echo $gem_depend
   gem install $gem_depend
+  sleep 2
 fi
 
 ### Python PIP Dependencies
@@ -77,19 +84,18 @@ if ! python_loc="$(type -p "python")" || [[ ! -z $python_loc ]]; then
   echo "Installing Pip Dependencies"
   echo $pip_depend
   pip install $pip_depend
+  sleep 2
 else
   echo "Python not found"
+  sleep 2
 fi
-
-### Copy Vim dotfiles
-mkdir ~/.vim/
-cp -R dotfiles-vim/* ~/.vim/
 
 # Make ZSH default shell
 clear
 echo "Making ZSH default shell"
 echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh $(whoami)
+sleep 2
 
 # Downloading Private Files if Permission granted
 ### SSH KEYS
@@ -97,8 +103,10 @@ if [ -n "$SSH_SERV" ]; then
   clear
   echo "Downloading SSH Keys"
   scp -r $SSH_USER@$SSH_SERV:~/.ssh/$SSH_PRIVATE_KEY ~/.ssh/
+  sleep 2
 else
   echo "No SSH Credentials specified"
+  sleep 2
 fi
 
 ### Fonts
@@ -109,9 +117,12 @@ FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strat
 FONT_NAME="SourceCodeProAwesome.ttf"
 wget -L $FONT -O $FONT_NAME > /dev/null 2>&1
 mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
+sleep 2
 
 ### zsh-syntax-highlight
+clear
 cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+sleep 2
 
 # Linking Files
 clear
@@ -119,6 +130,7 @@ echo "Linking Files"
 if [ -L "~/.vimrc" ] && [ -L "~/.tmux.conf" ] && [ -L "~/.zshrc" ]; then
   ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
   ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
+  ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
   ln -s ~/.vim/vimrc ~/.vimrc
 else
   echo "Links allready exist"
