@@ -81,6 +81,10 @@ else
   echo "Python not found"
 fi
 
+### Copy Vim dotfiles
+mkdir ~/.vim/
+cp -R dotfiles-vim/* ~/.vim/
+
 # Make ZSH default shell
 clear
 echo "Making ZSH default shell"
@@ -106,13 +110,16 @@ FONT_NAME="SourceCodeProAwesome.ttf"
 wget -L $FONT -O $FONT_NAME > /dev/null 2>&1
 mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
 
+### zsh-syntax-highlight
+cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 # Linking Files
 clear
 echo "Linking Files"
 if [ -L "~/.vimrc" ] && [ -L "~/.tmux.conf" ] && [ -L "~/.zshrc" ]; then
   ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
   ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
-  ln -s $DOTUNIX/.vim/vimrc ~/.vimrc
+  ln -s ~/.vim/vimrc ~/.vimrc
 else
   echo "Links allready exist"
 fi
