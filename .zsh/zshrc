@@ -1,5 +1,4 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/dnehrig/.oh-my-zsh/"
 export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 
 # User exports

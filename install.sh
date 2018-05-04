@@ -2,7 +2,24 @@
 
 ### Install Script by Daniel Nehrig inet-pwnZ
 ### @inetpwnZ // daniel.nehrig@dnehrig.com
-repo="$(pwd)"
+
+# Install Validation
+if [ ! -n "$DOTUNIX" ]; then
+  DOTUNIX="$(pwd)"
+fi
+
+# if [ -d "$DOTUNIX" ]; then
+#   printf "You already have DOTUNIX installed.\n"
+#   printf "You'll need to remove $DOTUNIX if you want to re-install.\n"
+#   exit
+# fi
+
+command -v git >/dev/null 2>&1 || {
+  echo "Error git is not installed"
+  exit 1
+}
+
+CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
 
 # Installing Dependencies
 ### Brew Install Validation
@@ -57,14 +74,22 @@ else
 fi
 
 # Make ZSH default shell
+clear
+echo "Making ZSH default shell"
 sudo echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh $(whoami)
 
 # Downloading Private Files if Permission granted
 ### SSH KEYS
+clear
+echo "Downloading SSH Keys"
 
 ### Fonts
+clear
+echo "Downloading Fonts"
 
 # Linking Files
+clear
+echo "Linking Files"
 ln -s $pwd/.vim/vimrc ~/.vimrc
 ln -s $pwd/.zsh/zshrc ~/.zshrc
