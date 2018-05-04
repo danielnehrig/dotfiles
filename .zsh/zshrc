@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh installation.
+export ZSH="/Users/dnehrig/.dotfiles-unix/oh-my-zsh/"
 export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 
 # User exports
@@ -11,9 +12,9 @@ export DEFAULT_USER="$USER"
 export SHOP_ENV=~/code/work/vagrantboxes
 
 # User Settings
-source ./settings.zsh
-source ./function.zsh
-source ./alias.zsh
+source ~/.dotfiles-unix/.zsh/settings.zsh
+source ~/.dotfiles-unix/.zsh/function.zsh
+source ~/.dotfiles-unix/.zsh/alias.zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/

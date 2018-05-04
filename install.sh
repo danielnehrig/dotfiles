@@ -104,7 +104,7 @@ mkdir fonts
 FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
 FONT_NAME="SourceCodeProAwesome.ttf"
 wget -L $FONT -O $FONT_NAME > /dev/null 2>&1
-mv $DOTUNIX/$FONT_NAME $DOTUNIX/fonts/$FONT_NAME
+mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
 
 # Linking Files
 clear
