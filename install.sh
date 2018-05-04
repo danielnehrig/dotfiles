@@ -132,6 +132,7 @@ if [ -L "~/.vimrc" ] && [ -L "~/.tmux.conf" ] && [ -L "~/.zshrc" ]; then
   ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
   ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
   ln -s ~/.vim/vimrc ~/.vimrc
+  ln -s $DOTUNIX/.ssh/config ~/.ssh/config
 else
   echo "Links allready exist"
 fi
