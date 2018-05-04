@@ -1,4 +1,5 @@
-// Shop Repo
+# Work related Functions
+
 function gitcommitcheck() {
     currentbranch=$(git branch | grep \* | cut -d ' ' -f2 | cut -d '/' -f2)
     if [[ $currentbranch =~ 'CSEAV-[0-9]{4}' ]]
@@ -14,7 +15,7 @@ function gitcommitcheck() {
         echo 'Not IN Shop Repo'
     fi
 }
-// Pupf
+
 function gitcommitcheckpupf() {
     currentbranch=$(git branch | grep \* | cut -d ' ' -f2 | cut -d '/' -f2)
     if [[ $currentbranch =~ 'CSEAV-[0-9]{4}' ]]
@@ -30,6 +31,8 @@ function gitcommitcheckpupf() {
         echo 'Not IN Pupf Repo'
     fi
 }
+
+# Random
 
 function darkTheme() {
 }
