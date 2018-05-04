@@ -19,7 +19,7 @@ command -v git >/dev/null 2>&1 || {
   exit 1
 }
 
-### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim)
+### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim, powerlevel9kTheme, syntax-highlight-zsh)
 git submodule update --init --recursive --remote
 
 CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
@@ -127,14 +127,10 @@ sleep 2
 # Linking Files
 clear
 echo "Linking Files"
-if [ -L "~/.vimrc" ] && [ -L "~/.tmux.conf" ] && [ -L "~/.zshrc" ]; then
-  ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
-  ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
-  ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
-  ln -s ~/.vim/vimrc ~/.vimrc
-  ln -s $DOTUNIX/.ssh/config ~/.ssh/config
-else
-  echo "Links allready exist"
-fi
+ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
+ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
+ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+ln -s $DOTUNIX/.ssh/config ~/.ssh/config
 
 echo "Installation Completed"
