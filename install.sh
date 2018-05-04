@@ -104,6 +104,12 @@ mv $DOTUNIX/$FONT_NAME $DOTUNIX/fonts/$FONT_NAME
 # Linking Files
 clear
 echo "Linking Files"
-ln -s $DOTUNIX/.vim/vimrc ~/.vimrc
-ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
-ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
+if [ -L "~/.vimrc" ] && [ -L "~/.tmux.conf" ] && [ -L "~/.zshrc" ]; then
+  ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
+  ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
+  ln -s $DOTUNIX/.vim/vimrc ~/.vimrc
+else
+  echo "Links allready exist"
+fi
+
+echo "Installation Completed"
