@@ -22,7 +22,7 @@ function gitcommitcheckpupf() {
     then
         if [[ ! -z $1 ]]
         then
-            commitname=$(echo $currentbranch-$1)
+            commitname=$(echo "($currentbranch): $1")
             git commit -m "fix($currentbranch): $1"
         else
             echo 'No Changes specified'
@@ -35,4 +35,11 @@ function gitcommitcheckpupf() {
 # Random
 
 function darkTheme() {
+  osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Users/dnehrig/wallpaper/dark.jpg"'
+  dark-mode on
+}
+
+function lightTheme() {
+  osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Users/dnehrig/wallpaper/light.jpg"'
+  dark-mode off
 }

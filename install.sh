@@ -46,7 +46,7 @@ fi
 brew tap caskroom/cask
 
 ### Brew Dependencies
-brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine"
+brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode"
 brew_dev_depend="node ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
 if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
   clear
