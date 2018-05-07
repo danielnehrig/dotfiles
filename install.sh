@@ -63,7 +63,7 @@ else
 fi
 
 ### Brew cask Dependencies
-brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack"
+brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
 echo "Installing Cask Depend"
 echo $brew_cask_depend
 brew cask install $brew_cask_depend
