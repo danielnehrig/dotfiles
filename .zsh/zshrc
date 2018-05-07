@@ -16,6 +16,8 @@ source ~/.dotfiles-unix/.zsh/settings.zsh
 source ~/.dotfiles-unix/.zsh/function.zsh
 source ~/.dotfiles-unix/.zsh/alias.zsh
 
+eval "$(nodenv init -)"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
