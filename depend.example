@@ -1,0 +1,6 @@
+brew_depend="vim zsh tmux"
+brew_dev_depend="perl lua docker"
+brew_cask_depend="vagrant virtualbox"
+node_depend_global="webpack sass-loader css-loader"
+gem_depend="mailcatcher sass"
+pip_depend="powerline-status mps-youtube"

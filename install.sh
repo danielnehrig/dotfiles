@@ -63,11 +63,13 @@ else
 fi
 
 ### Brew cask Dependencies
-brew_cask_depend="xquartz virtualbox vagrant"
+brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack"
+echo "Installing Cask Depend"
+echo $brew_cask_depend
 brew cask install $brew_cask_depend
 
 ### NodeJS NPM Dependencies
-node_depend_global="webpack nodemon"
+node_depend_global="webpack nodemon license-generator"
 if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
   clear
   npm install $node_depend_global --global

@@ -23,7 +23,7 @@ function gitcommitcheckpupf() {
         if [[ ! -z $1 ]]
         then
             commitname=$(echo $currentbranch-$1)
-            git commit -m fix($currentbranch): $1
+            git commit -m "fix($currentbranch): $1"
         else
             echo 'No Changes specified'
         fi
