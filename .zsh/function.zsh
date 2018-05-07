@@ -7,7 +7,7 @@ function gitcommitcheck() {
         if [[ ! -z $1 ]]
         then
             commitname=$(echo $currentbranch-$1)
-            git commit -m $currentbranch: $1
+            git commit -m "$currentbranch: $1"
         else
             echo 'No Changes specified'
         fi
