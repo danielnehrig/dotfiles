@@ -10,8 +10,11 @@
 
 ## Description
 
-A fully automated system dev installation  
+A fully automated system dev installation
+
 using various packet managers
+
+---
 
 ## Features
 
@@ -20,6 +23,10 @@ TMUX, VIM, ZSH Configurations
 ### GUI Programs (Default)
 
 - VS-Code
+- iTerm2
+- 1Password
+- PAW
+- All Major Browsers
 - Slack
 - Skype for Business
 - VirtualBox
@@ -30,12 +37,19 @@ TMUX, VIM, ZSH Configurations
 - Docker
 - TMUX
 - VIM
+- GDB
+- MYSQL
+- MONGODB
+- MAVEN
+- WINE
 
 ### ZSH Configuration
 
 - Correct Commiting
 - Powerline
 - Custom Aliases
+
+---
 
 ## Installation
 
