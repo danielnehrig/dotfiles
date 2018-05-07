@@ -47,7 +47,7 @@ brew tap caskroom/cask
 
 ### Brew Dependencies
 brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode"
-brew_dev_depend="node ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
+brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
 if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
   clear
   echo "Install System Utilitys"
@@ -62,6 +62,12 @@ else
   sleep 2
 fi
 
+### Nodenv Setup
+nodenv install 10.0.0
+nodenv install 9.11.1
+nodenv global 9.11.1
+eval "($nodenv init -)"
+
 ### Brew cask Dependencies
 brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
 echo "Installing Cask Depend"
@@ -72,6 +78,7 @@ brew cask install $brew_cask_depend
 node_depend_global="webpack nodemon license-generator"
 if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
   clear
+  npm install npm@latest -g
   npm install $node_depend_global --global
   sleep 2
 fi
