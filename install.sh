@@ -8,12 +8,6 @@ if [ ! -n "$DOTUNIX" ]; then
   DOTUNIX="$(pwd)"
 fi
 
-# if [ -d "$DOTUNIX" ]; then
-#   printf "You already have DOTUNIX installed.\n"
-#   printf "You'll need to remove $DOTUNIX if you want to re-install.\n"
-#   exit
-# fi
-
 command -v git >/dev/null 2>&1 || {
   echo "Error git is not installed"
   exit 1
@@ -25,7 +19,7 @@ git submodule update --init --recursive --remote
 CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
 
 if [ -f "config" ]; then
-  echo "Sourced SSH config"
+  echo "Sourced SSH Connection config"
   source config
   sleep 2
 fi
@@ -65,6 +59,8 @@ fi
 ### Nodenv Setup
 nodenv install 10.0.0
 nodenv install 9.11.1
+nodenv install 9.0.0
+nodenv install 8.0.9
 nodenv global 9.11.1
 eval "($nodenv init -)"
 
@@ -106,12 +102,22 @@ else
   sleep 2
 fi
 
+# Linking Files
+clear
+echo "Linking Files"
+ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
+cp $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
+ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+ln -s $DOTUNIX/.ssh/config ~/.ssh/config
+
 # Make ZSH default shell
 clear
 echo "Making ZSH default shell"
-echo "/usr/local/bin/zsh" >> /etc/shells
+sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
 chsh -s /usr/local/bin/zsh $(whoami)
 sleep 2
+exec zsh
 
 # Downloading Private Files if Permission granted
 ### SSH KEYS
@@ -140,13 +146,6 @@ clear
 cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sleep 2
 
-# Linking Files
-clear
-echo "Linking Files"
-ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
-ln -s $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
-ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
-ln -s ~/.vim/vimrc ~/.vimrc
-ln -s $DOTUNIX/.ssh/config ~/.ssh/config
 
 echo "Installation Completed"
+exec zsh -l
