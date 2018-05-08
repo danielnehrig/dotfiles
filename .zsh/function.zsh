@@ -32,6 +32,13 @@ function gitcommitcheckpupf() {
     fi
 }
 
+function nodeClear() {
+  rm -rf node_modules
+  rm package-lock.json
+  node cache verify
+  node install
+}
+
 # Random
 
 function darkTheme() {
