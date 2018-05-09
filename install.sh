@@ -1,7 +1,7 @@
 #!/bin/sh
 
-### Install Script by Daniel Nehrig inet-pwnZ
-### @inetpwnZ // daniel.nehrig@dnehrig.com
+### Install Script by Daniel Nehrig
+### daniel.nehrig@dnehrig.com
 
 # Install Validation
 if [ ! -n "$DOTUNIX" ]; then
@@ -24,6 +24,20 @@ if [ -f "config" ]; then
   sleep 2
 fi
 
+### Fallback Default Depend
+brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode"
+brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
+brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
+node_depend_global="webpack nodemon license-generator"
+gem_depend="mailcatcher sass"
+pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status mercurial pip isort"
+
+if [ -f "depend" ]; then
+  echp "Sourced Depend config"
+  source depend
+  sleep 2
+fi
+
 # Installing Dependencies
 ### Brew Install Validation
 echo "Enter Permission Credentials"
@@ -40,8 +54,6 @@ fi
 brew tap caskroom/cask
 
 ### Brew Dependencies
-brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode"
-brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
 if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
   clear
   echo "Install System Utilitys"
@@ -57,21 +69,18 @@ else
 fi
 
 ### Nodenv Setup
-nodenv install 10.0.0
-nodenv install 9.11.1
-nodenv install 9.0.0
-nodenv install 8.0.9
+nodenv install 10.0.0 -s
+nodenv install 9.11.1 -s
+nodenv install 9.0.0 -s
+nodenv install 8.0.9 -s
 nodenv global 9.11.1
-eval "($nodenv init -)"
 
 ### Brew cask Dependencies
-brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
 echo "Installing Cask Depend"
 echo $brew_cask_depend
 brew cask install $brew_cask_depend
 
 ### NodeJS NPM Dependencies
-node_depend_global="webpack nodemon license-generator"
 if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
   clear
   npm install npm@latest -g
@@ -80,7 +89,6 @@ if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
 fi
 
 ### Ruby GEM Dependencies
-gem_depend="mailcatcher sass"
 if ! gem_loc="$(type -p "gem")" || [[ ! -z $gem_loc ]]; then
   clear
   echo "Installing Gem Dependencies"
@@ -90,7 +98,6 @@ if ! gem_loc="$(type -p "gem")" || [[ ! -z $gem_loc ]]; then
 fi
 
 ### Python PIP Dependencies
-pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status mercurial pip isort"
 if ! python_loc="$(type -p "python")" || [[ ! -z $python_loc ]]; then
   clear
   echo "Installing Pip Dependencies"
@@ -114,6 +121,7 @@ ln -s $DOTUNIX/.ssh/config ~/.ssh/config
 # Make ZSH default shell
 clear
 echo "Making ZSH default shell"
+ZSH_IN_SHELLS="cat /etc/shells | grep usr | grep zsh"
 sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
 chsh -s /usr/local/bin/zsh $(whoami)
 sleep 2
@@ -131,6 +139,9 @@ else
   sleep 2
 fi
 
+### Eval Node Env
+eval "($nodenv init -)"
+
 ### Fonts
 clear
 echo "Downloading Fonts"
@@ -143,7 +154,7 @@ sleep 2
 
 ### zsh-syntax-highlight
 clear
-cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sleep 2
 
 
