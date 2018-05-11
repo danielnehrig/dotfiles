@@ -5,7 +5,10 @@
 
 # Install Validation
 if [ ! -n "$DOTUNIX" ]; then
-  DOTUNIX="$(pwd)"
+  DOTUNIX=~/.dotfiles-unix
+else
+  echo "allready installed"
+  exit 1
 fi
 
 command -v git >/dev/null 2>&1 || {
@@ -142,7 +145,7 @@ fi
 ### Eval Node Env
 eval "($nodenv init -)"
 
-### Fonts
+### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
 clear
 echo "Downloading Fonts"
 mkdir fonts

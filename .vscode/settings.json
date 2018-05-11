@@ -1,0 +1,18 @@
+{
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "vim.easymotion": true,
+    "editor.tabSize": 2,
+    "extensions.autoUpdate": false,
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "dark-plus-syntax",
+    "terminal.integrated.fontFamily": "'SourceCodePro+Powerline+Awesome Regular'",
+    "files.associations": {
+        "*.htm": "ftl"
+    },
+    "[ftl]": {
+    
+},
+"git.autofetch": true
+}
