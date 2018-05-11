@@ -1,5 +1,26 @@
 # Work related Functions
-#
+
+function shopUpdate() {
+  if [ ! -z $SHOP_ENV ];
+  then
+    echo "Update Vagrent ENV"
+    cd $SHOP_ENV
+    ./update.sh
+    echo "Update Shop-Repo"
+    cd $SHOP_CODE
+    git pull
+    echo "Update NodeSync"
+    cd $NODE_SYNC
+    git pull
+    echo "Update Shop Services"
+    cd $SHOP_SERVICE
+    cd pupf-client
+    git pull
+  else
+    echo "env not set"
+  fi
+}
+
 function shopCheckout() {
   isShopRepo=`git remote -v | grep shop-apotheke`
   if [ "$?" -ne "0" ]; then
