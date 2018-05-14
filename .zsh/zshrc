@@ -9,11 +9,6 @@ path+=( /usr/local/opt/llvm/bin )
 path+=**
 export EDITOR='vim'
 export DEFAULT_USER="$USER"
-export SHOP_ENV=~/code/work/vagrantboxes
-export SHOP_CODE=~/code/work/shop-apotheke
-export NODE_SYNC=~/code/work/shopapotheke-sync-new
-export SHOP_SERVICE=~/code/work/frontend-services
-export CODE_FOLDER=~/code/
 
 # User Settings
 source ~/.dotfiles-unix/.zsh/settings.zsh
