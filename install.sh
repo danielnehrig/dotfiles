@@ -112,6 +112,13 @@ else
   sleep 2
 fi
 
+# Backup Files
+mkdir ~/.dot-backup
+mv ~/.zshrc ~/.dot-backup/
+mv ~/.tmux.conf ~/.dot-backup
+mv ~/.vim ~/.dot-backup
+mv ~/.vimrc ~/.dot-backup
+
 # Linking Files
 clear
 echo "Linking Files"
