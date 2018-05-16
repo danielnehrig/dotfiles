@@ -28,7 +28,7 @@ if [ -f "config" ]; then
 fi
 
 ### Fallback Default Depend
-brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode"
+brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode archey"
 brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
 brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
 node_depend_global="webpack nodemon license-generator"
@@ -74,17 +74,16 @@ fi
 nodenv install 10.0.0 -s
 nodenv install 9.11.1 -s
 nodenv install 9.0.0 -s
-nodenv install 8.0.9 -s
 nodenv global 9.11.1
 
 ### Brew cask Dependencies
 echo "Installing Cask Depend"
 echo $brew_cask_depend
 brew cask install $brew_cask_depend
+eval "$(nodenv init -)"
 
 ### NodeJS NPM Dependencies
 if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
-  eval "($nodenv init -)"
   npm install npm@latest -g
   npm install $node_depend_global --global
   sleep 2
@@ -144,7 +143,7 @@ else
 fi
 
 ### Eval Node Env
-eval "($nodenv init -)"
+eval "$(nodenv init -)"
 ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
 
 echo "Downloading Fonts"
