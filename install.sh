@@ -17,7 +17,7 @@ command -v git >/dev/null 2>&1 || {
 }
 
 ### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim, powerlevel9kTheme, syntax-highlight-zsh)
-git submodule update --init --recursive --remote
+git submodule update --init --recursive --remote &> /dev/null
 
 CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
 
@@ -29,7 +29,7 @@ fi
 
 ### Fallback Default Depend
 brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode"
-brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake perl lua"
+brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
 brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
 node_depend_global="webpack nodemon license-generator"
 gem_depend="mailcatcher sass"
@@ -58,7 +58,6 @@ brew tap caskroom/cask
 
 ### Brew Dependencies
 if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
-  clear
   echo "Install System Utilitys"
   echo $brew_depend
   brew install $brew_depend
@@ -85,7 +84,7 @@ brew cask install $brew_cask_depend
 
 ### NodeJS NPM Dependencies
 if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
-  clear
+  eval "($nodenv init -)"
   npm install npm@latest -g
   npm install $node_depend_global --global
   sleep 2
@@ -93,7 +92,6 @@ fi
 
 ### Ruby GEM Dependencies
 if ! gem_loc="$(type -p "gem")" || [[ ! -z $gem_loc ]]; then
-  clear
   echo "Installing Gem Dependencies"
   echo $gem_depend
   gem install $gem_depend
@@ -102,7 +100,6 @@ fi
 
 ### Python PIP Dependencies
 if ! python_loc="$(type -p "python")" || [[ ! -z $python_loc ]]; then
-  clear
   echo "Installing Pip Dependencies"
   echo $pip_depend
   pip install $pip_depend
@@ -118,18 +115,16 @@ mv ~/.zshrc ~/.dot-backup/
 mv ~/.tmux.conf ~/.dot-backup
 mv ~/.vim ~/.dot-backup
 mv ~/.vimrc ~/.dot-backup
-
 # Linking Files
-clear
+
 echo "Linking Files"
 ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
 cp $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
 ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s $DOTUNIX/.ssh/config ~/.ssh/config
-
 # Make ZSH default shell
-clear
+
 echo "Making ZSH default shell"
 ZSH_IN_SHELLS="cat /etc/shells | grep usr | grep zsh"
 sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
@@ -140,7 +135,6 @@ exec zsh
 # Downloading Private Files if Permission granted
 ### SSH KEYS
 if [ -n "$SSH_SERV" ]; then
-  clear
   echo "Downloading SSH Keys"
   scp -r $SSH_USER@$SSH_SERV:~/.ssh/$SSH_PRIVATE_KEY ~/.ssh/
   sleep 2
@@ -151,9 +145,8 @@ fi
 
 ### Eval Node Env
 eval "($nodenv init -)"
-
 ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
-clear
+
 echo "Downloading Fonts"
 mkdir fonts
 FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
@@ -163,7 +156,6 @@ mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
 sleep 2
 
 ### zsh-syntax-highlight
-clear
 cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sleep 2
 
