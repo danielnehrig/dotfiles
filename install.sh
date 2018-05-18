@@ -3,6 +3,12 @@
 ### Install Script by Daniel Nehrig
 ### daniel.nehrig@dnehrig.com
 
+# System Validation
+if sys="$(uname)" || [[ $sys -ne "Darwin" ]]; then
+  echo "System is not Darwin Exit 1"
+  exit 1
+fi
+
 # Install Validation
 if [ ! -n "$DOTUNIX" ]; then
   DOTUNIX=~/.dotfiles-unix
