@@ -12,6 +12,7 @@ if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
   GREEN="$(tput setaf 2)"
   YELLOW="$(tput setaf 3)"
   BLUE="$(tput setaf 4)"
+  LILA="$(tput setaf 5)"
   BOLD="$(tput bold)"
   NORMAL="$(tput sgr0)"
 else
@@ -26,7 +27,8 @@ fi
 # Global Vars
 DEBUG="false"
 ARROW="${BLUE}======>"
-ERROR="${RED}Warning:${NORMAL}"
+ERROR="${RED}ERROR:${NORMAL}"
+WARNING="${LILA}Warning:${NORMAL}"
 brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode archey"
 brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
 brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
@@ -37,20 +39,21 @@ NODENV_GLOBAL="9.11.1"
 
 # System Validation
 if sys="$(uname)" && [[ $sys -ne 'Darwin' ]]; then
-  printf "$ARROW ${RED} System is $sys but has to be Darwin\n"
+  printf "$ARROW $ERROR System is ${BLUE}$sys ${NORMAL}but has to be ${GREEN}Darwin\n"
   exit 1
 fi
 
 # Install Validation
 if [ ! -n "$DOTUNIX" ]; then
   DOTUNIX=~/.dotfiles-unix
+  printf "$ARROW ${GREEN}Installing\n"
 else
-  printf "$ARROW ${RED}Allready installed\n\t${NORMAL}Use uninstaller\n"
+  printf "$ARROW $ERROR ${RED}Allready installed\n\t${NORMAL}Use uninstaller\n"
   exit 1
 fi
 
 command -v git >/dev/null 2>&1 || {
-  printf "$ARROW ${NORMAL}Git is ${RED}not installed\n"
+  printf "$ARROW $ERROR ${NORMAL}Git is ${RED}not installed\n"
   exit 1
 }
 
@@ -67,6 +70,7 @@ if [ -f "depend" ]; then
 fi
 
 ### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim, powerlevel9kTheme, syntax-highlight-zsh)
+printf "$ARROW ${GREEN}Loading GIT Submodules\n"
 git submodule update --init --recursive --remote &> /dev/null
 
 # Installing Dependencies
