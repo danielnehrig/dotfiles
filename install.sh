@@ -3,9 +3,41 @@
 ### Install Script by Daniel Nehrig
 ### daniel.nehrig@dnehrig.com
 
+# Colors
+if which tput >/dev/null 2>&1; then
+  ncolors=$(tput colors)
+fi
+if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+  RED="$(tput setaf 1)"
+  GREEN="$(tput setaf 2)"
+  YELLOW="$(tput setaf 3)"
+  BLUE="$(tput setaf 4)"
+  BOLD="$(tput bold)"
+  NORMAL="$(tput sgr0)"
+else
+  RED=""
+  GREEN=""
+  YELLOW=""
+  BLUE=""
+  BOLD=""
+  NORMAL=""
+fi
+
+# Global Vars
+DEBUG="false"
+ARROW="${BLUE}======>"
+ERROR="${RED}Warning:${NORMAL}"
+brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode archey"
+brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
+brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
+node_depend_global="webpack nodemon license-generator"
+gem_depend="mailcatcher sass"
+pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status mercurial pip isort"
+NODENV_GLOBAL="9.11.1"
+
 # System Validation
-if sys="$(uname)" || [[ $sys -ne "Darwin" ]]; then
-  echo "System is not Darwin Exit 1"
+if sys="$(uname)" && [[ $sys -ne 'Darwin' ]]; then
+  printf "$ARROW ${RED} System is $sys but has to be Darwin\n"
   exit 1
 fi
 
@@ -13,62 +45,51 @@ fi
 if [ ! -n "$DOTUNIX" ]; then
   DOTUNIX=~/.dotfiles-unix
 else
-  echo "allready installed"
+  printf "$ARROW ${RED}Allready installed\n\t${NORMAL}Use uninstaller\n"
   exit 1
 fi
 
 command -v git >/dev/null 2>&1 || {
-  echo "Error git is not installed"
+  printf "$ARROW ${NORMAL}Git is ${RED}not installed\n"
   exit 1
 }
 
-### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim, powerlevel9kTheme, syntax-highlight-zsh)
-git submodule update --init --recursive --remote &> /dev/null
-
-CURRENT_SHELL=$(expr "$SHELL" : '.*/(.*\)')
-
 if [ -f "config" ]; then
-  echo "Sourced SSH Connection config"
+  printf "$ARROW ${GREEN}Sourced SSH Connection config\n"
   source config
   sleep 2
 fi
 
-### Fallback Default Depend
-brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode archey"
-brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
-brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office"
-node_depend_global="webpack nodemon license-generator"
-gem_depend="mailcatcher sass"
-pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status mercurial pip isort"
-
 if [ -f "depend" ]; then
-  echp "Sourced Depend config"
   source depend
+  printf "$ARROW ${GREEN}Sourced Depend config\n"
   sleep 2
 fi
 
+### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim, powerlevel9kTheme, syntax-highlight-zsh)
+git submodule update --init --recursive --remote &> /dev/null
+
 # Installing Dependencies
 ### Brew Install Validation
-echo "Enter Permission Credentials"
 if ! brew_loc="$(type -p "brew")" || [[ -z $brew_loc ]]; then
-  echo "Installing Brew"
+  printf "$ARROW ${GREEN}Installing Brew\n"
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew tap caskroom/cask &> /dev/null
   sleep 2
 else
-  echo "Brew is allready installed"
+  printf "$ARROW ${NORMAL}Brew is ${RED}allready installed\n"
   sleep 2
 fi
 
 ### Brew Cask
-brew tap caskroom/cask
 
 ### Brew Dependencies
 if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
-  echo "Install System Utilitys"
-  echo $brew_depend
+  printf "$ARROW ${GREEN}Install System Utilitys\n"
+  printf "$ARROW ${BOLD}$brew_depend\n"
   brew install $brew_depend
-  echo "Install Dev Utilitys"
-  echo $brew_dev_depend
+  printf "$ARROW ${GREEN}Install Dev Utilitys\n"
+  printf "$ARROW ${BOLD}$brew_dev_depend\n"
   brew install $brew_dev_depend
   sleep 2
 else
@@ -77,44 +98,47 @@ else
 fi
 
 ### Nodenv Setup
+printf "$ARROW ${GREEN}Installing nodenv setting $NODENV_GLOBAL as Global node version\n"
 nodenv install 10.0.0 -s
 nodenv install 9.11.1 -s
 nodenv install 9.0.0 -s
-nodenv global 9.11.1
+nodenv global $NODENV_GLOBAL
 
 ### Brew cask Dependencies
-echo "Installing Cask Depend"
-echo $brew_cask_depend
+printf "$ARROW ${GREEN}Installing Cask Depend\n"
+printf "$ARROW ${BOLD}$brew_cask_depend\n"
 brew cask install $brew_cask_depend
-eval "$(nodenv init -)"
+eval "$(nodenv init -)" &> /dev/null
 
 ### NodeJS NPM Dependencies
 if ! node_loc="$(type -p "npm")" || [[ ! -z $node_loc ]]; then
-  npm install npm@latest -g
-  npm install $node_depend_global --global
+  printf "$ARROW ${GREEN}Installing Node Dependencies\n"
+  npm install npm@latest -g &> /dev/null
+  npm install $node_depend_global --global &> /dev/null
   sleep 2
 fi
 
 ### Ruby GEM Dependencies
 if ! gem_loc="$(type -p "gem")" || [[ ! -z $gem_loc ]]; then
-  echo "Installing Gem Dependencies"
-  echo $gem_depend
+  printf "$ARROW ${GREEN}Installing Gem Dependencies\n"
+  printf "$ARROW ${BOLD}$gem_depend\n"
   gem install $gem_depend
   sleep 2
 fi
 
 ### Python PIP Dependencies
 if ! python_loc="$(type -p "python")" || [[ ! -z $python_loc ]]; then
-  echo "Installing Pip Dependencies"
-  echo $pip_depend
+  printf "$ARROW ${GREEN}Installing Pip Dependencies\n"
+  printf "$ARROW ${BOLD}$pip_depend\n"
   pip install $pip_depend
   sleep 2
 else
-  echo "Python not found"
+  printf "$ARROW ${RED}Python not found\n"
   sleep 2
 fi
 
 # Backup Files
+printf "$ARROW ${GREEN}Backingup Files\n"
 mkdir ~/.dot-backup
 mv ~/.zshrc ~/.dot-backup/
 mv ~/.tmux.conf ~/.dot-backup
@@ -122,7 +146,7 @@ mv ~/.vim ~/.dot-backup
 mv ~/.vimrc ~/.dot-backup
 # Linking Files
 
-echo "Linking Files"
+printf "$ARROW ${GREEN}Linking Files\n"
 ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
 cp $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
 ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
@@ -130,7 +154,7 @@ ln -s ~/.vim/vimrc ~/.vimrc
 ln -s $DOTUNIX/.ssh/config ~/.ssh/config
 # Make ZSH default shell
 
-echo "Making ZSH default shell"
+printf "$ARROW ${GREEN}Making ZSH default shell\n"
 ZSH_IN_SHELLS="cat /etc/shells | grep usr | grep zsh"
 sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
 chsh -s /usr/local/bin/zsh $(whoami)
@@ -140,19 +164,19 @@ exec zsh
 # Downloading Private Files if Permission granted
 ### SSH KEYS
 if [ -n "$SSH_SERV" ]; then
-  echo "Downloading SSH Keys"
+  printf "$ARROW ${GREEN}Downloading SSH Keys\n"
   scp -r $SSH_USER@$SSH_SERV:~/.ssh/$SSH_PRIVATE_KEY ~/.ssh/
   sleep 2
 else
-  echo "No SSH Credentials specified"
+  printf "$ARROW ${RED}No SSH Credentials specified\n"
   sleep 2
 fi
 
 ### Eval Node Env
-eval "$(nodenv init -)"
+eval "$(nodenv init -)" &> /dev/null
 ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
 
-echo "Downloading Fonts"
+printf "$ARROW ${GREEN}Downloading Fonts\n"
 mkdir fonts
 FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
 FONT_NAME="SourceCodeProAwesome.ttf"
@@ -165,5 +189,5 @@ cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/z
 sleep 2
 
 
-echo "Installation Completed"
+printf "$ARROW ${GREEN}Installation Completed\n"
 exec zsh -l
