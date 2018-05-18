@@ -3,7 +3,7 @@
 ### Install Script by Daniel Nehrig
 ### daniel.nehrig@dnehrig.com
 
-# Colors
+# Set Colors
 if which tput >/dev/null 2>&1; then
   ncolors=$(tput colors)
 fi
@@ -71,7 +71,7 @@ fi
 
 ### Download Repo Dependencies (TMUX, oh-my-zsh, dotfiles-vim, powerlevel9kTheme, syntax-highlight-zsh)
 printf "$ARROW ${GREEN}Loading GIT Submodules\n"
-git submodule update --init --recursive --remote &> /dev/null
+git submodule update --init --recursive &> /dev/null
 
 # Installing Dependencies
 ### Brew Install Validation
@@ -84,8 +84,6 @@ else
   printf "$ARROW ${NORMAL}Brew is ${RED}allready installed\n"
   sleep 2
 fi
-
-### Brew Cask
 
 ### Brew Dependencies
 if ! brew_loc="$(type -p "brew")" || [[ ! -z $brew_loc ]]; then
@@ -148,16 +146,16 @@ mv ~/.zshrc ~/.dot-backup/
 mv ~/.tmux.conf ~/.dot-backup
 mv ~/.vim ~/.dot-backup
 mv ~/.vimrc ~/.dot-backup
-# Linking Files
 
+# Linking Files
 printf "$ARROW ${GREEN}Linking Files\n"
 ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
 cp $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
 ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s $DOTUNIX/.ssh/config ~/.ssh/config
-# Make ZSH default shell
 
+# Make ZSH default shell
 printf "$ARROW ${GREEN}Making ZSH default shell\n"
 ZSH_IN_SHELLS="cat /etc/shells | grep usr | grep zsh"
 sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
@@ -178,8 +176,8 @@ fi
 
 ### Eval Node Env
 eval "$(nodenv init -)" &> /dev/null
-### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
 
+### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
 printf "$ARROW ${GREEN}Downloading Fonts\n"
 mkdir fonts
 FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
@@ -192,6 +190,6 @@ sleep 2
 cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sleep 2
 
-
+### Set installation is done
 printf "$ARROW ${GREEN}Installation Completed\n"
 exec zsh -l
