@@ -190,6 +190,18 @@ sleep 2
 cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sleep 2
 
+### Installing vim Plugins
+printf "$ARROW ${GREEN}Installing Vim Plugins\n"
+vim -c PluginInstall &> /dev/null
+
+### Compiling YouCompleteMe
+printf "$ARROW ${GREEN}Compiling YCM\n"
+./.dotfiles-vim/bundle/YouCompleteMe/install.py --all &> /dev/null
+
+### Compiling pwndbg
+printf "$ARROW ${GREEN}Compiling pwndbg\n"
+./pwndbg/setup.sh &> /dev/null
+
 ### Set installation is done
 printf "$ARROW ${GREEN}Installation Completed\n"
 exec zsh -l
