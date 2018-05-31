@@ -153,6 +153,7 @@ ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc
 cp $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf
 ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
+ln -s $DOTUNIX/.tmux.conf ~/.tmux.conf
 ln -s $DOTUNIX/.ssh/config ~/.ssh/config
 
 # Make ZSH default shell
