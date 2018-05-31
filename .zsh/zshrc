@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/dnehrig/.dotfiles-unix/oh-my-zsh/"
+export ZSH="/Users/dnehrig/.dotfiles-darwin/oh-my-zsh/"
 export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 
 # User exports
@@ -11,9 +11,9 @@ export EDITOR='vim'
 export DEFAULT_USER="$USER"
 
 # User Settings
-source ~/.dotfiles-unix/.zsh/settings.zsh
-source ~/.dotfiles-unix/.zsh/function.zsh
-source ~/.dotfiles-unix/.zsh/alias.zsh
+source ~/.dotfiles-darwin/.zsh/settings.zsh
+source ~/.dotfiles-darwin/.zsh/function.zsh
+source ~/.dotfiles-darwin/.zsh/alias.zsh
 
 eval "$(nodenv init -)"
 
