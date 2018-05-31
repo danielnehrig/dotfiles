@@ -45,7 +45,7 @@ fi
 
 # Install Validation
 if [ ! -n "$DOTUNIX" ]; then
-  DOTUNIX=~/.dotfiles-unix
+  DOTUNIX=~/.dotfiles-darwin
   printf "$ARROW ${GREEN}Installing\n"
 else
   printf "$ARROW $ERROR ${RED}Allready installed\n\t${NORMAL}Use uninstaller\n"
