@@ -187,6 +187,10 @@ wget -L $FONT -O $FONT_NAME > /dev/null 2>&1
 mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
 sleep 2
 
+### Install Powerlevel9k Plugin
+cp -r powerlevel9k ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/themes/
+sleep 2
+
 ### zsh-syntax-highlight
 cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sleep 2
