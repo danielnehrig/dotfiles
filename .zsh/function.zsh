@@ -25,7 +25,7 @@ function shopCheckout() {
   isShopRepo=`git remote -v | grep shop-apotheke`
   if [ "$?" -ne "0" ]; then
     echo "Not In Shop Repo"
-    exit 1
+    return
   fi
   if [ ! -z $1 ];
   then
@@ -34,18 +34,20 @@ function shopCheckout() {
       git checkout bugfix/CSEAV-$1
     else
       echo 'No Valid Ticket Number specified'
+      return
     fi
   else
     echo 'Needs 1 Arguments'
+    return
   fi
 
 }
 
 function gitcommitcheck() {
-  isShopRepo=`git remote -v | grep shop-apotheke`
-  if [ "$?" -ne "0" ]; then
-    echo "Not In Shop Repo"
-    exit 1
+  isShopRepo=$(git remote -v)
+  if ! [[ $isShopRepo =~ '(shop-apotheke|shopeav)' ]]; then
+      echo "Not In Shop Repo"
+      return
   fi
   currentbranch=$(git branch | grep \* | cut -d ' ' -f2 | cut -d '/' -f2)
   if [[ $currentbranch =~ 'CSEAV-[0-9]{4}' ]]
@@ -56,9 +58,11 @@ function gitcommitcheck() {
       git commit -m "$currentbranch: $1"
     else
       echo 'No Changes specified'
+      return
     fi
   else
     echo 'Branch has wrong Formating'
+    return
   fi
 }
 
@@ -72,9 +76,11 @@ function gitcommitcheckpupf() {
       git commit -m "fix($currentbranch): $1"
     else
       echo 'No Changes specified'
+      return
     fi
   else
     echo 'Not IN Pupf Repo'
+    return
   fi
 }
 
