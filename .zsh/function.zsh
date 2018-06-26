@@ -22,10 +22,10 @@ function shopUpdate() {
 }
 
 function shopCheckout() {
-  isShopRepo=`git remote -v | grep shop-apotheke`
-  if [ "$?" -ne "0" ]; then
-    echo "Not In Shop Repo"
-    return
+  isShopRepo=$(git remote -v)
+  if ! [[ $isShopRepo =~ '(shop-apotheke|shopeav)' ]]; then
+      echo "Not In Shop Repo"
+      return
   fi
   if [ ! -z $1 ];
   then
