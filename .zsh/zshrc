@@ -54,4 +54,4 @@ plugins=(git tmux osx zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-archey
+archey --offline
