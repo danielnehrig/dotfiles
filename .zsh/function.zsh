@@ -102,3 +102,7 @@ function lightTheme() {
   osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Users/dnehrig/wallpaper/light.jpg"'
   dark-mode off
 }
+
+function countCode() {
+  find . -name '*.$1' | xargs wc -l
+}
