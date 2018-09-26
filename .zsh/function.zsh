@@ -50,7 +50,7 @@ function gitcommitcheck() {
       return
   fi
   currentbranch=$(git branch | grep \* | cut -d ' ' -f2 | cut -d '/' -f2)
-  if [[ $currentbranch =~ 'CSEAV-[0-9]{4}' ]]
+  if [[ $currentbranch =~ 'PTBUY-[0-9]{1-4}' ]]
   then
     if [[ ! -z $1 ]]
     then
@@ -68,7 +68,7 @@ function gitcommitcheck() {
 
 function gitcommitcheckpupf() {
   currentbranch=$(git branch | grep \* | cut -d ' ' -f2 | cut -d '/' -f2)
-  if [[ $currentbranch =~ 'CSEAV-[0-9]{4}' ]]
+  if [[ $currentbranch =~ 'PTBUY-[0-9]{1-4}' ]]
   then
     if [[ ! -z $1 ]]
     then
