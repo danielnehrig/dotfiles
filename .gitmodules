@@ -1,6 +1,6 @@
 [submodule ".dotfiles-vim"]
 	path = .dotfiles-vim
-	url = https://github.com/inet-pwnZ/.dotfiles-vim
+	url = https://github.com/danielnehrig/.dotfiles-vim
   branch = vundle
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
