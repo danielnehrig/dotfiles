@@ -1,8 +1,8 @@
 export SHOP_ENV=~/code/work/vagrantboxes
-export SHOP_CODE=~/code/work/shop-apotheke
+export CODE_SHOP=~/code/work/shop-apotheke
 export NODE_SYNC=~/code/work/shopapotheke-sync-new
-export SHOP_SERVICE=~/code/work/frontend-services
-export CODE_FOLDER=~/code/
+export SHOP_SERVICES=~/code/work/frontend-services
+export CODE_DIR=~/code/
 export HOSTS=/etc/hosts
 
 alias ca='clear && archey'
