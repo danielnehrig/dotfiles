@@ -84,6 +84,22 @@ function gitcommitcheckpupf() {
   fi
 }
 
+function tarPackUnpack() {
+  case "$1" in
+    pack)
+      echo "packing $2"
+      tar cfzv "$2.tar.gz" $2
+      ;;
+    unpack)
+      echo "unpacking $2"
+      tar xfvz "$2.tar.gz"
+      ;;
+    *)
+      echo "Usage: $0 pack|unpack"
+      ;;
+  esac
+}
+
 function nodeClear() {
   rm -rf node_modules
   rm package-lock.json
