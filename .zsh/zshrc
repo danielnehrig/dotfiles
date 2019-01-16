@@ -15,6 +15,10 @@ source ~/.dotfiles-darwin/.zsh/alias.zsh
 # Nodenv init
 eval "$(nodenv init -)"
 
+# docker init
+eval $(docker-machine env)
+export DOCKER_IP=$(docker-machine ip)
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
