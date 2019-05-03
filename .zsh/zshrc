@@ -3,7 +3,7 @@ export ZSH="/Users/dnehrig/.dotfiles-darwin/oh-my-zsh/"
 export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 
 # User exports
-export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/usr/local/bin:/usr/local/Cellar:/usr/bin:/bin:/usr/sbin:/sbin:/usr/include/libxml2:~/Library/Python/2.7/bin:/usr/local/opt/llvm/bin:/usr/local/include:**"
+export PATH="/usr/local/sbin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/usr/local/bin:/usr/local/Cellar:/usr/bin:/bin:/usr/sbin:/sbin:/usr/include/libxml2:~/Library/Python/2.7/bin:/usr/local/opt/llvm/bin:/usr/local/include:**"
 export EDITOR='vim'
 export DEFAULT_USER="$USER"
 

@@ -29,7 +29,7 @@ DEBUG="false"
 ARROW="${BLUE}======>"
 ERROR="${RED}ERROR:${NORMAL}"
 WARNING="${LILA}Warning:${NORMAL}"
-brew_depend="vim --with-python@2 mpv mplayer unrar tmux shairport-sync w3m zsh youtube-dl wget wine dark-mode archey"
+brew_depend="vim mpv mplayer unrar tmux w3m zsh youtube-dl wget wine dark-mode archey"
 brew_dev_depend="nodenv ruby python@2 python3 mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
 brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office arduino"
 node_depend_global="webpack nodemon license-generator"
@@ -45,7 +45,7 @@ fi
 
 # Install Validation
 if [ ! -n "$DOTUNIX" ]; then
-  DOTUNIX=~/.dotfiles-darwin
+  DOTUNIX=$(pwd)
   printf "$ARROW ${GREEN}Installing\n"
 else
   printf "$ARROW $ERROR ${RED}Allready installed\n\t${NORMAL}Use uninstaller\n"
@@ -132,7 +132,7 @@ fi
 if ! python_loc="$(type -p "python")" || [[ ! -z $python_loc ]]; then
   printf "$ARROW ${GREEN}Installing Pip Dependencies\n"
   printf "$ARROW ${BOLD}$pip_depend\n"
-  pip install $pip_depend
+  pip3.7 install $pip_depend
   sleep 2
 else
   printf "$ARROW ${RED}Python not found\n"
@@ -188,11 +188,11 @@ mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
 sleep 2
 
 ### Install Powerlevel9k Plugin
-cp -r powerlevel9k ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/themes/
+cp -r powerlevel9k $DOTUNIX/oh-my-zsh/custom/themes/
 sleep 2
 
 ### zsh-syntax-highlight
-cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+cp -r zsh-syntax-highlighting $DOTUNIX/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 sleep 2
 
 ### Installing vim Plugins
