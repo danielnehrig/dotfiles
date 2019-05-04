@@ -34,7 +34,7 @@ brew_dev_depend="nodenv ruby python@2 python3 mongodb gdb maven mysql go docker 
 brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office arduino"
 node_depend_global="webpack nodemon license-generator"
 gem_depend="mailcatcher sass"
-pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status mercurial pip isort"
+pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status psutil mercurial pip isort"
 NODENV_GLOBAL="9.11.1"
 
 # System Validation
