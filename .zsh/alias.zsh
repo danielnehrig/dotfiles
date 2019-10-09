@@ -4,6 +4,8 @@ export NODE_SYNC=~/code/work/shopapotheke-sync-new
 export SHOP_SERVICES=~/code/work/frontend-services
 export CODE_DIR=~/code/
 export HOSTS=/etc/hosts
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 alias ca='clear && archey'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
