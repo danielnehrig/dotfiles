@@ -1,4 +1,5 @@
 fonts
+.zsh/tokens.zsh
 config
 depend
 installed

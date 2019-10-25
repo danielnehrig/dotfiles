@@ -54,7 +54,7 @@ export DOCKER_IP=$(docker-machine ip)
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git tmux osx zsh-syntax-highlighting)
+plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker dnf)
 
 source $ZSH/oh-my-zsh.sh
 
