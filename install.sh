@@ -29,13 +29,13 @@ DEBUG="false"
 ARROW="${BLUE}======>"
 ERROR="${RED}ERROR:${NORMAL}"
 WARNING="${LILA}Warning:${NORMAL}"
-brew_depend="vim mpv mplayer unrar tmux w3m zsh youtube-dl wget wine dark-mode archey"
-brew_dev_depend="nodenv ruby python@2 python3 mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
-brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox intellij-idea paw skype-for-business slack microsoft-office arduino"
+brew_depend="vim mpv mplayer unrar tmux w3m zsh youtube-dl wget wine dark-mode archey bat fzf"
+brew_dev_depend="nodenv ruby python python3 mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
+brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox paw slack microsoft-office arduino docker"
 node_depend_global="webpack nodemon license-generator"
 gem_depend="mailcatcher sass"
 pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status psutil mercurial pip isort"
-NODENV_GLOBAL="9.11.1"
+NODENV_GLOBAL="12.8.0"
 
 # System Validation
 if sys="$(uname)" && [[ $sys -ne 'Darwin' ]]; then

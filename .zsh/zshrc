@@ -15,9 +15,9 @@ source ~/.dotfiles-darwin/.zsh/alias.zsh
 # Nodenv init
 eval "$(nodenv init -)"
 
-# docker init
-eval $(docker-machine env)
-export DOCKER_IP=$(docker-machine ip)
+# docker machine init
+# eval $(docker-machine env)
+# export DOCKER_IP=$(docker-machine ip)
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -59,3 +59,4 @@ plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker dnf)
 source $ZSH/oh-my-zsh.sh
 
 archey
+
