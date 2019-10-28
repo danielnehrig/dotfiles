@@ -57,6 +57,7 @@ eval "$(nodenv init -)"
 plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker dnf)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.dotfiles-darwin/.zsh/fzf.zsh
 
 archey
 
