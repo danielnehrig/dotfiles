@@ -54,7 +54,7 @@ eval "$(nodenv init -)"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker dnf)
+plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker dnf fzf-docker zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles-darwin/.zsh/fzf.zsh

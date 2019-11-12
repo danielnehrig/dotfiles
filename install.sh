@@ -30,8 +30,8 @@ ARROW="${BLUE}======>"
 ERROR="${RED}ERROR:${NORMAL}"
 WARNING="${LILA}Warning:${NORMAL}"
 brew_depend="vim mpv mplayer unrar tmux w3m zsh youtube-dl wget wine dark-mode archey bat fzf fd"
-brew_dev_depend="nodenv ruby python python3 mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
-brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox paw slack microsoft-office arduino docker"
+brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
+brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox paw slack microsoft-office arduino docker basictex"
 node_depend_global="webpack nodemon license-generator"
 gem_depend="mailcatcher sass"
 pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status psutil mercurial pip isort"
@@ -101,9 +101,7 @@ fi
 
 ### Nodenv Setup
 printf "$ARROW ${GREEN}Installing nodenv setting $NODENV_GLOBAL as Global node version\n"
-nodenv install 10.0.0 -s
-nodenv install 9.11.1 -s
-nodenv install 9.0.0 -s
+nodenv install 12.8.0 -s
 nodenv global $NODENV_GLOBAL
 
 ### Brew cask Dependencies
@@ -194,6 +192,13 @@ sleep 2
 ### zsh-syntax-highlight
 cp -r zsh-syntax-highlighting $DOTUNIX/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 sleep 2
+
+### autosuggest
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom/plugins/}/plugins/zsh-autosuggestions
+sleep 2
+
+### fzf docker
+git clone https://github.com/pierpo/fzf-docker ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom/plugins/}/plugins/fzf-docker
 
 ### Installing vim Plugins
 printf "$ARROW ${GREEN}Installing Vim Plugins\n"
