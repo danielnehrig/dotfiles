@@ -29,12 +29,12 @@ DEBUG="false"
 ARROW="${BLUE}======>"
 ERROR="${RED}ERROR:${NORMAL}"
 WARNING="${LILA}Warning:${NORMAL}"
-brew_depend="vim mpv mplayer unrar tmux w3m zsh youtube-dl wget wine dark-mode archey bat fzf fd"
-brew_dev_depend="nodenv ruby python mongodb gdb maven mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
-brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox paw slack microsoft-office arduino docker basictex"
-node_depend_global="webpack nodemon license-generator"
+brew_depend="vim unrar tmux w3m zsh wget wine dark-mode archey bat fzf fd"
+brew_dev_depend="nodenv ruby python mongodb gdb mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
+brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox paw slack microsoft-office arduino docker basictex google-cloud-sdk"
+node_depend_global="webpack webpack-cli webpack-dev-server nodemon license-generator"
 gem_depend="mailcatcher sass"
-pip_depend="pylint setuptools unicorn wheel wrapt youtube-dl Pygments powerline-status psutil mercurial pip isort"
+pip_depend="pylint setuptools unicorn wheel wrapt Pygments powerline-status psutil mercurial pip isort"
 NODENV_GLOBAL="12.8.0"
 
 # System Validation
@@ -185,8 +185,8 @@ wget -L $FONT -O $FONT_NAME > /dev/null 2>&1
 mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
 sleep 2
 
-### Install Powerlevel9k Plugin
-cp -r powerlevel9k $DOTUNIX/oh-my-zsh/custom/themes/
+### Install Powerlevel10k Plugin
+cp -r powerlevel10k $DOTUNIX/oh-my-zsh/custom/themes/
 sleep 2
 
 ### zsh-syntax-highlight
