@@ -1,5 +1,6 @@
 fonts
 .zsh/tokens.zsh
+.DS_STORE
 config
 depend
 installed

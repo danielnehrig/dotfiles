@@ -12,6 +12,7 @@ export UNCRUSTIFY_CONFIG=~/.dotfiles-darwin/.uncrustify
 source ~/.dotfiles-darwin/.zsh/settings.zsh
 source ~/.dotfiles-darwin/.zsh/function.zsh
 source ~/.dotfiles-darwin/.zsh/alias.zsh
+source ~/.dotfiles-darwin/.zsh/tokens.zsh
 
 # Nodenv init
 eval "$(nodenv init -)"
