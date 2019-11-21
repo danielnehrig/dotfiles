@@ -40,7 +40,6 @@ TMUX, VIM, ZSH Configurations
 - GDB
 - MYSQL
 - MONGODB
-- MAVEN
 - WINE
 
 ### ZSH Configuration
@@ -54,11 +53,11 @@ TMUX, VIM, ZSH Configurations
 ## Installation
 
 - SHH-Keys(Optional)
-  - ```cp config.example config```
+  - `cp config.example config`
   - Change the Contents of the file **accordingly**
   - (Note) if omitted no SSH-Keys will be downloaded from remote
 - Custom-Dependencies(Optional)
-  - ```cp depend.example depend```
+  - `cp depend.example depend`
   - Change the Contents of the file **accordingly**
   - (Note) if omitted default dependencies will be installed
   - (Note) this will overwrite the default given dependencies
