@@ -6,6 +6,7 @@ export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 export PATH="/usr/local/sbin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/usr/local/bin:/usr/local/Cellar:/usr/bin:/bin:/usr/sbin:/sbin:/usr/include/libxml2:/Users/dnehrig/Library/Python/2.7/bin:/usr/local/opt/llvm/bin:/usr/local/include:/Users/dnehrig/Library/Python/3.7/bin:/usr/local/share/dotnet"
 export EDITOR='vim'
 export DEFAULT_USER="$USER"
+export UNCRUSTIFY_CONFIG=~/.dotfiles-darwin/.uncrustify
 
 # User Settings
 source ~/.dotfiles-darwin/.zsh/settings.zsh
