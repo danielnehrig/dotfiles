@@ -186,7 +186,7 @@ mv $DOTUNIX/$FONT_NAME $DOTUNIX/custom/fonts/$FONT_NAME
 sleep 2
 
 ### Install Powerlevel10k Plugin
-cp -r powerlevel10k $DOTUNIX/oh-my-zsh/custom/themes/
+cp -r ./powerlevel10k $DOTUNIX/oh-my-zsh/custom/themes/
 sleep 2
 
 ### zsh-syntax-highlight
