@@ -29,7 +29,7 @@ DEBUG="false"
 ARROW="${BLUE}======>"
 ERROR="${RED}ERROR:${NORMAL}"
 WARNING="${LILA}Warning:${NORMAL}"
-brew_depend="vim unrar tmux w3m zsh wget wine dark-mode archey bat fzf fd"
+brew_depend="vim unrar tmux w3m zsh wget wine dark-mode archey bat fzf fd git-lfs"
 brew_dev_depend="nodenv ruby python mongodb gdb mysql go docker docker-compose docker-machine ctags cmake gcc perl lua mono rust"
 brew_cask_depend="xquartz virtualbox vagrant iterm2 visual-studio-code 1password google-chrome firefox paw slack microsoft-office arduino docker basictex google-cloud-sdk"
 node_depend_global="webpack webpack-cli webpack-dev-server nodemon license-generator"
@@ -211,6 +211,10 @@ printf "$ARROW ${GREEN}Compiling YCM\n"
 ### Compiling pwndbg
 printf "$ARROW ${GREEN}Compiling pwndbg\n"
 ./pwndbg/setup.sh &> /dev/null
+
+### Install git lfs
+printf "$ARROW ${GREEN}Install GIT LFS\n"
+git lfs install
 
 ### Set installation is done
 printf "$ARROW ${GREEN}Installation Completed\n"
