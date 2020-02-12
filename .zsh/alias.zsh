@@ -7,7 +7,8 @@ export HOSTS=/etc/hosts
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-alias ca='clear && archey'
+alias ca='clear && neofetch'
+alias cao='clear && archey'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias iLock='pmset displaysleepnow'
