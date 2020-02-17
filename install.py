@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from os import *
+import os
 import subprocess
 
 current_folder = os.path.abspath(os.getcwd())
