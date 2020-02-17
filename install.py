@@ -1,6 +1,9 @@
 from os import *
 import subprocess
 
+current_folder = os.path.abspath(os.getcwd())
+system('export DOTUNIX="' + current_folder + '"')
+
 pip_packages = [
         "powerline-status",
         "psutil"
@@ -110,13 +113,15 @@ def main():
         FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
         FONT_NAME="SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
-        system('mv $DOTUNIX/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
+        system('cp $DOTUNIX/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
     except OSError as e:
         print("Error while installing fonts")
 
     # cloning dependencies
     try:
         print("Cloning Dependencies")
+        system('cp -r ./powerlevel10k ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/themes/powerlevel10k')
+        system('cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting')
 
         ### autosuggest
         system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-autosuggestions')
@@ -144,6 +149,22 @@ def main():
         system('chsh -s /usr/local/bin/zsh $(whoami)')
     except OSError as e:
         print("Error while settings zsh shell")
+
+    # vim plugins
+    try:
+        print("Install vim plugins")
+        system('vim -c PluginInstall &> /dev/null')
+    except OSError as e:
+        print("Error while installing vim plugins")
+
+    # compile youcompleteme
+    try:
+        print("Compile YCM")
+        system('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
+    except OSError as e:
+        print("Error while compiling ycm")
+
+    system('zsh')
 
     print("Installation Done")
 
