@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-import os
 import subprocess
+import os
+from os import system
 
 current_folder = os.path.abspath(os.getcwd())
 system('export DOTUNIX="' + current_folder + '"')
@@ -14,6 +15,7 @@ pip_packages = [
 brew_dependencies = [
         "mono",
         "gcc",
+        "htop",
         "make",
         "python",
         "ruby",
@@ -115,33 +117,32 @@ def main():
         FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
         FONT_NAME="SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
-        system('cp $DOTUNIX/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
+        system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
     except OSError as e:
         print("Error while installing fonts")
 
     # cloning dependencies
     try:
         print("Cloning Dependencies")
-        system('cp -r ./powerlevel10k ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/themes/powerlevel10k')
-        system('cp -r zsh-syntax-highlighting ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting')
+        system('cp -r ./powerlevel10k ' + current_folder +  '/oh-my-zsh/custom' + '/themes/powerlevel10k')
+        system('cp -r zsh-syntax-highlighting ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/zsh-syntax-highlighting')
 
         ### autosuggest
-        system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/zsh-autosuggestions')
+        system('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
         ### fzf docker
-        system('git clone https://github.com/pierpo/fzf-docker ${ZSH_CUSTOM:-$DOTUNIX/oh-my-zsh/custom}/plugins/fzf-docker')
+        system('git clone https://github.com/pierpo/fzf-docker ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/fzf-docker')
     except OSError as e:
         print("Error while cloning")
 
     # linking files
     try:
         print("Linking zsh and vim files Symbolic")
-        system('ln -s $DOTUNIX/.zsh/zshrc ~/.zshrc')
-        system('cp $DOTUNIX/.tmux/.tmux.conf ~/.tmux.conf')
-        system('ln -s $DOTUNIX/.dotfiles-vim/ ~/.vim')
-        system('ln -s ~/.vim/vimrc ~/.vimrc')
-        system('ln -s $DOTUNIX/.tmux.conf ~/.tmux.conf')
-        system('ln -s $DOTUNIX/.ssh/config ~/.ssh/config')
+        system('ln -s ' + current_folder + '/.zsh/zshrc ~/.zshrc')
+        system('ln -s ' + current_folder + '/.dotfiles-vim/ ~/.vim')
+        system('ln -s ' + current_folder + '/.vim/vimrc ~/.vimrc')
+        system('ln -s ' + current_folder + '/.tmux.conf ~/.tmux.conf')
+        system('ln -s ' + current_folder + '/.ssh/config ~/.ssh/config')
     except OSError as e:
         print("Error while settings zsh shell")
 
@@ -155,7 +156,6 @@ def main():
     # vim plugins
     try:
         print("Install vim plugins")
-        system('vim -c PluginInstall &> /dev/null')
     except OSError as e:
         print("Error while installing vim plugins")
 

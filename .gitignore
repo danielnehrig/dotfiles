@@ -1,6 +1,7 @@
 fonts
 .zsh/tokens.zsh
 .DS_STORE
+SourceCodeProAwesome.ttf
 config
 depend
 installed
