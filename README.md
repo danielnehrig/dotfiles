@@ -33,18 +33,14 @@ TMUX, VIM, ZSH Configurations
 
 ### CLI Programs (Default)
 
-- Vagrant
 - Docker
 - TMUX
 - VIM
 - GDB
-- MYSQL
-- MONGODB
 - WINE
 
 ### ZSH Configuration
 
-- Correct Commiting
 - Powerline
 - Custom Aliases
 
@@ -52,15 +48,6 @@ TMUX, VIM, ZSH Configurations
 
 ## Installation
 
-- SHH-Keys(Optional)
-  - `cp config.example config`
-  - Change the Contents of the file **accordingly**
-  - (Note) if omitted no SSH-Keys will be downloaded from remote
-- Custom-Dependencies(Optional)
-  - `cp depend.example depend`
-  - Change the Contents of the file **accordingly**
-  - (Note) if omitted default dependencies will be installed
-  - (Note) this will overwrite the default given dependencies
-- ./install.sh
+- ./install.py
 - VIM(Optional)
   - :PluginInstall
