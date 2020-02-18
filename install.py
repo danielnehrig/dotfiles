@@ -51,25 +51,29 @@ cask_dependencies = [
 node_packages = [
         "nodemon",
         "webpack",
-        "webpack-cli"
+        "webpack-cli",
+        "yarn"
         ]
 
-arrow = '=====>'
+arrow = '========>'
 
 def Call(arg):
     try:
-        with open(os.devnull, "w") as f: subprocess.call(arg, stdout=f)
+        cmdArr = arg.split()
+        with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
     except OSError as e:
         print(e.errno)
 
 
-def InstallPackages(installCall, arr):
-    try:
-        for package in arr:
-            logging.info('{0} Installing {1}'.format(arrow, package))
-            system('{0} {1}'.format(installCall, package))
-    except:
-        logging.error('{0} Failed to install {1}'.format(arrow, package))
+def InstallPackages(installCall, arr, options):
+    for package in arr:
+        logging.info('{0} Installing {1}'.format(arrow, package))
+        install = '{0} {1} {2}'.format(installCall, package, options)
+        cmdArr = install.split()
+        try:
+            with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
+        except subprocess.CalledProcessError as e:
+            logging.error('{0} Failed to install {1} with code {2}'.format(arrow, package, e.returncode))
 
 def CallCheck(args, **kwargs):
     try:
@@ -81,21 +85,14 @@ def CallCheck(args, **kwargs):
 def Install(call):
     try:
         logging.info('{0} Installing {1}'.format(arrow, call))
-        system(call)
+        cmdArr = call.split()
+        with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
     except subprocess.CalledProcessError as e:
         logging.error('{0} Failed to install {1}'.format(arrow, call))
-
-def IsInstalled(call, installstr):
-    try:
-        logging.info('{0} Is {1} Installed ?'.format(arrow, call))
-        subprocess.call([call])
-    except subprocess.CalledProcessError as e:
-        logging.error('{0} Failed to install {1}'.format(arrow, call))
-        system(installstr)
 
 def main():
     logging.info("{0} Starting Installation".format(arrow))
-    logging.info("{0} Installing Dependencys".format(arrow))
+    logging.info("{0} Installing Dependencies".format(arrow))
 
     # check if xcode dev tools are installed becouse of git
     try:
@@ -129,36 +126,25 @@ def main():
         logging.error("{0} git pull submodules failed".format(arrow))
 
     # install brew dependencies
-    try:
-        logging.info("{0} Install brew dependencies".format(arrow))
-        s = " "
-        system('brew install ' + s.join(brew_dependencies))
-    except OSError as e:
-        logging.error("{0} Error while installing brew dependencies".format(arrow))
+    logging.info("{0} Install brew dependencies".format(arrow))
+    InstallPackages('brew install', brew_dependencies, '')
 
     # install cask dependencies
-    try:
-        logging.info("Install cask dependencies".format(arrow))
-        s = " "
-        system('brew cask install ' + s.join(cask_dependencies))
-    except OSError as e:
-        print("Error while installing cask dependencies")
+    logging.info("{0} Install cask dependencies".format(arrow))
+    InstallPackages('brew cask install', cask_dependencies, '')
 
     # install node
-    try:
-        logging.info("{0} Install node".format(arrow))
-        system('nodenv install 12.8.0')
-        system('nodenv global 12.8.0')
-    except OSError as e:
-        logging.error("{0} Error while installing node".format(arrow))
+    logging.info("{0} Install node".format(arrow))
+    Install('nodenv install 12.8.0')
+    Install('nodenv global 12.8.0')
+
+    # node packages
+    logging.info("{0} Install node packages".format(arrow))
+    InstallPackages('npm install', node_packages, '--global')
 
     # install python packages
-    try:
-        logging.info("{0} Install pip packages".format(arrow))
-        s = " "
-        system('pip3.7 install ' + s.join(pip_packages))
-    except OSError as e:
-        logging.error("{0} Error while installing pip packages".format(arrow))
+    logging.info("{0} Install pip packages".format(arrow))
+    InstallPackages('pip3.7 install', pip_packages, '')
 
     # install fonts
     try:
@@ -196,7 +182,7 @@ def main():
         system('ln -s ' + current_folder + '/.vim/vimrc ~/.vimrc')
         system('ln -s ' + current_folder + '/.tmux.conf ~/.tmux.conf')
         system('ln -s ' + current_folder + '/.ssh/config ~/.ssh/config')
-        system('ln -s ' + current_folder + '/powerline ~/.config/powerline')
+        system('ln -s ' + current_folder + '/powerline ~/.config')
     except OSError as e:
         logging.error("{0} Error while settings zsh shell".format(arrow))
 
@@ -207,18 +193,14 @@ def main():
     except OSError as e:
         loggin.error("{0} Error while settings zsh shell".format(arrow))
 
-    # vim plugins
-    try:
-        logging.info("{0} Install vim plugins".format(arrow))
-    except OSError as e:
-        logging.error("{0} Error while installing vim plugins".format(arrow))
-
-    # compile youcompleteme
-    try:
-        logging.info("{0} Compile YCM".format(arrow))
-        system('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
-    except OSError as e:
-        logging.error("{0} Error while compiling ycm".format(arrow))
+    if len(sys.argv) > 0:
+        if sys.argv[1] == '--all':
+            # compile youcompleteme
+            try:
+                logging.info("{0} Compile YCM".format(arrow))
+                system('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
+            except OSError as e:
+                logging.error("{0} Error while compiling ycm".format(arrow))
 
     logging.info("{0} Installation Done".format(arrow))
     system('zsh')
