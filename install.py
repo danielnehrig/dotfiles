@@ -43,7 +43,9 @@ cask_dependencies = [
         "skype-for-business",
         "postman",
         "iterm2",
-        "docker"
+        "docker",
+        "whatsapp",
+        "discord"
         ]
 
 node_packages = [
@@ -92,8 +94,15 @@ def IsInstalled(call, installstr):
         system(installstr)
 
 def main():
-    logging.info("Starting Installation")
-    logging.info("Installing Dependencys")
+    logging.info("{0} Starting Installation".format(arrow))
+    logging.info("{0} Installing Dependencys".format(arrow))
+
+    # check if xcode dev tools are installed becouse of git
+    try:
+        CallCheck('xcode-select --install')
+        Install('xcode-select --install')
+    except:
+        logging.info("{0} xcode dev tools installed".format(arrow))
 
     # check if brew is installed
     try:
