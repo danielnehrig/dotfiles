@@ -8,6 +8,34 @@ import logging
 
 current_folder = os.path.abspath(os.getcwd())
 
+linking_files = [
+        {
+            "source": "powerline",
+            "dest": "~/.config"
+            },
+        {
+            "source": ".tmux.conf",
+            "dest": "~/.tmux.conf"
+
+            },
+        {
+            "source": ".zsh/zshrc",
+            "dest": "~/.zshrc"
+            },
+        {
+            "source": ".ssh/config",
+            "dest": "~/.ssh/config"
+            },
+        {
+            "source": ".dotfiles-vim",
+            "dest": "~/.vim"
+            },
+        {
+            "source": ".dotfiles-vim/vimrc",
+            "dest": "~/.vimrc"
+            },
+        ]
+
 pip_packages = [
         "powerline-status",
         "psutil"
@@ -38,6 +66,7 @@ cask_dependencies = [
         "cheatsheet",
         "firefox",
         "slack",
+        "1password",
         "visual-studio-code",
         "microsoft-office",
         "skype-for-business",
@@ -51,7 +80,8 @@ cask_dependencies = [
 node_packages = [
         "nodemon",
         "webpack",
-        "yarn"
+        "yarn",
+        "typescript"
         ]
 
 arrow = '========>'
@@ -89,6 +119,20 @@ def Install(call):
     except subprocess.CalledProcessError as e:
         logging.error('{0} Failed to install {1}'.format(arrow, call))
 
+def LinkFile(source, dest):
+    try:
+        print('{0} Linking File {1} to {2}'.format(arrow, source, dest))
+        with open(os.devnull, "w") as f: subprocess.call('ln -s {0}/{1} {2}'.format(current_folder, source, dest), stdout=f)
+    except subprocess.CalledProcessError as e:
+        logging.error('{0} Failed to install {1}'.format(arrow, call))
+
+def LinkFiles():
+    try:
+        for link in linking_files:
+            LinkFile(link.source, link.dest)
+    except:
+        logging.error('{0} Failed to Link files'.format(arrow))
+
 def main():
     print("{0} Starting Installation".format(arrow))
     print("{0} Installing Dependencies".format(arrow))
@@ -96,9 +140,9 @@ def main():
     # check if xcode dev tools are installed becouse of git
     try:
         CallCheck('xcode-select --install')
+    except subprocess.CalledProcessError as e:
+        print("{0} xcode dev tools is not installed installing".format(arrow))
         Install('xcode-select --install')
-    except:
-        print("{0} xcode dev tools installed".format(arrow))
 
     # check if brew is installed
     try:
@@ -118,11 +162,8 @@ def main():
         system('git lfs install')
 
     # git submodule pull
-    try:
-        print("{0} git pull submodules".format(arrow))
-        Call('git submodule update --init --recursive')
-    except OSError as e:
-        logging.error("{0} git pull submodules failed".format(arrow))
+    print("{0} git pull submodules".format(arrow))
+    Call('git submodule update --init --recursive')
 
     # install brew dependencies
     print("{0} Install brew dependencies".format(arrow))
@@ -155,7 +196,7 @@ def main():
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
         system('brew tap homebrew/cask-fonts')
-        system('brew cask install font-hack-nerd-font')
+        Install('brew cask install font-hack-nerd-font')
     except OSError as e:
         logging.error("{0} Error while installing fonts".format(arrow))
 
@@ -176,12 +217,7 @@ def main():
     # linking files
     try:
         print("{0} Linking zsh and vim files Symbolic".format(arrow))
-        system('ln -s ' + current_folder + '/.zsh/zshrc ~/.zshrc')
-        system('ln -s ' + current_folder + '/.dotfiles-vim/ ~/.vim')
-        system('ln -s ' + current_folder + '/.vim/vimrc ~/.vimrc')
-        system('ln -s ' + current_folder + '/.tmux.conf ~/.tmux.conf')
-        system('ln -s ' + current_folder + '/.ssh/config ~/.ssh/config')
-        system('ln -s ' + current_folder + '/powerline ~/.config')
+        LinkFiles()
     except OSError as e:
         logging.error("{0} Error while settings zsh shell".format(arrow))
 
