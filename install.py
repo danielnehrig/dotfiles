@@ -51,7 +51,6 @@ cask_dependencies = [
 node_packages = [
         "nodemon",
         "webpack",
-        "webpack-cli",
         "yarn"
         ]
 
@@ -67,7 +66,7 @@ def Call(arg):
 
 def InstallPackages(installCall, arr, options):
     for package in arr:
-        logging.info('{0} Installing {1}'.format(arrow, package))
+        print('{0} Installing {1}'.format(arrow, package))
         install = '{0} {1} {2}'.format(installCall, package, options)
         cmdArr = install.split()
         try:
@@ -84,26 +83,26 @@ def CallCheck(args, **kwargs):
 
 def Install(call):
     try:
-        logging.info('{0} Installing {1}'.format(arrow, call))
+        print('{0} Installing {1}'.format(arrow, call))
         cmdArr = call.split()
         with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
     except subprocess.CalledProcessError as e:
         logging.error('{0} Failed to install {1}'.format(arrow, call))
 
 def main():
-    logging.info("{0} Starting Installation".format(arrow))
-    logging.info("{0} Installing Dependencies".format(arrow))
+    print("{0} Starting Installation".format(arrow))
+    print("{0} Installing Dependencies".format(arrow))
 
     # check if xcode dev tools are installed becouse of git
     try:
         CallCheck('xcode-select --install')
         Install('xcode-select --install')
     except:
-        logging.info("{0} xcode dev tools installed".format(arrow))
+        print("{0} xcode dev tools installed".format(arrow))
 
     # check if brew is installed
     try:
-        logging.info("{0} brew check".format(arrow))
+        print("{0} brew check".format(arrow))
         Call("brew")
     except OSError as e:
         logging.error("{0} brew not found installing brew".format(arrow))
@@ -111,7 +110,7 @@ def main():
 
     # check if git lfs is installed
     try:
-        logging.info("{0} git lfs check".format(arrow))
+        print("{0} git lfs check".format(arrow))
         Call("git lfs")
     except OSError as e:
         logging.error("{0} git lfs not found installing git lfs".format(arrow))
@@ -120,36 +119,36 @@ def main():
 
     # git submodule pull
     try:
-        logging.info("{0} git pull submodules".format(arrow))
+        print("{0} git pull submodules".format(arrow))
         Call('git submodule update --init --recursive')
     except OSError as e:
         logging.error("{0} git pull submodules failed".format(arrow))
 
     # install brew dependencies
-    logging.info("{0} Install brew dependencies".format(arrow))
+    print("{0} Install brew dependencies".format(arrow))
     InstallPackages('brew install', brew_dependencies, '')
 
     # install cask dependencies
-    logging.info("{0} Install cask dependencies".format(arrow))
+    print("{0} Install cask dependencies".format(arrow))
     InstallPackages('brew cask install', cask_dependencies, '')
 
     # install node
-    logging.info("{0} Install node".format(arrow))
+    print("{0} Install node".format(arrow))
     Install('nodenv install 12.8.0')
     Install('nodenv global 12.8.0')
 
     # node packages
-    logging.info("{0} Install node packages".format(arrow))
+    print("{0} Install node packages".format(arrow))
     InstallPackages('npm install', node_packages, '--global')
 
     # install python packages
-    logging.info("{0} Install pip packages".format(arrow))
+    print("{0} Install pip packages".format(arrow))
     InstallPackages('pip3.7 install', pip_packages, '')
 
     # install fonts
     try:
         ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
-        logging.info("{0} Installing Fonts".format(arrow))
+        print("{0} Installing Fonts".format(arrow))
         ### and nerd fonts https://github.com/ryanoasis/nerd-fonts
         FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
         FONT_NAME="SourceCodeProAwesome.ttf"
@@ -162,7 +161,7 @@ def main():
 
     # cloning dependencies
     try:
-        logging.info("Cloning Dependencies".format(arrow))
+        print("Cloning Dependencies".format(arrow))
         system('cp -r ./powerlevel10k ' + current_folder +  '/oh-my-zsh/custom' + '/themes/powerlevel10k')
         system('cp -r zsh-syntax-highlighting ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/zsh-syntax-highlighting')
 
@@ -176,7 +175,7 @@ def main():
 
     # linking files
     try:
-        logging.info("{0} Linking zsh and vim files Symbolic".format(arrow))
+        print("{0} Linking zsh and vim files Symbolic".format(arrow))
         system('ln -s ' + current_folder + '/.zsh/zshrc ~/.zshrc')
         system('ln -s ' + current_folder + '/.dotfiles-vim/ ~/.vim')
         system('ln -s ' + current_folder + '/.vim/vimrc ~/.vimrc')
@@ -188,7 +187,7 @@ def main():
 
     # set default shell
     try:
-        logging.info("{0} Set zsh default shell".format(arrow))
+        print("{0} Set zsh default shell".format(arrow))
         system('chsh -s /usr/local/bin/zsh $(whoami)')
     except OSError as e:
         loggin.error("{0} Error while settings zsh shell".format(arrow))
@@ -197,12 +196,12 @@ def main():
         if sys.argv[1] == '--all':
             # compile youcompleteme
             try:
-                logging.info("{0} Compile YCM".format(arrow))
+                print("{0} Compile YCM".format(arrow))
                 system('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
             except OSError as e:
                 logging.error("{0} Error while compiling ycm".format(arrow))
 
-    logging.info("{0} Installation Done".format(arrow))
+    print("{0} Installation Done".format(arrow))
     system('zsh')
 
 if __name__ == "__main__":
