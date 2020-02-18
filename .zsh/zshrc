@@ -58,6 +58,7 @@ eval "$(nodenv init -)"
 
 plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker dnf fzf fzf-docker zsh-autosuggestions)
 export FZF_DEFAULT_COMMAND='find . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
+export FZF_CTRL_T_COMMAND='find . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
 
 source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles-darwin/.zsh/forgit.zsh
