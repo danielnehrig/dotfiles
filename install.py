@@ -43,6 +43,8 @@ pip_packages = [
 
 brew_dependencies = [
         "mono",
+        "gdb",
+        "radare2"
         "gcc",
         "htop",
         "make",
@@ -65,6 +67,10 @@ cask_dependencies = [
         "google-chrome",
         "cheatsheet",
         "firefox",
+        "ghidra",
+        "sketch",
+        "abstract",
+        "adobe-creative-cloud",
         "slack",
         "1password",
         "visual-studio-code",
@@ -90,8 +96,15 @@ def Call(arg):
     try:
         cmdArr = arg.split()
         with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
-    except OSError as e:
-        print(e.errno)
+    except subprocess.CalledProcessError as e:
+        logging.error('{0} Call Failed with return code {1}'.format(arrow, e.returncode))
+
+def CompileDependency():
+    try:
+        cmdArr = arg.split()
+        with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
+    except subprocess.CalledProcessError as e:
+        loggig.error('{0} Compilation Failed with return code {1}'.format(arrow, e.errno))
 
 
 def InstallPackages(installCall, arr, options):
@@ -231,11 +244,11 @@ def main():
     for option in sys.argv:
         if option == '--all':
             # compile youcompleteme
-            try:
-                print("{0} Compile YCM".format(arrow))
-                system('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
-            except OSError as e:
-                logging.error("{0} Error while compiling ycm".format(arrow))
+            print("{0} Compile YCM".format(arrow))
+            CompileDependency('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
+            # compile pwndbg for reversing c / c++
+            CompileDependency('./pwndbg/setup.sh')
+
 
 
     print("{0} Installation Done".format(arrow))
