@@ -2,10 +2,11 @@
 
 import subprocess
 import os
+import sys
 from os import system
+import logging
 
 current_folder = os.path.abspath(os.getcwd())
-system('export DOTUNIX="' + current_folder + '"')
 
 pip_packages = [
         "powerline-status",
@@ -50,41 +51,73 @@ node_packages = [
         "webpack-cli"
         ]
 
+arrow = '=====>'
+
+def InstallPackages(installCall, arr):
+    try:
+        for package in arr:
+            logging.info('{0} Installing {1}'.format(arrow, package))
+            system('{0} {1}'.format(installCall, package))
+    except:
+        logging.error('{0} Failed to install {1}'.format(arrow, package))
+
+def CallCheck(args, **kwargs):
+    try:
+        subprocess.call([args], **kwargs)
+    except subprocess.CalledProcessError as e:
+        logging.critical('{0} {1} is Required'.format(arrow, args))
+        sys.exit(e.returncode)
+
+def Install(call):
+    try:
+        logging.info('{0} Installing {1}'.format(arrow, call))
+        system(call)
+    except subprocess.CalledProcessError as e:
+        logging.error('{0} Failed to install {1}'.format(arrow, call))
+
+def IsInstalled(call, installstr):
+    try:
+        logging.info('{0} Is {1} Installed ?'.format(arrow, call))
+        subprocess.call([call])
+    except subprocess.CalledProcessError as e:
+        logging.error('{0} Failed to install {1}'.format(arrow, call))
+        system(installstr)
+
 def main():
-    print("Starting Installation")
-    print("Installing Dependencys")
+    logging.info("Starting Installation")
+    logging.info("Installing Dependencys")
 
     # check if brew is installed
     try:
-        print("brew check")
+        logging.info("{0} brew check".format(arrow))
         subprocess.call(["brew"])
     except OSError as e:
-        print("brew not found installing brew")
+        logging.error("{0} brew not found installing brew".format(arrow))
         system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 
     # check if git lfs is installed
     try:
-        print("git lfs check")
+        logging.info("{0} git lfs check".format(arrow))
         subprocess.call(["git", "lfs"])
     except OSError as e:
-        print("git lfs not found installing git lfs")
+        logging.error("{0} git lfs not found installing git lfs".format(arrow))
         system('brew install git-lfs')
         system('git lfs install')
 
     # git submodule pull
     try:
-        print("git pull submodules")
+        logging.info("{0} git pull submodules".format(arrow))
         system('git submodule update --init --recursive')
     except OSError as e:
-        print("git pull submodules failed")
+        logging.error("{0} git pull submodules failed".format(arrow))
 
     # install brew dependencies
     try:
-        print("Install brew dependencies")
+        logging.info("{0} Install brew dependencies".format(arrow))
         s = " "
         system('brew install ' + s.join(brew_dependencies))
     except OSError as e:
-        print("Error while installing brew dependencies")
+        logging.error("{0} Error while installing brew dependencies".format(arrow))
 
     # install cask dependencies
     try:
@@ -96,34 +129,34 @@ def main():
 
     # install node
     try:
-        print("Install node")
+        logging.info("{0} Install node".format(arrow))
         system('nodenv install 12.8.0')
         system('nodenv global 12.8.0')
     except OSError as e:
-        print("Error while installing node")
+        logging.error("{0} Error while installing node".format(arrow))
 
     # install python packages
     try:
-        print("Install pip packages")
+        logging.info("{0} Install pip packages".format(arrow))
         s = " "
         system('pip3.7 install ' + s.join(pip_packages))
     except OSError as e:
-        print("Error while installing pip packages")
+        logging.error("{0} Error while installing pip packages".format(arrow))
 
     # install fonts
     try:
         ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
-        print("Installing Fonts")
+        logging.info("{0} Installing Fonts".format(arrow))
         FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
         FONT_NAME="SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
     except OSError as e:
-        print("Error while installing fonts")
+        logging.error("{0} Error while installing fonts".format(arrow))
 
     # cloning dependencies
     try:
-        print("Cloning Dependencies")
+        logging.info("Cloning Dependencies".format(arrow))
         system('cp -r ./powerlevel10k ' + current_folder +  '/oh-my-zsh/custom' + '/themes/powerlevel10k')
         system('cp -r zsh-syntax-highlighting ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/zsh-syntax-highlighting')
 
@@ -133,41 +166,42 @@ def main():
         ### fzf docker
         system('git clone https://github.com/pierpo/fzf-docker ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/fzf-docker')
     except OSError as e:
-        print("Error while cloning")
+        logging.error("{0} Error while cloning".format(arrow))
 
     # linking files
     try:
-        print("Linking zsh and vim files Symbolic")
+        logging.info("{0} Linking zsh and vim files Symbolic".format(arrow))
         system('ln -s ' + current_folder + '/.zsh/zshrc ~/.zshrc')
         system('ln -s ' + current_folder + '/.dotfiles-vim/ ~/.vim')
         system('ln -s ' + current_folder + '/.vim/vimrc ~/.vimrc')
         system('ln -s ' + current_folder + '/.tmux.conf ~/.tmux.conf')
         system('ln -s ' + current_folder + '/.ssh/config ~/.ssh/config')
     except OSError as e:
-        print("Error while settings zsh shell")
+        logging.error("{0} Error while settings zsh shell".format(arrow))
 
     # set default shell
     try:
-        print("Set zsh default shell")
+        logging.info("{0} Set zsh default shell".format(arrow))
         system('chsh -s /usr/local/bin/zsh $(whoami)')
     except OSError as e:
-        print("Error while settings zsh shell")
+        loggin.error("{0} Error while settings zsh shell".format(arrow))
 
     # vim plugins
     try:
-        print("Install vim plugins")
+        logging.info("{0} Install vim plugins".format(arrow))
     except OSError as e:
-        print("Error while installing vim plugins")
+        logging.error("{0} Error while installing vim plugins".format(arrow))
 
     # compile youcompleteme
     try:
-        print("Compile YCM")
+        logging.info("{0} Compile YCM".format(arrow))
         system('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
     except OSError as e:
-        print("Error while compiling ycm")
+        logging.error("{0} Error while compiling ycm".format(arrow))
 
+    logging.info("{0} Installation Done".format(arrow))
     system('zsh')
 
-    print("Installation Done")
-
-main()
+if __name__ == "__main__":
+    CallCheck('git')
+    main()
