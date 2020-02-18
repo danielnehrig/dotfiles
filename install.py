@@ -35,6 +35,7 @@ brew_dependencies = [
 cask_dependencies = [
         "virtualbox",
         "google-chrome",
+        "cheatsheet",
         "firefox",
         "slack",
         "visual-studio-code",
@@ -147,10 +148,13 @@ def main():
     try:
         ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
         logging.info("{0} Installing Fonts".format(arrow))
+        ### and nerd fonts https://github.com/ryanoasis/nerd-fonts
         FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
         FONT_NAME="SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
+        system('brew tap homebrew/cask-fonts')
+        system('brew cask install font-hack-nerd-font')
     except OSError as e:
         logging.error("{0} Error while installing fonts".format(arrow))
 
