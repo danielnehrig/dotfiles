@@ -90,7 +90,7 @@ def main():
     # check if brew is installed
     try:
         logging.info("{0} brew check".format(arrow))
-        subprocess.call(["brew"])
+        subprocess.call(["brew"], stdout=subprocess.PIPE)
     except OSError as e:
         logging.error("{0} brew not found installing brew".format(arrow))
         system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
@@ -98,7 +98,7 @@ def main():
     # check if git lfs is installed
     try:
         logging.info("{0} git lfs check".format(arrow))
-        subprocess.call(["git", "lfs"])
+        subprocess.call(["git", "lfs"], stdout=subprocess.PIPE)
     except OSError as e:
         logging.error("{0} git lfs not found installing git lfs".format(arrow))
         system('brew install git-lfs')
