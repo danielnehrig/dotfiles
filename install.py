@@ -35,7 +35,7 @@ linking_files = [
             "dest": "~/.vimrc"
             },
         {
-            "source": ".uncrustify"
+            "source": ".uncrustify",
             "dest": "~/.uncrustify"
             }
         ]
@@ -123,7 +123,8 @@ def InstallPackages(installCall, arr, options):
 
 def CallCheck(args, **kwargs):
     try:
-        with open(os.devnull, "w") as f: subprocess.call(args, stdout=f)
+        cmdArg = args.split()
+        with open(os.devnull, "w") as f: subprocess.call(cmdArg, stdout=f)
     except subprocess.CalledProcessError as e:
         logging.critical('{0} {1} is Required'.format(arrow, args))
         sys.exit(e.returncode)
