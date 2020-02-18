@@ -25,11 +25,12 @@ TMUX, VIM, ZSH Configurations
 - VS-Code
 - iTerm2
 - 1Password
-- PAW
 - All Major Browsers
 - Slack
 - Skype for Business
 - VirtualBox
+- Ghidra
+- Postman
 
 ### CLI Programs (Default)
 
@@ -38,6 +39,7 @@ TMUX, VIM, ZSH Configurations
 - VIM
 - GDB
 - WINE
+- radare2
 
 ### ZSH Configuration
 
@@ -49,5 +51,5 @@ TMUX, VIM, ZSH Configurations
 ## Installation
 
 - ./install.py
-- VIM(Optional)
-  - :PluginInstall
+- options
+  - --all (to compile ycm and pwndbg)

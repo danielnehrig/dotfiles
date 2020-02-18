@@ -236,7 +236,7 @@ def main():
         print("{0} Linking zsh and vim files Symbolic".format(arrow))
         LinkFiles()
     except OSError as e:
-        logging.error("{0} Error while settings zsh shell".format(arrow))
+        logging.error("{0} Error while linking files".format(arrow))
 
     # set default shell
     try:
