@@ -192,14 +192,15 @@ def main():
     except OSError as e:
         loggin.error("{0} Error while settings zsh shell".format(arrow))
 
-    if len(sys.argv) > 0:
-        if sys.argv[1] == '--all':
+    for option in sys.argv:
+        if option == '--all':
             # compile youcompleteme
             try:
                 print("{0} Compile YCM".format(arrow))
                 system('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
             except OSError as e:
                 logging.error("{0} Error while compiling ycm".format(arrow))
+
 
     print("{0} Installation Done".format(arrow))
     system('zsh')
