@@ -113,11 +113,14 @@ def main():
     # install fonts
     try:
         ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
+        ### and nerd fonts https://github.com/ryanoasis/nerd-fonts
         print("Installing Fonts")
         FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
         FONT_NAME="SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
+        system('brew tap homebrew/cask-fonts')
+        system('brew cask install font-hack-nerd-font')
     except OSError as e:
         print("Error while installing fonts")
 
