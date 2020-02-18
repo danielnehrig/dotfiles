@@ -54,6 +54,13 @@ node_packages = [
 
 arrow = '=====>'
 
+def Call(arg):
+    try:
+        with open(os.devnull, "w") as f: subprocess.call(arg, stdout=f)
+    except OSError as e:
+        print(e.errno)
+
+
 def InstallPackages(installCall, arr):
     try:
         for package in arr:
@@ -64,7 +71,7 @@ def InstallPackages(installCall, arr):
 
 def CallCheck(args, **kwargs):
     try:
-        subprocess.call([args], **kwargs)
+        with open(os.devnull, "w") as f: subprocess.call(args, stdout=f)
     except subprocess.CalledProcessError as e:
         logging.critical('{0} {1} is Required'.format(arrow, args))
         sys.exit(e.returncode)
@@ -91,7 +98,7 @@ def main():
     # check if brew is installed
     try:
         logging.info("{0} brew check".format(arrow))
-        subprocess.call(["brew"], stdout=subprocess.PIPE)
+        Call("brew")
     except OSError as e:
         logging.error("{0} brew not found installing brew".format(arrow))
         system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
@@ -99,7 +106,7 @@ def main():
     # check if git lfs is installed
     try:
         logging.info("{0} git lfs check".format(arrow))
-        subprocess.call(["git", "lfs"], stdout=subprocess.PIPE)
+        Call("git lfs")
     except OSError as e:
         logging.error("{0} git lfs not found installing git lfs".format(arrow))
         system('brew install git-lfs')
@@ -108,7 +115,7 @@ def main():
     # git submodule pull
     try:
         logging.info("{0} git pull submodules".format(arrow))
-        system('git submodule update --init --recursive')
+        Call('git submodule update --init --recursive')
     except OSError as e:
         logging.error("{0} git pull submodules failed".format(arrow))
 
@@ -122,7 +129,7 @@ def main():
 
     # install cask dependencies
     try:
-        print("Install cask dependencies")
+        logging.info("Install cask dependencies".format(arrow))
         s = " "
         system('brew cask install ' + s.join(cask_dependencies))
     except OSError as e:
