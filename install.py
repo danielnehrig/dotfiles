@@ -187,6 +187,7 @@ def main():
         system('ln -s ' + current_folder + '/.vim/vimrc ~/.vimrc')
         system('ln -s ' + current_folder + '/.tmux.conf ~/.tmux.conf')
         system('ln -s ' + current_folder + '/.ssh/config ~/.ssh/config')
+        system('ln -s ' + current_folder + '/powerline ~/.config/powerline')
     except OSError as e:
         logging.error("{0} Error while settings zsh shell".format(arrow))
 
