@@ -34,6 +34,10 @@ linking_files = [
             "source": ".dotfiles-vim/vimrc",
             "dest": "~/.vimrc"
             },
+        {
+            "source": ".uncrustify"
+            "dest": "~/.uncrustify"
+            }
         ]
 
 pip_packages = [
