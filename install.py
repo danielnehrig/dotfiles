@@ -169,6 +169,13 @@ def LinkFiles():
     except:
         logging.error('{0} Failed to Link files'.format(arrow))
 
+def Move(source, dest):
+    try:
+        system('rm -ri {0}'.format(dest))
+        system('mv {0}/{1} {2}'.format(current_folder, source, dest))
+    except:
+        logging.error('{0} Failed to move file'.format(arrow))
+
 def main():
     print("{0} Starting Installation".format(arrow))
     print("{0} Installing Dependencies".format(arrow))
@@ -221,6 +228,10 @@ def main():
     # install python packages
     print("{0} Install pip packages".format(arrow))
     InstallPackages('pip3.7 install', pip_packages, '')
+
+    # powerline players.py fix for ger local
+    print("{0} Install pip packages".format(arrow))
+    Move('./.powerlineFix/players.py', '/usr/local/lib/python3.7/site-packages/powerline/')
 
     # install fonts
     try:
