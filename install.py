@@ -62,6 +62,13 @@ brew_dependencies = [
         "mono",
         "tree",
         "gdb",
+        "bat",
+        "unrar",
+        "cmake",
+        "ctags",
+        "the_silver_searcher",
+        "sqlite",
+        "mysql",
         "neofetch",
         "archey",
         "radare2"
@@ -103,7 +110,8 @@ cask_dependencies = [
         "iterm2",
         "docker",
         "whatsapp",
-        "discord"
+        "discord",
+        "font-hack-nerd-font"
         ]
 
 node_packages = [
