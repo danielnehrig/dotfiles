@@ -112,6 +112,18 @@ node_packages = [
 
 arrow = '========>'
 
+def Error(string):
+    color = ''
+    logging.error('{0} {1}'.format(arrow, string))
+
+def Success(string):
+    color = ''
+    logging.error('{0} {1}'.format(arrow, string))
+
+def Info(string):
+    color = ''
+    logging.info('{0} {1}'.format(arrow, string))
+
 def Call(arg):
     try:
         cmdArr = arg.split()
