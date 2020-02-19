@@ -1,4 +1,4 @@
-# Dotfiles for OSX / DARWIN System High Sierra
+# Dotfiles for OSX / DARWIN System High Sierra and Catalina
 
 - [Dotfiles for OSX / DARWIN System High Sierra](#dotfiles-for-osx---darwin-system-high-sierra)
   - [Description](#description)
@@ -6,6 +6,7 @@
     - [GUI Programs (Default)](#gui-programs-default)
     - [CLI Programs (Default)](#cli-programs-default)
     - [ZSH Configuration](#zsh-configuration)
+    - [Todo](#todo)
   - [Installation](#installation)
 
 ## Description
@@ -28,25 +29,37 @@ TMUX, VIM, ZSH Configurations
 - All Major Browsers
 - Slack
 - Skype for Business
+- Cheatsheet
 - VirtualBox
 - Ghidra
 - Postman
+- etc... see install.py
 
 ### CLI Programs (Default)
 
-- Docker
-- TMUX
-- VIM
-- GDB
-- WINE
+- docker
+- htop
+- tmux
+- fzf
+- vim
+- gdb
 - radare2
+- etc... see install.py
 
 ### ZSH Configuration
 
-- Powerline
+- Oh-My-ZSH
 - Custom Aliases
+- Powerline10k ( NERD-FONT is default )
+- FZF
+- Syntaxhighlight
+- Autosuggest
 
----
+### Todo
+
+- Adding automated Key signing for debuging (gdb, radare2)
+- Automated installation of iterm2 settings
+- Adding dotnet
 
 ## Installation
 
