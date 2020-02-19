@@ -1,3 +1,0 @@
-SSH_SERV="ssh.server.com"
-SSH_USER="pi"
-SSH_PRIVATE_KEY="rta-rsa"
