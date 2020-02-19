@@ -62,6 +62,8 @@ brew_dependencies = [
         "mono",
         "tree",
         "gdb",
+        "neofetch",
+        "archey",
         "radare2"
         "gcc",
         "htop",
@@ -84,8 +86,8 @@ brew_dependencies = [
 cask_dependencies = [
         "virtualbox",
         "google-chrome",
-        # "google-cloud-sdk",
-        # "kubernetes",
+        "google-cloud-sdk",
+        "kubernetes",
         "cheatsheet",
         "firefox",
         "ghidra",
@@ -260,7 +262,7 @@ def main():
     except OSError as e:
         logging.error("{0} Error while installing fonts".format(arrow))
 
-    # cloning dependencies
+    # cloning dependencies zsh theme and plugins
     try:
         print("Cloning Dependencies".format(arrow))
         system('cp -r ./powerlevel10k ' + current_folder +  '/oh-my-zsh/custom' + '/themes/powerlevel10k')
@@ -288,6 +290,7 @@ def main():
     except OSError as e:
         loggin.error("{0} Error while settings zsh shell".format(arrow))
 
+    # option to not compile
     for option in sys.argv:
         if option == '--all':
             # compile youcompleteme
@@ -299,6 +302,7 @@ def main():
 
 
 
+    # exec zsh
     print("{0} Installation Done".format(arrow))
     system('zsh')
 
