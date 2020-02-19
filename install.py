@@ -1,5 +1,18 @@
 #!/usr/bin/env python
 
+# This Script will install following items
+# brew
+# brew packages
+# brew cask packages
+# node packages
+# python packages
+# symbolic links
+# fonts
+# powerline tmux theme
+# pwndbg
+# ycm vim completion engine
+# note : see following arrays and or adjust them
+
 import subprocess
 import os
 import sys
@@ -53,6 +66,7 @@ brew_dependencies = [
         "htop",
         "make",
         "python",
+        "tmux",
         "ruby",
         "go",
         "rust",
@@ -69,6 +83,8 @@ brew_dependencies = [
 cask_dependencies = [
         "virtualbox",
         "google-chrome",
+        # "google-cloud-sdk",
+        # "kubernetes",
         "cheatsheet",
         "firefox",
         "ghidra",
@@ -147,6 +163,8 @@ def LinkFile(source, dest):
 def LinkFiles():
     try:
         for link in linking_files:
+            # this loop is needed becouse chaining it into a string will result
+            # in a cancelation of the installation of the packages if a brew package gets removed
             LinkFile(link.source, link.dest)
     except:
         logging.error('{0} Failed to Link files'.format(arrow))
@@ -252,6 +270,7 @@ def main():
             print("{0} Compile YCM".format(arrow))
             CompileDependency('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
             # compile pwndbg for reversing c / c++
+            print("{0} Compile pwndbg".format(arrow))
             CompileDependency('./pwndbg/setup.sh')
 
 
