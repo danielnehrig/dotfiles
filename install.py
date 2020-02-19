@@ -60,6 +60,7 @@ pip_packages = [
 
 brew_dependencies = [
         "mono",
+        "tree",
         "gdb",
         "radare2"
         "gcc",
