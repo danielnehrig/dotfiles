@@ -55,10 +55,6 @@ linking_files = [
             "dest": ".vimrc"
             },
         {
-            "source": ".gdbinit",
-            "dest": ".gdbinit"
-            },
-        {
             "source": ".uncrustify",
             "dest": ".uncrustify"
             }
@@ -410,6 +406,7 @@ def Main():
             CompileDependency('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
             # compile pwndbg for reversing c / c++
             log.Info("Compile pwndbg")
+            os.chdir(current_folder + '/pwndbg')
             CompileDependency('./pwndbg/setup.sh')
 
     # exec zsh
