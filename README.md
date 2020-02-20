@@ -13,9 +13,9 @@
     - [OSX](#osx)
     - [LINUX](#linux)
   - [Thumbnails](#thumbnails)
-    - [OSX](#osx)
-      - [Cherry](#cherry)
-      - [Default](#default)
+    - [OSX Thumbnails](#osx-thumbnails)
+      - [Cherry](#cherry-profile)
+      - [Default](#default-profile)
 
 ## Description
 
