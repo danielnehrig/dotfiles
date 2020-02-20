@@ -210,7 +210,7 @@ def CompileDependency(arg):
         log.Error('Compilation Failed with return code {0}'.format(e.errno))
 
 
-def InstallCliPackages(installCall, arr, options):
+def InstallCliPackages(installCall, arr, options = ''):
     for package in arr:
         log.Info('Installing CLI Package {0}'.format(package))
         install = '{0} {1} {2}'.format(installCall, package, options)
@@ -226,7 +226,7 @@ def InstallCliPackages(installCall, arr, options):
             log.Error('Failed to install {0} with code {1}'.format(package, e.returncode))
 
 
-def InstallPackages(installCall, arr, options):
+def InstallPackages(installCall, arr, options = ''):
     for package in arr:
         log.Info('Installing Package {0}'.format(package))
         install = '{0} {1} {2}'.format(installCall, package, options)
@@ -299,6 +299,24 @@ def Copy(source, dest):
         log.Error('Failed to move file')
 
 
+def Help():
+    for option in sys.argv:
+        if option == '--help' or option == '-h':
+            log.Info('./install.py [options]')
+            log.Info('Options:')
+            log.Info('-a , --all || will compile ycm and pwndbg')
+            log.Info('-u, --upgrade || will upgrade dependencies')
+            log.Info('Note: Check Makefile or cmd : make TAB')
+            sys.exit(0)
+
+
+def Upgrade():
+    for option in sys.argv:
+        if option == '--upgrade' or option == '-u':
+            InstallCliPackages('brew upgrade', brew_dependencies)
+
+
+
 def Main():
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
@@ -330,7 +348,7 @@ def Main():
 
     # install brew dependencies
     log.Step("Installing Homebrew CLI dependencies", 6)
-    InstallCliPackages('brew install', brew_dependencies, '')
+    InstallCliPackages('brew install', brew_dependencies)
 
     # install git lfs
     log.Step("Installing git lfs", 6)
@@ -338,7 +356,7 @@ def Main():
 
     # install cask dependencies
     log.Step("Installing Homebrew GUI dependencies", 7)
-    InstallPackages('brew cask install', cask_dependencies, '')
+    InstallPackages('brew cask install', cask_dependencies)
 
     # install node
     log.Step("Installing Node", 8)
@@ -351,7 +369,7 @@ def Main():
 
     # install python packages
     log.Step("Installing Python PIP Packages", 10)
-    InstallPackages('pip3.7 install', pip_packages, '')
+    InstallPackages('pip3.7 install', pip_packages)
 
     # powerline players.py fix for ger local
     log.Step("Installing Powerline Fix", 11)
@@ -416,4 +434,6 @@ def Main():
 
 
 if __name__ == "__main__":
+    Help()
+    Upgrade()
     Main()
