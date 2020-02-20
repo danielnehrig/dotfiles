@@ -316,8 +316,12 @@ def Upgrade():
             InstallCliPackages('brew upgrade', brew_dependencies)
 
 
+def Linux():
+    log.Critical('Linux is Not Supported Yet')
+    sys.exit(0)
 
-def Main():
+
+def Darwin():
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
 
@@ -436,4 +440,7 @@ def Main():
 if __name__ == "__main__":
     Help()
     Upgrade()
-    Main()
+    if sys.platform == 'linux':
+        Linux()
+    if sys.platform == 'darwin':
+        Darwin()
