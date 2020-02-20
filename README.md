@@ -76,6 +76,22 @@ TMUX, VIM, ZSH Configurations
   - --all (to compile ycm and pwndbg)
 - note check makefile or ./install.py --help
 
+#### Iterm2
+
+How to import from above JSON file format which is actually a plist format:
+
+- go to your home directory cd ~
+- cd Library/Application Support/iTerm2/DynamicProfiles
+- copy your json file you saves to this DynamicProfiles folder
+- cp dotfilesrepo/itermprofiles.json .
+- Restart iTerm2 now in profiles it should show all your old profiles
+
+### LINUX
+
+Not Supported yet
+
 ## Thumbnails
 
-[![Thumbnail1](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/terminal%20fzf.png)](https://github.com/.danielnehrig/.dotfiles-darwin)
+### OSX Thumbnails
+
+#### Cherry Profile
