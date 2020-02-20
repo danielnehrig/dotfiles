@@ -94,6 +94,8 @@ Not Supported yet
 
 ### OSX Thumbnails
 
+- Images Showcase iTerm2 Color Schemes and tmux powerline theme
+- Showcasing zsh vim tmux fzf
 - Click Image to see more Screenshots
 
 #### Cherry Profile
