@@ -236,7 +236,7 @@ def LinkFile(source, dest):
         with open(os.devnull, "w") as f:
             subprocess.call(['ln', '-s', current_folder + '/' + source, dest], stdout=f)
             f.close()
-        log.Success('Successfull linked file {0}'.format(source)
+        log.Success('Successfull linked file {0}'.format(source))
     except subprocess.CalledProcessError as e:
         log.Error('Failed to Link {0} to {1}'.format(source, dest))
 
