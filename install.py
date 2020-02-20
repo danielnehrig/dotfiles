@@ -230,23 +230,25 @@ def Install(call):
 
 
 def LinkFile(source, dest):
+    " Creates a Symbolic Link "
     try:
         log.Info('Linking File {0} to {1}'.format(source, dest))
         with open(os.devnull, "w") as f:
-            subprocess.call('ln -s {0}/{1} {2}'.format(current_folder, source, dest), stdout=f)
+            subprocess.call(['ln', '-s', current_folder + '/' + source, dest], stdout=f)
             f.close()
+        log.Success('Successfull linked file {0}'.format(source)
     except subprocess.CalledProcessError as e:
         log.Error('Failed to Link {0} to {1}'.format(source, dest))
 
 
 def LinkFiles():
-    try:
-        for link in linking_files:
+    for link in linking_files:
+        try:
             # this loop is needed becouse chaining it into a string will result
             # in a cancelation of the installation of the packages if a brew package gets removed
             LinkFile(link.source, link.dest)
-    except:
-        log.Error('Failed to Link files')
+        except:
+            log.Error('Failed to Link files')
 
 
 def Copy(source, dest):
