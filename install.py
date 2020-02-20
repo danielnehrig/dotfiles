@@ -17,7 +17,6 @@ import subprocess
 import os
 import sys
 from os import system
-import logging
 from getpass import getuser
 from datetime import datetime
 from distutils.spawn import find_executable
@@ -25,37 +24,39 @@ from distutils.spawn import find_executable
 now = datetime.now()
 current_time = now.strftime('%H:%M:%S')
 current_folder = os.path.abspath(os.getcwd())
+user = getuser()
+home = '/Users/' + user + '/'
 
 # source is context current folder + repo item
 linking_files = [
         {
             "source": "powerline",
-            "dest": "~/.config"
+            "dest": ".config"
             },
         {
             "source": ".tmux.conf",
-            "dest": "~/.tmux.conf"
+            "dest": ".tmux.conf"
 
             },
         {
             "source": ".zsh/zshrc",
-            "dest": "~/.zshrc"
+            "dest": ".zshrc"
             },
         {
             "source": ".ssh/config",
-            "dest": "~/.ssh/config"
+            "dest": ".ssh/config"
             },
         {
             "source": ".dotfiles-vim",
-            "dest": "~/.vim"
+            "dest": ".vim"
             },
         {
             "source": ".dotfiles-vim/vimrc",
-            "dest": "~/.vimrc"
+            "dest": ".vimrc"
             },
         {
             "source": ".uncrustify",
-            "dest": "~/.uncrustify"
+            "dest": ".uncrustify"
             }
         ]
 
@@ -178,7 +179,7 @@ def Call(cmd):
         if not inPath:
             raise Exception("Not in Path")
     except subprocess.CalledProcessError as e:
-        log.Error('Call Check Failed with return code {1}'.format(e.returncode))
+        log.Error('Call Check {0} Failed with return code {1}'.format(cmd, e.returncode))
 
 
 def CompileDependency(arg):
@@ -234,7 +235,7 @@ def LinkFile(source, dest):
     try:
         log.Info('Linking File {0} to {1}'.format(source, dest))
         with open(os.devnull, "w") as f:
-            subprocess.call(['ln', '-s', current_folder + '/' + source, dest], stdout=f)
+            subprocess.call(['ln', '-s', current_folder + '/' + source, home + dest], stdout=f)
             f.close()
         log.Success('Successfull linked file {0}'.format(source))
     except subprocess.CalledProcessError as e:
@@ -242,13 +243,18 @@ def LinkFile(source, dest):
 
 
 def LinkFiles():
-    for link in linking_files:
-        try:
+    for dic in linking_files:
+        source = None
+        dest = None
+        for key in dic:
+            if key == 'source':
+                source = dic[key]
+            if key == 'dest':
+                dest = dic[key]
             # this loop is needed becouse chaining it into a string will result
             # in a cancelation of the installation of the packages if a brew package gets removed
-            LinkFile(link.source, link.dest)
-        except:
-            log.Error('Failed to Link files')
+
+        LinkFile(source, dest)
 
 
 def Copy(source, dest):
@@ -267,7 +273,7 @@ def Main():
 
     # check if git is installed
     try:
-        log.Step("Check if git is installed", 2)
+        log.Step("Check if git is installed", 1)
         Call("git")
     except OSError as e:
         log.Error("git not found installing dev tools")
