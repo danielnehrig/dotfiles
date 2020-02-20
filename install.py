@@ -128,7 +128,7 @@ node_packages = [
         "typescript"
         ]
 
-arrow = '========>'
+arrow = '====>'
 
 
 class Colors:
@@ -149,25 +149,39 @@ class Log(Colors):
         time = datetime.now()
         return time.strftime('%H:%M:%S')
 
+    def buildLogString(self, kind, color):
+        start = '{2} {0} ' + color + '{1}:' + kind + ' ' + self.ENDC
+        attach = self.HEADER + ': {3}' + self.ENDC
+        return start + attach
+
+    def buildStepString(self, kind, color):
+        start = '{2} {0} ' + color + '{1}:' + kind + ' {4}/16' + self.ENDC
+        attach = self.BOLD + ': {3}' + self.ENDC
+        return start + attach
+
     def Success(self, string):
-        st = '{0}-' + self.OKGREEN + '{1}:{2} ' + self.ENDC + ' {3} {4}'
-        print(st.format(self.now(), self.user, 'SUCCESS', arrow, string))
+        st = self.buildLogString('SUCCESS', self.OKGREEN)
+        print(st.format(self.now(), self.user, arrow, string))
+
+    def Warning(self, string):
+        st = self.buildLogString('WARNING', self.WARNING)
+        print(st.format(self.now(), self.user, arrow, string))
 
     def Error(self, string):
-        st = '{0}-' + self.FAIL + '{1}:{2}   ' + self.ENDC + ' {3} {4}'
-        print(st.format(self.now(), self.user, 'ERROR', arrow, string))
+        st = self.buildLogString('ERROR', self.FAIL)
+        print(st.format(self.now(), self.user, arrow, string))
 
     def Critical(self, string):
-        st = '{0}-' + self.FAIL + '{1}:{2} ' + self.ENDC + ' {3} {4}'
-        print(st.format(self.now(), self.user, 'CRITICAL', arrow, string))
+        st = self.buildLogString('CRITICAL', self.FAIL)
+        print(st.format(self.now(), self.user, arrow, string))
 
     def Info(self, string):
-        st = '{0}-' + self.OKBLUE + '{1}:{2}    ' + self.ENDC + ' {3} {4}'
-        print(st.format(self.now(), self.user, 'INFO', arrow, string))
+        st = self.buildLogString('INFO', self.OKBLUE)
+        print(st.format(self.now(), self.user, arrow, string))
 
     def Step(self, string, step):
-        st = '{0}-' + self.OKBLUE + '{1}:{2}    ' + self.ENDC + ' {3} Step : {4} {5}'
-        print(st.format(self.now(), self.user, 'STEP', arrow, step, string))
+        st = self.buildStepString('STEP', self.OKBLUE)
+        print(st.format(self.now(), self.user, arrow, string, step))
 
 
 log = Log()
@@ -177,7 +191,8 @@ def Call(cmd):
     try:
         inPath = find_executable(cmd) is not None
         if not inPath:
-            raise Exception("Not in Path")
+            log.Warning("Not in Path {0}".format(cmd))
+        return inPath
     except subprocess.CalledProcessError as e:
         log.Error('Call Check {0} Failed with return code {1}'.format(cmd, e.returncode))
 
@@ -200,10 +215,12 @@ def InstallPackages(installCall, arr, options):
         install = '{0} {1} {2}'.format(installCall, package, options)
         cmdArr = install.split()
         try:
-            with open(os.devnull, "w") as f:
-                subprocess.call(cmdArr, stdout=f)
-                f.close()
-            log.Success('Success Installing')
+            inPath = Call(package)
+            if not inPath:
+                with open(os.devnull, "w") as f:
+                    subprocess.call(cmdArr, stdout=f)
+                    f.close()
+                log.Success('Success Installing')
         except subprocess.CalledProcessError as e:
             log.Error('Failed to install {0} with code {1}'.format(package, e.returncode))
 
@@ -274,7 +291,8 @@ def Main():
     # check if git is installed
     try:
         log.Step("Check if git is installed", 1)
-        Call("git")
+        if not Call("git"):
+            Install('xcode-select --install')
     except OSError as e:
         log.Error("git not found installing dev tools")
         Install('xcode-select --install')
@@ -282,10 +300,10 @@ def Main():
     # check if brew is installed
     try:
         log.Step("Check if Homebrew is installed", 2)
-        Call("brew")
+        if not Call("brew"):
+            system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
     except OSError as e:
         log.Error("brew not found installing brew")
-        system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 
     # git submodule pull
     log.Step("Pulling submodules", 4)
@@ -300,6 +318,8 @@ def Main():
     InstallPackages('brew install', brew_dependencies, '')
 
     # install git lfs
+    log.Step("Installing git lfs", 6)
+    Install('git lfs install')
 
     # install cask dependencies
     log.Step("Installing Homebrew GUI dependencies", 7)
@@ -337,14 +357,14 @@ def Main():
     # cloning dependencies zsh theme and plugins
     try:
         log.Step("Cloning Shell Dependencies Themes Plugins", 13)
-        system('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
-        system('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
+        Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
+        Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
 
         # autosuggest
-        system('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
+        Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
         # fzf docker
-        system('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
+        Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
     except OSError as e:
         log.Error("Error while cloning")
 
@@ -358,7 +378,7 @@ def Main():
     # set default shell
     try:
         log.Step("Set zsh default shell", 15)
-        system('chsh -s /usr/local/bin/zsh $(whoami)')
+        Install('chsh -s /usr/local/bin/zsh $(whoami)')
     except OSError as e:
         log.Error("Error while settings zsh shell")
 
