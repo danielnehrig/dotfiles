@@ -95,3 +95,9 @@ Not Supported yet
 ### OSX Thumbnails
 
 #### Cherry Profile
+
+![Thumbnail1 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/terminal.png)
+![Thumbnail1 Terminal suggest](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/terminal%20suggest.png)
+![Thumbnail1 Terminal fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/terminal%20fzf.png)
+![Thumbnail1 vim](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/vim.png)
+![Thumbnail1 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/vim%202%20fzf.png)
