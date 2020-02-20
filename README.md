@@ -1,4 +1,4 @@
-[![danielnehrig](https://circleci.com/github/danielnehrig/.dotfiles-darwin.svg?style=svg)](LINK)
+[![CircleCI](https://circleci.com/gh/danielnehrig/.dotfiles-darwin.svg?style=svg)](https://circleci.com/gh/danielnehrig/.dotfiles-darwin)
 
 # Dotfiles for OSX / DARWIN System High Sierra and Catalina
 
