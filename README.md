@@ -62,11 +62,20 @@ TMUX, VIM, ZSH Configurations
 - Adding automated Key signing for debuging (gdb, radare2)
 - Automated installation of iterm2 settings
 - Adding dotnet
+- Adding Linux Support
+- Adding Windows Support
 
 ## Installation
+
+### OSX
 
 - install xcode from app store
 - xcode-select --install
 - ./install.py
 - options
   - --all (to compile ycm and pwndbg)
+- note check makefile or ./install.py --help
+
+## Thumbnails
+
+[![Thumbnail1](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/terminal%20fzf.png)](https://github.com/.danielnehrig/.dotfiles-darwin)
