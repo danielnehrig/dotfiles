@@ -21,6 +21,7 @@ import logging
 
 current_folder = os.path.abspath(os.getcwd())
 
+# source is context current folder + repo item
 linking_files = [
         {
             "source": "powerline",
@@ -202,7 +203,7 @@ def LinkFile(source, dest):
         with open(os.devnull, "w") as f:
             subprocess.call('ln -s {0}/{1} {2}'.format(current_folder, source, dest), stdout=f)
     except subprocess.CalledProcessError as e:
-        logging.error('{0} Failed to install {1}'.format(arrow, call))
+        logging.error('{0} Failed to Link {1} to {2}'.format(arrow, source, dest))
 
 
 def LinkFiles():
@@ -298,14 +299,14 @@ def main():
     # cloning dependencies zsh theme and plugins
     try:
         print("Cloning Dependencies".format(arrow))
-        system('cp -r ./powerlevel10k ' + current_folder +  '/oh-my-zsh/custom' + '/themes/powerlevel10k')
-        system('cp -r zsh-syntax-highlighting ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/zsh-syntax-highlighting')
+        system('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom' + '/themes/powerlevel10k')
+        system('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-syntax-highlighting')
 
         ### autosuggest
-        system('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
+        system('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
         ### fzf docker
-        system('git clone https://github.com/pierpo/fzf-docker ' + current_folder +  '/oh-my-zsh/custom' + '/plugins/fzf-docker')
+        system('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
     except OSError as e:
         logging.error("{0} Error while cloning".format(arrow))
 
