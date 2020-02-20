@@ -1,8 +1,8 @@
 [![CircleCI](https://circleci.com/gh/danielnehrig/.dotfiles-darwin.svg?style=svg)](https://circleci.com/gh/danielnehrig/.dotfiles-darwin) ![CatalinaBadge](https://img.shields.io/badge/OS-Catalina-green?logo=apple&OS=Catalina)
 
-# Dotfiles for OSX / DARWIN System High Sierra and Catalina
+# Dotfiles for OSX / DARWIN System Catalina
 
-- [Dotfiles for OSX / DARWIN System High Sierra](#dotfiles-for-osx---darwin-system-high-sierra)
+- [Dotfiles for OSX / DARWIN System Catalina](#dotfiles-for-osx---darwin-system-catalina)
   - [Description](#description)
   - [Features](#features)
     - [GUI Programs (Default)](#gui-programs-default)
@@ -10,6 +10,12 @@
     - [ZSH Configuration](#zsh-configuration)
     - [Todo](#todo)
   - [Installation](#installation)
+    - [OSX](#osx)
+    - [LINUX](#linux)
+  - [Thumbnails](#thumbnails)
+    - [OSX](#osx)
+      - [Cherry](#cherry)
+      - [Default](#default)
 
 ## Description
 
