@@ -98,5 +98,10 @@ Not Supported yet
 
 #### Cherry Profile
 
-[![Thumbnail1 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/terminal.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Cherry)
-[![Thumbnail1 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/vim%202%20fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Cherry)
+[![Thumbnail1 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/cherry/terminal.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Cherry)
+[![Thumbnail1 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/cherry/vim%202%20fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Cherry)
+
+#### Default Profile
+
+[![Thumbnail1 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/terminal_suggest.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
+[![Thumbnail1 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
