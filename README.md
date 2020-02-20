@@ -63,6 +63,8 @@ TMUX, VIM, ZSH Configurations
 
 ## Installation
 
+- install xcode from app store
+- xcode-select --install
 - ./install.py
 - options
   - --all (to compile ycm and pwndbg)
