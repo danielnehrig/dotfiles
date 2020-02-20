@@ -55,6 +55,10 @@ linking_files = [
             "dest": ".vimrc"
             },
         {
+            "source": ".gdbinit",
+            "dest": ".gdbinit"
+            },
+        {
             "source": ".uncrustify",
             "dest": ".uncrustify"
             }
