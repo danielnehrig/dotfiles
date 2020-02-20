@@ -350,7 +350,7 @@ def Main():
     InstallCliPackages('npm install', node_packages, '--global')
 
     # install python packages
-    log.Step("Installing Pythom PIP Packages", 10)
+    log.Step("Installing Python PIP Packages", 10)
     InstallPackages('pip3.7 install', pip_packages, '')
 
     # powerline players.py fix for ger local
@@ -409,8 +409,8 @@ def Main():
             CompileDependency('./pwndbg/setup.sh')
 
     # exec zsh
-    finish = datetime.now()
-    log.Success("Installation Done {0} {1}".format(now, finish))
+    finish = datetime.now().strftime('%H:%M:%S')
+    log.Success("Installation Done {0} - {1}".format(current_time, finish))
     system('zsh')
 
 
