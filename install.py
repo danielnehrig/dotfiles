@@ -78,6 +78,7 @@ brew_dependencies = [
         "sqlite",
         "mysql",
         "neofetch",
+        "git-lfs",
         "archey",
         "radare2",
         "gcc",
@@ -209,9 +210,9 @@ def CompileDependency(arg):
         log.Error('Compilation Failed with return code {0}'.format(e.errno))
 
 
-def InstallPackages(installCall, arr, options):
+def InstallCliPackages(installCall, arr, options):
     for package in arr:
-        log.Info('Installing {0}'.format(package))
+        log.Info('Installing CLI Package {0}'.format(package))
         install = '{0} {1} {2}'.format(installCall, package, options)
         cmdArr = install.split()
         try:
@@ -221,6 +222,20 @@ def InstallPackages(installCall, arr, options):
                     subprocess.call(cmdArr, stdout=f)
                     f.close()
                 log.Success('Success Installing')
+        except subprocess.CalledProcessError as e:
+            log.Error('Failed to install {0} with code {1}'.format(package, e.returncode))
+
+
+def InstallPackages(installCall, arr, options):
+    for package in arr:
+        log.Info('Installing Package {0}'.format(package))
+        install = '{0} {1} {2}'.format(installCall, package, options)
+        cmdArr = install.split()
+        try:
+            with open(os.devnull, "w") as f:
+                subprocess.call(cmdArr, stdout=f)
+                f.close()
+            log.Success('Success Installing')
         except subprocess.CalledProcessError as e:
             log.Error('Failed to install {0} with code {1}'.format(package, e.returncode))
 
@@ -315,7 +330,7 @@ def Main():
 
     # install brew dependencies
     log.Step("Installing Homebrew CLI dependencies", 6)
-    InstallPackages('brew install', brew_dependencies, '')
+    InstallCliPackages('brew install', brew_dependencies, '')
 
     # install git lfs
     log.Step("Installing git lfs", 6)
@@ -332,7 +347,7 @@ def Main():
 
     # node packages
     log.Step("Installing Node Packages", 9)
-    InstallPackages('npm install', node_packages, '--global')
+    InstallCliPackages('npm install', node_packages, '--global')
 
     # install python packages
     log.Step("Installing Pythom PIP Packages", 10)
@@ -378,7 +393,7 @@ def Main():
     # set default shell
     try:
         log.Step("Set zsh default shell", 15)
-        Install('chsh -s /usr/local/bin/zsh $(whoami)')
+        Install('chsh -s /usr/local/bin/zsh ' + user)
     except OSError as e:
         log.Error("Error while settings zsh shell")
 
@@ -394,7 +409,8 @@ def Main():
             CompileDependency('./pwndbg/setup.sh')
 
     # exec zsh
-    log.Success("Installation Done")
+    finish = datetime.now()
+    log.Success("Installation Done {0} {1}".format(now, finish))
     system('zsh')
 
 
