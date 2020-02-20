@@ -18,7 +18,11 @@ import os
 import sys
 from os import system
 import logging
+from getpass import getuser
+from datetime import datetime
 
+now = datetime.now()
+current_time = now.strftime('%H:%M:%S')
 current_folder = os.path.abspath(os.getcwd())
 
 # source is context current folder + repo item
@@ -73,7 +77,7 @@ brew_dependencies = [
         "mysql",
         "neofetch",
         "archey",
-        "radare2"
+        "radare2",
         "gcc",
         "htop",
         "make",
@@ -125,19 +129,42 @@ node_packages = [
 arrow = '========>'
 
 
-def Error(string):
-    color = ''
-    logging.error('TIME : ERROR: {0} {1}'.format(arrow, string))
+class Colors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 
-def Success(string):
-    color = ''
-    logging.error('TIME : SUCCESS : {0} {1}'.format(arrow, string))
+class Log(Colors):
+    user = getuser()
+
+    def now(self):
+        time = datetime.now()
+        return time.strftime('%H:%M:%S')
+
+    def Success(self, string):
+        st = '{0}-' + self.OKGREEN + '{1}:{2} ' + self.ENDC + ' {3} {4}'
+        print(st.format(self.now(), self.user, 'SUCCESS', arrow, string))
+
+    def Error(self, string):
+        st = '{0}-' + self.FAIL + '{1}:{2} ' + self.ENDC + ' {3} {4}'
+        print(st.format(self.now(), self.user, 'ERROR', arrow, string))
+
+    def Critical(self, string):
+        st = '{0}-' + self.FAIL + '{1}:{2} ' + self.ENDC + ' {3} {4}'
+        print(st.format(self.now(), self.user, 'CRITICAL', arrow, string))
+
+    def Info(self, string):
+        st = '{0}-' + self.OKBLUE + '{1}:{2} ' + self.ENDC + ' {3} {4}'
+        print(st.format(self.now(), self.user, 'INFO', arrow, string))
 
 
-def Info(string):
-    color = ''
-    logging.info('TIME : INFO : {0} {1}'.format(arrow, string))
+log = Log()
 
 
 def Call(arg):
@@ -151,38 +178,43 @@ def Call(arg):
 
 def CompileDependency(arg):
     try:
+        log.Info('Compile {0}'.format(arg))
         cmdArr = arg.split()
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
+        log.Success('Success Compile')
     except subprocess.CalledProcessError as e:
         logging.error('{0} Compilation Failed with return code {1}'.format(arrow, e.errno))
 
 
 def InstallPackages(installCall, arr, options):
     for package in arr:
-        print('{0} Installing {1}'.format(arrow, package))
+        log.Info('Installing {0}'.format(package))
         install = '{0} {1} {2}'.format(installCall, package, options)
         cmdArr = install.split()
         try:
             with open(os.devnull, "w") as f:
                 subprocess.call(cmdArr, stdout=f)
+            log.Success('Success Installing')
         except subprocess.CalledProcessError as e:
-            logging.error('{0} Failed to install {1} with code {2}'.format(arrow, package, e.returncode))
+            log.Error('Failed to install {0} with code {1}'.format(package, e.returncode))
 
 
 def InstallTap(tap):
-    print('{0} Installing tap {1}'.format(arrow, tap))
     try:
+        log.Info('Installing tap {0}'.format(tap))
         with open(os.devnull, "w") as f:
             subprocess.call("brew tap {0}".format(tap), stdout=f)
+        log.Success('Success Installing tap')
     except subprocess.CalledProcessError as e:
-        logging.error('{0} Failed to install {1} with code {2}'.format(arrow, tap, e.returncode))
+        log.Error('Failed to install {0} with code {1}'.format(tap, e.returncode))
 
 
 def CallCheck(args, **kwargs):
     try:
         cmdArg = args.split()
-        with open(os.devnull, "w") as f: subprocess.call(cmdArg, stdout=f)
+        with open(os.devnull, "w") as f:
+            subprocess.call(cmdArg, stdout=f)
     except subprocess.CalledProcessError as e:
         logging.critical('{0} {1} is Required'.format(arrow, args))
         sys.exit(e.returncode)
@@ -192,18 +224,19 @@ def Install(call):
     try:
         print('{0} Installing {1}'.format(arrow, call))
         cmdArr = call.split()
-        with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
+        with open(os.devnull, "w") as f:
+            subprocess.call(cmdArr, stdout=f)
     except subprocess.CalledProcessError as e:
         logging.error('{0} Failed to install {1}'.format(arrow, call))
 
 
 def LinkFile(source, dest):
     try:
-        print('{0} Linking File {1} to {2}'.format(arrow, source, dest))
+        log.Info('Linking File {0} to {1}'.format(source, dest))
         with open(os.devnull, "w") as f:
             subprocess.call('ln -s {0}/{1} {2}'.format(current_folder, source, dest), stdout=f)
     except subprocess.CalledProcessError as e:
-        logging.error('{0} Failed to Link {1} to {2}'.format(arrow, source, dest))
+        log.Error('Failed to Link {0} to {1}'.format(source, dest))
 
 
 def LinkFiles():
@@ -216,17 +249,19 @@ def LinkFiles():
         logging.error('{0} Failed to Link files'.format(arrow))
 
 
-def Move(source, dest):
+def Copy(source, dest):
     try:
-        system('rm -ri {0}'.format(dest))
+        log.Info('Copy File {0}'.format(source))
+        system('rm {0}'.format(dest))
         system('cp {0}/{1} {2}'.format(current_folder, source, dest))
+        log.Success('Success Copy')
     except:
-        logging.error('{0} Failed to move file'.format(arrow))
+        log.Error('Failed to move file')
 
 
-def main():
-    print("{0} Starting Installation".format(arrow))
-    print("{0} Installing Dependencies".format(arrow))
+def Main():
+    log.Info("Starting Installation")
+    log.Info("Installing Dependencies")
 
     # check if xcode dev tools are installed becouse of git
     try:
@@ -282,15 +317,15 @@ def main():
 
     # powerline players.py fix for ger local
     print("{0} Install pip packages".format(arrow))
-    Move('./.powerlineFix/players.py', '/usr/local/lib/python3.7/site-packages/powerline/')
+    Copy('./.powerlineFix/players.py', '/usr/local/lib/python3.7/site-packages/powerline/segments/common/players.py')
 
     # install fonts
     try:
-        ### Fonts https://github.com/gabrielelana/awesome-terminal-fonts
+        # Fonts https://github.com/gabrielelana/awesome-terminal-fonts
         print("{0} Installing Fonts".format(arrow))
-        ### and nerd fonts https://github.com/ryanoasis/nerd-fonts
-        FONT="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
-        FONT_NAME="SourceCodeProAwesome.ttf"
+        # and nerd fonts https://github.com/ryanoasis/nerd-fonts
+        FONT  ="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
+        FONT_NAME = "SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
     except OSError as e:
@@ -299,13 +334,13 @@ def main():
     # cloning dependencies zsh theme and plugins
     try:
         print("Cloning Dependencies".format(arrow))
-        system('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom' + '/themes/powerlevel10k')
-        system('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-syntax-highlighting')
+        system('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
+        system('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
 
-        ### autosuggest
+        # autosuggest
         system('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
-        ### fzf docker
+        # fzf docker
         system('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
     except OSError as e:
         logging.error("{0} Error while cloning".format(arrow))
@@ -341,4 +376,4 @@ def main():
 
 if __name__ == "__main__":
     CallCheck('git')
-    main()
+    Main()
