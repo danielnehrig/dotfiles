@@ -20,6 +20,7 @@ from os import system
 import logging
 from getpass import getuser
 from datetime import datetime
+from distutils.spawn import find_executable
 
 now = datetime.now()
 current_time = now.strftime('%H:%M:%S')
@@ -152,7 +153,7 @@ class Log(Colors):
         print(st.format(self.now(), self.user, 'SUCCESS', arrow, string))
 
     def Error(self, string):
-        st = '{0}-' + self.FAIL + '{1}:{2} ' + self.ENDC + ' {3} {4}'
+        st = '{0}-' + self.FAIL + '{1}:{2}   ' + self.ENDC + ' {3} {4}'
         print(st.format(self.now(), self.user, 'ERROR', arrow, string))
 
     def Critical(self, string):
@@ -160,20 +161,24 @@ class Log(Colors):
         print(st.format(self.now(), self.user, 'CRITICAL', arrow, string))
 
     def Info(self, string):
-        st = '{0}-' + self.OKBLUE + '{1}:{2} ' + self.ENDC + ' {3} {4}'
+        st = '{0}-' + self.OKBLUE + '{1}:{2}    ' + self.ENDC + ' {3} {4}'
         print(st.format(self.now(), self.user, 'INFO', arrow, string))
+
+    def Step(self, string, step):
+        st = '{0}-' + self.OKBLUE + '{1}:{2}    ' + self.ENDC + ' {3} Step : {4} {5}'
+        print(st.format(self.now(), self.user, 'STEP', arrow, step, string))
 
 
 log = Log()
 
 
-def Call(arg):
+def Call(cmd):
     try:
-        cmdArr = arg.split()
-        with open(os.devnull, "w") as f:
-            subprocess.call(cmdArr, stdout=f)
+        inPath = find_executable(cmd) is not None
+        if not inPath:
+            raise Exception("Not in Path")
     except subprocess.CalledProcessError as e:
-        logging.error('{0} Call Failed with return code {1}'.format(arrow, e.returncode))
+        log.Error('Call Check Failed with return code {1}'.format(e.returncode))
 
 
 def CompileDependency(arg):
@@ -182,9 +187,10 @@ def CompileDependency(arg):
         cmdArr = arg.split()
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
+            f.close()
         log.Success('Success Compile')
     except subprocess.CalledProcessError as e:
-        logging.error('{0} Compilation Failed with return code {1}'.format(arrow, e.errno))
+        log.Error('Compilation Failed with return code {0}'.format(e.errno))
 
 
 def InstallPackages(installCall, arr, options):
@@ -195,6 +201,7 @@ def InstallPackages(installCall, arr, options):
         try:
             with open(os.devnull, "w") as f:
                 subprocess.call(cmdArr, stdout=f)
+                f.close()
             log.Success('Success Installing')
         except subprocess.CalledProcessError as e:
             log.Error('Failed to install {0} with code {1}'.format(package, e.returncode))
@@ -204,30 +211,22 @@ def InstallTap(tap):
     try:
         log.Info('Installing tap {0}'.format(tap))
         with open(os.devnull, "w") as f:
-            subprocess.call("brew tap {0}".format(tap), stdout=f)
+            subprocess.call(["brew", "tap", tap], stdout=f)
+            f.close()
         log.Success('Success Installing tap')
     except subprocess.CalledProcessError as e:
         log.Error('Failed to install {0} with code {1}'.format(tap, e.returncode))
 
 
-def CallCheck(args, **kwargs):
-    try:
-        cmdArg = args.split()
-        with open(os.devnull, "w") as f:
-            subprocess.call(cmdArg, stdout=f)
-    except subprocess.CalledProcessError as e:
-        logging.critical('{0} {1} is Required'.format(arrow, args))
-        sys.exit(e.returncode)
-
-
 def Install(call):
     try:
-        print('{0} Installing {1}'.format(arrow, call))
+        log.Info('Installing {0}'.format(call))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
+            f.close()
     except subprocess.CalledProcessError as e:
-        logging.error('{0} Failed to install {1}'.format(arrow, call))
+        log.Error('Failed to install {0}'.format(call))
 
 
 def LinkFile(source, dest):
@@ -235,6 +234,7 @@ def LinkFile(source, dest):
         log.Info('Linking File {0} to {1}'.format(source, dest))
         with open(os.devnull, "w") as f:
             subprocess.call('ln -s {0}/{1} {2}'.format(current_folder, source, dest), stdout=f)
+            f.close()
     except subprocess.CalledProcessError as e:
         log.Error('Failed to Link {0} to {1}'.format(source, dest))
 
@@ -246,7 +246,7 @@ def LinkFiles():
             # in a cancelation of the installation of the packages if a brew package gets removed
             LinkFile(link.source, link.dest)
     except:
-        logging.error('{0} Failed to Link files'.format(arrow))
+        log.Error('Failed to Link files')
 
 
 def Copy(source, dest):
@@ -263,77 +263,72 @@ def Main():
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
 
-    # check if xcode dev tools are installed becouse of git
+    # check if git is installed
     try:
-        CallCheck('xcode-select --install')
-    except subprocess.CalledProcessError as e:
-        print("{0} xcode dev tools is not installed installing".format(arrow))
+        log.Step("Check if git is installed", 2)
+        Call("git")
+    except OSError as e:
+        log.Error("git not found installing dev tools")
         Install('xcode-select --install')
 
     # check if brew is installed
     try:
-        print("{0} brew check".format(arrow))
+        log.Step("Check if Homebrew is installed", 2)
         Call("brew")
     except OSError as e:
-        logging.error("{0} brew not found installing brew".format(arrow))
+        log.Error("brew not found installing brew")
         system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 
-    # check if git lfs is installed
-    try:
-        print("{0} git lfs check".format(arrow))
-        Call("git lfs")
-    except OSError as e:
-        logging.error("{0} git lfs not found installing git lfs".format(arrow))
-        system('brew install git-lfs')
-        system('git lfs install')
-
     # git submodule pull
-    print("{0} git pull submodules".format(arrow))
-    Call('git submodule update --init --recursive')
-
-    # install brew dependencies
-    print("{0} Install brew dependencies".format(arrow))
-    InstallPackages('brew install', brew_dependencies, '')
+    log.Step("Pulling submodules", 4)
+    Install('git submodule update --init --recursive')
 
     # install brew taps
+    log.Step("Installing Homebrew Taps", 5)
     InstallTap('homebrew/cask-fonts')
 
+    # install brew dependencies
+    log.Step("Installing Homebrew CLI dependencies", 6)
+    InstallPackages('brew install', brew_dependencies, '')
+
+    # install git lfs
+
     # install cask dependencies
-    print("{0} Install cask dependencies".format(arrow))
+    log.Step("Installing Homebrew GUI dependencies", 7)
     InstallPackages('brew cask install', cask_dependencies, '')
 
     # install node
-    print("{0} Install node".format(arrow))
+    log.Step("Installing Node", 8)
     Install('nodenv install 12.8.0')
     Install('nodenv global 12.8.0')
 
     # node packages
-    print("{0} Install node packages".format(arrow))
+    log.Step("Installing Node Packages", 9)
     InstallPackages('npm install', node_packages, '--global')
 
     # install python packages
-    print("{0} Install pip packages".format(arrow))
+    log.Step("Installing Pythom PIP Packages", 10)
     InstallPackages('pip3.7 install', pip_packages, '')
 
     # powerline players.py fix for ger local
-    print("{0} Install pip packages".format(arrow))
+    log.Step("Installing Powerline Fix", 11)
     Copy('./.powerlineFix/players.py', '/usr/local/lib/python3.7/site-packages/powerline/segments/common/players.py')
 
     # install fonts
     try:
         # Fonts https://github.com/gabrielelana/awesome-terminal-fonts
-        print("{0} Installing Fonts".format(arrow))
+        log.Step("Installing Fonts", 12)
         # and nerd fonts https://github.com/ryanoasis/nerd-fonts
-        FONT  ="https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
+        FONT = "https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
         FONT_NAME = "SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
     except OSError as e:
-        logging.error("{0} Error while installing fonts".format(arrow))
+        log.Error("Error while installing fonts")
 
     # cloning dependencies zsh theme and plugins
     try:
-        print("Cloning Dependencies".format(arrow))
+        log.Step("Cloning Shell Dependencies Themes Plugins", 13)
         system('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
         system('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
 
@@ -343,37 +338,37 @@ def Main():
         # fzf docker
         system('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
     except OSError as e:
-        logging.error("{0} Error while cloning".format(arrow))
+        log.Error("Error while cloning")
 
     # linking files
     try:
-        print("{0} Linking zsh and vim files Symbolic".format(arrow))
+        log.Step("Linking zsh and vim files Symbolic", 14)
         LinkFiles()
     except OSError as e:
-        logging.error("{0} Error while linking files".format(arrow))
+        log.Error("Error while linking files")
 
     # set default shell
     try:
-        print("{0} Set zsh default shell".format(arrow))
+        log.Step("Set zsh default shell", 15)
         system('chsh -s /usr/local/bin/zsh $(whoami)')
     except OSError as e:
-        logging.error("{0} Error while settings zsh shell".format(arrow))
+        log.Error("Error while settings zsh shell")
 
     # option to not compile
     for option in sys.argv:
         if option == '--all':
+            log.Step("Compile Programs", 16)
             # compile youcompleteme
-            print("{0} Compile YCM".format(arrow))
+            log.Info("Compile YCM")
             CompileDependency('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
             # compile pwndbg for reversing c / c++
-            print("{0} Compile pwndbg".format(arrow))
+            log.Info("Compile pwndbg")
             CompileDependency('./pwndbg/setup.sh')
 
     # exec zsh
-    print("{0} Installation Done".format(arrow))
+    log.Success("Installation Done")
     system('zsh')
 
 
 if __name__ == "__main__":
-    CallCheck('git')
     Main()
