@@ -123,31 +123,38 @@ node_packages = [
 
 arrow = '========>'
 
+
 def Error(string):
     color = ''
-    logging.error('{0} {1}'.format(arrow, string))
+    logging.error('TIME : ERROR: {0} {1}'.format(arrow, string))
+
 
 def Success(string):
     color = ''
-    logging.error('{0} {1}'.format(arrow, string))
+    logging.error('TIME : SUCCESS : {0} {1}'.format(arrow, string))
+
 
 def Info(string):
     color = ''
-    logging.info('{0} {1}'.format(arrow, string))
+    logging.info('TIME : INFO : {0} {1}'.format(arrow, string))
+
 
 def Call(arg):
     try:
         cmdArr = arg.split()
-        with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
+        with open(os.devnull, "w") as f:
+            subprocess.call(cmdArr, stdout=f)
     except subprocess.CalledProcessError as e:
         logging.error('{0} Call Failed with return code {1}'.format(arrow, e.returncode))
 
-def CompileDependency():
+
+def CompileDependency(arg):
     try:
         cmdArr = arg.split()
-        with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
+        with open(os.devnull, "w") as f:
+            subprocess.call(cmdArr, stdout=f)
     except subprocess.CalledProcessError as e:
-        loggig.error('{0} Compilation Failed with return code {1}'.format(arrow, e.errno))
+        logging.error('{0} Compilation Failed with return code {1}'.format(arrow, e.errno))
 
 
 def InstallPackages(installCall, arr, options):
@@ -156,9 +163,20 @@ def InstallPackages(installCall, arr, options):
         install = '{0} {1} {2}'.format(installCall, package, options)
         cmdArr = install.split()
         try:
-            with open(os.devnull, "w") as f: subprocess.call(cmdArr, stdout=f)
+            with open(os.devnull, "w") as f:
+                subprocess.call(cmdArr, stdout=f)
         except subprocess.CalledProcessError as e:
             logging.error('{0} Failed to install {1} with code {2}'.format(arrow, package, e.returncode))
+
+
+def InstallTap(tap):
+    print('{0} Installing tap {1}'.format(arrow, tap))
+    try:
+        with open(os.devnull, "w") as f:
+            subprocess.call("brew tap {0}".format(tap), stdout=f)
+    except subprocess.CalledProcessError as e:
+        logging.error('{0} Failed to install {1} with code {2}'.format(arrow, tap, e.returncode))
+
 
 def CallCheck(args, **kwargs):
     try:
@@ -168,6 +186,7 @@ def CallCheck(args, **kwargs):
         logging.critical('{0} {1} is Required'.format(arrow, args))
         sys.exit(e.returncode)
 
+
 def Install(call):
     try:
         print('{0} Installing {1}'.format(arrow, call))
@@ -176,12 +195,15 @@ def Install(call):
     except subprocess.CalledProcessError as e:
         logging.error('{0} Failed to install {1}'.format(arrow, call))
 
+
 def LinkFile(source, dest):
     try:
         print('{0} Linking File {1} to {2}'.format(arrow, source, dest))
-        with open(os.devnull, "w") as f: subprocess.call('ln -s {0}/{1} {2}'.format(current_folder, source, dest), stdout=f)
+        with open(os.devnull, "w") as f:
+            subprocess.call('ln -s {0}/{1} {2}'.format(current_folder, source, dest), stdout=f)
     except subprocess.CalledProcessError as e:
         logging.error('{0} Failed to install {1}'.format(arrow, call))
+
 
 def LinkFiles():
     try:
@@ -192,12 +214,14 @@ def LinkFiles():
     except:
         logging.error('{0} Failed to Link files'.format(arrow))
 
+
 def Move(source, dest):
     try:
         system('rm -ri {0}'.format(dest))
-        system('mv {0}/{1} {2}'.format(current_folder, source, dest))
+        system('cp {0}/{1} {2}'.format(current_folder, source, dest))
     except:
         logging.error('{0} Failed to move file'.format(arrow))
+
 
 def main():
     print("{0} Starting Installation".format(arrow))
@@ -235,6 +259,9 @@ def main():
     print("{0} Install brew dependencies".format(arrow))
     InstallPackages('brew install', brew_dependencies, '')
 
+    # install brew taps
+    InstallTap('homebrew/cask-fonts')
+
     # install cask dependencies
     print("{0} Install cask dependencies".format(arrow))
     InstallPackages('brew cask install', cask_dependencies, '')
@@ -265,8 +292,6 @@ def main():
         FONT_NAME="SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
-        system('brew tap homebrew/cask-fonts')
-        Install('brew cask install font-hack-nerd-font')
     except OSError as e:
         logging.error("{0} Error while installing fonts".format(arrow))
 
@@ -296,7 +321,7 @@ def main():
         print("{0} Set zsh default shell".format(arrow))
         system('chsh -s /usr/local/bin/zsh $(whoami)')
     except OSError as e:
-        loggin.error("{0} Error while settings zsh shell".format(arrow))
+        logging.error("{0} Error while settings zsh shell".format(arrow))
 
     # option to not compile
     for option in sys.argv:
@@ -308,11 +333,10 @@ def main():
             print("{0} Compile pwndbg".format(arrow))
             CompileDependency('./pwndbg/setup.sh')
 
-
-
     # exec zsh
     print("{0} Installation Done".format(arrow))
     system('zsh')
+
 
 if __name__ == "__main__":
     CallCheck('git')
