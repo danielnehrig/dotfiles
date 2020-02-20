@@ -407,7 +407,7 @@ def Main():
             # compile pwndbg for reversing c / c++
             log.Info("Compile pwndbg")
             os.chdir(current_folder + '/pwndbg')
-            CompileDependency('./pwndbg/setup.sh')
+            CompileDependency('./setup.sh')
 
     # exec zsh
     finish = datetime.now().strftime('%H:%M:%S')
