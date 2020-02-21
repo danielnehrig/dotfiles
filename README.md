@@ -71,6 +71,10 @@ TMUX, VIM, ZSH Configurations
 - Adding dotnet
 - Adding Linux Support
 - Adding Windows Support
+- Make Design Modular
+  - Powerline10k zsh Settings
+  - Powerline tmux Settings
+  - Powerline vim Settings
 
 ## Installation
 
