@@ -416,7 +416,7 @@ def Darwin():
     # set default shell
     try:
         log.Step("Set zsh default shell", 15)
-        Install('chsh -s /usr/local/bin/zsh ' + user)
+        Install('sudo chsh -s /usr/local/bin/zsh ' + user)
     except OSError as e:
         log.Error("Error while settings zsh shell")
 
