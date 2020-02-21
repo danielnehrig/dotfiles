@@ -111,6 +111,7 @@ cask_dependencies = [
         "adobe-creative-cloud",
         "slack",
         "1password",
+        "1password-cli",
         "visual-studio-code",
         "microsoft-office",
         "skype-for-business",
@@ -400,6 +401,9 @@ def Darwin():
 
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
+
+        # tmux plugin manager
+        Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
