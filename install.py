@@ -314,6 +314,7 @@ def Upgrade():
     for option in sys.argv:
         if option == '--upgrade' or option == '-u':
             InstallCliPackages('brew upgrade', brew_dependencies)
+            sys.exit(0)
 
 
 def Linux():
@@ -435,6 +436,7 @@ def Darwin():
     finish = datetime.now().strftime('%H:%M:%S')
     log.Success("Installation Done {0} - {1}".format(current_time, finish))
     system('zsh')
+    sys.exit(0)
 
 
 if __name__ == "__main__":
