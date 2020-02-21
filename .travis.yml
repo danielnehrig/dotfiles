@@ -4,7 +4,6 @@ os: osx
 jobs:
   include:
   - name: "Mac Build"
-    python: "2.7"
     env: PARAM=--all
 
 script: ./install.py $PARAM
