@@ -16,6 +16,7 @@
     - [OSX Thumbnails](#osx-thumbnails)
       - [Cherry](#cherry-profile)
       - [Default](#default-profile)
+      - [Parklet](#parklet-profile)
 
 ## Description
 
@@ -70,6 +71,10 @@ TMUX, VIM, ZSH Configurations
 - Adding dotnet
 - Adding Linux Support
 - Adding Windows Support
+- Make Design Modular
+  - Powerline10k zsh Settings
+  - Powerline tmux Settings
+  - Powerline vim Settings
 
 ## Installation
 
@@ -111,5 +116,10 @@ Not Supported yet
 
 #### Default Profile
 
-[![Thumbnail1 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/terminal_suggest.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
-[![Thumbnail1 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
+[![Thumbnail2 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/terminal_suggest.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
+[![Thumbnail2 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
+
+#### Parklet Profile
+
+[![Thumbnail3 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/terminal.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
+[![Thumbnail3 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)

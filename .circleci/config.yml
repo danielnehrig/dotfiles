@@ -4,7 +4,15 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-and-test:
+  build-mac:
+    macos:
+      xcode: 11.3.1
+    steps:
+      - checkout
+      - run:
+          command: ./install.py --all
+          name: Build
+  build-linux:
     executor: python/default
     steps:
       - checkout
@@ -18,4 +26,5 @@ jobs:
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build-mac
+      - build-linux

@@ -111,6 +111,7 @@ cask_dependencies = [
         "adobe-creative-cloud",
         "slack",
         "1password",
+        "1password-cli",
         "visual-studio-code",
         "microsoft-office",
         "skype-for-business",
@@ -314,6 +315,7 @@ def Upgrade():
     for option in sys.argv:
         if option == '--upgrade' or option == '-u':
             InstallCliPackages('brew upgrade', brew_dependencies)
+            sys.exit(0)
 
 
 def Linux():
@@ -400,6 +402,9 @@ def Darwin():
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
+        # tmux plugin manager
+        Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
+
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
     except OSError as e:
@@ -415,7 +420,7 @@ def Darwin():
     # set default shell
     try:
         log.Step("Set zsh default shell", 15)
-        Install('chsh -s /usr/local/bin/zsh ' + user)
+        Install('sudo chsh -s /usr/local/bin/zsh ' + user)
     except OSError as e:
         log.Error("Error while settings zsh shell")
 
@@ -435,6 +440,7 @@ def Darwin():
     finish = datetime.now().strftime('%H:%M:%S')
     log.Success("Installation Done {0} - {1}".format(current_time, finish))
     system('zsh')
+    sys.exit(0)
 
 
 if __name__ == "__main__":

@@ -8,6 +8,9 @@
           "format": "{state_symbol} {artist} - {title} {elapsed} {total}"
         }
       },
+      {
+        "function": "powerline.segments.common.bat.battery"
+      },
 			{
 				"function": "powerline.segments.common.sys.uptime",
 				"priority": 50
