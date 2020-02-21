@@ -117,5 +117,5 @@ Not Supported yet
 
 #### Parklet Profile
 
-[![Thumbnail3 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/terminal_suggest.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
+[![Thumbnail3 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/terminal.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
 [![Thumbnail3 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
