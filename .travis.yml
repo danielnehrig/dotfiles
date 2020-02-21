@@ -1,11 +1,9 @@
-language: python
 os: osx
 osx_image: xcode11.2
 
 jobs:
   include:
   - name: "Mac Build"
-    python: 2.7
     env: PARAM=--all
 
 script: ./install.py $PARAM
