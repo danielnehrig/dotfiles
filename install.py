@@ -90,6 +90,8 @@ brew_dependencies = [
         "go",
         "rust",
         "perl",
+        "github/gh/gh",
+        "hub",
         "lua",
         "vim",
         "zsh",
