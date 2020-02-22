@@ -189,6 +189,13 @@ class Log(Colors):
 log = Log()
 
 
+def IsCI():
+    result = False
+    if os.environ["CI"] == 'yes':
+        result = True
+    return result
+
+
 def Call(cmd):
     try:
         inPath = find_executable(cmd) is not None
@@ -322,6 +329,10 @@ def Linux():
     log.Critical('Linux is Not Supported Yet')
     sys.exit(0)
 
+def Cygwin():
+    log.Critical('Cygwin is Not Supported Yet')
+    sys.exit(0)
+
 
 def Darwin():
     log.Info("Starting Installation")
@@ -361,8 +372,9 @@ def Darwin():
     Install('git lfs install')
 
     # install cask dependencies
-    log.Step("Installing Homebrew GUI dependencies", 7)
-    InstallPackages('brew cask install', cask_dependencies)
+    if not IsCI():
+        log.Step("Installing Homebrew GUI dependencies", 7)
+        InstallPackages('brew cask install', cask_dependencies)
 
     # install node
     log.Step("Installing Node", 8)
@@ -435,6 +447,7 @@ def Darwin():
             log.Info("Compile pwndbg")
             os.chdir(current_folder + '/pwndbg')
             CompileDependency('./setup.sh')
+            os.chdir(current_folder)
 
     # exec zsh
     finish = datetime.now().strftime('%H:%M:%S')
@@ -450,3 +463,5 @@ if __name__ == "__main__":
         Linux()
     if sys.platform == 'darwin':
         Darwin()
+    if sys.platform == 'cygwin':
+        Cygwin()
