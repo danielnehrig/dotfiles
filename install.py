@@ -431,6 +431,13 @@ def Darwin():
     except OSError as e:
         log.Error("Error while linking files")
 
+    # install iterm segments
+    try:
+        log.Step("Install iTerm2 statusline segments", 15)
+        Install('./iterm2segments/install.py')
+    except OSError as e:
+        log.Error("Error while installing iTerm2 Statusline segments")
+
     # set default shell
     try:
         log.Step("Set zsh default shell", 15)
