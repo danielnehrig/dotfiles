@@ -81,22 +81,6 @@ forgit::add() {
 }
 
 # git reset HEAD (unstage) selector
-github::pr() {
-  remote=$(git remote get-url origin)
-  pull='/pull/'
-  result=$(hub pr list -f '%t - %I%n' | fzf --preview='' | sed 's/.* - //')
-
-  if [[ ! -z $result ]]; then
-    open $remote$pull$result
-    return 0
-  else
-    return 1
-  fi
-}
-
-alias ghp='github::pr'
-
-# git reset HEAD (unstage) selector
 forgit::reset::head() {
     forgit::inside_work_tree || return 1
     local cmd files opts

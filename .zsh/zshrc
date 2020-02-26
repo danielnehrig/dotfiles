@@ -14,6 +14,7 @@ source ~/.dotfiles-darwin/.zsh/settings.zsh
 source ~/.dotfiles-darwin/.zsh/function.zsh
 source ~/.dotfiles-darwin/.zsh/alias.zsh
 source ~/.dotfiles-darwin/.zsh/tokens.zsh
+source ~/.dotfiles-darwin/.zsh/github.zsh
 
 # Nodenv init
 eval "$(nodenv init -)"
