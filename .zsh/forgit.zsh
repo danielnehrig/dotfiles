@@ -87,9 +87,10 @@ github::pr() {
   result=$(hub pr list -f '%t - %I%n' | fzf --preview='' | sed 's/.* - //')
 
   if [[ ! -z $result ]]; then
-    echo "git status exited successfully"
+    open $remote$pull$result
+    return 0
   else
-    echo "git status exited with error code"
+    return 1
   fi
 }
 
