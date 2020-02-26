@@ -81,6 +81,21 @@ forgit::add() {
 }
 
 # git reset HEAD (unstage) selector
+github::pr() {
+  remote=$(git remote get-url origin)
+  pull='/pull/'
+  result=$(hub pr list -f '%t - %I%n' | fzf --preview='' | sed 's/.* - //')
+
+  if [[ ! -z $result ]]; then
+    echo "git status exited successfully"
+  else
+    echo "git status exited with error code"
+  fi
+}
+
+alias ghp='github::pr'
+
+# git reset HEAD (unstage) selector
 forgit::reset::head() {
     forgit::inside_work_tree || return 1
     local cmd files opts
