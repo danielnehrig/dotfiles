@@ -1,15 +1,6 @@
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/$(id -un)/.dotfiles-darwin/oh-my-zsh/"
-export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
-
-# User exports
-export PATH="/usr/local/sbin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include:/usr/local/sbin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr:/usr/local/bin:/usr/local/Cellar:/usr/bin:/bin:/usr/sbin:/sbin:/usr/include/libxml2:/Users/$(id -un)/Library/Python/2.7/bin:/usr/local/opt/llvm/bin:/usr/local/include:/$(id -un)/dnehrig/Library/Python/3.7/bin:/usr/local/share/dotnet"
-export EDITOR='vim'
-export DEFAULT_USER="$USER"
-export TERM=xterm-256color
-export UNCRUSTIFY_CONFIG=~/.dotfiles-darwin/.uncrustify
 
 # User Settings
+source ~/.dotfiles-darwin/.zsh/export.zsh
 source ~/.dotfiles-darwin/.zsh/settings.zsh
 source ~/.dotfiles-darwin/.zsh/function.zsh
 source ~/.dotfiles-darwin/.zsh/alias.zsh
@@ -61,7 +52,8 @@ eval "$(nodenv init -)"
 plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker dnf fzf fzf-docker zsh-autosuggestions)
 export FZF_DEFAULT_COMMAND='find . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
 export FZF_CTRL_T_COMMAND='find . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
-export FZF_DEFAULT_OPTS="--preview 'bat --style=numbers --color=always {}'"
+# export FZF_DEFAULT_OPTS="-i --preview 'bat --style=numbers --color=always {}'"
+export FZF_DEFAULT_OPTS="-i"
 
 source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles-darwin/.zsh/forgit.zsh
@@ -69,4 +61,3 @@ source ~/.dotfiles-darwin/.zsh/forgit.zsh
 neofetch
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
