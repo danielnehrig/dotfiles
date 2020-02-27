@@ -1,4 +1,4 @@
-# git reset HEAD (unstage) selector
+# opens all pull requests in current repo
 github::pr() {
   type -p fzf &>/dev/null
   fzf=$?
@@ -18,12 +18,10 @@ github::pr() {
     return 1
   fi
 
-  remote=$(git remote get-url origin)
-  pull='/pull/'
-  result=$(hub pr list -f '%t - %I%n' | fzf --preview='' | sed 's/.* - //')
+  result=$(hub pr list -f '%t - %I%n' | fzf -i --preview='' | sed 's/.* - //')
 
   if [[ ! -z $result ]]; then
-    open $remote$pull$result
+    hub pr show $result
     return 0
   else
     return 1
