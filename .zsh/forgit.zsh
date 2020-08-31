@@ -80,6 +80,26 @@ forgit::add() {
     echo 'Nothing to add.'
 }
 
+# git add selector
+github::jestChanged() {
+    forgit::inside_work_tree || return 1
+    local changed unmerged untracked files opts
+    changed=$(git config --get-color color.status.changed red)
+    unmerged=$(git config --get-color color.status.unmerged red)
+    untracked=$(git config --get-color color.status.untracked red)
+
+    files=$(git -c color.status=always -c status.relativePaths=true status --short |
+        grep -F -e "$changed" -e "$unmerged" -e "$untracked" |
+        sed 's/^\(..[^[:space:]]*\) \(.*\)$/[\1]  \2/' |
+        fzf |
+        sed 's/^.*]  //' |
+        sed 's/.* -> //')
+    [[ -n "$files" ]] && echo "$files"| tr '\n' '\0' |xargs -0 -I% yarn test %  && return
+    echo 'Nothing to add.'
+}
+
+alias ght='github::jestChanged'
+
 # git reset HEAD (unstage) selector
 forgit::reset::head() {
     forgit::inside_work_tree || return 1
