@@ -329,6 +329,30 @@ def Upgrade():
 
 def Linux():
     log.Critical('Linux is Not Supported Yet')
+
+    # git submodule pull
+    log.Step("Pulling submodules", 4)
+    Install('git submodule update --init --recursive')
+
+    log.Step("Cloning Shell Dependencies Themes Plugins", 13)
+    Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
+    Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
+
+    # autosuggest
+    Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
+
+    # tmux plugin manager
+    Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
+
+    # fzf docker
+    Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
+
+    # linking files
+    try:
+        log.Step("Linking zsh and vim files Symbolic", 14)
+        LinkFiles()
+    except OSError as e:
+        log.Error("Error while linking files")
     sys.exit(0)
 
 def Cygwin():
