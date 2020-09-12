@@ -4,11 +4,9 @@ source ~/.dotfiles-darwin/.zsh/export.zsh
 source ~/.dotfiles-darwin/.zsh/settings.zsh
 source ~/.dotfiles-darwin/.zsh/function.zsh
 source ~/.dotfiles-darwin/.zsh/alias.zsh
-source ~/.dotfiles-darwin/.zsh/tokens.zsh
 source ~/.dotfiles-darwin/.zsh/github.zsh
 
 # Nodenv init
-eval "$(nodenv init -)"
 
 # docker machine init
 # eval $(docker-machine env)
@@ -55,7 +53,7 @@ export FZF_CTRL_T_COMMAND='find . -type f ! -path "*/\.git/*" ! -path "*/\node_m
 # export FZF_DEFAULT_OPTS="-i --preview 'bat --style=numbers --color=always {}'"
 export FZF_DEFAULT_OPTS="-i"
 
-source $ZSH/oh-my-zsh.sh
+source ~/.dotfiles-darwin/oh-my-zsh/oh-my-zsh.sh
 source ~/.dotfiles-darwin/.zsh/forgit.zsh
 
 neofetch
