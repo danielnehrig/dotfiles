@@ -1,0 +1,57 @@
+@import "~/.config/rofi/colors.rasi"
+
+* {
+  /* General */
+  text-font:                            "System San Francisco 12";
+  icon-font:                            "Material Design Icons 14";
+ 
+  option-6-listview-spacing:            7px;
+  menu-window-padding:                  4px 4px;
+  menu-element-padding:                 20px 0px 15px -10px;
+  
+}
+
+#window {
+  width: 6%;
+  height: 30%;
+  anchor: south;
+  location:south;
+  x-offset: 44.3%;
+  y-offset: -5%;
+  border: 2px;
+  border-radius: 10px;
+  border-color: @xfg;
+ 
+}
+
+* {
+  background-color: @xbg;
+  text-color: @xfg;
+  font: @icon-font;
+  border: 0px;
+  padding: 5;
+}
+
+#horibox {
+  children: [ listview ];
+}
+
+#listview {
+  layout: vertical;
+}
+
+
+#window {
+  padding: @menu-window-padding;
+  children: [ inputbar, horibox ];
+}
+
+#inputbar {
+  enabled: false;
+}
+
+#element {
+  font: @icon-font;
+  padding: @menu-element-padding;
+ 
+}
