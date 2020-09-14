@@ -99,6 +99,25 @@ How to import from above JSON file format which is actually a plist format:
 
 ### LINUX
 
+
+#### Dependencies
+
+See pacman.txt
+
+- arch
+- i3-gaps
+- dunst
+- rofi
+- feh
+- polybar
+- lxsession
+- virt-manager
+- spotify
+- alacritty
+- firefox
+- picom
+- ...etc
+
 Not Supported yet
 
 ## Thumbnails
