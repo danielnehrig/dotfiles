@@ -2,12 +2,12 @@
 
 * {
   /* General */
-  text-font:                            "System San Francisco 12";
+  text-font:                            "SauceCodePro Nerd Font Mono 12";
   icon-font:                            "Material Design Icons 14";
  
   option-6-listview-spacing:            7px;
   menu-window-padding:                  4px 4px;
-  menu-element-padding:                 20px 0px 15px -10px;
+  menu-element-padding:                 40px 0px 15px -5px;
   
 }
 
@@ -18,7 +18,7 @@
   location:south;
   x-offset: 44.3%;
   y-offset: -5%;
-  border: 2px;
+  border: 1px;
   border-radius: 10px;
   border-color: @xfg;
  
@@ -53,5 +53,4 @@
 #element {
   font: @icon-font;
   padding: @menu-element-padding;
- 
 }
