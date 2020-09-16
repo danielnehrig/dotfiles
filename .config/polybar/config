@@ -1,0 +1,299 @@
+[settings]
+screenchange-reload = true
+
+; #################### Bar launcher #########################
+[bar/launcher]
+width = 1.3%
+height = 24px
+offset-x = 3.0%
+offset-y = 7px
+radius = 12.3
+fixed-center = true
+background = #0e1619
+padding-left = 1
+padding-right = 3
+module-margin-left = 1
+module-margin-right = 1
+font-0 = Material Design Icons:pixelsize=12:style:Solid;1
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;1
+modules-center = launcher
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+; #################### Bar songs #########################
+[bar/songs]
+width = 25%
+height = 24px
+offset-x = 61.8% 
+offset-y = 7px
+fixed-center = true
+background = #0e1619
+foreground = #ffd11a
+radius = 10
+padding-left = 3
+padding-right = 3
+module-margin-left = 3
+module-margin-right = 3
+font-0 = Material Design Icons:pixelsize=14:style:Solid;3
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=14:style:regular;3
+modules-center = song
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+; #################### Bar player #########################
+[bar/player]
+width = 5%
+height = 24px
+offset-x = 16.5% 
+offset-y = 7px
+radius = 10
+fixed-center = true
+background = #0e1619
+padding-left = 2
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 0
+font-0 = Material Design Icons:pixelsize=12:style:Solid;1
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;3
+modules-left = 
+modules-center = prev toggle next
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+
+; #################### Bar Left #########################
+
+[bar/left]
+width = 10%
+height = 24px
+offset-x = 5.5%
+offset-y = 7px
+radius = 10
+fixed-center = true
+background = #0e1619
+padding-left = 2
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+font-0 = Material Design Icons:pixelsize=12:style:Solid;1
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;1
+modules-left = 
+modules-center = date
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+; ######################## Bar Center ########################
+
+[bar/center]
+width = 19%
+height = 24px
+offset-x = 40.2%
+offset-y = 7px
+radius = 10
+fixed-center = true
+background = #0e1619
+foreground = #ffd11a
+padding-left = 2
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+font-0 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;2
+modules-center = i3   
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+
+; ###################### Bar Right ########################
+
+[bar/right]
+width = 13%
+height = 24px
+offset-x = 22.3%
+offset-y = 7px
+radius = 10
+fixed-center = true
+background = #00000000
+
+padding-left = 0
+padding-right = 6
+module-margin-left = 1
+module-margin-right = 0
+font-0 = Material Design Icons:pixelsize=12:style:Solid;3
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;3
+modules-right = cpu volume memory   
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+tray-position = right
+tray-padding = 3
+tray-offset-x = 0
+tray-detached = true
+tray-maxsize =13
+tray-transparent = true
+tray-radius = 10
+tray-scale = 0.98
+
+; ###################### Bar power ########################
+
+[bar/power]
+width = 30px
+height = 24px
+offset-x = 93.5%
+offset-y = 7px
+radius = 10
+fixed-center = true
+background = #0e1619
+padding-left = 5
+padding-right = 1
+module-margin-left = 20
+module-margin-right = 5
+font-0 = Material Design Icons:pixelsize=12:style:Solid;3
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;3
+modules-right = power-menu 
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+
+;#################### Modules ####################
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;ﭮ
+ws-icon-4 = 5;
+ws-icon-5 = 6;?
+ws-icon-6 = 7;
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #0e1619
+label-mode-foreground = #b3b3b3
+
+; focused = Active workspace on focused monitor
+label-focused-padding = 1
+label-focused-foreground = #ffffff
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused-padding = 1
+label-unfocused-font = 3
+
+; urgent = Workspace with urgency hint set
+label-urgent-foreground = #ffd11a
+label-urgent-font = 3
+label-urgent-padding = 1
+
+[module/date]
+type = custom/script
+exec =  ~/.config/polybar/scripts/date.sh
+interval = 15
+tail = true
+label-foreground = #b3b3b3
+
+[module/power-menu]
+type = custom/script
+exec = echo ""
+format-foreground =#ff3333
+click-left = ~/.config/rofi/rofi\ menu/powermenu.sh &
+interval = 600
+
+; Volume Memory CPU
+[module/volume]
+type = internal/pulseaudio
+format = <label>
+label-volume = " %{T2}%percentage%%%{T-}  "
+label-volume-foreground =#000000
+format-foreground = #000000
+label-muted = "婢  "
+label-muted-foreground = #607290
+
+
+[module/cpu]
+type = internal/cpu
+interval = 6
+format = <label>
+format-prefix = "󰻟" 
+label = "%{T2}%percentage%%%{T2} "
+label-foreground =#000000
+format-foreground =#004d99
+
+
+[module/memory]
+type = internal/memory
+interval = 6
+format-prefix = "󰮯 "
+label = "%{T2}%percentage_used%%%{T-} " 
+label-foreground =#000000
+format-foreground =#b300b3
+
+
+; Launcher
+[module/launcher]
+type = custom/text
+content = "%{T4}󰘙%{T-}"
+;content-background = #FFFFFF
+content-foreground = #FFFFF
+content-padding = 0
+content-font = 1
+click-left = rofi -show drun -eh 2 -bw 0 &
+interval = 600
+
+; Spotify Toggles
+[module/prev]
+type = custom/script
+exec = echo "%{T5}玲%{T-}" &
+format = "%{F#ffd11a}<label>%{F-}"
+interval = 600
+tail = true
+
+[module/toggle]
+type = custom/script
+exec = [[ "$(playerctl -p spotify status 2>/dev/null)" == "Playing" ]] && echo "" || echo ""
+interval = 3
+format = "%{F#f2f2f2}<label>%{F-}"
+tail = true
+click-left = playerctl --player=spotify play-pause &
+
+[module/next]
+type = custom/script
+exec = echo "%{T5}怜%{T-}" &
+format = "%{F#ffd11a}<label>%{F-}"
+interval = 600
+tail = true
+click-left = playerctl --player=spotify next &
+
+[module/song]
+type = custom/script
+exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "No player found"
+format = "<label>  "
+format-prefix = "%{F#FFFFFF} %{F-}"
+;format-background = #00000000 
+interval = 9
+;format-foreground = #FFFFFF
+tail = true
