@@ -27,6 +27,8 @@ current_folder = os.path.abspath(os.getcwd())
 user = getuser()
 home = '/Users/' + user + '/'
 
+pacman_packages = []
+
 # source is context current folder + repo item
 linking_files = [
         {
@@ -329,6 +331,7 @@ def Upgrade():
 
 def Linux():
     log.Critical('Linux is Not Supported Yet')
+
     # cloning dependencies zsh theme and plugins
     try:
         log.Step("Cloning Shell Dependencies Themes Plugins", 13)

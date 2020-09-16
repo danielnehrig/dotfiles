@@ -1,25 +1,23 @@
-
 [global]
 title = Dunst
 class = Dunst
 monitor = 0
 follow = keyboard
 geometry = "350x8-76+76"
-indicate_hidden = yes
-shrink = yes
+indicate_hidden = no
+shrink = no
 line_height = 6
 startup_notification = true
-transparency = 5
+transparency = 35
 separator_height = 1
-padding = 5
-horizontal_padding = 15
-
+padding = 10
+horizontal_padding = 20
 frame_width = 1
-frame_color = "#000000"
-separator_color = "#e5f5f5"
-font = System San Francisco 8
+frame_color = "#3d3d3d"
+separator_color = "#3d3d3d"
+font = SauceCodePro Nerd Font Mono 9
 markup = full
-format = "<span size='x-large' font_desc='System San Francisco 8' weight='bold' foreground='#808080'>%s</span>\n%b"
+format = "<span size='x-large' font_desc='SauceCodePro Nerd Font Mono 9' weight='bold' foreground='#ffffff'>%s</span>\n%b"
 alignment = center
 vertical_alignment = top
 idle_threshold = 120
@@ -34,9 +32,9 @@ sticky_history = no
 history_length = 20
 always_run_script = true
 corner_radius = 0
-icon_position = right
+icon_position = left
 max_icon_size = 55
-icon_path = /usr/share/icons/Papirus-Light/48x48/actions/:/usr/share/icons/Papirus-Light/48x48/apps/:/usr/share/icons/Papirus-Light/48x48/devices/:/usr/share/icons/Papirus-Light/48x48/emblems/:/usr/share/icons/Papirus-Light/48x48/emotes/:/usr/share/icons/Papirus-Light/48x48/mimetypes/:/usr/share/icons/Papirus-Light/48x48/places/:/usr/share/icons/Papirus-Light/48x48/status/
+icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/device/
 browser = firefox
 mouse_left_click = close_current
 mouse_middle_click = do_action
@@ -49,24 +47,17 @@ history = ctrl+Escape
 context = ctrl+shift+period
 
 [urgency_low]
-timeout = 3
-background = "#FFFFFF"
-foreground = "#373e4d"
+timeout = 5
+background = "#3d3d3d"
+foreground = "#ffffff"
 
 [urgency_normal]
 timeout = 6
-background = "#FFFFFF"
-foreground = "#373e4d"
+background = "#3d3d3d"
+foreground = "#ffffff"
 
 [urgency_critical]
 timeout = 0
-background = "#FFFFFF"
-foreground = "#373e4d"
-
-
-
-
-
-
-
+background = "#3d3d3d"
+foreground = "#ffffff"
 
