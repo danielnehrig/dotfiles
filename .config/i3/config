@@ -66,6 +66,7 @@ bindsym $mod+shift+z exec "import -window root snap.png"
 
 # change focus between tiling / floating windows
 bindsym $mod+shift+space focus mode_toggle
+bindsym $mod+alt+d exec "vim ~/.dotfiles-vim/.config/i3/config"
 
 # swap caps lock and escape
 exec_always --no-startup-id xmodmap -e "clear lock"
@@ -246,13 +247,18 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 bindsym $mod+x exec i3lock-fancy
 
-################## change wallpaper ######################
 
+### shift alt cycle kbd layout // set esc to capslock for vim
+exec_always --no-startup-id setxkbmap -layout us,de
+exec_always --no-startup-id setxkbmap -layout us -option caps:escape
+exec_always --no-startup-id setxkbmap -layout de -option caps:escape
+exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
+
+################## change wallpaper ######################
 exec_always --no-startup-id feh --bg-fill ~/Downloads/at_a_distant_by_ombobon_ddkbzao-1.jpg
 
 
 ################### keybindings to custom script initialization ###################
-
 ## to start polybar ##
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
