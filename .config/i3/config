@@ -244,6 +244,7 @@ bindsym $mod+minus  gaps inner all minus 5
 exec_always --no-startup-id lxpolkit
 exec_always --no-startup-id picom --experimental-backends 
 exec_always --no-startup-id dunst
+exec_always --no-startup-id gromit-mpx
 #exec_always --no-startup-id xfce4-power-manager
 exec --no-startup-id nm-applet
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
