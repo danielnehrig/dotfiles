@@ -52,6 +52,8 @@ bindsym $mod+f fullscreen toggle
 for_window [title="video0 - mpv"] floating enabled
 for_window [title="video0 - mpv"] sticky enabled
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/cam.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/lg.sh
+bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/loopbackinput.sh
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -249,10 +251,9 @@ bindsym $mod+x exec i3lock-fancy
 
 
 ### shift alt cycle kbd layout // set esc to capslock for vim
-exec_always --no-startup-id setxkbmap -layout us,de
-exec_always --no-startup-id setxkbmap -layout us -option caps:escape
-exec_always --no-startup-id setxkbmap -layout de -option caps:escape
-exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
+exec_always --no-startup-id "setxkbmap -layout us -option caps:escape"
+exec_always --no-startup-id "setxkbmap -layout us,de"
+exec_always --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle'"
 
 ################## change wallpaper ######################
 exec_always --no-startup-id feh --bg-fill ~/Downloads/at_a_distant_by_ombobon_ddkbzao-1.jpg
