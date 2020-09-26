@@ -105,12 +105,13 @@ radius = 10
 fixed-center = true
 background = #0e1619
 foreground = #ffd11a
-padding-left = 2
+;padding-left = 2
 padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 font-0 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;2
-modules-center = i3   
+;modules-left = i3 xwindow
+modules-center = i3
 wm-restack = i3
 override-redirect = true
 cursor-click = pointer
@@ -152,22 +153,21 @@ tray-radius = 10
 tray-scale = 0.98
 
 ; ###################### Bar power ########################
-
 [bar/power]
-width = 30px
+width = 50px
 height = 24px
 offset-x = 93.5%
 offset-y = 7px
 radius = 10
 fixed-center = true
 background = #0e1619
-padding-left = 5
-padding-right = 1
-module-margin-left = 20
-module-margin-right = 5
+;padding-left = 5
+;padding-right = 1
+module-margin-left = 0
+module-margin-right = 0.5
 font-0 = Material Design Icons:pixelsize=12:style:Solid;3
 font-1 = SauceCodePro Nerd Font Mono:pixelsize=13:style:regular;3
-modules-right = power-menu 
+modules-right = xkeyboard power-menu 
 wm-restack = i3
 override-redirect = true
 cursor-click = pointer
@@ -297,3 +297,13 @@ format-prefix = "%{F#FFFFFF} %{F-}"
 interval = 9
 ;format-foreground = #FFFFFF
 tail = true
+
+[module/xkeyboard]
+type = internal/xkeyboard
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
