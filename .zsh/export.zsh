@@ -4,6 +4,7 @@ export ZSH="$HOME/.dotfiles-darwin/oh-my-zsh"
 # Adding Path Data Linux
 PATH+=":$HOME/.local/lib/python3.8/site-packages"
 PATH+=":$HOME/.local/bin"
+PATH+=":$HOME/.cargo/bin"
 
 # LDFLAGS Mac
 # export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
