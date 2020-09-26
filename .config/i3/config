@@ -68,7 +68,7 @@ bindsym $mod+shift+z exec "import -window root snap.png"
 
 # change focus between tiling / floating windows
 bindsym $mod+shift+space focus mode_toggle
-bindsym $mod+shift+d exec "alacritty -e vim ~/.dotfiles-vim/.config/i3/config"
+bindsym $mod+shift+d exec "alacritty -e vim ~/.dotfiles-darwin/.config/i3/config"
 
 # focus the parent container
 #bindsym $mod+a focus parent
