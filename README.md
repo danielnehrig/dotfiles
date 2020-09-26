@@ -99,26 +99,44 @@ How to import from above JSON file format which is actually a plist format:
 
 ### LINUX
 
+Auto install Not Supported yet
 
 #### Dependencies
 
 See pacman.txt
 
-- arch
-- i3-gaps
-- dunst
-- rofi
-- feh
-- polybar
+- arch // distro
+- i3-gaps // wm
+- dunst // notifcation
+- rofi // application launcher/search
+- feh // background
+- pywal // colorscheme
+- scrot // screenshot
+- looking glass client // vm
+- polybar // statusbar info
 - lxsession
-- virt-manager
-- spotify
-- alacritty
-- firefox
-- picom
+- virt-manager // vm
+- spotify // music
+- alacritty // terminal
+- firefox // browser
+- picom // composite manager
+- gromit-mpx // on screen draw
 - ...etc
 
-Not Supported yet
+#### Fonts / Theme
+
+Needs Nerdfonts and material icons font
+Nordic Theme GTK
+
+#### Hotkeys
+
+Mod = cmd/win
+- alt move window floating mode
+- mod+shift+w looking-glass-client
+- mod+shift+d i3 config vim
+- mod+i loopback voice
+- mod+shift+s scrot screenshot area
+
 
 ## Thumbnails
 
@@ -142,3 +160,7 @@ Not Supported yet
 
 [![Thumbnail3 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/terminal.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
 [![Thumbnail3 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
+
+### Arch Thumbnails
+
+[![Thumbnail1 arch](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/snap.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/arch)
