@@ -1,18 +1,14 @@
 ###################set mod key###################
-
 set $mod Mod4
 
 ###################set font###################
-
 font pango:SauceCodePro Nerd Font Mono
 floating_modifier Mod1
 
 ###################start a terminal###################
-
 bindsym $mod+Return exec alacritty
 
 ###################i3 window controls###################
-
 #kill focused window
 bindsym $mod+q kill
 
@@ -51,6 +47,8 @@ bindsym $mod+f fullscreen toggle
 
 for_window [title="video0 - mpv"] floating enabled
 for_window [title="video0 - mpv"] sticky enabled
+
+# custom scripts controlls
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/cam.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/lg.sh
 bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/loopbackinput.sh
@@ -85,33 +83,33 @@ bindsym $mod+shift+x mode "resize"
 
 ## resize bindings ##
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 15 px or 15 ppt
-        bindsym k resize grow height 15 px or 15 ppt
-        bindsym l resize shrink height 15 px or 15 ppt
-        bindsym semicolon resize grow width 15 px or 15 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+  bindsym j resize shrink width 15 px or 15 ppt
+    bindsym k resize grow height 15 px or 15 ppt
+    bindsym l resize shrink height 15 px or 15 ppt
+    bindsym semicolon resize grow width 15 px or 15 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 15 px or 15 ppt
-        bindsym Down resize grow height 15 px or 15 ppt
-        bindsym Up resize shrink height 15 px or 15 ppt
-        bindsym Right resize grow width 15 px or 15 ppt
+# same bindings, but for the arrow keys
+    bindsym Left resize shrink width 15 px or 15 ppt
+    bindsym Down resize grow height 15 px or 15 ppt
+    bindsym Up resize shrink height 15 px or 15 ppt
+    bindsym Right resize grow width 15 px or 15 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 ################### moving floating windows ###################
 
 bindsym $mod+a focus floating; mode "moveit"
 mode "moveit" {
-    bindsym Up move up 40px
+  bindsym Up move up 40px
     bindsym Left move left 40px
     bindsym Down move down 40px
     bindsym Right move right 40px
@@ -176,7 +174,7 @@ bindsym $mod+F5 scratchpad show
 bindsym $mod+0 mode "$mode_system"
 set $mode_system  (e)xit, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
+  bindsym e exec --no-startup-id i3exit logout, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
     bindsym Return mode "default"
@@ -200,6 +198,7 @@ bindsym $mod+d exec rofi -show drun
 assign [class="firefox"] $ws2
 assign [class="spotify"] $ws3
 assign [class="discord"] $ws4
+assign [class="looking-glass-client"] $ws6
 assign [class="virt-manager"] $ws7
 
 ################### setting gaps ###################
@@ -253,9 +252,9 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 for_window [class=".*"] border pixel 1
 # class                   border  backgr. text    
-  client.focused          #333333 #333333 #333333 
-  client.focused_inactive #333333 #333333 #333333 
-  client.unfocused        #333333 #333333 #333333 
-  client.urgent           #333333 #333333 #333333 
-  client.placeholder      #333333 #333333 #333333  
+client.focused          #333333 #333333 #333333 
+client.focused_inactive #333333 #333333 #333333 
+client.unfocused        #333333 #333333 #333333 
+client.urgent           #333333 #333333 #333333 
+client.placeholder      #333333 #333333 #333333  
 #default_border pixel 1
