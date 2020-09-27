@@ -239,9 +239,9 @@ bindsym $mod+x exec i3lock-fancy
 
 
 ### shift alt cycle kbd layout // set esc to capslock for vim
-exec_always --no-startup-id "setxkbmap -layout us -option caps:escape"
-exec_always --no-startup-id "setxkbmap -layout us,de"
-exec_always --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle'"
+exec_always --no-startup-id setxkbmap -layout us -option caps:escape
+exec_always --no-startup-id setxkbmap -layout us,de
+exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
 
 ################## change wallpaper ######################
 exec_always --no-startup-id feh --bg-fill ~/Downloads/at_a_distant_by_ombobon_ddkbzao-1.jpg
