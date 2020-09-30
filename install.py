@@ -110,7 +110,6 @@ cask_dependencies = [
         "cheatsheet",
         "firefox",
         "ghidra",
-        "sketch",
         "abstract",
         "adobe-creative-cloud",
         "slack",
@@ -118,7 +117,6 @@ cask_dependencies = [
         "1password-cli",
         "visual-studio-code",
         "microsoft-office",
-        "skype-for-business",
         "postman",
         "iterm2",
         "docker",
@@ -417,7 +415,7 @@ def Darwin():
 
     # install python packages
     log.Step("Installing Python PIP Packages", 10)
-    InstallPackages('pip3.7 install', pip_packages)
+    InstallPackages('pip3.8 install', pip_packages)
 
     # powerline players.py fix for ger local
     log.Step("Installing Powerline Fix", 11)
