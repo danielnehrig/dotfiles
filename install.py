@@ -25,8 +25,7 @@ now = datetime.now()
 current_time = now.strftime('%H:%M:%S')
 current_folder = os.path.abspath(os.getcwd())
 user = getuser()
-home = '/Users/' + user + '/'
-
+home = os.environ["HOME"] + '/'
 pacman_packages = []
 
 # source is context current folder + repo item
@@ -110,7 +109,6 @@ cask_dependencies = [
         "cheatsheet",
         "firefox",
         "ghidra",
-        "sketch",
         "abstract",
         "adobe-creative-cloud",
         "slack",
@@ -118,7 +116,6 @@ cask_dependencies = [
         "1password-cli",
         "visual-studio-code",
         "microsoft-office",
-        "skype-for-business",
         "postman",
         "iterm2",
         "docker",
@@ -417,7 +414,7 @@ def Darwin():
 
     # install python packages
     log.Step("Installing Python PIP Packages", 10)
-    InstallPackages('pip3.7 install', pip_packages)
+    InstallPackages('pip3.8 install', pip_packages)
 
     # powerline players.py fix for ger local
     log.Step("Installing Powerline Fix", 11)
@@ -443,9 +440,8 @@ def Darwin():
 
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
-
-        # tmux plugin manager
-        Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
+        # fzf-tab
+        Install('git clone https://github.com/Aloxaf/fzf-tab ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-tab')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
