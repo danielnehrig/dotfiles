@@ -238,8 +238,6 @@ exec_always --no-startup-id gromit-mpx
 bindsym $mod+x exec i3lock-fancy
 
 
-### shift alt cycle kbd layout // set esc to capslock for vim
-exec_always --no-startup-id setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'
 
 ################## change wallpaper ######################
 exec_always --no-startup-id feh --bg-fill ~/Downloads/at_a_distant_by_ombobon_ddkbzao-1.jpg
@@ -247,6 +245,9 @@ exec_always --no-startup-id feh --bg-fill ~/Downloads/at_a_distant_by_ombobon_dd
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+### shift alt cycle kbd layout // set esc to capslock for vim
+exec --no-startup-id setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'
 
 for_window [class=".*"] border pixel 1
 # class                   border  backgr. text    
