@@ -12,5 +12,5 @@ if [ $updateValue -eq $zero ];
 then
   echo " "
 else
-  echo " $updateValue"
+  echo " $updateValue "
 fi

@@ -1,0 +1,151 @@
+[settings]
+screenchange-reload = true
+
+[color]
+grayLight = #3d3d3d
+grayDark = #2b2b2b
+transparent = #00000000
+
+[bar/left]
+width = 50%
+height = 24px
+offset-x = 0
+offset-y = 0
+radius = 0
+fixed-center = true
+background = #00000000
+font-0 = Material Design Icons:pixelsize=15:style:Solid;3
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=14:style:regular;3
+modules-left = launcher i3 xwindow
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+tray-background = #2b2b2b
+tray-position = left
+tray-padding = 3
+tray-offset-x = 0
+tray-detached = false
+tray-maxsize = 14
+tray-transparent = false
+tray-radius = 0
+tray-scale = 1
+
+[bar/right]
+width = 50%
+height = 24px
+offset-x = 50%
+offset-y = 0
+radius = 0
+fixed-center = true
+background = #00000000
+font-0 = Material Design Icons:pixelsize=20:style:Solid;3
+font-1 = SauceCodePro Nerd Font Mono:pixelsize=14:style:regular;3
+modules-right = song updates xkeyboard power-menu 
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = true
+
+;#################### Modules ####################
+[module/i3]
+type = internal/i3
+format = "<label-state> <label-mode>"
+
+pin-workspaces = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;ﭮ
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #3d3d3d
+label-mode-foreground = #b3b3b3
+
+label-focused = %icon%
+label-focused-padding = 1
+label-focused-foreground = #09d1f9
+label-focused-background = #3d3d3d
+
+label-unfocused = %icon%
+label-unfocused-padding = 1
+label-unfocused-font = 3
+label-unfocused-foreground = #ffffff
+label-unfocused-background = #3d3d3d
+
+label-urgent-foreground = #ffd11a
+label-urgent-font = 3
+label-urgent-padding = 1
+
+[module/power-menu]
+type = custom/script
+exec = echo " "
+format-foreground =#ff3333
+format-background =#3d3d3d
+click-left = ~/.config/rofi/rofi\ menu/powermenu.sh &
+interval = 600
+
+[module/launcher]
+type = custom/text
+content = "%{B#2b2b2b} %{T4}󰘙%{T-}%{F#2b2b2b} %{B#3d3d3d}"
+content-padding = 0
+content-font = 1
+click-left = rofi -show drun -eh 2 -bw 0 &
+interval = 600
+
+[module/song]
+type = custom/script
+exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "No player found"
+format-prefix = "%{F#2b2b2b}%{B#2b2b2b}%{F#2dffa4}  %{F-}"
+format = "<label> "
+;format-background = #00000000 
+interval = 9
+;format-foreground = #FFFFFF
+tail = true
+
+[module/updates]
+type = custom/script
+exec = ~/.dotfiles-darwin/aupdates.sh 2>/dev/null
+format-prefix = "%{B#2b2b2b}%{F#ffffff} %{F#2d8fff}"
+format = "%{B#2b2b2b}%{F#2dffa4}<label>%{F#3d3d3d}"
+interval = 30
+tail = true
+
+[module/xkeyboard]
+type = internal/xkeyboard
+; List of indicators to ignore
+format = "<label-layout> <label-indicator>"
+format-spacing = 0
+label-layout-padding = 1
+format-background =#3d3d3d
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+blacklist-2 = caps lock
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+format = "%{B#3d3d3d}  <label> %{B#00000000}%{F#3d3d3d}"
+
+[module/empty]
+type = custom/script
+exec = echo
+format-prefix = ""
+format = "<label>"
+interval = 600
+tail = true
+
+[module/github]
+type = internal/github
+token = ${env:GITHUB_ACCESS_TOKEN}
+user = danielnehrig
+empty-notifications = false
+interval = 10
+api-url = https://api.github.com/
