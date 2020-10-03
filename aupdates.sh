@@ -7,9 +7,10 @@
 #
 
 updateValue=$(checkupdates | wc -l)
-if checkupdates | wc -l | grep -q 0;
+zero=0
+if [ $updateValue -eq $zero ];
 then
   echo " "
 else
-  echo $updateValue
+  echo " $updateValue"
 fi
