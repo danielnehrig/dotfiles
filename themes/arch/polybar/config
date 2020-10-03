@@ -66,8 +66,8 @@ ws-icon-6 = 7;
 
 label-mode = %mode%
 label-mode-padding = 2
+label-mode-foreground = #ffffff
 label-mode-background = #3d3d3d
-label-mode-foreground = #b3b3b3
 
 label-focused = %icon%
 label-focused-padding = 1
@@ -80,7 +80,8 @@ label-unfocused-font = 3
 label-unfocused-foreground = #ffffff
 label-unfocused-background = #3d3d3d
 
-label-urgent-foreground = #ffd11a
+label-urgent-foreground = #ffffff
+label-urgent-background = #3d3d3d
 label-urgent-font = 3
 label-urgent-padding = 1
 
