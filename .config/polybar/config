@@ -261,7 +261,7 @@ content = "%{T4}󰘙%{T-}"
 content-foreground = #FFFFF
 content-padding = 0
 content-font = 1
-click-left = rofi -show drun -eh 2 -bw 0 &
+click-left = rofi -show drun
 interval = 600
 
 ; Spotify Toggles

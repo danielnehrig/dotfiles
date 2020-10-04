@@ -20,3 +20,9 @@ alias git-pupf='gitcommitcheckpupf'
 alias updateAll='brew update'
 alias gcosh='shopCheckout'
 alias wlanM='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I en1'
+
+# Linux virt manager qemu boxes
+if [[ `uname` == 'Linux' ]]; then
+  alias win-games='virsh -c qemu:///system start win10-games-2'
+  alias win-edit='virsh -c qemu:///system start win10-edit'
+fi
