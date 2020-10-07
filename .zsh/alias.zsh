@@ -7,6 +7,8 @@ export HOSTS=/etc/hosts
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+
+alias kbl="setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'"
 alias ca='clear && neofetch'
 alias cao='clear && archey'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
