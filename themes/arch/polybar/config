@@ -57,10 +57,10 @@ offset-y = 0
 radius = 0
 fixed-center = true
 background = #2b2b2b
-font-0 = Material Design Icons:pixelsize=20:style:Solid;3
+font-0 = Material Design Icons:pixelsize=16:style:Solid;3
 font-1 = SauceCodePro Nerd Font Mono:pixelsize=14:style:regular;3
 modules-center = date
-modules-right = github
+modules-right = vm github
 wm-restack = i3
 override-redirect = true
 cursor-click = pointer
@@ -173,5 +173,13 @@ api-url = https://api.github.com/
 type = custom/script
 exec =  ~/.config/polybar/scripts/date.sh
 interval = 15
+tail = true
+label-foreground = #ffffff
+
+[module/vm]
+type = custom/script
+exec =  ~/.dotfiles-darwin/vm.sh
+format = "%{B#2b2b2b}%{F#2dffa4}%{F#3d3d3d} <label> %{B#3d3d3d}"
+interval = 2
 tail = true
 label-foreground = #ffffff
