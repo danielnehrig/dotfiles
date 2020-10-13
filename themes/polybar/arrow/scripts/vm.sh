@@ -10,7 +10,7 @@
 amount=$(virsh -c qemu:///system list --all | grep running | wc -l)
 
 if [[ $amount == '0' ]]; then
-  echo "󱐝"
+  echo "%{F#ff3333}󱐝"
 else
-  echo "󰆧 $amount VM"
+  echo "%{F#2dffa4}󰆧%{F#ffffff} $amount VM"
 fi
