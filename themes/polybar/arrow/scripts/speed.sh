@@ -6,12 +6,14 @@
 # Distributed under terms of the MIT license.
 #
 
+### crontab job (pacman -S cronie)
+### crontab -e
+# 0 * * * * speedtest-cli > /home/dashie/.config/polybar/scripts/speedlog
 
-speed=$(speedtest-cli)
+speed=$(cat ~/.config/polybar/scripts/speedlog)
 download=$(printf "$speed" | grep Download)
 upload=$(printf "$speed" | grep Upload)
-downloadFormated=$(printf "$speed" | grep Download | sed -n s/Download://gp | sed -n s/^' '//gp)
-uploadFormated=$(printf "$speed" | grep Upload | sed -n s/Upload://gp | sed -n s/^' '//gp)
+downloadFormated=$(printf "$speed" | grep Download | sed -n s/Download://gp | sed -n s/^' '//gp | sed -n 's|Mbit/s||gp')
+uploadFormated=$(printf "$speed" | grep Upload | sed -n s/Upload://gp | sed -n s/^' '//gp | sed -n 's|Mbit/s||gp')
 
-### if you wanna execute as stdout instead of setting env vars use this
-echo "%{T3} %{T-}$downloadFormated  %{T3} %{T-}$uploadFormated"
+echo "%{T3}%{F$1}%{F-} %{T-}$downloadFormated  %{T3}%{F$1}%{F-} %{T-}$uploadFormated"

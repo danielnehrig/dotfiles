@@ -10,8 +10,8 @@
 speed=$(speedtest-cli)
 download=$(printf "$speed" | grep Download)
 upload=$(printf "$speed" | grep Upload)
-downloadFormated=$(printf "$speed" | grep Download | sed -n s/Download://gp | sed -n s/^' '//gp)
-uploadFormated=$(printf "$speed" | grep Upload | sed -n s/Upload://gp | sed -n s/^' '//gp)
+downloadFormated=$(printf "$speed" | grep Download | sed -n s/Download://gp | sed -n s/^' '//gp | sed -n s/Mbit'/'s//gp)
+uploadFormated=$(printf "$speed" | grep Upload | sed -n s/Upload://gp | sed -n s/^' '//gp | sed -n s/Mbit'/'s//gp)
 
 ### set env vars
 export NET_DOWNLOAD=$downloadFormated

@@ -10,5 +10,4 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 ## Launch
 MONITOR=eDP0 polybar -c ~/.config/polybar/config.ini top &
-MONITOR=eDP0 polybar -c ~/.config/polybar/config.ini left &
-MONITOR=eDP0 polybar -c ~/.config/polybar/config.ini right &
+MONITOR=eDP0 polybar -c ~/.config/polybar/config.ini bottom &
