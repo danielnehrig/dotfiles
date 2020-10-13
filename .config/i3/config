@@ -231,6 +231,7 @@ bindsym $mod+minus  gaps inner all minus 5
 
 
 ################### auto startup apps ###################
+exec_always --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 exec_always --no-startup-id lxpolkit
 exec_always --no-startup-id picom --experimental-backends 
 exec_always --no-startup-id dunst
