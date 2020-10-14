@@ -7,10 +7,16 @@
 #
 
 updateValue=$(checkupdates | wc -l)
+kernel=$(checkupdates | grep linux-lts | wc -l)
 zero=0
 if [ $updateValue -eq $zero ];
 then
   echo " "
 else
-  echo " $updateValue "
+  if [ $kernel -eq $zero ];
+  then
+    echo " $updateValue "
+  else
+    echo " $updateValue %{F#dd3333}$kernel%{F-} "
+  fi
 fi
