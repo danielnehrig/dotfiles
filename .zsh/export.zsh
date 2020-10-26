@@ -6,6 +6,7 @@ if [[ `uname` == "Linux"  ]]; then
 PATH+=":$HOME/.local/lib/python3.8/site-packages"
 PATH+=":$HOME/.local/bin"
 PATH+=":$HOME/.cargo/bin"
+PATH+=":$HOME/.nodenv/bin"
 fi
 
 # LDFLAGS Mac
@@ -19,3 +20,5 @@ export EDITOR='vim'
 export DEFAULT_USER="$USER"
 export TERM=xterm-256color
 export UNCRUSTIFY_CONFIG=~/.dotfiles-darwin/.uncrustify
+export COMPOSE_PARALLEL_LIMIT=1000
+export COMPOSE_HTTP_TIMEOUT=120

@@ -50,6 +50,7 @@ for_window [title="video0 - mpv"] sticky enabled
 
 # custom scripts controlls
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/cam.sh
+bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/screenkey.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/lg.sh
 bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/loopbackinput.sh
 bindsym --release $mod+shift+s exec ~/.dotfiles-darwin/screenshot.sh
@@ -191,7 +192,8 @@ bindsym $mod+Shift+F4 exec --no-startup-id scrot -u -e 'feh $f -x'
 
 ################### assign specific apps to keybindings ###################
 
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec rofi -dpi 150 -show drun
+bindsym $mod+b exec bwmenu
 
 
 ################### assign apps to workspace ###################
@@ -231,6 +233,7 @@ bindsym $mod+minus  gaps inner all minus 5
 
 
 ################### auto startup apps ###################
+exec xrandr --dpi 220
 exec_always --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 exec_always --no-startup-id lxpolkit
 exec_always --no-startup-id picom --experimental-backends 
@@ -241,7 +244,7 @@ bindsym $mod+x exec i3lock-fancy
 
 
 ################## change wallpaper ######################
-exec_always --no-startup-id feh --bg-fill ~/Downloads/at_a_distant_by_ombobon_ddkbzao-1.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wp.png
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##

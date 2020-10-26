@@ -3,7 +3,7 @@ title = Dunst
 class = Dunst
 monitor = 0
 follow = keyboard
-geometry = "350x8-76+76"
+geometry = "500x80-76+76"
 indicate_hidden = no
 shrink = no
 line_height = 6
@@ -15,9 +15,9 @@ horizontal_padding = 20
 frame_width = 1
 frame_color = "#3d3d3d"
 separator_color = "#3d3d3d"
-font = SauceCodePro Nerd Font Mono 9
+font = SauceCodePro Nerd Font Mono 12
 markup = full
-format = "<span size='x-large' font_desc='SauceCodePro Nerd Font Mono 9' weight='bold' foreground='#ffffff'>%s</span>\n%b"
+format = "<span size='x-large' font_desc='SauceCodePro Nerd Font Mono 12' weight='bold' foreground='#ffffff'>%s</span>\n%b"
 alignment = center
 vertical_alignment = top
 idle_threshold = 120

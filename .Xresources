@@ -1,0 +1,3 @@
+Xft.dpi: 150
+rofi.dpi: 150
+*.dpi: 150

@@ -8,6 +8,7 @@ source ~/.dotfiles-darwin/.zsh/github.zsh
 source ~/.dotfiles-darwin/.zsh/tokens.zsh
 
 # Nodenv init
+eval "$(nodenv init -)"
 
 # docker machine init
 # eval $(docker-machine env)
