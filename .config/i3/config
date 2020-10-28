@@ -245,7 +245,7 @@ bindsym $mod+x exec i3lock-fancy
 
 
 ################## change wallpaper ######################
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wp.png
+exec_always --no-startup-id feh --bg-fill ~/wallpapers/herbst.png
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
