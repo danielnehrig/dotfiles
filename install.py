@@ -10,7 +10,6 @@
 # fonts
 # powerline tmux theme
 # pwndbg
-# ycm vim completion engine
 # note : see following arrays and or adjust them
 
 import subprocess
@@ -313,7 +312,7 @@ def Help():
         if option == '--help' or option == '-h':
             log.Info('./install.py [options]')
             log.Info('Options:')
-            log.Info('-a , --all || will compile ycm and pwndbg')
+            log.Info('-a , --all || will compile pwndbg')
             log.Info('-u, --upgrade || will upgrade dependencies')
             log.Info('Note: Check Makefile or cmd : make TAB')
             sys.exit(0)
@@ -473,9 +472,6 @@ def Darwin():
     for option in sys.argv:
         if option == '--all':
             log.Step("Compile Programs", 16)
-            # compile youcompleteme
-            log.Info("Compile YCM")
-            CompileDependency('./.dotfiles-vim/bundle/YouCompleteMe/install.py --all')
             # compile pwndbg for reversing c / c++
             log.Info("Compile pwndbg")
             os.chdir(current_folder + '/pwndbg')
