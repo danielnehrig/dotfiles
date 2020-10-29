@@ -48,6 +48,10 @@ bindsym $mod+f fullscreen toggle
 for_window [title="video0 - mpv"] floating enabled
 for_window [title="video0 - mpv"] sticky enabled
 
+# for_window [class="Conky"] floating enabled
+# for_window [class="Conky"] sticky enabled
+no_focus [class="Conky"]
+
 # custom scripts controlls
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/cam.sh
 bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/screenkey.sh
@@ -240,6 +244,7 @@ exec_always --no-startup-id lxpolkit
 exec_always --no-startup-id picom --experimental-backends 
 exec_always --no-startup-id dunst
 exec_always --no-startup-id gromit-mpx
+exec_always --no-startup-id killall conky || conky
 bindsym $mod+x exec i3lock-fancy
 
 
@@ -255,10 +260,12 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'
 
 for_window [class=".*"] border pixel 1
+for_window [class="Conky"] border pixel 0
 # class                   border  backgr. text    
 client.focused          #333333 #333333 #333333 
 client.focused_inactive #333333 #333333 #333333 
 client.unfocused        #333333 #333333 #333333 
 client.urgent           #333333 #333333 #333333 
 client.placeholder      #333333 #333333 #333333  
+# client.unfocused  #444957d0  #30333dd0  #5c6063d0  #30333dd0  #30333dd0
 #default_border pixel 1
