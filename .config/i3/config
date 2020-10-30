@@ -199,10 +199,11 @@ bindsym $mod+Shift+F4 exec --no-startup-id scrot -u -e 'feh $f -x'
 bindsym $mod+d exec rofi -dpi 150 -show drun
 bindsym $mod+Shift+q exec rofi -dpi 150 -show emoji -modi emoji
 bindsym $mod+b exec bwmenu
+bindsym $mod+x exec i3lock-fancy
 
 
 ################### assign apps to workspace ###################
-assign [class="firefox"] $ws2
+assign [class="brave"] $ws2
 assign [class="spotify"] $ws3
 assign [class="discord"] $ws4
 assign [class="looking-glass-client"] $ws6
@@ -241,11 +242,10 @@ bindsym $mod+minus  gaps inner all minus 5
 exec xrandr --dpi 220
 exec_always --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 exec_always --no-startup-id lxpolkit
-exec_always --no-startup-id picom --experimental-backends 
+exec_always --no-startup-id picom --experimental-backends
 exec_always --no-startup-id dunst
 exec_always --no-startup-id gromit-mpx
 exec_always --no-startup-id killall conky || conky
-bindsym $mod+x exec i3lock-fancy
 
 
 
@@ -257,7 +257,7 @@ exec_always --no-startup-id feh --bg-fill ~/wallpapers/herbst.png
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 ### shift alt cycle kbd layout // set esc to capslock for vim
-exec --no-startup-id setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'
+exec_always --no-startup-id setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'
 
 for_window [class=".*"] border pixel 1
 for_window [class="Conky"] border pixel 0

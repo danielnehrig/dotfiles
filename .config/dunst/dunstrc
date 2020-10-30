@@ -15,9 +15,9 @@ horizontal_padding = 20
 frame_width = 1
 frame_color = "#3d3d3d"
 separator_color = "#3d3d3d"
-font = SauceCodePro Nerd Font Mono 12
+font = SauceCodePro Nerd Font Mono 6
 markup = full
-format = "<span size='x-large' font_desc='SauceCodePro Nerd Font Mono 12' weight='bold' foreground='#ffffff'>%s</span>\n%b"
+format = "<span size='x-large' font_desc='SauceCodePro Nerd Font Mono 6' weight='bold' foreground='#ffffff'>%s</span>\n%b"
 alignment = center
 vertical_alignment = top
 idle_threshold = 120
@@ -35,7 +35,7 @@ corner_radius = 0
 icon_position = left
 max_icon_size = 55
 icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/device/
-browser = firefox
+browser = brave
 mouse_left_click = close_current
 mouse_middle_click = do_action
 mouse_right_click = close_all
