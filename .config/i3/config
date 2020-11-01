@@ -259,7 +259,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 ### shift alt cycle kbd layout // set esc to capslock for vim
 exec_always --no-startup-id setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'
 
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 0
 for_window [class="Conky"] border pixel 0
 # class                   border  backgr. text    
 client.focused          #333333 #333333 #333333 
