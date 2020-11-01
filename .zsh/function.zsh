@@ -10,6 +10,10 @@ function fzfp() {
     cat {}) 2> /dev/null | head -500'
 }
 
+function printColors() {
+  for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+}
+
 function shopUpdate() {
   if [ ! -z $SHOP_ENV ];
   then
