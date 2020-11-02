@@ -7,6 +7,7 @@ PATH+=":$HOME/.local/lib/python3.8/site-packages"
 PATH+=":$HOME/.local/bin"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/.nodenv/bin"
+PATH+=":$HOME/.nodenv/versions/12.8.0/bin"
 fi
 
 # LDFLAGS Mac
