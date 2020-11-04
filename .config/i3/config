@@ -47,6 +47,8 @@ bindsym $mod+f fullscreen toggle
 
 for_window [title="video0 - mpv"] floating enabled
 for_window [title="video0 - mpv"] sticky enabled
+for_window [title="video2 - mpv"] floating enabled
+for_window [title="video2 - mpv"] sticky enabled
 
 # for_window [class="Conky"] floating enabled
 # for_window [class="Conky"] sticky enabled
@@ -54,6 +56,7 @@ no_focus [class="Conky"]
 
 # custom scripts controlls
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/cam.sh
+bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/camblur.sh
 bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/screenkey.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/lg.sh
 bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/loopbackinput.sh
@@ -160,7 +163,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 ################### reloading restarting and logging out i3 ###################
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
