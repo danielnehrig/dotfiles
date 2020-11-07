@@ -45,8 +45,29 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# media
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 for_window [title="video0 - mpv"] floating enabled
 for_window [title="video0 - mpv"] sticky enabled
+for_window [title="video2 - mpv"] floating enabled
+for_window [title="video2 - mpv"] sticky enabled
 
 # for_window [class="Conky"] floating enabled
 # for_window [class="Conky"] sticky enabled
@@ -54,6 +75,7 @@ no_focus [class="Conky"]
 
 # custom scripts controlls
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/cam.sh
+bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/camblur.sh
 bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/screenkey.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/lg.sh
 bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/loopbackinput.sh
@@ -160,7 +182,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 ################### reloading restarting and logging out i3 ###################
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
