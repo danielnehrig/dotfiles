@@ -8,6 +8,7 @@ PATH+=":$HOME/.local/bin"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/.nodenv/bin"
 PATH+=":$HOME/.nodenv/versions/12.8.0/bin"
+PATH+=":$HOME/.gem/ruby/2.7.0/bin"
 fi
 
 # LDFLAGS Mac
