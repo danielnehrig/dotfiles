@@ -334,7 +334,7 @@
 
   #####################################[ vcs: git status ]######################################
   # Version control system colors.
-  # typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=2
+  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=2
   # typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=3
   # typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=2
   # typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=3
@@ -720,10 +720,10 @@
 
   ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
   # Vim shell indicator color.
-  # typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=0
-  # typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=2
+  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=0
+  typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=2
   # Custom icon.
-  # typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ######[ midnight_commander: midnight commander shell (https://midnight-commander.org/) ]######
   # Midnight Commander shell color.
