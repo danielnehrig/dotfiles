@@ -109,6 +109,10 @@ linking_files_arch = [
         {
             "source": ".config/alacritty.yml",
             "dest": ".config/alacritty.yml"
+                },
+        {
+            "source": ".xinitrc",
+            "dest": ".xinitrc"
                 }
         ]
 pip_packages = [
