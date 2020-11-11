@@ -330,6 +330,8 @@ def Linux():
 
     # cloning dependencies zsh theme and plugins
     try:
+        Install('yay -S ranger python-pynvim ueberzug')
+
         log.Step("Cloning Shell Dependencies Themes Plugins", 13)
         Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
         Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
