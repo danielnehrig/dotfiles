@@ -28,7 +28,7 @@ home = os.environ["HOME"] + '/'
 pacman_packages = []
 
 # source is context current folder + repo item
-linking_files = [
+linking_files_mac = [
         {
             "source": "powerline",
             "dest": ".config"
@@ -60,6 +60,57 @@ linking_files = [
             }
         ]
 
+linking_files_arch = [
+        {
+            "source": ".tmux.conf",
+            "dest": ".tmux.conf"
+
+            },
+        {
+            "source": ".zsh/zshrc",
+            "dest": ".zshrc"
+            },
+        {
+            "source": ".ssh/config",
+            "dest": ".ssh/config"
+            },
+        {
+            "source": ".dotfiles-vim",
+            "dest": ".vim"
+            },
+        {
+            "source": ".dotfiles-vim/vimrc",
+            "dest": ".vimrc"
+            },
+        {
+            "source": ".config/nvim",
+            "dest": ".config/nvim"
+            },
+        {
+            "source": ".config/ranger",
+            "dest": ".config/ranger"
+            },
+        {
+            "source": ".config/i3",
+            "dest": ".config/i3"
+            },
+        {
+            "source": ".config/dunst",
+            "dest": ".config/dunst"
+            },
+        {
+            "source": ".config/rofi",
+            "dest": ".config/rofi"
+            },
+        {
+            "source": ".config/picom.conf",
+            "dest": ".config/picom.conf"
+                },
+        {
+            "source": ".config/alacritty.yml",
+            "dest": ".config/alacritty.yml"
+                }
+        ]
 pip_packages = [
         "powerline-status",
         "psutil"
@@ -282,8 +333,8 @@ def LinkFile(source, dest):
         log.Error('Failed to Link {0} to {1}'.format(source, dest))
 
 
-def LinkFiles():
-    for dic in linking_files:
+def LinkFiles(files):
+    for dic in files:
         source = None
         dest = None
         for key in dic:
@@ -328,13 +379,13 @@ def Upgrade():
 def Linux():
     log.Critical('Linux is Not Supported Yet')
 
+    # git submodule pull
+    log.Step("Pulling submodules", 4)
+    Install('git submodule update --init --recursive')
+
     # cloning dependencies zsh theme and plugins
     try:
         Install('yay -S ranger python-pynvim ueberzug')
-
-        log.Step("Cloning Shell Dependencies Themes Plugins", 13)
-        Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
-        Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
 
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
@@ -344,16 +395,12 @@ def Linux():
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
+
+        # linking
+        LinkFiles(linking_files_arch)
     except OSError as e:
-        log.Error("Error while cloning")
+        log.Error("Error while install")
 
-    # git submodule pull
-    log.Step("Pulling submodules", 4)
-    Install('git submodule update --init --recursive')
-
-    log.Step("Cloning Shell Dependencies Themes Plugins", 13)
-    Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
-    Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
 
     sys.exit(0)
 
@@ -452,7 +499,7 @@ def Darwin():
     # linking files
     try:
         log.Step("Linking zsh and vim files Symbolic", 14)
-        LinkFiles()
+        LinkFiles(linking_files_mac)
     except OSError as e:
         log.Error("Error while linking files")
 
