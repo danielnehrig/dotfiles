@@ -57,8 +57,8 @@ eval "$(nodenv init -)"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker fzf fzf-docker fzf-tab zsh-autosuggestions ssh-agent github)
-export FZF_DEFAULT_COMMAND='find . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
-export FZF_CTRL_T_COMMAND='find . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
+export FZF_DEFAULT_COMMAND='find -L . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
+export FZF_CTRL_T_COMMAND='find -L . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
 # export FZF_DEFAULT_OPTS="-i --preview 'bat --style=numbers --color=always {}'"
 export FZF_DEFAULT_OPTS="-i"
 
