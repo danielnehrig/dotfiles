@@ -330,7 +330,7 @@ def LinkFile(source, dest):
     try:
         log.Info('Linking File {0} to {1}'.format(source, dest))
         with open(os.devnull, "w") as f:
-            subprocess.call(['ln', '-s', current_folder + '/' + source, home + dest], stdout=f)
+            subprocess.call(['ln', '-sfn', current_folder + '/' + source, home + dest], stdout=f)
             f.close()
         log.Success('Successfull linked file {0}'.format(source))
     except subprocess.CalledProcessError as e:
@@ -384,7 +384,7 @@ def Linux():
     log.Critical('Linux is Not Supported Yet')
 
     # git submodule pull
-    log.Step("Pulling submodules", 4)
+    log.Step("Pulling submodules", 1)
     Install('git submodule update --init --recursive')
 
     # cloning dependencies zsh theme and plugins
@@ -487,8 +487,8 @@ def Darwin():
     # cloning dependencies zsh theme and plugins
     try:
         log.Step("Cloning Shell Dependencies Themes Plugins", 13)
-        Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
-        Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
+        # Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
+        # Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
 
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
