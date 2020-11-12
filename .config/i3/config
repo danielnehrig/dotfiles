@@ -76,12 +76,12 @@ for_window [title="video2 - mpv"] sticky enabled
 no_focus [class="Conky"]
 
 # custom scripts controlls
-bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/cam.sh
-bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/camblur.sh
-bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/screenkey.sh
-bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/lg.sh
-bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/loopbackinput.sh
-bindsym --release $mod+shift+s exec ~/.dotfiles-darwin/screenshot.sh
+bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam.sh
+bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/scripts/camblur.sh
+bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/scripts/screenkey.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/scripts/lg.sh
+bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/scripts/loopbackinput.sh
+bindsym --release $mod+shift+s exec ~/.dotfiles-darwin/scripts/screenshot.sh
 
 
 # change container layout (stacked, tabbed, toggle split)
