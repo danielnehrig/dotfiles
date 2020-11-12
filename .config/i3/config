@@ -47,24 +47,24 @@ bindsym $mod+f fullscreen toggle
 
 # media
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && notify-send "ﱛ" #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && notify-send "ﱜ" #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && notiy-send "ﱝ" # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec gmux_backlight +20% # increase screen brightness
-bindsym XF86MonBrightnessDown exec gmux_backlight -20% # decrease screen brightness
-bindsym XF86KbdBrightnessUp exec kbdlight up 20%
-bindsym XF86KbdBrightnessDown exec kbdlight down 20%
+bindsym XF86MonBrightnessUp exec gmux_backlight +20% && notify-send "-ﯧ" # increase screen brightness
+bindsym XF86MonBrightnessDown exec gmux_backlight -20% && notify-send "-ﯧ" # decrease screen brightness
+bindsym XF86KbdBrightnessUp exec kbdlight up 20% && notify-send "+ﯧ"
+bindsym XF86KbdBrightnessDown exec kbdlight down 20% && notify-send "-ﯧ"
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play-pause && notify-send "懶"
 bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl next && notify-send "怜"
+bindsym XF86AudioPrev exec playerctl previous && notify-send "玲"
 
 for_window [title="video0 - mpv"] floating enabled
 for_window [title="video0 - mpv"] sticky enabled
