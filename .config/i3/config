@@ -47,9 +47,9 @@ bindsym $mod+f fullscreen toggle
 
 # media
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && notify-send "ﱛ" #increase sound volume
+bindsym XF87AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && notify-send "ﱛ" #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && notify-send "ﱜ" #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && notiy-send "ﱝ" # mute sound
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && notify-send "ﱝ" # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec gmux_backlight +20% && notify-send "-ﯧ" # increase screen brightness
@@ -77,7 +77,7 @@ no_focus [class="Conky"]
 
 # custom scripts controlls
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam.sh
-bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/scripts/camblur.sh
+bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/scripts/screenrecord.sh
 bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/scripts/screenkey.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/scripts/lg.sh
 bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/scripts/loopbackinput.sh
