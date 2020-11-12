@@ -30,10 +30,6 @@ pacman_packages = []
 # source is context current folder + repo item
 linking_files_mac = [
         {
-            "source": "powerline",
-            "dest": ".config"
-            },
-        {
             "source": ".tmux.conf",
             "dest": ".tmux.conf"
 
@@ -116,7 +112,6 @@ linking_files_arch = [
                 }
         ]
 pip_packages = [
-        "powerline-status",
         "psutil"
         ]
 
@@ -467,10 +462,6 @@ def Darwin():
     # install python packages
     log.Step("Installing Python PIP Packages", 10)
     InstallPackages('pip3.8 install', pip_packages)
-
-    # powerline players.py fix for ger local
-    log.Step("Installing Powerline Fix", 11)
-    Copy('./.powerlineFix/players.py', '/usr/local/lib/python3.7/site-packages/powerline/segments/common/players.py')
 
     # install fonts
     try:
