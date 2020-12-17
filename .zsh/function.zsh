@@ -1,5 +1,7 @@
 # Work related Functions
 
+browser="brave"
+
 function fzfp() {
   fzf --preview '[[ $(file --mime {}) =~ binary  ]] && \
     echo {} is a binary file || \
@@ -124,6 +126,19 @@ function swagger_ui_start() {
             echo $CONTAINER_NAME "is already running"
     fi
 }
+
+function prv() {
+  if [ -z "$1"  ]
+  then
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    echo "Open preview server deployment with branch $current_branch"
+    $browser "https://fock-preview-server-com-d4cuojil3q-ew.a.run.app/preview.html?preview_branch=$current_branch"
+  else
+    echo "Open preview server deployment with branch $1"
+    $browser "https://fock-preview-server-com-d4cuojil3q-ew.a.run.app/preview.html?preview_branch=$1"
+  fi
+}
+
 function swagger_preview() {
     TMP_DIR="/tmp/vim-swagger-preview/"
     LOG=$TMP_DIR"validate.log"
