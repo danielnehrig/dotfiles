@@ -4,8 +4,6 @@ github::pr() {
   fzf=$?
   type -p hub &>/dev/null
   hub=$?
-  type -p kokot &>/dev/null
-  kokot=$?
   git remote show origin &>/dev/null
   isGit=$?
 
