@@ -7,4 +7,4 @@
 #
 
 
-scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png
+scrot -s ~/Pictures/Screenshots/%b%d-%H%M%S.png
