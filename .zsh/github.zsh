@@ -27,3 +27,9 @@ github::pr() {
 }
 
 alias ghp='github::pr'
+
+function jsv() {
+  ticket=$(git rev-parse --abbrev-ref HEAD)
+  echo "$ticket"
+  brave https://jira.shop-apotheke.com/browse/"$ticket"
+}
