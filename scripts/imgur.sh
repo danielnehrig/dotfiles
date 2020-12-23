@@ -8,8 +8,10 @@
 
 now=imgur.png
 
-scrot -s ~/Pictures/Screenshots/$now
-imgur-uploader ~/Pictures/Screenshots/$now > temp
-cat temp | grep -o 'https.*' | xclip -selection clipboard
-rm ~/Pictures/Screenshots/imgur.png
+notify-send "Start"
+# scrot -s /home/dashie/Pictures/Screenshots/$now
+/home/dashie/.local/bin/imgur-uploader /home/dashie/Pictures/Screenshots/$now > /home/dashie/temp
+cat /home/dashie/temp | grep -o 'https.*' | xclip -selection clipboard
+notify-send "Done"
+rm /home/dashie/Pictures/Screenshots/$now
 rm temp
