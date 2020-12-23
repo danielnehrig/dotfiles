@@ -243,10 +243,8 @@ assign [class="virt-manager"] $ws7
 #for_window [class="^.*"] border pixel 0
 
 # Set inner/outer gaps
-gaps inner 25
-gaps outer 47
-workspace $ws8 gaps inner 0
-workspace $ws8 gaps outer 0
+gaps inner 0
+gaps outer 0
 
 ################### keybindings to change gaps ###################
 # increase outer gap size
@@ -264,6 +262,7 @@ bindsym $mod+minus  gaps inner all minus 5
 
 ################### auto startup apps ###################
 exec xrandr --dpi 220
+exec --no-startup-id xscreensaver -no-splash &
 exec_always --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 exec_always --no-startup-id lxpolkit
 exec_always --no-startup-id killall picom || picom --shadow-exclude "! name~=''" --blur-background-exclude  "! name~=''" --experimental-backends &
