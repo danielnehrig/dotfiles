@@ -82,7 +82,7 @@ bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/scripts/screenkey.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/scripts/lg.sh
 bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/scripts/loopbackinput.sh
 bindsym --release $mod+shift+s exec ~/.dotfiles-darwin/scripts/screenshot.sh
-bindsym $mod+shift+u exec ~/.dotfiles-darwin/scripts/imgur.sh
+bindsym --release $mod+shift+u exec ~/.dotfiles-darwin/scripts/imgur.sh
 
 
 # change container layout (stacked, tabbed, toggle split)

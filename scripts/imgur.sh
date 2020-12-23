@@ -5,11 +5,15 @@
 #
 # Distributed under terms of the MIT license.
 #
+# needs
+# pacman -S scrot xclip
+# pip install imgur-uploader
+
 
 now=imgur.png
 
 notify-send "Start"
-# scrot -s /home/dashie/Pictures/Screenshots/$now
+scrot -s /home/dashie/Pictures/Screenshots/$now
 /home/dashie/.local/bin/imgur-uploader /home/dashie/Pictures/Screenshots/$now > /home/dashie/temp
 cat /home/dashie/temp | grep -o 'https.*' | xclip -selection clipboard
 notify-send "Done"
