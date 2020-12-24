@@ -7,5 +7,4 @@
 #
 
 
-rm ~/Pictures/Screenshots/imgur.png
-scrot -s ~/Pictures/Screenshots/imgur.png
+scrot -s ~/Pictures/Screenshots/%b%d-%H%M%S.png
