@@ -76,6 +76,7 @@ for_window [title="video2 - mpv"] sticky enabled
 no_focus [class="Conky"]
 
 # custom scripts controlls
+bindsym $mod+shift+m exec --no-startup-id dm-tool lock
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam.sh
 bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/scripts/screenrecord.sh
 bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/scripts/screenkey.sh
