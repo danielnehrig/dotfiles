@@ -264,8 +264,7 @@ bindsym $mod+minus  gaps inner all minus 5
 ################### auto startup apps ###################
 exec --no-startup-id xrandr --dpi 220 &
 exec --no-startup-id xset r rate 300 60 &
-exec_always --no-startup-id xscreensaver -no-splash &
-exec_always --no-startup-id light-locker --lock-after-screensaver=120 &
+exec_always --no-startup-id light-locker --lock-after-screensaver=20 &
 exec_always --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log &
 exec_always --no-startup-id lxpolkit &
 exec_always --no-startup-id killall picom || picom --shadow-exclude "! name~=''" --blur-background-exclude  "! name~=''" --experimental-backends &
