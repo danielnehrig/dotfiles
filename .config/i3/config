@@ -68,6 +68,8 @@ bindsym XF86AudioPrev exec playerctl previous && notify-send "玲"
 
 for_window [title="video0 - mpv"] floating enabled
 for_window [title="video0 - mpv"] sticky enabled
+for_window [title="video1 - mpv"] floating enabled
+for_window [title="video1 - mpv"] sticky enabled
 for_window [title="video2 - mpv"] floating enabled
 for_window [title="video2 - mpv"] sticky enabled
 
@@ -78,6 +80,7 @@ no_focus [class="Conky"]
 # custom scripts controlls
 bindsym $mod+shift+m exec --no-startup-id dm-tool lock
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam.sh
+bindsym $mod+mod1+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam1.sh
 bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/scripts/screenrecord.sh
 bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/scripts/screenkey.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/scripts/lg.sh
@@ -264,6 +267,7 @@ bindsym $mod+minus  gaps inner all minus 5
 
 ################### auto startup apps ###################
 exec --no-startup-id xrandr --dpi 220 &
+exec --no-startup-id xset s 240
 exec --no-startup-id xset r rate 300 60 &
 exec_always --no-startup-id light-locker --lock-after-screensaver=20 &
 exec_always --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log &
