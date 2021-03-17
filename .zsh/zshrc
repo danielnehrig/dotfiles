@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 # User Settings
 source ~/.dotfiles-darwin/.zsh/export.zsh
 source ~/.dotfiles-darwin/.zsh/settings.zsh
@@ -17,47 +16,9 @@ source ~/.dotfiles-darwin/.zsh/tokens.zsh
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh"  ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # Nodenv init
 # eval "$(nodenv init -)"
-
-# docker machine init
-# eval $(docker-machine env)
-# export DOCKER_IP=$(docker-machine ip)
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker fzf fzf-docker fzf-tab zsh-autosuggestions ssh-agent github)
 export FZF_DEFAULT_COMMAND='find -L . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
@@ -69,6 +30,6 @@ source ~/.dotfiles-darwin/oh-my-zsh/oh-my-zsh.sh
 source ~/.dotfiles-darwin/.zsh/forgit.zsh
 [[ ! -f ~/.dotfiles-darwin/.zsh/.p10k.zsh ]] || source ~/.dotfiles-darwin/.zsh/.p10k.zsh
 
-neofetch
-
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+source <(kubectl completion zsh)
+kubectl config rename-context gke-production rtl-production
+alias kcc="kubectl config use-context"
