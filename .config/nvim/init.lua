@@ -29,7 +29,6 @@ g.indentLine_enabled = 1
 g.indentLine_char_list = {"▏"}
 
 g.mapleader = " "
-vim.g.mapleader = " "
 
 require("treesitter.lua")
 require("mappings.lua")
@@ -72,16 +71,17 @@ cmd("hi CustomExplorerBg guibg=#242830")
 
 
 vim.api.nvim_exec(
-    [[
-augroup NvimTree 
-  au!
-  au FileType NvimTree setlocal winhighlight=Normal:CustomExplorerBg
- augroup END
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_transparent_bg = 1
-set background=dark
+[[
+  set relativenumber
+  augroup NvimTree 
+    au!
+    au FileType NvimTree setlocal winhighlight=Normal:CustomExplorerBg
+   augroup END
+  let g:gruvbox_contrast_dark = 'hard'
+  let g:gruvbox_transparent_bg = 1
+  set background=dark
 
-colorscheme gruvbox
- ]],
-    false
+  colorscheme gruvbox
+]],
+  false
 )

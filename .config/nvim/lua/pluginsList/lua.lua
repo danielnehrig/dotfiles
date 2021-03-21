@@ -28,7 +28,10 @@ return require("packer").startup(
         use {"nvim-telescope/telescope-media-files.nvim"}
         use {"kyazdani42/nvim-tree.lua"}
         -- misc
+        use {"mhinz/vim-startify"}
+        use {"junegunn/vim-slash"}
         use {"windwp/nvim-autopairs"}
+        use {"unblevable/quick-scope"}
         use {"nvim-lua/plenary.nvim"}
         use {"alvan/vim-closetag"}
         use {"sbdchd/neoformat"}
