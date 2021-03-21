@@ -32,6 +32,10 @@ local function try_loadstring(s, component, name)
 end
 
 _G.packer_plugins = {
+  ale = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/ale"
+  },
   ["base16-vim"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/base16-vim"
@@ -60,10 +64,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
-  neoformat = {
-    loaded = true,
-    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/neoformat"
-  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
@@ -75,10 +75,6 @@ _G.packer_plugins = {
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
-  },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -108,6 +104,10 @@ _G.packer_plugins = {
   ["popup.nvim"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["quick-scope"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/quick-scope"
   },
   ["rust.vim"] = {
     loaded = true,
@@ -141,9 +141,25 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/vim-dispatch"
   },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+  },
   ["vim-polyglot"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/vim-polyglot"
+  },
+  ["vim-slash"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/vim-slash"
+  },
+  ["vim-startify"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/vim-startify"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
   ["vim-test"] = {
     loaded = true,
