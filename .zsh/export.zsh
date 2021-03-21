@@ -8,13 +8,14 @@ PATH+=":$HOME/.local/bin"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/go/bin"
 PATH+=":$HOME/.gem/ruby/2.7.0/bin"
+PATH+=":$HOME/.npm/bin"
 fi
 
 # LDFLAGS Mac
 
 # User exports
 if [[ `uname` == "Darwin"  ]]; then
-export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+# export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 export PATH="/usr/local/sbin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include:/usr/local/sbin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr:/usr/local/bin:/usr/local/Cellar:/usr/bin:/bin:/usr/sbin:/sbin:/usr/include/libxml2:/Users/$(id -un)/Library/Python/2.7/bin:/usr/local/opt/llvm/bin:/usr/local/include:/$(id -un)/dnehrig/Library/Python/3.7/bin:/usr/local/share/dotnet:/Library/TeX/texbin"
 PATH+=":$HOME/.cargo/bin"
 fi
