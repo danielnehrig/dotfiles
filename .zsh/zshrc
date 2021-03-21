@@ -13,12 +13,8 @@ source ~/.dotfiles-darwin/.zsh/alias.zsh
 source ~/.dotfiles-darwin/.zsh/github.zsh
 source ~/.dotfiles-darwin/.zsh/tokens.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh"  ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # Nodenv init
-# eval "$(nodenv init -)"
+eval "$(nodenv init -)"
 
 plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker fzf fzf-docker fzf-tab zsh-autosuggestions ssh-agent github)
 export FZF_DEFAULT_COMMAND='find -L . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
