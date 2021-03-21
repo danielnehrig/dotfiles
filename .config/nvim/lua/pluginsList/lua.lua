@@ -3,33 +3,45 @@ local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 return require("packer").startup(
     function()
+        -- packer
         use {"wbthomason/packer.nvim", opt = true}
-        use {"kyazdani42/nvim-web-devicons"}
-        use {"kyazdani42/nvim-tree.lua"}
-        use {"nvim-lua/plenary.nvim"}
-        use {"lewis6991/gitsigns.nvim"}
+        -- theme
         use {"glepnir/galaxyline.nvim"}
+        use {"kyazdani42/nvim-web-devicons"}
         use {"akinsho/nvim-bufferline.lua"}
-        use {"sheerun/vim-polyglot"}
-        use {"907th/vim-auto-save"}
-        use {"nvim-treesitter/nvim-treesitter"}
-        use {'rust-lang/rust.vim'}
-        use {"chriskempson/base16-vim"}
         use {"norcalli/nvim-colorizer.lua"}
-        use {"vim-test/vim-test"}
-        use {"Dave-Elec/gruvbox"}
-        use {"tpope/vim-dispatch"}
-        use {"Yggdroot/indentLine"}
+        use {"chriskempson/base16-vim"}
         use {"ryanoasis/vim-devicons"}
-        use {"sbdchd/neoformat"}
+        use {"Dave-Elec/gruvbox"}
+        -- language
         use {"neovim/nvim-lspconfig"}
-        use {"hrsh7th/nvim-compe"}
-        use {"windwp/nvim-autopairs"}
-        use {"alvan/vim-closetag"}
-        use {"tweekmonster/startuptime.vim"}
         use {"onsails/lspkind-nvim"}
+        use {"dense-analysis/ale"}
+        use {"sheerun/vim-polyglot"}
+        use {'rust-lang/rust.vim'}
+        use {"nvim-treesitter/nvim-treesitter"}
+        -- completion
+        use {"nvim-lua/completion-nvim"}
+        use {"hrsh7th/nvim-compe"}
+        -- navigation
         use {"nvim-telescope/telescope.nvim"}
         use {"nvim-telescope/telescope-media-files.nvim"}
+        use {"kyazdani42/nvim-tree.lua"}
+        -- misc
+        use {"windwp/nvim-autopairs"}
+        use {"nvim-lua/plenary.nvim"}
+        use {"alvan/vim-closetag"}
+        use {"sbdchd/neoformat"}
+        use {"907th/vim-auto-save"}
+        use {"Yggdroot/indentLine"}
+        use {"tweekmonster/startuptime.vim"}
+        use {"tpope/vim-surround"}
         use {"nvim-lua/popup.nvim"}
+        -- git
+        use {"lewis6991/gitsigns.nvim"}
+        use {"tpope/vim-fugitive"}
+        -- testing
+        use {"vim-test/vim-test"}
+        use {"tpope/vim-dispatch"}
     end
 )

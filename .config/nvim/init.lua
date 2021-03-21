@@ -11,6 +11,7 @@ require("telescope-nvim.lua")
 -- lsp
 require("nvim-lspconfig.lua")
 require("nvim-compe.lua")
+require("ale.lua")
 
 require("gitsigns.lua")
 
@@ -20,7 +21,6 @@ local cmd = vim.cmd
 local g = vim.g
 local indent = 2
 
-cmd "colorscheme base16-onedark"
 cmd "syntax enable"
 cmd "syntax on"
 
@@ -29,6 +29,7 @@ g.indentLine_enabled = 1
 g.indentLine_char_list = {"▏"}
 
 g.mapleader = " "
+vim.g.mapleader = " "
 
 require("treesitter.lua")
 require("mappings.lua")
@@ -61,7 +62,14 @@ require("lspkind").init(
     }
 )
 
+-- LSP Servers for Languages
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.pyright.setup{}
+
 cmd("hi CustomExplorerBg guibg=#242830")
+
+
 
 vim.api.nvim_exec(
     [[
@@ -69,6 +77,11 @@ augroup NvimTree
   au!
   au FileType NvimTree setlocal winhighlight=Normal:CustomExplorerBg
  augroup END
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_transparent_bg = 1
+set background=dark
+
+colorscheme gruvbox
  ]],
     false
 )
