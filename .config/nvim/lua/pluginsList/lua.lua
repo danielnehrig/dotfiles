@@ -14,15 +14,14 @@ return require("packer").startup(
         use {"ryanoasis/vim-devicons"}
         use {"Dave-Elec/gruvbox"}
         -- language
-        use {"neovim/nvim-lspconfig"}
-        use {"onsails/lspkind-nvim"}
         use {"dense-analysis/ale"}
         use {"sheerun/vim-polyglot"}
         use {'rust-lang/rust.vim'}
         use {"nvim-treesitter/nvim-treesitter"}
         -- completion
+        use {"onsails/lspkind-nvim"}
+        use {"neovim/nvim-lspconfig"}
         use {"nvim-lua/completion-nvim"}
-        use {"hrsh7th/nvim-compe"}
         -- navigation
         use {"nvim-telescope/telescope.nvim"}
         use {"nvim-telescope/telescope-media-files.nvim"}
@@ -34,7 +33,6 @@ return require("packer").startup(
         use {"unblevable/quick-scope"}
         use {"nvim-lua/plenary.nvim"}
         use {"alvan/vim-closetag"}
-        use {"sbdchd/neoformat"}
         use {"907th/vim-auto-save"}
         use {"Yggdroot/indentLine"}
         use {"tweekmonster/startuptime.vim"}

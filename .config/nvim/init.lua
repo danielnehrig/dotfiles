@@ -10,7 +10,6 @@ require("telescope-nvim.lua")
 
 -- lsp
 require("nvim-lspconfig.lua")
-require("nvim-compe.lua")
 require("ale.lua")
 
 require("gitsigns.lua")
@@ -31,7 +30,6 @@ g.indentLine_char_list = {"▏"}
 g.mapleader = " "
 
 require("treesitter.lua")
-require("mappings.lua")
 
 -- highlights
 cmd("hi LineNr guibg=NONE")
@@ -61,18 +59,10 @@ require("lspkind").init(
     }
 )
 
--- LSP Servers for Languages
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-require'lspconfig'.pyright.setup{}
-
 cmd("hi CustomExplorerBg guibg=#242830")
-
-
 
 vim.api.nvim_exec(
 [[
-  set relativenumber
   augroup NvimTree 
     au!
     au FileType NvimTree setlocal winhighlight=Normal:CustomExplorerBg
