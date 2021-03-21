@@ -10,7 +10,6 @@ return require("packer").startup(
         use {"kyazdani42/nvim-web-devicons"}
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
-        use {"chriskempson/base16-vim"}
         use {"ryanoasis/vim-devicons"}
         use {"Dave-Elec/gruvbox"}
         -- language
@@ -20,6 +19,7 @@ return require("packer").startup(
         use {"nvim-treesitter/nvim-treesitter"}
         -- completion
         use {"onsails/lspkind-nvim"}
+        use {"nvim-lua/lsp_extensions.nvim"}
         use {"neovim/nvim-lspconfig"}
         use {"nvim-lua/completion-nvim"}
         -- navigation
@@ -33,7 +33,6 @@ return require("packer").startup(
         use {"unblevable/quick-scope"}
         use {"nvim-lua/plenary.nvim"}
         use {"alvan/vim-closetag"}
-        use {"907th/vim-auto-save"}
         use {"Yggdroot/indentLine"}
         use {"tweekmonster/startuptime.vim"}
         use {"tpope/vim-surround"}
