@@ -3,6 +3,7 @@ fonts
 .zsh/tokens.zsh
 .DS_STORE
 SourceCodeProAwesome.ttf
+lua-language-server
 **/speedlog
 depend
 installed

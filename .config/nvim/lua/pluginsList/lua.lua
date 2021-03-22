@@ -10,8 +10,10 @@ return require("packer").startup(
         use {"kyazdani42/nvim-web-devicons"}
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
+        use {"glepnir/lspsaga.nvim"}
         use {"ryanoasis/vim-devicons"}
         use {"Dave-Elec/gruvbox"}
+        use {"lukas-reineke/indent-blankline.nvim"}
         -- language
         use {"dense-analysis/ale"}
         use {"sheerun/vim-polyglot"}
@@ -21,12 +23,15 @@ return require("packer").startup(
         use {"onsails/lspkind-nvim"}
         use {"nvim-lua/lsp_extensions.nvim"}
         use {"neovim/nvim-lspconfig"}
-        use {"nvim-lua/completion-nvim"}
+        -- use {"nvim-lua/completion-nvim"}
+        use {"hrsh7th/nvim-compe"}
         -- navigation
         use {"nvim-telescope/telescope.nvim"}
         use {"nvim-telescope/telescope-media-files.nvim"}
         use {"kyazdani42/nvim-tree.lua"}
         -- misc
+        use {"preservim/nerdcommenter"}
+        use {"windwp/nvim-ts-autotag"}
         use {"mhinz/vim-startify"}
         use {"junegunn/vim-slash"}
         use {"windwp/nvim-autopairs"}
@@ -43,5 +48,7 @@ return require("packer").startup(
         -- testing
         use {"vim-test/vim-test"}
         use {"tpope/vim-dispatch"}
+        -- debug
+        use {"puremourning/vimspector"}
     end
 )

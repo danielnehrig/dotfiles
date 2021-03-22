@@ -1,16 +1,50 @@
 vim.cmd [[packadd nvim-lspconfig]]
-vim.cmd [[packadd completion-nvim]]
+vim.cmd [[packadd nvim-compe]]
 
 vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
 local map = function(type, key, value)
 	vim.api.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
 end
 
+-- compe setup
+require("compe").setup(
+  {
+    enabled = true,
+    autocomplete = true,
+    debug = false,
+    min_length = 1,
+    preselect = "enable",
+    throttle_time = 80,
+    source_timeout = 200,
+    incomplete_delay = 400,
+    max_abbr_width = 100,
+    max_kind_width = 100,
+    max_menu_width = 100,
+    source = {
+      path = true,
+      buffer = true,
+      calc = true,
+      vsnip = false,
+      nvim_lsp = true,
+      nvim_lua = true,
+      spell = true,
+      tags = true,
+      snippets_nvim = false,
+      treesitter = true
+    }
+  }
+)
+
 vim.cmd [[set completeopt=menuone,noinsert,noselect]]
 
-local custom_attach = function(client)
-	require 'completion'.on_attach(client)
+function autocmd(event, triggers, operations)
+  local cmd = string.format("autocmd %s %s %s", event, triggers, operations)
+  vim.cmd(cmd)
+end
 
+-- custom attach config
+local custom_attach = function(client)
 	map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
 	map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
 	map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
@@ -27,9 +61,19 @@ local custom_attach = function(client)
 	map('n','<space>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 	map('n','<space>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 	map('n','<space>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
-	map('i','<C-space>','<cmd>lua vim.lsp.buf.completion()<CR>')
+	map('i','<C-space>','<cmd>call compe#complete()<CR>')
+	map('i','<CR>','<cmd>call compe#confirm()<CR>')
+
+  autocmd("CursorHold", "<buffer>", "lua vim.lsp.diagnostic.show_line_diagnostics()")
+
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+  vim.fn.sign_define("LspDiagnosticsSignError", {text = "•"})
+  vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
+  vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
+  vim.fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
 end
 
+-- lsp setups
 require "lspconfig".tsserver.setup{on_attach=custom_attach}
 require "lspconfig".rls.setup{on_attach=custom_attach}
 require "lspconfig".cssls.setup{on_attach=custom_attach}
@@ -41,6 +85,8 @@ require "lspconfig".dockerls.setup{on_attach=custom_attach}
 require "lspconfig".clangd.setup{on_attach=custom_attach}
 require "lspconfig".vimls.setup{on_attach=custom_attach}
 
+
+-- lua sumenko
 local system_name
 if vim.fn.has("mac") == 1 then
   system_name = "macOS"
