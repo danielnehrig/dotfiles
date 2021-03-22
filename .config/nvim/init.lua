@@ -10,6 +10,7 @@ require("telescope-nvim.lua")
 
 -- lsp
 require("nvim-lspconfig.lua")
+-- require("efm")
 require("ale.lua")
 
 require("gitsigns.lua")
@@ -18,7 +19,6 @@ require "colorizer".setup()
 
 local cmd = vim.cmd
 local g = vim.g
-local indent = 2
 
 cmd "syntax enable"
 cmd "syntax on"

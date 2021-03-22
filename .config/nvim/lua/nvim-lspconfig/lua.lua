@@ -62,7 +62,7 @@ local custom_attach = function(client)
 	map('n','<space>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 	map('n','<space>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 	map('i','<C-space>','<cmd>call compe#complete()<CR>')
-	map('i','<CR>','<cmd>call compe#confirm()<CR>')
+	map('i','<TAB>','<cmd>call compe#confirm()<CR>')
 
   autocmd("CursorHold", "<buffer>", "lua vim.lsp.diagnostic.show_line_diagnostics()")
 
