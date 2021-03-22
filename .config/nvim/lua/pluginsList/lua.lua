@@ -31,6 +31,7 @@ return require("packer").startup(
         use {"nvim-telescope/telescope-media-files.nvim"}
         use {"kyazdani42/nvim-tree.lua"}
         -- misc
+        use {"norcalli/nvim_utils"}
         use {"preservim/nerdcommenter"}
         use {"windwp/nvim-ts-autotag"}
         use {"mhinz/vim-startify"}
