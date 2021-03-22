@@ -36,6 +36,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/ale"
   },
+  ["blamer.nvim"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/blamer.nvim"
+  },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
@@ -67,6 +71,10 @@ _G.packer_plugins = {
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
+  neomake = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/neomake"
   },
   nerdcommenter = {
     loaded = true,

@@ -3,6 +3,7 @@ require("pluginsList.lua")
 require("web-devicons.lua")
 
 require("utils.lua")
+require("testing.init")
 require("nvimTree.lua")
 require("bufferline.lua")
 require("statusline.lua")
@@ -14,6 +15,7 @@ require("nvim-lspconfig.lua")
 require("ale.lua")
 
 require("gitsigns.lua")
+require("startify")
 
 require "colorizer".setup()
 

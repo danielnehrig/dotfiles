@@ -1,4 +1,5 @@
 local gl = require("galaxyline")
+local TestStatus = require("testing").TestStatus
 local gls = gl.section
 gl.short_line_list = { }
 
@@ -14,12 +15,13 @@ local colors = {
     orange = "#FF8800",
     purple = "#252930",
     magenta = "#c678dd",
-    blue = "#22262C",
+    blue = "#61afef",
     red = "#DF8890",
     lightbg = "#3C4048",
     nord = "#81A1C1",
     greenYel = "#EBCB8B"
 }
+
 
 gls.left[1] = {
     leftRounded = {
@@ -139,6 +141,17 @@ gls.left[12] = {
 }
 
 gls.right[1] = {
+    testing_status = {
+        provider = function()
+            return TestStatus()
+        end,
+        separator = " ",
+        separator_highlight = {colors.bg, colors.bg},
+        highlight = {colors.red, colors.bg}
+    }
+}
+
+gls.right[2] = {
     GitIcon = {
         provider = function()
             return "   "
@@ -148,7 +161,7 @@ gls.right[1] = {
     }
 }
 
-gls.right[2] = {
+gls.right[3] = {
     GitBranch = {
         provider = "GitBranch",
         condition = require("galaxyline.provider_vcs").check_git_workspace,
@@ -156,7 +169,7 @@ gls.right[2] = {
     }
 }
 
-gls.right[3] = {
+gls.right[4] = {
     right_LeftRounded = {
         provider = function()
             return ""
@@ -167,7 +180,7 @@ gls.right[3] = {
     }
 }
 
-gls.right[4] = {
+gls.right[5] = {
     SiMode = {
         provider = function()
             local alias = {
@@ -185,7 +198,7 @@ gls.right[4] = {
     }
 }
 
-gls.right[5] = {
+gls.right[6] = {
     PerCent = {
         provider = "LinePercent",
         separator = " ",
@@ -194,7 +207,7 @@ gls.right[5] = {
     }
 }
 
-gls.right[6] = {
+gls.right[7] = {
     rightRounded = {
         provider = function()
             return ""
@@ -202,3 +215,5 @@ gls.right[6] = {
         highlight = {colors.fg, colors.bg}
     }
 }
+
+return colors

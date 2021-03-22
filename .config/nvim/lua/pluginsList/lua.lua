@@ -12,6 +12,7 @@ return require("packer").startup(
         use {"norcalli/nvim-colorizer.lua"}
         use {"glepnir/lspsaga.nvim"}
         use {"ryanoasis/vim-devicons"}
+        use {"apzelos/blamer.nvim"}
         use {"Dave-Elec/gruvbox"}
         use {"lukas-reineke/indent-blankline.nvim"}
         -- language
@@ -48,6 +49,7 @@ return require("packer").startup(
         -- testing
         use {"vim-test/vim-test"}
         use {"tpope/vim-dispatch"}
+        use {"neomake/neomake"}
         -- debug
         use {"puremourning/vimspector"}
     end
