@@ -1,22 +1,18 @@
 -- load plugins
 require("pluginsList.lua")
+-- setup conf
+require("core.options")
 require("web-devicons.lua")
-
 require("utils.lua")
-require("testing.init")
+require("testing")
 require("nvimTree.lua")
 require("bufferline.lua")
 require("statusline.lua")
 require("telescope-nvim.lua")
-
--- lsp
 require("nvim-lspconfig.lua")
--- require("efm")
 require("ale.lua")
-
 require("gitsigns.lua")
-require("startify")
-
+require("dashboard")
 require "colorizer".setup()
 
 local cmd = vim.cmd
@@ -25,11 +21,17 @@ local g = vim.g
 cmd "syntax enable"
 cmd "syntax on"
 
+-- settings
 g.auto_save = 1
 g.indentLine_enabled = 1
 g.indentLine_char_list = {"▏"}
-
 g.mapleader = " "
+
+-- colorscheme
+g.gruvbox_contrast_dark = 'hard'
+g.gruvbox_transparent_bg = 1
+cmd "colorscheme gruvbox"
+
 
 require("treesitter.lua")
 
@@ -52,29 +54,40 @@ cmd("hi PmenuSel  guibg=#98c379")
 cmd("hi NvimTreeFolderIcon guifg = #61afef")
 cmd("hi NvimTreeFolderName guifg = #61afef")
 cmd("hi NvimTreeIndentMarker guifg=#545862")
+cmd("hi CustomExplorerBg guibg=#242830")
 
 require("nvim-autopairs").setup()
 require('nvim-ts-autotag').setup()
-
 require("lspkind").init(
     {
         File = " "
     }
 )
 
-cmd("hi CustomExplorerBg guibg=#242830")
 
-vim.api.nvim_exec(
-[[
-  augroup NvimTree 
-    au!
-    au FileType NvimTree setlocal winhighlight=Normal:CustomExplorerBg
-   augroup END
-  let g:gruvbox_contrast_dark = 'hard'
-  let g:gruvbox_transparent_bg = 1
-  set background=dark
+-- MAPPING FOR AUTOPAIRS INDENT INSIDE BRACKETS
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
 
-  colorscheme gruvbox
-]],
-  false
-)
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+vim.g.completion_confirm_key = ""
+MUtils.completion_confirm=function()
+  if vim.fn.pumvisible() ~= 0  then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      vim.fn["compe#confirm"]()
+      return npairs.esc("<c-y>")
+    else
+      vim.defer_fn(function()
+        vim.fn["compe#confirm"]("<cr>")
+      end, 20)
+      return npairs.esc("<c-n>")
+    end
+  else
+    return npairs.check_break_line_char()
+  end
+end
+
+
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})

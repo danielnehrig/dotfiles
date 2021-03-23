@@ -11,6 +11,7 @@ return require("packer").startup(
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
         use {"glepnir/lspsaga.nvim"}
+        use {"metakirby5/codi.vim"}
         use {"ryanoasis/vim-devicons"}
         use {"apzelos/blamer.nvim"}
         use {"Dave-Elec/gruvbox"}
@@ -27,6 +28,8 @@ return require("packer").startup(
         -- use {"nvim-lua/completion-nvim"}
         use {"hrsh7th/nvim-compe"}
         -- navigation
+        use {"nvim-telescope/telescope-github.nvim"}
+        use {"nvim-telescope/telescope-project.nvim"}
         use {"nvim-telescope/telescope.nvim"}
         use {"nvim-telescope/telescope-media-files.nvim"}
         use {"kyazdani42/nvim-tree.lua"}
@@ -34,7 +37,8 @@ return require("packer").startup(
         use {"norcalli/nvim_utils"}
         use {"preservim/nerdcommenter"}
         use {"windwp/nvim-ts-autotag"}
-        use {"mhinz/vim-startify"}
+        -- use {"mhinz/vim-startify"}
+        use {"glepnir/dashboard-nvim"}
         use {"junegunn/vim-slash"}
         use {"windwp/nvim-autopairs"}
         use {"unblevable/quick-scope"}

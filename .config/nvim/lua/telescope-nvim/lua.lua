@@ -56,6 +56,7 @@ require("telescope").setup {
 }
 
 require("telescope").load_extension("media_files")
+require'telescope'.load_extension('project')
 
 local opt = {noremap = true, silent = true}
 
@@ -74,5 +75,11 @@ vim.api.nvim_set_keymap("n", "<Leader>fb", [[<Cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap("n", "<Leader>fh", [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fo", [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fm", [[<Cmd> Neoformat<CR>]], opt)
+vim.api.nvim_set_keymap(
+	'n',
+	'<C-p>',
+	":lua require'telescope'.extensions.project.project{}<CR>",
+	{noremap = true, silent = true}
+)
 
 vim.api.nvim_set_keymap("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)

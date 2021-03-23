@@ -22,7 +22,6 @@ local colors = {
     greenYel = "#EBCB8B"
 }
 
-
 gls.left[1] = {
     leftRounded = {
         provider = function()
@@ -35,7 +34,16 @@ gls.left[1] = {
 gls.left[2] = {
     ViMode = {
         provider = function()
-            return "   "
+            local alias = {
+                n = " NORMAL ",
+                i = " INSERT ",
+                c = " COMMAND ",
+                V = " VISUAL ",
+                [""] = " VISUAL ",
+                v = " VISUAL ",
+                R = " REPLACE "
+            }
+            return alias[vim.fn.mode()]
         end,
         highlight = {colors.bg, colors.nord},
         separator = " ",
@@ -53,7 +61,7 @@ gls.left[3] = {
 
 gls.left[4] = {
     FileName = {
-        provider = {"FileName", "FileSize"},
+        provider = {"FileName", "GitBranch", "FileSize"},
         condition = buffer_not_empty,
         highlight = {colors.fg, colors.lightbg}
     }
@@ -64,7 +72,7 @@ gls.left[5] = {
         provider = function()
             return ""
         end,
-        separator = " ",
+        separator = "",
         highlight = {colors.lightbg, colors.bg}
     }
 }
@@ -151,50 +159,12 @@ gls.right[1] = {
     }
 }
 
-gls.right[2] = {
-    GitIcon = {
-        provider = function()
-            return "   "
-        end,
-        condition = require("galaxyline.provider_vcs").check_git_workspace,
-        highlight = {colors.green, colors.line_bg}
-    }
-}
-
-gls.right[3] = {
-    GitBranch = {
-        provider = "GitBranch",
-        condition = require("galaxyline.provider_vcs").check_git_workspace,
-        highlight = {colors.green, colors.line_bg}
-    }
-}
-
 gls.right[4] = {
     right_LeftRounded = {
         provider = function()
             return ""
         end,
-        separator = " ",
-        separator_highlight = {colors.bg, colors.bg},
-        highlight = {colors.red, colors.bg}
-    }
-}
-
-gls.right[5] = {
-    SiMode = {
-        provider = function()
-            local alias = {
-                n = "NORMAL",
-                i = "INSERT",
-                c = "COMMAND",
-                V = "VISUAL",
-                [""] = "VISUAL",
-                v = "VISUAL",
-                R = "REPLACE"
-            }
-            return alias[vim.fn.mode()]
-        end,
-        highlight = {colors.bg, colors.red}
+        highlight = {colors.fg, colors.bg}
     }
 }
 
@@ -202,7 +172,7 @@ gls.right[6] = {
     PerCent = {
         provider = "LinePercent",
         separator = " ",
-        separator_highlight = {colors.red, colors.red},
+        separator_highlight = {colors.fg, colors.fg},
         highlight = {colors.bg, colors.fg}
     }
 }
