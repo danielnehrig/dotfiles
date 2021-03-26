@@ -12,7 +12,7 @@ opt("o", "ignorecase", true)
 opt("o", "splitbelow", true)
 opt("o", "splitright", true)
 opt("o", "termguicolors", true)
-opt("w", "relativenumber", true)
+opt("o", "relativenumber", true)
 opt("o", "numberwidth", 2)
 
 opt("o", "mouse", "a")
@@ -20,7 +20,7 @@ opt("o", "mouse", "a")
 opt("w", "signcolumn", "yes")
 opt("o", "cmdheight", 1)
 
-opt("o", "updatetime", 250) -- update interval for gitsigns 
+opt("o", "updatetime", 300) -- update interval for gitsigns 
 opt("o", "clipboard", "unnamedplus")
 
 -- for indenline

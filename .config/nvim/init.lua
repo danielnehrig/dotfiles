@@ -13,7 +13,10 @@ require("nvim-lspconfig.lua")
 require("ale.lua")
 require("gitsigns.lua")
 require("dashboard")
+-- other
+require 'snippets'
 require "colorizer".setup()
+require 'nvim_utils'
 
 local cmd = vim.cmd
 local g = vim.g
@@ -22,7 +25,6 @@ cmd "syntax enable"
 cmd "syntax on"
 
 -- settings
-g.auto_save = 1
 g.indentLine_enabled = 1
 g.indentLine_char_list = {"▏"}
 g.mapleader = " "
@@ -33,7 +35,7 @@ g.gruvbox_transparent_bg = 1
 cmd "colorscheme gruvbox"
 
 
-require("treesitter.lua")
+-- require("treesitter.lua")
 
 -- highlights
 cmd("hi LineNr guibg=NONE")
@@ -55,14 +57,26 @@ cmd("hi NvimTreeFolderIcon guifg = #61afef")
 cmd("hi NvimTreeFolderName guifg = #61afef")
 cmd("hi NvimTreeIndentMarker guifg=#545862")
 cmd("hi CustomExplorerBg guibg=#242830")
-
+vim.api.nvim_command('autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0')
 require("nvim-autopairs").setup()
-require('nvim-ts-autotag').setup()
+-- require('nvim-ts-autotag').setup()
 require("lspkind").init(
     {
         File = " "
     }
 )
+
+local definitions = {
+  ft = {
+    {"FileType", "dashboard", "set showtabline=0"};
+    {"FileType", "dashboard", "let g:indentLine_enabled=0"};
+    {"BufNewFile,BufRead","*","set showtabline=2"},
+    {"BufNewFile,BufRead","*","let g:indentLine_enabled=1"},
+    {"BufNewFile,BufRead","*.toml"," setf toml"},
+  };
+}
+
+nvim_create_augroups(definitions)
 
 
 -- MAPPING FOR AUTOPAIRS INDENT INSIDE BRACKETS

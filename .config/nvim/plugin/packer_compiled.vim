@@ -36,9 +36,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/ale"
   },
-  ["blamer.nvim"] = {
+  ["codi.vim"] = {
     loaded = true,
-    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/blamer.nvim"
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/codi.vim"
+  },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
   },
   ["galaxyline.nvim"] = {
     loaded = true,
@@ -104,17 +108,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
-  ["nvim-treesitter"] = {
-    loaded = true,
-    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
-  },
-  ["nvim-ts-autotag"] = {
-    loaded = true,
-    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
-  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  nvim_utils = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim_utils"
   },
   ["packer.nvim"] = {
     loaded = false,
@@ -137,17 +137,33 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/rust.vim"
   },
+  ["snippets.nvim"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/snippets.nvim"
+  },
   ["startuptime.vim"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/startuptime.vim"
+  },
+  ["telescope-github.nvim"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/telescope-github.nvim"
   },
   ["telescope-media-files.nvim"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim"
   },
+  ["telescope-project.nvim"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/telescope-project.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ultisnips = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/ultisnips"
   },
   ["vim-closetag"] = {
     loaded = true,
@@ -173,10 +189,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-slash"
   },
-  ["vim-startify"] = {
-    loaded = true,
-    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-startify"
-  },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-surround"
@@ -184,6 +196,10 @@ _G.packer_plugins = {
   ["vim-test"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-test"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   },
   vimspector = {
     loaded = true,

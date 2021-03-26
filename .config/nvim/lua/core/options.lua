@@ -1,4 +1,5 @@
 local global = require('core.global')
+local cmd = vim.cmd
 
 local function bind_option(options)
   for k, v in pairs(options) do
@@ -11,6 +12,7 @@ local function bind_option(options)
 end
 
 local function load_options()
+  cmd("set relativenumber")
 end
 
 load_options()

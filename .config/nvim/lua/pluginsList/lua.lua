@@ -10,22 +10,24 @@ return require("packer").startup(
         use {"kyazdani42/nvim-web-devicons"}
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
-        use {"glepnir/lspsaga.nvim"}
-        use {"metakirby5/codi.vim"}
         use {"ryanoasis/vim-devicons"}
-        use {"apzelos/blamer.nvim"}
         use {"Dave-Elec/gruvbox"}
-        use {"lukas-reineke/indent-blankline.nvim"}
         -- language
-        use {"dense-analysis/ale"}
-        use {"sheerun/vim-polyglot"}
         use {'rust-lang/rust.vim'}
-        use {"nvim-treesitter/nvim-treesitter"}
+        use {'danielnehrig/vim-polyglot'}
+        -- use {"nvim-treesitter/nvim-treesitter"}
+        use {"metakirby5/codi.vim"}
+        -- lint
+        use {"dense-analysis/ale"}
+        -- snip
+        use {"norcalli/snippets.nvim"}
+        use {"SirVer/ultisnips"}
+        use {"hrsh7th/vim-vsnip"}
         -- completion
+        use {"glepnir/lspsaga.nvim"}
         use {"onsails/lspkind-nvim"}
         use {"nvim-lua/lsp_extensions.nvim"}
         use {"neovim/nvim-lspconfig"}
-        -- use {"nvim-lua/completion-nvim"}
         use {"hrsh7th/nvim-compe"}
         -- navigation
         use {"nvim-telescope/telescope-github.nvim"}
@@ -36,14 +38,14 @@ return require("packer").startup(
         -- misc
         use {"norcalli/nvim_utils"}
         use {"preservim/nerdcommenter"}
-        use {"windwp/nvim-ts-autotag"}
-        -- use {"mhinz/vim-startify"}
+        -- use {"windwp/nvim-ts-autotag"}
         use {"glepnir/dashboard-nvim"}
         use {"junegunn/vim-slash"}
         use {"windwp/nvim-autopairs"}
         use {"unblevable/quick-scope"}
         use {"nvim-lua/plenary.nvim"}
         use {"alvan/vim-closetag"}
+        use {"lukas-reineke/indent-blankline.nvim"}
         use {"Yggdroot/indentLine"}
         use {"tweekmonster/startuptime.vim"}
         use {"tpope/vim-surround"}
