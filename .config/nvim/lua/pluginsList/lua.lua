@@ -15,7 +15,6 @@ return require("packer").startup(
         -- language
         use {'rust-lang/rust.vim'}
         use {'danielnehrig/vim-polyglot'}
-        -- use {"nvim-treesitter/nvim-treesitter"}
         use {"metakirby5/codi.vim"}
         -- lint
         use {"dense-analysis/ale"}
@@ -36,9 +35,9 @@ return require("packer").startup(
         use {"nvim-telescope/telescope-media-files.nvim"}
         use {"kyazdani42/nvim-tree.lua"}
         -- misc
+        use {"liuchengxu/vim-which-key"}
         use {"norcalli/nvim_utils"}
         use {"preservim/nerdcommenter"}
-        -- use {"windwp/nvim-ts-autotag"}
         use {"glepnir/dashboard-nvim"}
         use {"junegunn/vim-slash"}
         use {"windwp/nvim-autopairs"}

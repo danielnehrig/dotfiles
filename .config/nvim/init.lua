@@ -1,25 +1,34 @@
+local cmd = vim.cmd
+local g = vim.g
+local nvim_command = vim.api.nvim_command
+
 -- load plugins
 require("pluginsList.lua")
+
 -- setup conf
 require("core.options")
+require("utils")
 require("web-devicons.lua")
-require("utils.lua")
 require("testing")
 require("nvimTree.lua")
 require("bufferline.lua")
 require("statusline.lua")
 require("telescope-nvim.lua")
 require("nvim-lspconfig.lua")
-require("ale.lua")
+require("ale")
 require("gitsigns.lua")
 require("dashboard")
+
 -- other
 require 'snippets'
 require "colorizer".setup()
+require("nvim-autopairs").setup()
 require 'nvim_utils'
-
-local cmd = vim.cmd
-local g = vim.g
+require("lspkind").init(
+    {
+        File = " "
+    }
+)
 
 cmd "syntax enable"
 cmd "syntax on"
@@ -33,9 +42,6 @@ g.mapleader = " "
 g.gruvbox_contrast_dark = 'hard'
 g.gruvbox_transparent_bg = 1
 cmd "colorscheme gruvbox"
-
-
--- require("treesitter.lua")
 
 -- highlights
 cmd("hi LineNr guibg=NONE")
@@ -57,15 +63,10 @@ cmd("hi NvimTreeFolderIcon guifg = #61afef")
 cmd("hi NvimTreeFolderName guifg = #61afef")
 cmd("hi NvimTreeIndentMarker guifg=#545862")
 cmd("hi CustomExplorerBg guibg=#242830")
-vim.api.nvim_command('autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0')
-require("nvim-autopairs").setup()
--- require('nvim-ts-autotag').setup()
-require("lspkind").init(
-    {
-        File = " "
-    }
-)
+nvim_command('autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0')
 
+-- autocmd au groups to trigger differently
+-- depending on action and file types etc
 local definitions = {
   ft = {
     {"FileType", "dashboard", "set showtabline=0"};
@@ -83,7 +84,6 @@ nvim_create_augroups(definitions)
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
 
--- skip it, if you use another global object
 _G.MUtils= {}
 
 vim.g.completion_confirm_key = ""

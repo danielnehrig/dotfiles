@@ -1,13 +1,14 @@
 require 'lspsaga'
+local map = require 'utils'.map
+local autocmd = require 'utils'.autocmd
+local cmd = vim.cmd
+local fn = vim.fn
+local setOption = vim.api.nvim_set_option
 
-vim.cmd [[packadd nvim-lspconfig]]
-vim.cmd [[packadd nvim-compe]]
+cmd [[packadd nvim-lspconfig]]
+cmd [[packadd nvim-compe]]
 
-vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-local map = function(type, key, value)
-	vim.api.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
-end
+setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -41,12 +42,8 @@ require("compe").setup(
   }
 )
 
-vim.cmd [[set completeopt=menuone,noinsert,noselect]]
+cmd [[set completeopt=menuone,noinsert,noselect]]
 
-function autocmd(event, triggers, operations)
-  local cmd = string.format("autocmd %s %s %s", event, triggers, operations)
-  vim.cmd(cmd)
-end
 
 -- custom attach config
 local custom_attach = function(client)
@@ -76,10 +73,10 @@ local custom_attach = function(client)
   autocmd("CursorHold", "<buffer>", "lua vim.lsp.diagnostic.show_line_diagnostics()")
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-  vim.fn.sign_define("LspDiagnosticsSignError", {text = "•"})
-  vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
-  vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
-  vim.fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
+  fn.sign_define("LspDiagnosticsSignError", {text = "•"})
+  fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
+  fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
+  fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
 end
 
 -- lsp setups
@@ -128,8 +125,8 @@ require "lspconfig".sumneko_lua.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          [fn.expand('$VIMRUNTIME/lua')] = true,
+          [fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
         },
       },
     },
