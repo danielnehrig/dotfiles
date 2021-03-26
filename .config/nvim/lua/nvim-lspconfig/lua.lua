@@ -1,6 +1,7 @@
 require 'lspsaga'
 local map = require 'utils'.map
 local autocmd = require 'utils'.autocmd
+local lsp_status = require('lsp-status')
 local cmd = vim.cmd
 local fn = vim.fn
 local setOption = vim.api.nvim_set_option
@@ -44,9 +45,11 @@ require("compe").setup(
 
 cmd [[set completeopt=menuone,noinsert,noselect]]
 
-
+lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client)
+  lsp_status.on_attach(client)
+
 	map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
 	map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
 	-- map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
@@ -80,7 +83,7 @@ local custom_attach = function(client)
 end
 
 -- lsp setups
-require "lspconfig".tsserver.setup{on_attach=custom_attach, capabilities=capabilities}
+require "lspconfig".tsserver.setup{on_attach=custom_attach, capabilities=lsp_status.capabilities, handlers = lsp_status.extensions.clangd.setup()}
 require "lspconfig".cssls.setup{on_attach=custom_attach}
 require "lspconfig".html.setup{on_attach=custom_attach}
 require "lspconfig".rust_analyzer.setup{on_attach=custom_attach, capabilities=capabilities}

@@ -1,7 +1,6 @@
-local map = require'utils'.map
+local map = vim.api.nvim_set_keymap
 
-vim.g.mapleader = "<Space>"
-vim.g.maplocalleader = ','
+vim.cmd("set timeoutlen=500")
+vim.api.nvim_set_keymap('n', '<Space>', ':WhichKey "<Space>"<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<g>', ':WhichKey "g"<CR>', { noremap = true, silent = true })
 
-map('n','<leader>','<cmd>WhichKey "<Space>"<CR>')
-map('n','<localleader>','<cmd>WhichKey ","<CR>')

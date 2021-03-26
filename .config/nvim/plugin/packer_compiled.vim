@@ -64,6 +64,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/indentLine"
   },
+  ["lsp-status.nvim"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
+  },
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
@@ -75,6 +79,12 @@ _G.packer_plugins = {
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
+  ["markdown-preview.nvim"] = {
+    commands = { "MarkdownPreview" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim"
   },
   neomake = {
     loaded = true,
@@ -182,6 +192,7 @@ _G.packer_plugins = {
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-polyglot"] = {
+    config = { "\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18core.callback\frequire\0" },
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot"
   },
@@ -201,11 +212,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   },
+  ["vim-which-key"] = {
+    loaded = true,
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-which-key"
+  },
   vimspector = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/vimspector"
   }
 }
+
+-- Config for: vim-polyglot
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18core.callback\frequire\0", "config", "vim-polyglot")
+
+-- Command lazy-loads
+vim.cmd [[command! -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'markdown-preview.nvim'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 END
 

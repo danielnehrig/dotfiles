@@ -1,15 +1,6 @@
 local gl = require("galaxyline")
 local TestStatus = require("testing").TestStatus
-local gls = gl.section
 gl.short_line_list = { }
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-
-local function opt(scope, key, value)
-    scopes[scope][key] = value
-    if scope ~= "o" then
-        scopes["o"][key] = value
-    end
-end
 
 local colors = {
     bg = "#282c34",
@@ -30,168 +21,184 @@ local colors = {
     greenYel = "#EBCB8B"
 }
 
-gls.left[1] = {
-    leftRounded = {
-        provider = function()
-            return ""
-        end,
-        highlight = {colors.nord, colors.bg}
+local function default_line()
+    local gls = gl.section
+    gls.left[1] = {
+        leftRounded = {
+            provider = function()
+                return ""
+            end,
+            highlight = {colors.nord, colors.bg}
+        }
     }
-}
 
-gls.left[2] = {
-    ViMode = {
-        provider = function()
-            local alias = {
-                n = " NORMAL ",
-                i = " INSERT ",
-                c = " COMMAND ",
-                V = " VISUAL ",
-                [""] = " VISUAL ",
-                v = " VISUAL ",
-                R = " REPLACE "
-            }
-            return alias[vim.fn.mode()]
-        end,
-        highlight = {colors.bg, colors.nord},
-        separator = " ",
-        separator_highlight = {colors.lightbg, colors.lightbg}
+    gls.left[2] = {
+        ViMode = {
+            provider = function()
+                local alias = {
+                    n = " NORMAL ",
+                    i = " INSERT ",
+                    c = " COMMAND ",
+                    V = " VISUAL ",
+                    [""] = " VISUAL ",
+                    v = " VISUAL ",
+                    R = " REPLACE "
+                }
+                return alias[vim.fn.mode()]
+            end,
+            highlight = {colors.bg, colors.nord},
+            separator = " ",
+            separator_highlight = {colors.lightbg, colors.lightbg}
+        }
     }
-}
 
-gls.left[3] = {
-    FileIcon = {
-        provider = "FileIcon",
-        condition = buffer_not_empty,
-        highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.lightbg}
+    gls.left[3] = {
+        FileIcon = {
+            provider = "FileIcon",
+            condition = buffer_not_empty,
+            highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.lightbg}
+        }
     }
-}
 
-gls.left[4] = {
-    FileName = {
-        provider = {"FileName", "GitBranch", "FileSize"},
-        condition = buffer_not_empty,
-        highlight = {colors.fg, colors.lightbg}
+    gls.left[4] = {
+        FileName = {
+            provider = {"FileName", "GitBranch", "FileSize"},
+            condition = buffer_not_empty,
+            highlight = {colors.fg, colors.lightbg}
+        }
     }
-}
 
-gls.left[5] = {
-    teech = {
-        provider = function()
-            return ""
-        end,
-        separator = "",
-        highlight = {colors.lightbg, colors.bg}
+    gls.left[5] = {
+        teech = {
+            provider = function()
+                return ""
+            end,
+            separator = "",
+            highlight = {colors.lightbg, colors.bg}
+        }
     }
-}
 
-local checkwidth = function()
-    local squeeze_width = vim.fn.winwidth(0) / 2
-    if squeeze_width > 40 then
-        return true
+    local checkwidth = function()
+        local squeeze_width = vim.fn.winwidth(0) / 2
+        if squeeze_width > 40 then
+            return true
+        end
+        return false
     end
-    return false
+
+    gls.left[6] = {
+        DiffAdd = {
+            provider = "DiffAdd",
+            condition = checkwidth,
+            icon = "   ",
+            highlight = {colors.greenYel, colors.line_bg}
+        }
+    }
+
+    gls.left[7] = {
+        DiffModified = {
+            provider = "DiffModified",
+            condition = checkwidth,
+            icon = " ",
+            highlight = {colors.orange, colors.line_bg}
+        }
+    }
+
+    gls.left[8] = {
+        DiffRemove = {
+            provider = "DiffRemove",
+            condition = checkwidth,
+            icon = " ",
+            highlight = {colors.red, colors.line_bg}
+        }
+    }
+
+    gls.left[9] = {
+        LeftEnd = {
+            provider = function()
+                return " "
+            end,
+            separator = " ",
+            separator_highlight = {colors.line_bg, colors.line_bg},
+            highlight = {colors.line_bg, colors.line_bg}
+        }
+    }
+
+    gls.left[10] = {
+        DiagnosticError = {
+            provider = "DiagnosticError",
+            icon = "  ",
+            highlight = {colors.red, colors.bg}
+        }
+    }
+
+    gls.left[11] = {
+        Space = {
+            provider = function()
+                return " "
+            end,
+            highlight = {colors.line_bg, colors.line_bg}
+        }
+    }
+
+    gls.left[12] = {
+        DiagnosticWarn = {
+            provider = "DiagnosticWarn",
+            icon = "  ",
+            highlight = {colors.blue, colors.bg}
+        }
+    }
+
+
+    gls.left[13] = {
+        LspStatus = {
+            provider = function()
+                return require('lsp-status').status()
+            end,
+            icon = "",
+            highlight = {colors.green, colors.bg}
+        }
+    }
+
+    gls.right[1] = {
+        testing_status = {
+            provider = function()
+                return TestStatus()
+            end,
+            separator = " ",
+            separator_highlight = {colors.bg, colors.bg},
+            highlight = {colors.red, colors.bg}
+        }
+    }
+
+    gls.right[4] = {
+        right_LeftRounded = {
+            provider = function()
+                return ""
+            end,
+            highlight = {colors.fg, colors.bg}
+        }
+    }
+
+    gls.right[6] = {
+        PerCent = {
+            provider = "LinePercent",
+            separator = " ",
+            separator_highlight = {colors.fg, colors.fg},
+            highlight = {colors.bg, colors.fg}
+        }
+    }
+
+    gls.right[7] = {
+        rightRounded = {
+            provider = function()
+                return ""
+            end,
+            highlight = {colors.fg, colors.bg}
+        }
+    }
 end
 
-gls.left[6] = {
-    DiffAdd = {
-        provider = "DiffAdd",
-        condition = checkwidth,
-        icon = "   ",
-        highlight = {colors.greenYel, colors.line_bg}
-    }
-}
-
-gls.left[7] = {
-    DiffModified = {
-        provider = "DiffModified",
-        condition = checkwidth,
-        icon = " ",
-        highlight = {colors.orange, colors.line_bg}
-    }
-}
-
-gls.left[8] = {
-    DiffRemove = {
-        provider = "DiffRemove",
-        condition = checkwidth,
-        icon = " ",
-        highlight = {colors.red, colors.line_bg}
-    }
-}
-
-gls.left[9] = {
-    LeftEnd = {
-        provider = function()
-            return " "
-        end,
-        separator = " ",
-        separator_highlight = {colors.line_bg, colors.line_bg},
-        highlight = {colors.line_bg, colors.line_bg}
-    }
-}
-
-gls.left[10] = {
-    DiagnosticError = {
-        provider = "DiagnosticError",
-        icon = "  ",
-        highlight = {colors.red, colors.bg}
-    }
-}
-
-gls.left[11] = {
-    Space = {
-        provider = function()
-            return " "
-        end,
-        highlight = {colors.line_bg, colors.line_bg}
-    }
-}
-
-gls.left[12] = {
-    DiagnosticWarn = {
-        provider = "DiagnosticWarn",
-        icon = "  ",
-        highlight = {colors.blue, colors.bg}
-    }
-}
-
-gls.right[1] = {
-    testing_status = {
-        provider = function()
-            return TestStatus()
-        end,
-        separator = " ",
-        separator_highlight = {colors.bg, colors.bg},
-        highlight = {colors.red, colors.bg}
-    }
-}
-
-gls.right[4] = {
-    right_LeftRounded = {
-        provider = function()
-            return ""
-        end,
-        highlight = {colors.fg, colors.bg}
-    }
-}
-
-gls.right[6] = {
-    PerCent = {
-        provider = "LinePercent",
-        separator = " ",
-        separator_highlight = {colors.fg, colors.fg},
-        highlight = {colors.bg, colors.fg}
-    }
-}
-
-gls.right[7] = {
-    rightRounded = {
-        provider = function()
-            return ""
-        end,
-        highlight = {colors.fg, colors.bg}
-    }
-}
+default_line()
 
 return colors

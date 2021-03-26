@@ -14,7 +14,8 @@ return require("packer").startup(
         use {"Dave-Elec/gruvbox"}
         -- language
         use {'rust-lang/rust.vim'}
-        use {'danielnehrig/vim-polyglot'}
+        use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
+        use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
         use {"metakirby5/codi.vim"}
         -- lint
         use {"dense-analysis/ale"}
@@ -23,6 +24,7 @@ return require("packer").startup(
         use {"SirVer/ultisnips"}
         use {"hrsh7th/vim-vsnip"}
         -- completion
+        use {"nvim-lua/lsp-status.nvim"}
         use {"glepnir/lspsaga.nvim"}
         use {"onsails/lspkind-nvim"}
         use {"nvim-lua/lsp_extensions.nvim"}

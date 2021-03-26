@@ -28,4 +28,14 @@ function M.autocmd(event, triggers, operations)
   vim.cmd(cmd)
 end
 
+function M.is_git()
+    local is_git = false
+    return is_git
+end
+
+function M.project_name()
+    local name = ''
+    return name
+end
+
 return M

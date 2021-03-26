@@ -11,13 +11,14 @@ require("utils")
 require("web-devicons.lua")
 require("testing")
 require("nvimTree.lua")
-require("bufferline.lua")
-require("statusline.lua")
 require("telescope-nvim.lua")
 require("nvim-lspconfig.lua")
+require("bufferline.lua")
+require("statusline.lua")
 require("ale")
 require("gitsigns.lua")
 require("dashboard")
+require("which")
 
 -- other
 require 'snippets'
@@ -42,6 +43,7 @@ g.mapleader = " "
 g.gruvbox_contrast_dark = 'hard'
 g.gruvbox_transparent_bg = 1
 cmd "colorscheme gruvbox"
+cmd "set foldmethod=syntax"
 
 -- highlights
 cmd("hi LineNr guibg=NONE")
