@@ -10,7 +10,7 @@ return require("packer").startup(
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
         use {"ryanoasis/vim-devicons"}
-        use {"sainnhe/gruvbox-material"}
+        use {"Dave-Elec/gruvbox"}
         -- language
         use {'rust-lang/rust.vim'}
         use {'danielnehrig/vim-polyglot'}

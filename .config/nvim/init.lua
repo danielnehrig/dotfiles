@@ -38,7 +38,8 @@ g.indentLine_char_list = {"▏"}
 g.mapleader = " "
 
 -- colorscheme
-cmd "colorscheme gruvbox-material"
+g.gruvbox_transparent_bg=1
+cmd "colorscheme gruvbox"
 
 -- highlights
 cmd("hi LineNr guibg=NONE")
