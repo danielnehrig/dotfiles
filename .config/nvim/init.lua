@@ -8,7 +8,6 @@ require("pluginsList.lua")
 -- setup conf
 require("core.options")
 require("utils")
-require("web-devicons.lua")
 require("testing")
 require("nvimTree.lua")
 require("bufferline.lua")

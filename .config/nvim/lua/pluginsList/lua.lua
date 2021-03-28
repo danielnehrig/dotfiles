@@ -7,7 +7,6 @@ return require("packer").startup(
         use {"wbthomason/packer.nvim", opt = true}
         -- theme
         use {"glepnir/galaxyline.nvim"}
-        use {"kyazdani42/nvim-web-devicons"}
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
         use {"ryanoasis/vim-devicons"}
