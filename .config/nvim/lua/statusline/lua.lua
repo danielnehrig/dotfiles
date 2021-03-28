@@ -376,6 +376,17 @@ function evilline()
     }
 
     gls.right[8] = {
+        testing_status = {
+            provider = function()
+                return TestStatus()
+            end,
+            separator = " ",
+            separator_highlight = {colors.bg, colors.bg},
+            highlight = {colors.fg,colors.bg,'bold'}
+        }
+    }
+
+    gls.right[9] = {
         RainbowBlue = {
             provider = function() return ' ▊' end,
             highlight = {colors.blue,colors.bg}
@@ -398,6 +409,7 @@ function evilline()
             highlight = {colors.fg,colors.bg,'bold'}
         }
     }
+
 
     gls.short_line_right[1] = {
         BufferIcon = {
