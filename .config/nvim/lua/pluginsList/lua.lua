@@ -14,6 +14,7 @@ return require("packer").startup(
         -- language
         use {'rust-lang/rust.vim'}
         use {'danielnehrig/vim-polyglot'}
+        use {'nvim-treesitter/nvim-treesitter'}
         use {"metakirby5/codi.vim"}
         -- lint
         use {"dense-analysis/ale"}

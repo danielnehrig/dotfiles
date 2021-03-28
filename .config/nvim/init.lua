@@ -17,6 +17,11 @@ require("nvim-lspconfig.lua")
 require("ale")
 require("gitsigns.lua")
 require("dashboard")
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = false
+  }
+}
 
 -- other
 require 'snippets'
