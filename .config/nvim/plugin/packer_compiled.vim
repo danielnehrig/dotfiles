@@ -118,9 +118,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
-  ["nvim-web-devicons"] = {
+  ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   nvim_utils = {
     loaded = true,

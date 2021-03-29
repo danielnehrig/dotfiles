@@ -6,6 +6,7 @@ let g:ale_linters['javascript'] = ['eslint']
 let g:ale_linters['typescript'] = ['eslint', 'tsserver']
 let g:ale_linters['typescriptreact'] = ['eslint', 'tsserver']
 let g:ale_linters['markdown'] = []
+let g:ale_linters['lua'] = []
 let g:ale_linters['rust'] = ['rls']
 
 let g:ale_fixers = {}
