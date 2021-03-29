@@ -8,7 +8,6 @@ require("pluginsList.lua")
 -- setup conf
 require("core.options")
 require("utils")
-require("web-devicons.lua")
 require("testing")
 require("nvimTree.lua")
 require("telescope-nvim.lua")
@@ -19,6 +18,11 @@ require("ale")
 require("gitsigns.lua")
 require("dashboard")
 require("which")
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = false
+  }
+}
 
 -- other
 require 'snippets'
@@ -40,8 +44,7 @@ g.indentLine_char_list = {"▏"}
 g.mapleader = " "
 
 -- colorscheme
-g.gruvbox_contrast_dark = 'hard'
-g.gruvbox_transparent_bg = 1
+g.gruvbox_transparent_bg=1
 cmd "colorscheme gruvbox"
 cmd "set foldmethod=syntax"
 

@@ -7,7 +7,6 @@ return require("packer").startup(
         use {"wbthomason/packer.nvim", opt = true}
         -- theme
         use {"glepnir/galaxyline.nvim"}
-        use {"kyazdani42/nvim-web-devicons"}
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
         use {"ryanoasis/vim-devicons"}
@@ -16,6 +15,7 @@ return require("packer").startup(
         use {'rust-lang/rust.vim'}
         use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
         use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+        use {'nvim-treesitter/nvim-treesitter'}
         use {"metakirby5/codi.vim"}
         -- lint
         use {"dense-analysis/ale"}
