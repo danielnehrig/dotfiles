@@ -18,11 +18,11 @@ require("ale")
 require("gitsigns.lua")
 require("dashboard")
 require("which")
-require'nvim-treesitter.configs'.setup {
-  indent = {
-    enable = false
-  }
-}
+-- require'nvim-treesitter.configs'.setup {
+--   indent = {
+--     enable = false
+--   }
+-- }
 
 -- other
 require 'snippets'
@@ -41,11 +41,12 @@ cmd "syntax on"
 -- settings
 g.indentLine_enabled = 1
 g.indentLine_char_list = {"▏"}
+cmd "set termguicolors"
+g.ayucolor = "dark"
+cmd "colorscheme ayu"
 g.mapleader = " "
 
 -- colorscheme
-g.gruvbox_transparent_bg=1
-cmd "colorscheme gruvbox"
 cmd "set foldmethod=syntax"
 
 -- highlights

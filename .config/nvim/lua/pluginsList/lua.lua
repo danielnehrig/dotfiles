@@ -10,12 +10,12 @@ return require("packer").startup(
         use {"akinsho/nvim-bufferline.lua"}
         use {"norcalli/nvim-colorizer.lua"}
         use {"ryanoasis/vim-devicons"}
-        use {"Dave-Elec/gruvbox"}
+        use {"ayu-theme/ayu-vim"}
+        use {"kyazdani42/nvim-web-devicons"}
         -- language
         use {'rust-lang/rust.vim'}
         use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
         use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-        use {'nvim-treesitter/nvim-treesitter'}
         use {"metakirby5/codi.vim"}
         -- lint
         use {"dense-analysis/ale"}
