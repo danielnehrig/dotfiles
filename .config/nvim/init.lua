@@ -48,6 +48,14 @@ g.mapleader = " "
 
 -- colorscheme
 cmd "set foldmethod=syntax"
+cmd [[
+if exists("$TMUX")
+  let &t_RB = "\ePtmux;\e\e]11;?\007\e\\"
+endif
+set t_8f=^[[38;2;%lu;%lu;%lum
+set t_8b=^[[48;2;%lu;%lu;%lum
+set termguicolors
+]]
 
 -- highlights
 cmd("hi LineNr guibg=NONE")
