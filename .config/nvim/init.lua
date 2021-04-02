@@ -1,9 +1,16 @@
 local cmd = vim.cmd
 local g = vim.g
 local nvim_command = vim.api.nvim_command
+local opt = require('utils').opt
 
 -- load plugins
 require("pluginsList.lua")
+
+local disabled_built_ins = {
+  'gzip', 'man', 'matchit', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
+  'netrwPlugin'
+}
+for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 
 -- setup conf
 require("core.options")
@@ -37,17 +44,24 @@ require("lspkind").init(
 
 cmd "syntax enable"
 cmd "syntax on"
+cmd [[command! PackerInstall packadd packer.nvim | lua require('pluginsList.lua').install()]]
+cmd [[command! PackerUpdate packadd packer.nvim | lua require('pluginsList.lua').update()]]
+cmd [[command! PackerSync packadd packer.nvim | lua require('pluginsList.lua').sync()]]
+cmd [[command! PackerClean packadd packer.nvim | lua require('pluginsList.lua').clean()]]
+cmd [[command! PackerCompile packadd packer.nvim | lua require('pluginsList.lua').compile()]]
 
 -- settings
 g.indentLine_enabled = 1
 g.indentLine_char_list = {"▏"}
 cmd "set termguicolors"
-g.ayucolor = "dark"
-cmd "colorscheme ayu"
 g.mapleader = " "
 
 -- colorscheme
+
+-- misc
 cmd "set foldmethod=syntax"
+
+-- tmux color stuff
 cmd [[
 if exists("$TMUX")
   let &t_RB = "\ePtmux;\e\e]11;?\007\e\\"
