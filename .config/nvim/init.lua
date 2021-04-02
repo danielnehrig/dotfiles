@@ -1,7 +1,6 @@
 local cmd = vim.cmd
 local g = vim.g
 local nvim_command = vim.api.nvim_command
-local opt = require('utils').opt
 
 -- load plugins
 require("pluginsList.lua")
@@ -25,11 +24,11 @@ require("ale")
 require("gitsigns.lua")
 require("dashboard")
 require("which")
--- require'nvim-treesitter.configs'.setup {
---   indent = {
---     enable = false
---   }
--- }
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = false
+  }
+}
 
 -- other
 require 'snippets'
@@ -51,15 +50,19 @@ cmd [[command! PackerClean packadd packer.nvim | lua require('pluginsList.lua').
 cmd [[command! PackerCompile packadd packer.nvim | lua require('pluginsList.lua').compile()]]
 
 -- settings
-g.indentLine_enabled = 1
+g.indentLine_enabled = 0
+g.indent_blankline_enabled = 0
 g.indentLine_char_list = {"▏"}
 cmd "set termguicolors"
 g.mapleader = " "
 
 -- colorscheme
+g.gruvbox_transparent_bg=1
+cmd "colorscheme gruvbox"
 
 -- misc
-cmd "set foldmethod=syntax"
+cmd "set foldmethod=expr"
+cmd "set foldexpr=nvim_treesitter#foldexpr()"
 
 -- tmux color stuff
 cmd [[
@@ -95,12 +98,15 @@ nvim_command('autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:curs
 
 -- autocmd au groups to trigger differently
 -- depending on action and file types etc
+--
 local definitions = {
   ft = {
     {"FileType", "dashboard", "set showtabline=0"};
     {"FileType", "dashboard", "let g:indentLine_enabled=0"};
+    {"FileType", "dashboard", "let g:indent_blankline_enabled=0"};
     {"BufNewFile,BufRead","*","set showtabline=2"},
     {"BufNewFile,BufRead","*","let g:indentLine_enabled=1"},
+    {"BufNewFile,BufRead","*","let g:indent_blankline_enabled=1"},
     {"BufNewFile,BufRead","*.toml"," setf toml"},
   };
 }

@@ -40,6 +40,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/ayu-vim"
   },
+  ["barbar.nvim"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/barbar.nvim"
+  },
   ["codi.vim"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/codi.vim"
@@ -55,6 +59,10 @@ _G.packer_plugins = {
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
+  gruvbox = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -94,10 +102,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
   },
-  ["nvim-bufferline.lua"] = {
-    loaded = true,
-    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
-  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
@@ -113,6 +117,10 @@ _G.packer_plugins = {
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -229,8 +237,8 @@ _G.packer_plugins = {
 try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18core.callback\frequire\0", "config", "vim-polyglot")
 
 -- Command lazy-loads
-vim.cmd [[command! -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'markdown-preview.nvim'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file StartupTime lua require("packer.load")({'vim-startuptime'}, { cmd = "StartupTime", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'markdown-preview.nvim'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 END
 

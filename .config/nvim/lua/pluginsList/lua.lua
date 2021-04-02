@@ -24,10 +24,12 @@ local function init()
     use {"wbthomason/packer.nvim", opt = true}
     -- theme
     use "glepnir/galaxyline.nvim"
-    use "akinsho/nvim-bufferline.lua"
+    use {"akinsho/nvim-bufferline.lua", disable = true}
+    use 'romgrk/barbar.nvim'
     use "norcalli/nvim-colorizer.lua"
     use "ryanoasis/vim-devicons"
     use {"ayu-theme/ayu-vim", disable = false}
+    use "Dave-Elec/gruvbox"
     use 'arzg/vim-substrata'
     use "kyazdani42/nvim-web-devicons"
     -- language
@@ -35,6 +37,7 @@ local function init()
     use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
     use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
     use "metakirby5/codi.vim"
+    use 'nvim-treesitter/nvim-treesitter'
     -- lint
     use "dense-analysis/ale"
     -- snip
