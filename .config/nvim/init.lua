@@ -17,7 +17,7 @@ require("utils")
 require("testing")
 require("nvimTree.lua")
 require("telescope-nvim.lua")
-require("nvim-lspconfig.lua")
+-- require("nvim-lspconfig.lua")
 require("bufferline.lua")
 require("statusline.lua")
 require("web-devicons.lua")
@@ -44,11 +44,6 @@ require("lspkind").init(
 
 cmd "syntax enable"
 cmd "syntax on"
-cmd [[command! PackerInstall packadd packer.nvim | lua require('pluginsList.lua').install()]]
-cmd [[command! PackerUpdate packadd packer.nvim | lua require('pluginsList.lua').update()]]
-cmd [[command! PackerSync packadd packer.nvim | lua require('pluginsList.lua').sync()]]
-cmd [[command! PackerClean packadd packer.nvim | lua require('pluginsList.lua').clean()]]
-cmd [[command! PackerCompile packadd packer.nvim | lua require('pluginsList.lua').compile()]]
 
 -- settings
 g.indentLine_enabled = 0

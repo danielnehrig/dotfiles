@@ -1,5 +1,6 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
+local cmd = vim.cmd
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
@@ -93,5 +94,11 @@ local plugins = setmetatable({}, {
     return packer[key]
   end
 })
+
+cmd [[command! PackerInstall packadd packer.nvim | lua require('pluginsList.lua').install()]]
+cmd [[command! PackerUpdate packadd packer.nvim | lua require('pluginsList.lua').update()]]
+cmd [[command! PackerSync packadd packer.nvim | lua require('pluginsList.lua').sync()]]
+cmd [[command! PackerClean packadd packer.nvim | lua require('pluginsList.lua').clean()]]
+cmd [[command! PackerCompile packadd packer.nvim | lua require('pluginsList.lua').compile()]]
 
 return plugins
