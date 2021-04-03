@@ -44,6 +44,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/barbar.nvim"
   },
+  ["blamer.nvim"] = {
+    loaded = true,
+    path = "/home/dashie/.local/share/nvim/site/pack/packer/start/blamer.nvim"
+  },
   ["codi.vim"] = {
     loaded = true,
     path = "/home/dashie/.local/share/nvim/site/pack/packer/start/codi.vim"

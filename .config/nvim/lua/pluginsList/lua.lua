@@ -78,6 +78,7 @@ local function init()
     -- git
     use "lewis6991/gitsigns.nvim"
     use "tpope/vim-fugitive"
+    use 'APZelos/blamer.nvim'
     -- testing
     use "vim-test/vim-test"
     use "tpope/vim-dispatch"

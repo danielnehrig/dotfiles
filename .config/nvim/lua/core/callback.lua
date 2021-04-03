@@ -1,1 +1,1 @@
-vim.cmd "set foldmethod=syntax"
+vim.cmd "set foldmethod=expr"
