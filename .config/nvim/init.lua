@@ -2,12 +2,13 @@ local cmd = vim.cmd
 local g = vim.g
 local nvim_command = vim.api.nvim_command
 
+local disabled_built_ins = {
+  'gzip', 'man', 'matchit', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
+  'netrwPlugin'
+}
+for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
+
 if not g.vscode then
-    local disabled_built_ins = {
-      'gzip', 'man', 'matchit', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
-      'netrwPlugin'
-    }
-    for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 
   -- load plugins
   require("pluginsList.lua")
@@ -64,12 +65,12 @@ if not g.vscode then
 
   -- tmux color stuff
   cmd [[
-  if exists("$TMUX")
-    let &t_RB = "\ePtmux;\e\e]11;?\007\e\\"
-  endif
-  set t_8f=^[[38;2;%lu;%lu;%lum
-  set t_8b=^[[48;2;%lu;%lu;%lum
-  set termguicolors
+    if exists("$TMUX")
+      let &t_RB = "\ePtmux;\e\e]11;?\007\e\\"
+    endif
+    set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
+    set termguicolors
   ]]
 
   -- highlights
@@ -96,7 +97,6 @@ if not g.vscode then
 
   -- autocmd au groups to trigger differently
   -- depending on action and file types etc
-  --
   local definitions = {
     ft = {
       {"FileType", "dashboard", "set showtabline=0"};
