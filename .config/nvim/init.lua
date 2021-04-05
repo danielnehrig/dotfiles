@@ -29,6 +29,9 @@ if not g.vscode then
   require("which")
   require 'swagger'
   require'nvim-treesitter.configs'.setup {
+    highlight = {
+      enable = true,
+    },
     indent = {
       enable = false
     }
@@ -119,6 +122,7 @@ if not g.vscode then
   _G.MUtils= {}
 
   vim.g.completion_confirm_key = ""
+
   MUtils.completion_confirm=function()
     if vim.fn.pumvisible() ~= 0  then
       if vim.fn.complete_info()["selected"] ~= -1 then
