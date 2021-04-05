@@ -36,10 +36,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/start/ale"
   },
-  ["ayu-vim"] = {
-    loaded = true,
-    path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/start/ayu-vim"
-  },
   ["barbar.nvim"] = {
     loaded = true,
     path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/start/barbar.nvim"
@@ -147,6 +143,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["preview-swagger.nvim"] = {
+    commands = { "SwaggerPreview" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/opt/preview-swagger.nvim"
+  },
   ["quick-scope"] = {
     loaded = true,
     path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/start/quick-scope"
@@ -211,10 +213,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/opt/vim-startuptime"
   },
-  ["vim-substrata"] = {
-    loaded = true,
-    path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/start/vim-substrata"
-  },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/dnehrig/.local/share/nvim/site/pack/packer/start/vim-surround"
@@ -242,8 +240,17 @@ try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18core.ca
 
 -- Command lazy-loads
 vim.cmd [[command! -nargs=* -range -bang -complete=file StartupTime lua require("packer.load")({'vim-startuptime'}, { cmd = "StartupTime", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file SwaggerPreview lua require("packer.load")({'preview-swagger.nvim'}, { cmd = "SwaggerPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'markdown-preview.nvim'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+vim.cmd [[au FileType yaml ++once lua require("packer.load")({'preview-swagger.nvim'}, { ft = "yaml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType md ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "md" }, _G.packer_plugins)]]
+vim.cmd [[au FileType yml ++once lua require("packer.load")({'preview-swagger.nvim'}, { ft = "yml" }, _G.packer_plugins)]]
+vim.cmd("augroup END")
 END
 
 catch

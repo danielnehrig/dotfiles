@@ -38,7 +38,7 @@ require("compe").setup(
       spell = false,
       tags = false,
       snippets_nvim = true,
-      treesitter = false
+      treesitter = true
     }
   }
 )

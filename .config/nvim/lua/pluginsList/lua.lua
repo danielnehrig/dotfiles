@@ -29,16 +29,15 @@ local function init()
     use 'romgrk/barbar.nvim'
     use "norcalli/nvim-colorizer.lua"
     use "ryanoasis/vim-devicons"
-    use {"ayu-theme/ayu-vim", disable = false}
     use "Dave-Elec/gruvbox"
-    use 'arzg/vim-substrata'
     use "kyazdani42/nvim-web-devicons"
     -- language
     use 'rust-lang/rust.vim'
     use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
-    use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+    use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}, cmd = 'MarkdownPreview'}
     use "metakirby5/codi.vim"
-    use 'nvim-treesitter/nvim-treesitter'
+    use "nvim-treesitter/nvim-treesitter"
+    use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
     -- lint
     use "dense-analysis/ale"
     -- snip
