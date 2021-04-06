@@ -27,6 +27,7 @@ local function init()
     use "glepnir/galaxyline.nvim"
     use {"akinsho/nvim-bufferline.lua", disable = true}
     use 'romgrk/barbar.nvim'
+    use 'nvim-telescope/telescope-fzf-writer.nvim'
     use "norcalli/nvim-colorizer.lua"
     use "ryanoasis/vim-devicons"
     use "Dave-Elec/gruvbox"
