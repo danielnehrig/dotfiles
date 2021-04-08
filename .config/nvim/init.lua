@@ -1,6 +1,7 @@
 local cmd = vim.cmd
 local g = vim.g
 local nvim_command = vim.api.nvim_command
+local remap = vim.api.nvim_set_keymap
 
 local disabled_built_ins = {
   'gzip', 'man', 'matchit', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
@@ -9,6 +10,7 @@ local disabled_built_ins = {
 for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 
 if not g.vscode then
+  local npairs = require('nvim-autopairs')
 
   -- load plugins
   require("pluginsList.lua")
@@ -97,7 +99,11 @@ if not g.vscode then
   cmd("hi NvimTreeIndentMarker guifg=#545862")
   cmd("hi CustomExplorerBg guibg=#242830")
   nvim_command('autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0')
-
+  g.mapleader = " "
+  remap('n' , '<Leader>qn',':cnext<CR>', {silent = true , noremap = true})
+  remap('n' , '<Leader>qo',':copen<CR>', {silent = true , noremap = true})
+  remap('n' , '<Leader>qc',':cclose<CR>', {silent = true , noremap = true})
+  remap('n' , '<Leader>qp',':cprev<CR>', {silent = true , noremap = true})
   -- autocmd au groups to trigger differently
   -- depending on action and file types etc
   local definitions = {
@@ -116,8 +122,6 @@ if not g.vscode then
 
 
   -- MAPPING FOR AUTOPAIRS INDENT INSIDE BRACKETS
-  local remap = vim.api.nvim_set_keymap
-  local npairs = require('nvim-autopairs')
 
   _G.MUtils= {}
 
