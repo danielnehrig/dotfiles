@@ -14,7 +14,7 @@ vim.api.nvim_set_keymap("n", "<Leader>t5", [[<Cmd>BufferGoto 5<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>t6", [[<Cmd>BufferGoto 6<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>t6", [[<Cmd>BufferGoto 6<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>tc", [[<Cmd>BufferClose<CR>]], opt)
-vim.api.nvim_set_keymap("n", "<Leader>tp", [[<Cmd>BufferPick<CR>]], opt)
+vim.api.nvim_set_keymap("n", "<Leader>tt", [[<Cmd>BufferPick<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>ta", [[<Cmd>BufferCloseAllButCurrent<CR>]], opt)
 
 -- colors for active , inactive buffer tabs 
