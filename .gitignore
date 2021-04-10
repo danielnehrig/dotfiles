@@ -5,6 +5,7 @@ fonts
 SourceCodeProAwesome.ttf
 lua-language-server
 **/speedlog
+.config/nvim/plugin/packer_compiled.vim
 depend
 installed
 *.swp
