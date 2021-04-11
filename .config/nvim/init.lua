@@ -60,6 +60,7 @@ if not g.vscode then
   cmd "set termguicolors"
   g.mapleader = " "
 
+  g.blamer_enabled = 1
   -- colorscheme
   g.gruvbox_transparent_bg=1
   cmd "colorscheme gruvbox"

@@ -7,8 +7,7 @@ require("telescope").setup {
             "--with-filename",
             "--line-number",
             "--column",
-            "--smart-case",
-            "-u"
+            "--smart-case"
         },
         prompt_position = "bottom",
         prompt_prefix = "> ",
@@ -28,7 +27,7 @@ require("telescope").setup {
             }
         },
         file_sorter = require "telescope.sorters".get_fuzzy_file,
-        file_ignore_patterns = {"node_modules", ".git"},
+        file_ignore_patterns = {},
         generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
         shorten_path = true,
         winblend = 0,
@@ -51,16 +50,16 @@ require("telescope").setup {
         media_files = {
             filetypes = {"png", "webp", "jpg", "jpeg"},
             find_cmd = "rg" -- find command (defaults to `fd`)
-        },
-        fzf_writer = {
-            minimum_grep_characters = 2,
-            minimum_files_characters = 2,
-
-            -- Disabled by default.
-            -- Will probably slow down some aspects of the sorter, but can make color highlights.
-            -- I will work on this more later.
-            use_highlighter = true,
         }
+        -- fzf_writer = {
+        --     minimum_grep_characters = 2,
+        --     minimum_files_characters = 2,
+
+        --     -- Disabled by default.
+        --     -- Will probably slow down some aspects of the sorter, but can make color highlights.
+        --     -- I will work on this more later.
+        --     use_highlighter = true,
+        -- }
     }
 }
 

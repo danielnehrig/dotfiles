@@ -35,7 +35,7 @@ local function init()
     use {'simrat39/rust-tools.nvim', ft = {'rust', 'rs'}}
     use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
     use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}, cmd = 'MarkdownPreview'}
-    use {"metakirby5/codi.vim", ft = {'js', 'ts', 'lua', 'typescript'}}
+    use {"metakirby5/codi.vim", ft = {'js', 'ts', 'lua', 'typescript', 'javascript'}}
     use "nvim-treesitter/nvim-treesitter"
     use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
     -- lint
@@ -54,11 +54,9 @@ local function init()
     -- navigation
     use "nvim-telescope/telescope-github.nvim"
     use "nvim-telescope/telescope-project.nvim"
-    use { 'nvim-telescope/telescope.nvim' }
-    use {'nvim-lua/popup.nvim'}
-    use {'nvim-lua/plenary.nvim'}
-
-    use "nvim-telescope/telescope-fzf-writer.nvim"
+    use "nvim-telescope/telescope.nvim"
+    use "nvim-lua/popup.nvim"
+    use "nvim-lua/plenary.nvim"
     use "nvim-telescope/telescope-media-files.nvim"
     use "kyazdani42/nvim-tree.lua"
     -- misc
