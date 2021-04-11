@@ -26,7 +26,6 @@ local function init()
     -- theme
     use "glepnir/galaxyline.nvim"
     use 'romgrk/barbar.nvim'
-    use 'nvim-telescope/telescope-fzf-writer.nvim'
     use "norcalli/nvim-colorizer.lua"
     use "ryanoasis/vim-devicons"
     use "Dave-Elec/gruvbox"
@@ -55,10 +54,11 @@ local function init()
     -- navigation
     use "nvim-telescope/telescope-github.nvim"
     use "nvim-telescope/telescope-project.nvim"
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
+    use { 'nvim-telescope/telescope.nvim' }
+    use {'nvim-lua/popup.nvim'}
+    use {'nvim-lua/plenary.nvim'}
+
+    use "nvim-telescope/telescope-fzf-writer.nvim"
     use "nvim-telescope/telescope-media-files.nvim"
     use "kyazdani42/nvim-tree.lua"
     -- misc

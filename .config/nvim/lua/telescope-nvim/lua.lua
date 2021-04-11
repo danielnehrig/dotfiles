@@ -1,14 +1,14 @@
 require("telescope").setup {
     defaults = {
         vimgrep_arguments = {
-            
             "rg",
             "--color=never",
             "--no-heading",
             "--with-filename",
             "--line-number",
             "--column",
-            "--smart-case"
+            "--smart-case",
+            "-u"
         },
         prompt_position = "bottom",
         prompt_prefix = "> ",
@@ -28,7 +28,7 @@ require("telescope").setup {
             }
         },
         file_sorter = require "telescope.sorters".get_fuzzy_file,
-        file_ignore_patterns = {},
+        file_ignore_patterns = {"node_modules", ".git"},
         generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
         shorten_path = true,
         winblend = 0,
@@ -74,7 +74,9 @@ vim.g.mapleader = " "
 
 -- mappings 
 vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], opt)
+--vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require('telescope').extensions.fzf_writer.files()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fg", [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], opt)
+--vim.api.nvim_set_keymap("n", "<Leader>fg", [[<Cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>]], opt)
 vim.api.nvim_set_keymap(
     "n",
     "<Leader>fp",
