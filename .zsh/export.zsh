@@ -21,7 +21,7 @@ PATH+=":$HOME/.cargo/bin"
 fi
 export EDITOR='vim'
 export DEFAULT_USER="$USER"
-export TERM=xterm-256color
+# export TERM=xterm-256color
 export UNCRUSTIFY_CONFIG=~/.dotfiles-darwin/.uncrustify
 export COMPOSE_PARALLEL_LIMIT=1000
 export COMPOSE_HTTP_TIMEOUT=120
