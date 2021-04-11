@@ -25,7 +25,6 @@ local function init()
     use {"wbthomason/packer.nvim", opt = true}
     -- theme
     use "glepnir/galaxyline.nvim"
-    use {"akinsho/nvim-bufferline.lua", disable = true}
     use 'romgrk/barbar.nvim'
     use 'nvim-telescope/telescope-fzf-writer.nvim'
     use "norcalli/nvim-colorizer.lua"
@@ -33,14 +32,15 @@ local function init()
     use "Dave-Elec/gruvbox"
     use "kyazdani42/nvim-web-devicons"
     -- language
-    use 'rust-lang/rust.vim'
+    use {'rust-lang/rust.vim', ft = {'rust', 'rs'}}
+    use {'simrat39/rust-tools.nvim', ft = {'rust', 'rs'}}
     use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
     use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}, cmd = 'MarkdownPreview'}
-    use "metakirby5/codi.vim"
+    use {"metakirby5/codi.vim", ft = {'js', 'ts', 'lua', 'typescript'}}
     use "nvim-treesitter/nvim-treesitter"
     use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
     -- lint
-    use "dense-analysis/ale"
+    use {"dense-analysis/ale"}
     -- snip
     use "norcalli/snippets.nvim"
     use "SirVer/ultisnips"
