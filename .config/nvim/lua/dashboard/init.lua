@@ -1,10 +1,3 @@
-vim.api.nvim_exec(
-[[
-set efm+=%.%#\ at\ %f:%l:%c,%.%#\ at\ %.%#(%f:%l:%c)
-set efm+=%.%#\ at\ %.%#(%f:%l:%c),%-G%.%#
-]],
-true)
-
 local config = {}
 
 function config.dashboard()

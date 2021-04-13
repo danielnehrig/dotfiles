@@ -33,7 +33,6 @@ local function init()
     -- language
     use {'rust-lang/rust.vim', ft = {'rust', 'rs'}}
     use {'simrat39/rust-tools.nvim', ft = {'rust', 'rs'}}
-    use {'danielnehrig/vim-polyglot', config = function() require'core.callback' end}
     use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}, cmd = 'MarkdownPreview'}
     use {"metakirby5/codi.vim", ft = {'js', 'ts', 'lua', 'typescript', 'javascript'}}
     use "nvim-treesitter/nvim-treesitter"
@@ -83,7 +82,7 @@ local function init()
     use "tpope/vim-dispatch"
     use "neomake/neomake"
     -- debug
-    use "puremourning/vimspector"
+    use {"puremourning/vimspector", disable = true}
 end
 
 local plugins = setmetatable({}, {
