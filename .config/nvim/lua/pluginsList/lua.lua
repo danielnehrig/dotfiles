@@ -25,6 +25,7 @@ local function init()
     use {"wbthomason/packer.nvim", opt = true}
     -- theme
     use "glepnir/galaxyline.nvim"
+    use 'adelarsq/vim-matchit'
     use 'romgrk/barbar.nvim'
     use "norcalli/nvim-colorizer.lua"
     use "ryanoasis/vim-devicons"
@@ -36,6 +37,7 @@ local function init()
     use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}, cmd = 'MarkdownPreview'}
     use {"metakirby5/codi.vim", ft = {'js', 'ts', 'lua', 'typescript', 'javascript'}}
     use "nvim-treesitter/nvim-treesitter"
+    use 'windwp/nvim-ts-autotag'
     use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
     -- lint
     use {"dense-analysis/ale"}
@@ -60,6 +62,7 @@ local function init()
     use "kyazdani42/nvim-tree.lua"
     -- misc
     use "liuchengxu/vim-which-key"
+    use 'justinmk/vim-sneak'
     use "norcalli/nvim_utils"
     use "preservim/nerdcommenter"
     use "glepnir/dashboard-nvim"
