@@ -52,6 +52,7 @@ local function init()
     use "nvim-lua/lsp_extensions.nvim"
     use "neovim/nvim-lspconfig"
     use "hrsh7th/nvim-compe"
+    use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
     -- navigation
     use "nvim-telescope/telescope-github.nvim"
     use "nvim-telescope/telescope-project.nvim"

@@ -112,9 +112,9 @@ if not g.vscode then
   cmd("hi CustomExplorerBg guibg=#242830")
   nvim_command('autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0')
   g.mapleader = " "
+  remap('n' , '<Leader>qc',':cclose<CR>', {silent = true , noremap = true})
   remap('n' , '<Leader>qn',':cnext<CR>', {silent = true , noremap = true})
   remap('n' , '<Leader>qo',':copen<CR>', {silent = true , noremap = true})
-  remap('n' , '<Leader>qc',':cclose<CR>', {silent = true , noremap = true})
   remap('n' , '<Leader>qp',':cprev<CR>', {silent = true , noremap = true})
   -- autocmd au groups to trigger differently
   -- depending on action and file types etc
