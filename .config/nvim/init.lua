@@ -1,13 +1,14 @@
 local cmd = vim.cmd
 local g = vim.g
+local b = vim.b
 local nvim_command = vim.api.nvim_command
 local remap = vim.api.nvim_set_keymap
 
 local disabled_built_ins = {
-  'gzip', 'man', 'matchit', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
+  'gzip', 'man', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
   'netrwPlugin'
 }
-for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
+for i = 1, 9 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 
 if not g.vscode then
   local npairs = require('nvim-autopairs')
@@ -53,6 +54,7 @@ if not g.vscode then
       }
   )
 
+  cmd "filetype plugin on"
   cmd "syntax enable"
   cmd "syntax on"
 
@@ -66,6 +68,9 @@ if not g.vscode then
   g.indent_blankline_filetype_exclude = { 'help','dashboard','dashpreview','NvimTree','coc-explorer','startify','vista','sagahover' }
   cmd "set termguicolors"
   g.mapleader = " "
+  cmd [[
+    let b:match_words = '(:),\[:\],{:},<:>,' . '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
+  ]]
 
   g.blamer_enabled = 1
   -- colorscheme
