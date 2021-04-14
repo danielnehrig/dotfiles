@@ -54,8 +54,6 @@ if not g.vscode then
   cmd "syntax on"
 
   -- settings
-  g.indentLine_enabled = 0
-  g.indent_blankline_enabled = 0
   g.indentLine_char_list = {"▏"}
   g.indent_blankline_char = '▏'
   g.indent_blankline_show_current_context = true
@@ -116,13 +114,7 @@ if not g.vscode then
   local definitions = {
     ft = {
       {"FileType", "dashboard", "set showtabline=0"};
-      {"FileType", "dashboard", "let g:indentLine_enabled=0"};
-      {"FileType", "dashboard", "let g:indent_blankline_enabled=0"};
-      {"FileType", "dashboard", "let g:indent_blankline_namespace=0"};
       {"BufNewFile,BufRead","*","set showtabline=2"},
-      {"BufNewFile,BufRead","*","let g:indentLine_enabled=1"},
-      {"BufNewFile,BufRead","*","let g:indent_blankline_enabled=1"},
-      {"BufNewFile,BufRead","*","let g:indent_blankline_namespace=18"},
       {"BufNewFile,BufRead","*.toml"," setf toml"},
     };
   }
