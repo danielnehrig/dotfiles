@@ -1,4 +1,3 @@
-require 'lspsaga'
 local map = require 'utils'.map
 local autocmd = require 'utils'.autocmd
 local lsp_status = require('lsp-status')
@@ -85,7 +84,6 @@ local custom_attach = function(client)
   fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
   fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
   fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
-  vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end
 end
 
 -- lsp setups
@@ -98,6 +96,13 @@ require "lspconfig".pyright.setup{on_attach=custom_attach}
 require "lspconfig".dockerls.setup{on_attach=custom_attach}
 require "lspconfig".clangd.setup{on_attach=custom_attach}
 require "lspconfig".vimls.setup{on_attach=custom_attach}
+
+-- disable inline hint of lsp instead use hover saga
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
 
 
 -- lua sumenko
