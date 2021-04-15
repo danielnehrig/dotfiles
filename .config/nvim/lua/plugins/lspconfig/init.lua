@@ -1,7 +1,7 @@
-local map = require 'utils'.map
-local autocmd = require 'utils'.autocmd
-local lsp_status = require('lsp-status')
-local lspconfig = require('lspconfig')
+local map = require "utils".map
+local autocmd = require "utils".autocmd
+local lsp_status = require("lsp-status")
+local lspconfig = require("lspconfig")
 local cmd = vim.cmd
 local fn = vim.fn
 local setOption = vim.api.nvim_set_option
@@ -16,31 +16,31 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- compe setup
 require("compe").setup(
-  {
-    enabled = true,
-    autocomplete = true,
-    debug = false,
-    min_length = 1,
-    preselect = "enable",
-    throttle_time = 80,
-    source_timeout = 200,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    source = {
-      path = true,
-      buffer = true,
-      calc = true,
-      vsnip = true,
-      nvim_lsp = true,
-      nvim_lua = true,
-      spell = false,
-      tags = false,
-      snippets_nvim = true,
-      treesitter = true
+    {
+        enabled = true,
+        autocomplete = true,
+        debug = false,
+        min_length = 1,
+        preselect = "enable",
+        throttle_time = 80,
+        source_timeout = 200,
+        incomplete_delay = 400,
+        max_abbr_width = 100,
+        max_kind_width = 100,
+        max_menu_width = 100,
+        source = {
+            path = true,
+            buffer = true,
+            calc = true,
+            vsnip = true,
+            nvim_lsp = true,
+            nvim_lua = true,
+            spell = false,
+            tags = false,
+            snippets_nvim = true,
+            treesitter = true
+        }
     }
-  }
 )
 
 cmd [[set completeopt=menuone,noinsert,noselect]]
@@ -74,160 +74,162 @@ end
 lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client)
-  lsp_status.on_attach(client)
+    lsp_status.on_attach(client)
 
-  map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
-  map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
-  map('n','<space>gd','<cmd>lua require("lspsaga.provider").preview_definition()<CR>')
-  -- map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
-  map('n','K','<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
-  map('n','gr','<cmd>lua vim.lsp.buf.references()<CR>')
-  -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  map('n','gs','<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-  map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
-  map('n','gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  map('n','<space>gw','<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-  map('n','<space>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-  map('n','<space>ah','<cmd>lua vim.lsp.buf.hover()<CR>')
-  -- map('n','<space>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
-  map('n','<space>af','<cmd>lua require("lspsaga.codeaction").code_action()<CR>')
-  map('v','<space>ac','<cmd>lua require("lspsaga.codeaction").range_code_action()<CR>')
-  map('n','<space>ee','<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
-  --map('n','<space>ar','<cmd>lua vim.lsp.buf.rename()<CR>')
-  map('n','<space>ar','<cmd>lua require("lspsaga.rename").rename()<CR>')
-  map('n','gh','<cmd>lua require("lspsaga.provider").lsp_finder()<CR>')
-  map('n','<space>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-  map('n','<space>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-  map('n','<space>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
-  map('i','<C-space>','<cmd>call compe#complete()<CR>')
-  map('i','<TAB>','<cmd>call compe#confirm()<CR>')
-  map('n','<space>cd','<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
+    map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+    map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+    map("n", "<space>gd", '<cmd>lua require("lspsaga.provider").preview_definition()<CR>')
+    -- map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
+    map("n", "K", '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
+    map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+    -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
+    map("n", "gs", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+    map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+    map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+    map("n", "<space>gw", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+    map("n", "<space>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+    map("n", "<space>ah", "<cmd>lua vim.lsp.buf.hover()<CR>")
+    -- map('n','<space>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
+    map("n", "<space>af", '<cmd>lua require("lspsaga.codeaction").code_action()<CR>')
+    map("v", "<space>ac", '<cmd>lua require("lspsaga.codeaction").range_code_action()<CR>')
+    map("n", "<space>ee", "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>")
+    --map('n','<space>ar','<cmd>lua vim.lsp.buf.rename()<CR>')
+    map("n", "<space>ar", '<cmd>lua require("lspsaga.rename").rename()<CR>')
+    map("n", "gh", '<cmd>lua require("lspsaga.provider").lsp_finder()<CR>')
+    map("n", "<space>=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+    map("n", "<space>ai", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
+    map("n", "<space>ao", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
+    map("i", "<C-space>", "<cmd>call compe#complete()<CR>")
+    map("i", "<TAB>", "<cmd>call compe#confirm()<CR>")
+    map("n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
 
+    autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
-  autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
-
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-  fn.sign_define("LspDiagnosticsSignError", {text = "•"})
-  fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
-  fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
-  fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
+    vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+    fn.sign_define("LspDiagnosticsSignError", {text = "•"})
+    fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
+    fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
+    fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
 end
 
 -- lsp setups
-lspconfig.tsserver.setup{
-  on_attach= function (client)
-    if client.config.flags then
-      client.config.flags.allow_incremental_sync = true
-    end
-    client.resolved_capabilities.document_formatting = false
-    custom_attach(client)
-  end,
-  capabilities=capabilities
+lspconfig.tsserver.setup {
+    on_attach = function(client)
+        if client.config.flags then
+            client.config.flags.allow_incremental_sync = true
+        end
+        client.resolved_capabilities.document_formatting = false
+        custom_attach(client)
+    end,
+    capabilities = capabilities
 }
 
-lspconfig.cssls.setup{on_attach=custom_attach}
-lspconfig.html.setup{on_attach=custom_attach}
-lspconfig.rust_analyzer.setup{on_attach=custom_attach, capabilities=capabilities}
-lspconfig.gopls.setup{on_attach=custom_attach}
-lspconfig.pyright.setup{on_attach=custom_attach}
-lspconfig.dockerls.setup{on_attach=custom_attach}
-lspconfig.clangd.setup{on_attach=custom_attach}
-lspconfig.vimls.setup{on_attach=custom_attach}
+lspconfig.cssls.setup {on_attach = custom_attach}
+lspconfig.html.setup {on_attach = custom_attach}
+lspconfig.rust_analyzer.setup {on_attach = custom_attach, capabilities = capabilities}
+lspconfig.gopls.setup {on_attach = custom_attach}
+lspconfig.pyright.setup {on_attach = custom_attach}
+lspconfig.dockerls.setup {on_attach = custom_attach}
+lspconfig.clangd.setup {on_attach = custom_attach}
+lspconfig.vimls.setup {on_attach = custom_attach}
 
-local eslint = require('plugins.efm.eslint')
-local prettier = require('plugins.efm.prettier')
+local eslint = require("plugins.efm.eslint")
+local prettier = require("plugins.efm.prettier")
+local luafmt = require("plugins.efm.luafmt")
 
 lspconfig.efm.setup {
-  on_attach = function (client)
-    client.resolved_capabilities.document_formatting = true
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd [[augroup Format]]
-        vim.cmd [[autocmd! * <buffer>]]
-        vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
-        vim.cmd [[augroup END]]
-    end
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = true
+        if client.resolved_capabilities.document_formatting then
+            vim.cmd [[augroup Format]]
+            vim.cmd [[autocmd! * <buffer>]]
+            vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
+            vim.cmd [[augroup END]]
+        end
 
-    custom_attach(client)
-  end,
-  root_dir = function()
-    return vim.fn.getcwd()
-  end,
-  init_options = {
-    documentFormatting = false,
-    codeAction = true
-  },
-  settings = {
-    lintDebounce = 200,
-    languages = {
-      javascript = {eslint},
-      javascriptreact = {eslint},
-      ["javascript.jsx"] = {eslint},
-      typescript = {eslint},
-      typescriptreact = {prettier, eslint},
-      ["typescript.tsx"] = {eslint}
+        custom_attach(client)
+    end,
+    root_dir = function()
+        return vim.fn.getcwd()
+    end,
+    init_options = {
+        documentFormatting = false,
+        codeAction = true
+    },
+    settings = {
+        lintDebounce = 200,
+        languages = {
+            javascript = {eslint},
+            javascriptreact = {eslint},
+            ["javascript.jsx"] = {eslint},
+            typescript = {eslint},
+            typescriptreact = {prettier, eslint},
+            ["typescript.tsx"] = {eslint},
+            lua = {luafmt}
+        }
+    },
+    filetypes = {
+        "lua",
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx"
     }
-  },
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx"
-  }
 }
 
 -- lua sumenko
 local system_name
 if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
+    system_name = "macOS"
 elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-  system_name = "Windows"
+    system_name = "Linux"
+elseif vim.fn.has("win32") == 1 then
+    system_name = "Windows"
 else
-  print("Unsupported system for sumneko")
+    print("Unsupported system for sumneko")
 end
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = os.getenv('HOME') .. '/.dotfiles-darwin/lua-language-server'
-local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
+local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
 local function get_lua_runtime()
-  local result = {}
-  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
-    local lua_path = path .. "/lua/"
-    if vim.fn.isdirectory(lua_path) then
-      result[lua_path] = true
+    local result = {}
+    for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+        local lua_path = path .. "/lua/"
+        if vim.fn.isdirectory(lua_path) then
+            result[lua_path] = true
+        end
     end
-  end
-  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
-  result[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true
+    result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+    result[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true
 
-  return result
+    return result
 end
 
 require "lspconfig".sumneko_lua.setup {
-  on_attach=custom_attach,
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = vim.split(package.path, ';'),
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = get_lua_runtime(),
-        maxPreload = 1000,
-        preloadFileSize = 1000
-      },
-    },
-  },
+    on_attach = custom_attach,
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+                -- Setup your lua path
+                path = vim.split(package.path, ";")
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {"vim"}
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = get_lua_runtime(),
+                maxPreload = 1000,
+                preloadFileSize = 1000
+            }
+        }
+    }
 }
