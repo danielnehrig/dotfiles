@@ -9,9 +9,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
--- check if packer is installed (~/local/share/nvim/site/pack)
-local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
-
 local packer = nil
 local function init()
     if packer == nil then
@@ -39,8 +36,6 @@ local function init()
     use "nvim-treesitter/nvim-treesitter"
     use 'windwp/nvim-ts-autotag'
     use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
-    -- lint
-    use {"dense-analysis/ale"} -- linter TODO replace with efm
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -63,14 +58,14 @@ local function init()
     use "kyazdani42/nvim-tree.lua" -- Drawboard style like nerdtree
     -- misc
     use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
-    use 'justinmk/vim-sneak' -- movement plugin
+    -- use 'justinmk/vim-sneak' -- movement plugin
     use "norcalli/nvim_utils" -- utils
     use "preservim/nerdcommenter" -- commenting
     use "glepnir/dashboard-nvim" -- dashboard
     use "junegunn/vim-slash" -- better search
     use "windwp/nvim-autopairs" -- autopairs "" {}
     use "unblevable/quick-scope" -- f F t T improved highlight
-    use "alvan/vim-closetag" -- ?
+    use "alvan/vim-closetag" -- close <> tag for xhtml ... maybe remove because of TS tag
     use {
         'lukas-reineke/indent-blankline.nvim',
         branch = 'lua'
@@ -98,10 +93,10 @@ local plugins = setmetatable({}, {
   end
 })
 
-cmd [[command! PackerInstall packadd packer.nvim | lua require('pluginsList.lua').install()]]
-cmd [[command! PackerUpdate packadd packer.nvim | lua require('pluginsList.lua').update()]]
-cmd [[command! PackerSync packadd packer.nvim | lua require('pluginsList.lua').sync()]]
-cmd [[command! PackerClean packadd packer.nvim | lua require('pluginsList.lua').clean()]]
-cmd [[command! PackerCompile packadd packer.nvim | lua require('pluginsList.lua').compile()]]
+cmd [[command! PackerInstall packadd packer.nvim | lua require('packer-config').install()]]
+cmd [[command! PackerUpdate packadd packer.nvim | lua require('packer-config').update()]]
+cmd [[command! PackerSync packadd packer.nvim | lua require('packer-config').sync()]]
+cmd [[command! PackerClean packadd packer.nvim | lua require('packer-config').clean()]]
+cmd [[command! PackerCompile packadd packer.nvim | lua require('packer-config').compile()]]
 
 return plugins

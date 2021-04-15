@@ -1,5 +1,6 @@
 local gl = require("galaxyline")
-local TestStatus = require("testing").TestStatus
+local TestStatus = require("plugins.testing").TestStatus
+  local gls = gl.section
 gl.short_line_list = { }
 
 local colors = {
@@ -198,10 +199,9 @@ local function default_line()
     }
 end
 
-function evilline()
+local function evilline()
     local colors = require('galaxyline.theme').default
     local condition = require('galaxyline.condition')
-    local gls = gl.section
     gl.short_line_list = {'NvimTree','vista','dbui','packer'}
 
     gls.left[1] = {

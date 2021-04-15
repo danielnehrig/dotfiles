@@ -1,5 +1,5 @@
 -- ale settings
-local result = vim.api.nvim_exec(
+vim.api.nvim_exec(
 [[
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['eslint']

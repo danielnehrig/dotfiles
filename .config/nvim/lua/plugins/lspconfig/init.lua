@@ -1,6 +1,7 @@
 local map = require 'utils'.map
 local autocmd = require 'utils'.autocmd
 local lsp_status = require('lsp-status')
+local lspconfig = require('lspconfig')
 local cmd = vim.cmd
 local fn = vim.fn
 local setOption = vim.api.nvim_set_option
@@ -10,7 +11,7 @@ cmd [[packadd nvim-compe]]
 
 setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = lsp_status.capabilities
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- compe setup
@@ -43,6 +44,32 @@ require("compe").setup(
 )
 
 cmd [[set completeopt=menuone,noinsert,noselect]]
+
+vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
+    if err ~= nil or result == nil then
+        return
+    end
+    if not vim.api.nvim_buf_get_option(bufnr, "modified") then
+        local view = vim.fn.winsaveview()
+        vim.lsp.util.apply_text_edits(result, bufnr)
+        vim.fn.winrestview(view)
+        if bufnr == vim.api.nvim_get_current_buf() then
+            vim.cmd [[noautocmd :update]]
+        end
+    end
+end
+
+FormatToggle = function(value)
+    vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
+end
+vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
+vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
+
+_G.formatting = function()
+    if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
+        vim.lsp.buf.formatting(vim.g[string.format("format_options_%s", vim.bo.filetype)] or {})
+    end
+end
 
 lsp_status.register_progress()
 -- custom attach config
@@ -87,23 +114,68 @@ local custom_attach = function(client)
 end
 
 -- lsp setups
-require "lspconfig".tsserver.setup{on_attach=custom_attach, capabilities=lsp_status.capabilities, handlers = lsp_status.extensions.clangd.setup()}
-require "lspconfig".cssls.setup{on_attach=custom_attach}
-require "lspconfig".html.setup{on_attach=custom_attach}
-require "lspconfig".rust_analyzer.setup{on_attach=custom_attach, capabilities=capabilities}
-require "lspconfig".gopls.setup{on_attach=custom_attach}
-require "lspconfig".pyright.setup{on_attach=custom_attach}
-require "lspconfig".dockerls.setup{on_attach=custom_attach}
-require "lspconfig".clangd.setup{on_attach=custom_attach}
-require "lspconfig".vimls.setup{on_attach=custom_attach}
+lspconfig.tsserver.setup{
+  on_attach= function (client)
+    if client.config.flags then
+      client.config.flags.allow_incremental_sync = true
+    end
+    client.resolved_capabilities.document_formatting = false
+    custom_attach(client)
+  end,
+  capabilities=capabilities
+}
 
--- disable inline hint of lsp instead use hover saga
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
+lspconfig.cssls.setup{on_attach=custom_attach}
+lspconfig.html.setup{on_attach=custom_attach}
+lspconfig.rust_analyzer.setup{on_attach=custom_attach, capabilities=capabilities}
+lspconfig.gopls.setup{on_attach=custom_attach}
+lspconfig.pyright.setup{on_attach=custom_attach}
+lspconfig.dockerls.setup{on_attach=custom_attach}
+lspconfig.clangd.setup{on_attach=custom_attach}
+lspconfig.vimls.setup{on_attach=custom_attach}
+
+local eslint = require('plugins.efm.eslint')
+local prettier = require('plugins.efm.prettier')
+
+lspconfig.efm.setup {
+  on_attach = function (client)
+    client.resolved_capabilities.document_formatting = true
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd [[augroup Format]]
+        vim.cmd [[autocmd! * <buffer>]]
+        vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
+        vim.cmd [[augroup END]]
+    end
+
+    custom_attach(client)
+  end,
+  root_dir = function()
+    return vim.fn.getcwd()
+  end,
+  init_options = {
+    documentFormatting = false,
+    codeAction = true
+  },
+  settings = {
+    lintDebounce = 200,
+    languages = {
+      javascript = {eslint},
+      javascriptreact = {eslint},
+      ["javascript.jsx"] = {eslint},
+      typescript = {eslint},
+      typescriptreact = {prettier, eslint},
+      ["typescript.tsx"] = {eslint}
     }
-)
-
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  }
+}
 
 -- lua sumenko
 local system_name
@@ -121,8 +193,22 @@ end
 local sumneko_root_path = os.getenv('HOME') .. '/.dotfiles-darwin/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
+local function get_lua_runtime()
+  local result = {}
+  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+    local lua_path = path .. "/lua/"
+    if vim.fn.isdirectory(lua_path) then
+      result[lua_path] = true
+    end
+  end
+  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+  result[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true
+
+  return result
+end
+
 require "lspconfig".sumneko_lua.setup {
-	on_attach=custom_attach,
+  on_attach=custom_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
@@ -138,10 +224,9 @@ require "lspconfig".sumneko_lua.setup {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = {
-          [fn.expand('$VIMRUNTIME/lua')] = true,
-          [fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        },
+        library = get_lua_runtime(),
+        maxPreload = 1000,
+        preloadFileSize = 1000
       },
     },
   },

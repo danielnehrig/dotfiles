@@ -1,4 +1,4 @@
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+local scopes = {o = vim.o, b = vim.bo, w = vim.wo, g = vim.g}
 
 local M = {}
 
