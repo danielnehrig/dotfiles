@@ -36,8 +36,6 @@ local function init()
     use "nvim-treesitter/nvim-treesitter"
     use 'windwp/nvim-ts-autotag'
     use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
-    -- lint
-    use "dense-analysis/ale" -- linter TODO replace with efm
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -58,9 +56,10 @@ local function init()
     use "nvim-lua/plenary.nvim" -- LIB
     use "nvim-telescope/telescope-media-files.nvim" -- media files showing
     use "kyazdani42/nvim-tree.lua" -- Drawboard style like nerdtree
+    use "dense-analysis/ale"
     -- misc
     use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
-    use 'justinmk/vim-sneak' -- movement plugin
+    -- use 'justinmk/vim-sneak' -- movement plugin
     use "norcalli/nvim_utils" -- utils
     use "preservim/nerdcommenter" -- commenting
     use "glepnir/dashboard-nvim" -- dashboard

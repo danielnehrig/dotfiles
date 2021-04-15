@@ -1,6 +1,7 @@
 local map = require 'utils'.map
 local autocmd = require 'utils'.autocmd
 local lsp_status = require('lsp-status')
+local lspconfig = require('lspconfig')
 local cmd = vim.cmd
 local fn = vim.fn
 local setOption = vim.api.nvim_set_option
@@ -10,7 +11,7 @@ cmd [[packadd nvim-compe]]
 
 setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = lsp_status.capabilities
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- compe setup
@@ -87,23 +88,25 @@ local custom_attach = function(client)
 end
 
 -- lsp setups
-require "lspconfig".tsserver.setup{on_attach=custom_attach, capabilities=lsp_status.capabilities, handlers = lsp_status.extensions.clangd.setup()}
-require "lspconfig".cssls.setup{on_attach=custom_attach}
-require "lspconfig".html.setup{on_attach=custom_attach}
-require "lspconfig".rust_analyzer.setup{on_attach=custom_attach, capabilities=capabilities}
-require "lspconfig".gopls.setup{on_attach=custom_attach}
-require "lspconfig".pyright.setup{on_attach=custom_attach}
-require "lspconfig".dockerls.setup{on_attach=custom_attach}
-require "lspconfig".clangd.setup{on_attach=custom_attach}
-require "lspconfig".vimls.setup{on_attach=custom_attach}
+lspconfig.tsserver.setup{
+  on_attach= function (client)
+    if client.config.flags then
+      client.config.flags.allow_incremental_sync = true
+    end
+    client.resolved_capabilities.document_formatting = false
+    custom_attach(client)
+  end,
+  capabilities=capabilities
+}
 
--- disable inline hint of lsp instead use hover saga
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
-    }
-)
-
+lspconfig.cssls.setup{on_attach=custom_attach}
+lspconfig.html.setup{on_attach=custom_attach}
+lspconfig.rust_analyzer.setup{on_attach=custom_attach, capabilities=capabilities}
+lspconfig.gopls.setup{on_attach=custom_attach}
+lspconfig.pyright.setup{on_attach=custom_attach}
+lspconfig.dockerls.setup{on_attach=custom_attach}
+lspconfig.clangd.setup{on_attach=custom_attach}
+lspconfig.vimls.setup{on_attach=custom_attach}
 
 -- lua sumenko
 local system_name
@@ -121,8 +124,22 @@ end
 local sumneko_root_path = os.getenv('HOME') .. '/.dotfiles-darwin/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
+local function get_lua_runtime()
+  local result = {}
+  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+    local lua_path = path .. "/lua/"
+    if vim.fn.isdirectory(lua_path) then
+      result[lua_path] = true
+    end
+  end
+  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+  result[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true
+
+  return result
+end
+
 require "lspconfig".sumneko_lua.setup {
-	on_attach=custom_attach,
+  on_attach=custom_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
@@ -138,10 +155,9 @@ require "lspconfig".sumneko_lua.setup {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = {
-          [fn.expand('$VIMRUNTIME/lua')] = true,
-          [fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        },
+        library = get_lua_runtime(),
+        maxPreload = 1000,
+        preloadFileSize = 1000
       },
     },
   },

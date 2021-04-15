@@ -29,12 +29,11 @@ if not g.vscode then
   require("plugins.telescope")
   require("plugins.lspconfig")
   require("plugins.indent-blankline")
-  -- require("plugins.efm")
   require("plugins.bufferline")
   require("plugins.statusline")
   require("plugins.web-devicons")
-  require("plugins.ale") -- TODO replace with efm
   require("plugins.gitsigns")
+  require("plugins.ale")
   require("plugins.dashboard")
   require("plugins.which")
   require("plugins.swagger")
