@@ -85,6 +85,7 @@ local custom_attach = function(client)
   fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
   fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
   fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
+  vim.lsp.callbacks["textDocument/publishDiagnostics"] = function() end
 end
 
 -- lsp setups

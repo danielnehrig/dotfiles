@@ -24,13 +24,13 @@ local function init()
 
     use {"wbthomason/packer.nvim", opt = true}
     -- theme
-    use "glepnir/galaxyline.nvim"
-    use 'adelarsq/vim-matchit'
-    use 'romgrk/barbar.nvim'
-    use "norcalli/nvim-colorizer.lua"
-    use "ryanoasis/vim-devicons"
-    use "Dave-Elec/gruvbox"
-    use "kyazdani42/nvim-web-devicons"
+    use "glepnir/galaxyline.nvim" -- statusbar
+    use 'adelarsq/vim-matchit' -- matchit % jump
+    use 'romgrk/barbar.nvim' -- bufferline
+    use "norcalli/nvim-colorizer.lua" -- colors hex
+    use "ryanoasis/vim-devicons" -- devicons
+    use "Dave-Elec/gruvbox" -- colorscheme
+    use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
     use {'rust-lang/rust.vim', ft = {'rust', 'rs'}}
     use {'simrat39/rust-tools.nvim', ft = {'rust', 'rs'}}
@@ -40,53 +40,55 @@ local function init()
     use 'windwp/nvim-ts-autotag'
     use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
     -- lint
-    use {"dense-analysis/ale"}
+    use {"dense-analysis/ale"} -- linter TODO replace with efm
     -- snip
-    use "norcalli/snippets.nvim"
-    use "SirVer/ultisnips"
-    use "hrsh7th/vim-vsnip"
+    use "norcalli/snippets.nvim" -- snippets
+    use "SirVer/ultisnips" -- snippets
+    use "hrsh7th/vim-vsnip" -- snippets
     -- completion
-    use "nvim-lua/lsp-status.nvim"
-    use "glepnir/lspsaga.nvim"
+    use "nvim-lua/lsp-status.nvim" -- lsp status
+    use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim"
-    use "nvim-lua/lsp_extensions.nvim"
-    use "neovim/nvim-lspconfig"
-    use "hrsh7th/nvim-compe"
-    use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+    use "nvim-lua/lsp_extensions.nvim" -- lsp extensions inlay hints etc
+    use "neovim/nvim-lspconfig" -- default configs for lsp and setup lsp
+    use "hrsh7th/nvim-compe" -- completion engine
+    use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'} -- tabnine completion engine AI
     -- navigation
-    use "nvim-telescope/telescope-github.nvim"
-    use "nvim-telescope/telescope-project.nvim"
-    use "nvim-telescope/telescope.nvim"
-    use "nvim-lua/popup.nvim"
-    use "nvim-lua/plenary.nvim"
-    use "nvim-telescope/telescope-media-files.nvim"
-    use "kyazdani42/nvim-tree.lua"
+    use "nvim-telescope/telescope-github.nvim" -- github telescope
+    use "nvim-telescope/telescope-project.nvim" -- project manager
+    use "nvim-telescope/telescope.nvim" -- fuzzy finder
+    use "nvim-lua/popup.nvim" -- LIB
+    use "nvim-lua/plenary.nvim" -- LIB
+    use "nvim-telescope/telescope-media-files.nvim" -- media files showing
+    use "kyazdani42/nvim-tree.lua" -- Drawboard style like nerdtree
     -- misc
-    use "liuchengxu/vim-which-key"
-    use 'justinmk/vim-sneak'
-    use "norcalli/nvim_utils"
-    use "preservim/nerdcommenter"
-    use "glepnir/dashboard-nvim"
-    use "junegunn/vim-slash"
-    use "windwp/nvim-autopairs"
-    use "unblevable/quick-scope"
-    use "alvan/vim-closetag"
+    use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
+    use 'justinmk/vim-sneak' -- movement plugin
+    use "norcalli/nvim_utils" -- utils
+    use "preservim/nerdcommenter" -- commenting
+    use "glepnir/dashboard-nvim" -- dashboard
+    use "junegunn/vim-slash" -- better search
+    use "windwp/nvim-autopairs" -- autopairs "" {}
+    use "unblevable/quick-scope" -- f F t T improved highlight
+    use "alvan/vim-closetag" -- ?
     use {
         'lukas-reineke/indent-blankline.nvim',
         branch = 'lua'
-    }
-    use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]}
-    use "tpope/vim-surround"
+    } -- show indentation
+    use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]} -- show startup time
+    use "tpope/vim-surround" -- surround "" ''
     -- git
-    use "lewis6991/gitsigns.nvim"
-    use "tpope/vim-fugitive"
-    use 'APZelos/blamer.nvim'
+    use 'ruifm/gitlinker.nvim' -- get repo file on remote as url
+    use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
+    use "tpope/vim-fugitive" -- git integration
+    use 'tpope/vim-rhubarb' -- GBrowse for gh
+    use 'APZelos/blamer.nvim' -- line blamer on cursor hold
     -- testing
-    use "vim-test/vim-test"
-    use "tpope/vim-dispatch"
-    use "neomake/neomake"
+    use "vim-test/vim-test" -- vim testing
+    use "tpope/vim-dispatch" -- different building and run solution
+    use "neomake/neomake" -- same as dispatch but async
     -- debug
-    use {"puremourning/vimspector", disable = true}
+    use {"puremourning/vimspector", disable = true} -- debugger
 end
 
 local plugins = setmetatable({}, {

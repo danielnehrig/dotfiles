@@ -23,6 +23,7 @@ if not g.vscode then
   require("nvimTree.lua")
   require("telescope-nvim.lua")
   require("nvim-lspconfig.lua")
+  -- require("efm")
   require("bufferline.lua")
   require("statusline.lua")
   require("web-devicons.lua")
@@ -30,7 +31,7 @@ if not g.vscode then
   require("gitsigns.lua")
   require("dashboard")
   require("which")
-  require 'swagger'
+  require'swagger'
   require'nvim-treesitter.configs'.setup {
     highlight = {
       enable = true,
@@ -47,6 +48,20 @@ if not g.vscode then
   require 'snippets'
   require "colorizer".setup()
   require("nvim-autopairs").setup()
+  require"gitlinker".setup({
+    opts = {
+      remote = nil, -- force the use of a specific remote
+      -- adds current line nr in the url for normal mode
+      add_current_line_on_normal_mode = true,
+      -- callback for what to do with the url
+      action_callback = require"gitlinker.actions".copy_to_clipboard
+    },
+    callbacks = {
+          ["github.com"] = require"gitlinker.hosts".get_github_type_url,
+          ["gitlab.com"] = require"gitlinker.hosts".get_gitlab_type_url
+    },
+    mappings = "<leader>gy" -- mapping to call url generation
+  })
   require 'nvim_utils'
   require("lspkind").init(
       {
@@ -79,7 +94,6 @@ if not g.vscode then
 
   -- misc
   cmd "set foldmethod=syntax"
-
   -- tmux color stuff
   cmd [[
     if exists("$TMUX")
@@ -127,7 +141,6 @@ if not g.vscode then
   }
 
   nvim_create_augroups(definitions)
-
 
   -- MAPPING FOR AUTOPAIRS INDENT INSIDE BRACKETS
 
