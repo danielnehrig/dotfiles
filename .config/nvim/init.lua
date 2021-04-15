@@ -10,14 +10,18 @@ for i = 1, 9 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 
 -- check if we are in vscode nvim
 if not g.vscode then
-  -- load plugins
+  -- load packer plugins
   require("packer")
+
   -- setup conf and lua modules
-  require("nvim_utils")
-  require("mappings")
-  require("highlights")
-  require("autocmd")
+  require("nvim_utils") -- loads global util functions
+  require("core.global")
   require("core.options")
+  require("core.mappings")
+  require("core.highlights")
+  require("core.autocmd")
+
+  -- load configs for packer plugins
   require("plugins.testing")
   require("plugins.nvimTree")
   require("plugins.telescope")
@@ -27,7 +31,7 @@ if not g.vscode then
   require("plugins.bufferline")
   require("plugins.statusline")
   require("plugins.web-devicons")
-  require("plugins.ale")
+  require("plugins.ale") -- TODO replace with efm
   require("plugins.gitsigns")
   require("plugins.dashboard")
   require("plugins.which")
@@ -37,14 +41,10 @@ if not g.vscode then
   require("plugins.gitlinker")
 
   -- setup plugins and init them
+  -- those are not worth of own file extraction
   require("colorizer").setup()
-  require("lspkind").init(
-      {
-          File = " "
-      }
-  )
-
-  -- settings
+  require("lspkind").init( { File = " " })
+  -- matchit <> tag jump %
   cmd [[
     let b:match_words = '(:),\[:\],{:},<:>,' . '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
   ]]
