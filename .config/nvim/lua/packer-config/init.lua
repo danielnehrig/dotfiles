@@ -56,7 +56,6 @@ local function init()
     use "nvim-lua/plenary.nvim" -- LIB
     use "nvim-telescope/telescope-media-files.nvim" -- media files showing
     use "kyazdani42/nvim-tree.lua" -- Drawboard style like nerdtree
-    use "dense-analysis/ale"
     -- misc
     use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
     -- use 'justinmk/vim-sneak' -- movement plugin

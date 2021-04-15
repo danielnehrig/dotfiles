@@ -45,6 +45,32 @@ require("compe").setup(
 
 cmd [[set completeopt=menuone,noinsert,noselect]]
 
+vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
+    if err ~= nil or result == nil then
+        return
+    end
+    if not vim.api.nvim_buf_get_option(bufnr, "modified") then
+        local view = vim.fn.winsaveview()
+        vim.lsp.util.apply_text_edits(result, bufnr)
+        vim.fn.winrestview(view)
+        if bufnr == vim.api.nvim_get_current_buf() then
+            vim.cmd [[noautocmd :update]]
+        end
+    end
+end
+
+FormatToggle = function(value)
+    vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
+end
+vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
+vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
+
+_G.formatting = function()
+    if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
+        vim.lsp.buf.formatting(vim.g[string.format("format_options_%s", vim.bo.filetype)] or {})
+    end
+end
+
 lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client)
@@ -107,6 +133,49 @@ lspconfig.pyright.setup{on_attach=custom_attach}
 lspconfig.dockerls.setup{on_attach=custom_attach}
 lspconfig.clangd.setup{on_attach=custom_attach}
 lspconfig.vimls.setup{on_attach=custom_attach}
+
+local eslint = require('plugins.efm.eslint')
+local prettier = require('plugins.efm.prettier')
+
+lspconfig.efm.setup {
+  on_attach = function (client)
+    client.resolved_capabilities.document_formatting = true
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd [[augroup Format]]
+        vim.cmd [[autocmd! * <buffer>]]
+        vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
+        vim.cmd [[augroup END]]
+    end
+
+    custom_attach(client)
+  end,
+  root_dir = function()
+    return vim.fn.getcwd()
+  end,
+  init_options = {
+    documentFormatting = false,
+    codeAction = true
+  },
+  settings = {
+    lintDebounce = 200,
+    languages = {
+      javascript = {eslint},
+      javascriptreact = {eslint},
+      ["javascript.jsx"] = {eslint},
+      typescript = {eslint},
+      typescriptreact = {prettier, eslint},
+      ["typescript.tsx"] = {eslint}
+    }
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  }
+}
 
 -- lua sumenko
 local system_name

@@ -33,7 +33,6 @@ if not g.vscode then
   require("plugins.statusline")
   require("plugins.web-devicons")
   require("plugins.gitsigns")
-  require("plugins.ale")
   require("plugins.dashboard")
   require("plugins.which")
   require("plugins.swagger")
