@@ -37,7 +37,7 @@ local function init()
     use 'windwp/nvim-ts-autotag'
     use {'shuntaka9576/preview-swagger.nvim', run = 'yarn install', ft = {'yaml', 'yml'}, cmd = 'SwaggerPreview'}
     -- lint
-    use {"dense-analysis/ale"} -- linter TODO replace with efm
+    use "dense-analysis/ale" -- linter TODO replace with efm
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -67,7 +67,7 @@ local function init()
     use "junegunn/vim-slash" -- better search
     use "windwp/nvim-autopairs" -- autopairs "" {}
     use "unblevable/quick-scope" -- f F t T improved highlight
-    use "alvan/vim-closetag" -- ?
+    use "alvan/vim-closetag" -- close <> tag for xhtml ... maybe remove because of TS tag
     use {
         'lukas-reineke/indent-blankline.nvim',
         branch = 'lua'

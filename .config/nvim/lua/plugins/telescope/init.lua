@@ -66,6 +66,7 @@ require("telescope").setup {
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("gh")
 require("telescope").load_extension("project")
+require("telescope").load_extension('dotfiles')
 
 local opt = {noremap = true, silent = true}
 
