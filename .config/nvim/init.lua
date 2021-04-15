@@ -77,6 +77,8 @@ if not g.vscode then
   cmd "syntax on"
 
   -- settings
+  vim.api.nvim_command('set foldmethod=expr')
+  vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
   g.indentLine_char_list = {"▏"}
   g.indent_blankline_char = '▏'
   g.indent_blankline_show_current_context = true
@@ -96,7 +98,6 @@ if not g.vscode then
   cmd "colorscheme gruvbox"
 
   -- misc
-  cmd "set foldmethod=syntax"
   -- tmux color stuff
   cmd [[
     if exists("$TMUX")

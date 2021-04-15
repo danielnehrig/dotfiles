@@ -2,7 +2,7 @@ local config = {}
 
 function config.dashboard()
   local home = os.getenv('HOME')
-  vim.g.dashboard_footer_icon = '🐬 '
+  vim.g.dashboard_footer_icon = 'ﬦ '
   vim.g.dashboard_preview_command = 'cat'
   vim.g.dashboard_preview_pipeline = 'lolcat'
   vim.g.dashboard_preview_file = home .. '/.config/nvim/neovim.cat'
@@ -27,10 +27,7 @@ function config.dashboard()
      command = 'DashboardFindWord'},
     find_dotfiles = {
      description = {'  Open Personal dotfiles                  SPC f d'},
-     command = 'Telescope dotfiles path=' .. home ..'/.dotfiles'},
-    go_source = {
-     description = {'  Find Go Source Code                     SPC f s'},
-     command = 'Telescope gosource'},
+     command = 'Telescope dotfiles path=' .. home},
   }
 end
 config.dashboard()
