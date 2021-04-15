@@ -9,6 +9,8 @@ local disabled_built_ins = {
 for i = 1, 9 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 
 -- check if we are in vscode nvim
+-- if not do not apply plugins
+-- slows down vscode and makes it non usable
 if not g.vscode then
   -- load packer plugins
   require("packer")
