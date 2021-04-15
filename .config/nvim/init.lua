@@ -4,19 +4,21 @@ local b = vim.b
 local nvim_command = vim.api.nvim_command
 local remap = vim.api.nvim_set_keymap
 
+-- disable unused default plugins
 local disabled_built_ins = {
   'gzip', 'man', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
   'netrwPlugin'
 }
 for i = 1, 9 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 
+-- check if we are in vscode nvim
 if not g.vscode then
   local npairs = require('nvim-autopairs')
 
   -- load plugins
   require("pluginsList.lua")
 
-  -- setup conf
+  -- setup conf and lua modules
   require("core.options")
   require("utils")
   require("testing")
@@ -32,6 +34,8 @@ if not g.vscode then
   require("dashboard")
   require("which")
   require'swagger'
+
+  -- setup plugins and init them
   require'nvim-treesitter.configs'.setup {
     highlight = {
       enable = true,
@@ -43,8 +47,6 @@ if not g.vscode then
       enable = true,
     }
   }
-
-  -- other
   require 'snippets'
   require "colorizer".setup()
   require("nvim-autopairs").setup()
@@ -69,6 +71,7 @@ if not g.vscode then
       }
   )
 
+  -- granular vim config and some misc plug cfg
   cmd "filetype plugin on"
   cmd "syntax enable"
   cmd "syntax on"
