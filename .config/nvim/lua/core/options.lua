@@ -1,6 +1,7 @@
 local global = require('core.global')
 local M = require('utils')
 local cmd = vim.cmd
+local g = vim.g
 
 local function bind_option(options)
   for k, v in pairs(options) do
@@ -13,7 +14,15 @@ local function bind_option(options)
 end
 
 local function load_options()
-  cmd("set relativenumber")
+  cmd "filetype plugin on"
+  cmd "syntax enable"
+  cmd "syntax on"
+  g.gruvbox_transparent_bg = 1
+  g.mapleader = " "
+  g.blamer_enabled = 1
+  cmd "colorscheme gruvbox"
+  vim.api.nvim_command('set foldmethod=expr')
+  vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
   M.opt("o", "hidden", true)
   M.opt("o", "ignorecase", true)
   M.opt("o", "splitbelow", true)

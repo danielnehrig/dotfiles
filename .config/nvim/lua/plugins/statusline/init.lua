@@ -1,5 +1,5 @@
 local gl = require("galaxyline")
-local TestStatus = require("testing").TestStatus
+local TestStatus = require("plugins.testing").TestStatus
 gl.short_line_list = { }
 
 local colors = {
