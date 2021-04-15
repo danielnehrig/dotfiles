@@ -13,7 +13,7 @@ for i = 1, 9 do g['loaded_' .. disabled_built_ins[i]] = 1 end
 -- slows down vscode and makes it non usable
 if not g.vscode then
   -- load packer plugins
-  require("packer")
+  require("packer-config")
 
   -- setup conf and lua modules
   require("nvim_utils") -- loads global util functions

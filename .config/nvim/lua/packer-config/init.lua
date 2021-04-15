@@ -9,9 +9,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
--- check if packer is installed (~/local/share/nvim/site/pack)
-local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
-
 local packer = nil
 local function init()
     if packer == nil then
@@ -98,10 +95,10 @@ local plugins = setmetatable({}, {
   end
 })
 
-cmd [[command! PackerInstall packadd packer.nvim | lua require('pluginsList.lua').install()]]
-cmd [[command! PackerUpdate packadd packer.nvim | lua require('pluginsList.lua').update()]]
-cmd [[command! PackerSync packadd packer.nvim | lua require('pluginsList.lua').sync()]]
-cmd [[command! PackerClean packadd packer.nvim | lua require('pluginsList.lua').clean()]]
-cmd [[command! PackerCompile packadd packer.nvim | lua require('pluginsList.lua').compile()]]
+cmd [[command! PackerInstall packadd packer.nvim | lua require('packer-config').install()]]
+cmd [[command! PackerUpdate packadd packer.nvim | lua require('packer-config').update()]]
+cmd [[command! PackerSync packadd packer.nvim | lua require('packer-config').sync()]]
+cmd [[command! PackerClean packadd packer.nvim | lua require('packer-config').clean()]]
+cmd [[command! PackerCompile packadd packer.nvim | lua require('packer-config').compile()]]
 
 return plugins
