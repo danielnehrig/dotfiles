@@ -5,6 +5,7 @@ local lspconfig = require("lspconfig")
 local cmd = vim.cmd
 local fn = vim.fn
 local setOption = vim.api.nvim_set_option
+local saga = require("lspsaga")
 
 cmd [[packadd nvim-lspconfig]]
 cmd [[packadd nvim-compe]]
@@ -71,6 +72,7 @@ _G.formatting = function()
     end
 end
 
+saga.init_lsp_saga()
 lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client)
