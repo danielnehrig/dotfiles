@@ -17,7 +17,7 @@ vim.api.nvim_set_keymap("n", "<Leader>tc", [[<Cmd>BufferClose<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>tt", [[<Cmd>BufferPick<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>ta", [[<Cmd>BufferCloseAllButCurrent<CR>]], opt)
 
--- colors for active , inactive buffer tabs 
+-- colors for active , inactive buffer tabs
 if bufferline_exists then
     require "bufferline".setup {
         options = {

@@ -20,12 +20,12 @@ function M.has_width_gt(cols)
 end
 
 function M.map(type, key, value)
-	vim.api.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
+    vim.api.nvim_buf_set_keymap(0, type, key, value, {noremap = true, silent = true})
 end
 
 function M.autocmd(event, triggers, operations)
-  local cmd = string.format("autocmd %s %s %s", event, triggers, operations)
-  vim.cmd(cmd)
+    local cmd = string.format("autocmd %s %s %s", event, triggers, operations)
+    vim.cmd(cmd)
 end
 
 function M.is_git()
@@ -34,7 +34,7 @@ function M.is_git()
 end
 
 function M.project_name()
-    local name = ''
+    local name = ""
     return name
 end
 

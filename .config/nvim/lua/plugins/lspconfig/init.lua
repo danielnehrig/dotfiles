@@ -171,7 +171,7 @@ lspconfig.efm.setup {
         codeAction = true
     },
     settings = {
-        lintDebounce = 200,
+        -- lintDebounce = 200,
         languages = {
             javascript = {eslint},
             javascriptreact = {eslint},

@@ -1,6 +1,6 @@
 return {
     formatCommand = ([[
-        ./node_modules/.bin/prettier
+        prettier_d
         ${--config-precedence:configPrecedence}
         ${--tab-width:tabWidth}
         ${--single-quote:singleQuote}

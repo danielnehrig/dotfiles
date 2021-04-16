@@ -29,18 +29,18 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
-    use {"rust-lang/rust.vim", ft = {"rust", "rs"}}
-    use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}}
+    use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
+    use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && yarn install",
         ft = {"markdown", "md"},
         cmd = "MarkdownPreview"
-    }
-    use {"metakirby5/codi.vim", ft = {"js", "ts", "lua", "typescript", "javascript"}}
-    use "nvim-treesitter/nvim-treesitter"
-    use "windwp/nvim-ts-autotag"
-    use {"shuntaka9576/preview-swagger.nvim", run = "yarn install", ft = {"yaml", "yml"}, cmd = "SwaggerPreview"}
+    } -- markdown previewer
+    use {"metakirby5/codi.vim", ft = {"js", "ts", "lua", "typescript", "javascript"}} -- code playground in buffer executed
+    use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
+    use {"windwp/nvim-ts-autotag", ft = {"tsx", "jsx", "html"}} -- autotag <>
+    use {"shuntaka9576/preview-swagger.nvim", run = "yarn install", ft = {"yaml", "yml"}, cmd = "SwaggerPreview"} -- openapi preview
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -48,7 +48,7 @@ local function init()
     -- completion
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
-    use "onsails/lspkind-nvim"
+    use "onsails/lspkind-nvim" -- lsp extensions stuff
     use "nvim-lua/lsp_extensions.nvim" -- lsp extensions inlay hints etc
     use "neovim/nvim-lspconfig" -- default configs for lsp and setup lsp
     use "hrsh7th/nvim-compe" -- completion engine
@@ -70,7 +70,6 @@ local function init()
     use "alvan/vim-closetag" -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
-    use "norcalli/nvim_utils" -- utils
     use "glepnir/dashboard-nvim" -- dashboard
     use {
         "lukas-reineke/indent-blankline.nvim",
@@ -81,7 +80,7 @@ local function init()
     use "ruifm/gitlinker.nvim" -- get repo file on remote as url
     use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
     use "tpope/vim-fugitive" -- git integration
-    use "tpope/vim-rhubarb" -- GBrowse for gh
+    use {"tpope/vim-rhubarb", cmd = "GBrowse"} -- GBrowse for gh
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
     use "vim-test/vim-test" -- vim testing
@@ -90,6 +89,7 @@ local function init()
     -- debug
     use {"puremourning/vimspector", disable = true} -- debugger
     -- lib
+    use "norcalli/nvim_utils" -- utils
     use "nvim-lua/popup.nvim" -- LIB
     use "nvim-lua/plenary.nvim" -- LIB
 end
