@@ -6,11 +6,12 @@ require("telescope").setup {
             "--no-heading",
             "--with-filename",
             "--line-number",
+            "--hidden",
             "--column",
             "--smart-case"
         },
         prompt_position = "bottom",
-        prompt_prefix = "> ",
+        prompt_prefix = "🔍 ",
         selection_caret = "> ",
         entry_prefix = "  ",
         initial_mode = "insert",
@@ -51,15 +52,6 @@ require("telescope").setup {
             filetypes = {"png", "webp", "jpg", "jpeg"},
             find_cmd = "rg" -- find command (defaults to `fd`)
         }
-        -- fzf_writer = {
-        --     minimum_grep_characters = 2,
-        --     minimum_files_characters = 2,
-
-        --     -- Disabled by default.
-        --     -- Will probably slow down some aspects of the sorter, but can make color highlights.
-        --     -- I will work on this more later.
-        --     use_highlighter = true,
-        -- }
     }
 }
 
@@ -73,7 +65,12 @@ local opt = {noremap = true, silent = true}
 vim.g.mapleader = " "
 
 -- mappings
-vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], opt)
+vim.api.nvim_set_keymap(
+    "n",
+    "<Leader>ff",
+    [[<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>]],
+    opt
+)
 --vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require('telescope').extensions.fzf_writer.files()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fg", [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], opt)
 --vim.api.nvim_set_keymap("n", "<Leader>fg", [[<Cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>]], opt)

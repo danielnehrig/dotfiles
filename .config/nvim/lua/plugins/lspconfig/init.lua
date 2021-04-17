@@ -12,8 +12,16 @@ cmd [[packadd nvim-compe]]
 
 setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-local capabilities = lsp_status.capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits"
+    }
+}
 
 -- compe setup
 require("compe").setup(
@@ -86,6 +94,7 @@ local custom_attach = function(client)
     map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
     -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
     map("n", "gs", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+    map("i", "<C-g>", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
     map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
     map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
     map("n", "<space>gw", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
@@ -192,6 +201,14 @@ lspconfig.efm.setup {
         "typescript.tsx"
     }
 }
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        virtual_text = false
+    }
+)
 
 -- lua sumenko
 local system_name

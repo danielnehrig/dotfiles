@@ -65,8 +65,8 @@ local function init()
     -- quality of life
     use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
     use {
-        'AckslD/nvim-whichkey-setup.lua',
-        requires = {'liuchengxu/vim-which-key'},
+        "AckslD/nvim-whichkey-setup.lua",
+        requires = {"liuchengxu/vim-which-key"}
     }
     use "preservim/nerdcommenter" -- commenting
     use "junegunn/vim-slash" -- better search
@@ -91,7 +91,7 @@ local function init()
     use "tpope/vim-dispatch" -- different building and run solution
     use "neomake/neomake" -- same as dispatch but async
     -- debug
-    use {"puremourning/vimspector", disable = true} -- debugger
+    use {"puremourning/vimspector"} -- debugger
     -- lib
     use "norcalli/nvim_utils" -- utils
     use "nvim-lua/popup.nvim" -- LIB
