@@ -23,5 +23,7 @@ require("gitsigns").setup {
         interval = 100
     },
     sign_priority = 5,
-    status_formatter = nil -- Use default
+    status_formatter = nil, -- Use default
+    use_decoration_api = true,
+    use_internal_diff = true -- If luajit is present
 }

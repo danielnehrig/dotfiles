@@ -26,7 +26,7 @@ local function load_options()
 
     M.opt("o", "mouse", "a")
 
-    M.opt("w", "signcolumn", "yes")
+    M.opt("w", "signcolumn", "auto:2")
     M.opt("o", "cmdheight", 1)
 
     M.opt("o", "updatetime", 300) -- update interval for gitsigns
