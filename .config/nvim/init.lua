@@ -1,6 +1,8 @@
 local cmd = vim.cmd
 local g = vim.g
 
+-- cmd [[set guifont= Hack\ Nerd\ Font\ Mono:h15]]
+
 -- disable unused default plugins
 local disabled_built_ins = {
     "gzip",

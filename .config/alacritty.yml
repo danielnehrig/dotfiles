@@ -595,7 +595,7 @@ key_bindings:
 
   # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
-  - { key: V,  mods: Shift|Control,           action: ToggleViMode            }
+  - { key: N,  mods: Shift|Control,           action: ToggleViMode            }
   - { key: Escape,                      mode: Vi, action: ClearSelection          }
   - { key: I,                           mode: Vi, action: ScrollToBottom          }
   - { key: I,                           mode: Vi, action: ToggleViMode            }
