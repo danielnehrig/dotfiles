@@ -29,18 +29,25 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
-    use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
-    use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}} -- rust language tools
+    use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
+    use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && yarn install",
+        opt = true,
         ft = {"markdown", "md"},
         cmd = "MarkdownPreview"
     } -- markdown previewer
     use {"metakirby5/codi.vim", ft = {"js", "ts", "lua", "typescript", "javascript"}} -- code playground in buffer executed
     use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
-    use {"windwp/nvim-ts-autotag", ft = {"tsx", "jsx", "html"}} -- autotag <>
-    use {"shuntaka9576/preview-swagger.nvim", run = "yarn install", ft = {"yaml", "yml"}, cmd = "SwaggerPreview"} -- openapi preview
+    use {"windwp/nvim-ts-autotag", opt = true, ft = {"tsx", "jsx", "html"}} -- autotag <>
+    use {
+        "shuntaka9576/preview-swagger.nvim",
+        opt = true,
+        run = "yarn install",
+        ft = {"yaml", "yml"},
+        cmd = "SwaggerPreview"
+    } -- openapi preview
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -71,7 +78,7 @@ local function init()
     use "preservim/nerdcommenter" -- commenting
     use "junegunn/vim-slash" -- better search
     use "windwp/nvim-autopairs" -- autopairs "" {}
-    use "alvan/vim-closetag" -- close <> tag for xhtml ... maybe remove because of TS tag
+    use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
     use "glepnir/dashboard-nvim" -- dashboard
@@ -87,11 +94,11 @@ local function init()
     use {"tpope/vim-rhubarb", cmd = "GBrowse"} -- GBrowse for gh
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
-    use "vim-test/vim-test" -- vim testing
-    use "tpope/vim-dispatch" -- different building and run solution
-    use "neomake/neomake" -- same as dispatch but async
+    use {"tpope/vim-dispatch", opt = true, cmd = {"Dispatch", "Make", "Focus", "Start"}} -- compiler build solution
+    use {"vim-test/vim-test", opt = true, cmd = {"TestFile"}} -- vim testing
+    use {"neomake/neomake", opt = true, cmd = {"Neomake"}} -- same as dispatch but async
     -- debug
-    use {"puremourning/vimspector"} -- debugger
+    use {"puremourning/vimspector", opt = true, cmd = {"Vimspector"}} -- debugger
     -- lib
     use "norcalli/nvim_utils" -- utils
     use "nvim-lua/popup.nvim" -- LIB
