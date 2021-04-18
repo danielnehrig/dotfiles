@@ -1,29 +1,10 @@
 local gl = require("galaxyline")
 local TestStatus = require("plugins.testing").TestStatus
 local gls = gl.section
+local colors = require("galaxyline.theme").default
 gl.short_line_list = {}
 
-local colors = {
-    bg = "#282c34",
-    line_bg = "#282c34",
-    fg = "#D8DEE9",
-    fg_green = "#65a380",
-    yellow = "#A3BE8C",
-    cyan = "#22262C",
-    darkblue = "#61afef",
-    green = "#BBE67E",
-    orange = "#FF8800",
-    purple = "#252930",
-    magenta = "#c678dd",
-    blue = "#61afef",
-    red = "#DF8890",
-    lightbg = "#3C4048",
-    nord = "#81A1C1",
-    greenYel = "#EBCB8B"
-}
-
 local function evilline()
-    local colors = require("galaxyline.theme").default
     local condition = require("galaxyline.condition")
     gl.short_line_list = {"NvimTree", "vista", "dbui", "packer"}
 
@@ -266,7 +247,8 @@ local function evilline()
             DiffAdd = {
                 provider = "DiffAdd",
                 condition = condition.hide_in_width,
-                icon = "  ",
+                icon = " ",
+                separator = " ",
                 highlight = {colors.green, colors.bg}
             }
         }
@@ -278,7 +260,8 @@ local function evilline()
             DiffModified = {
                 provider = "DiffModified",
                 condition = condition.hide_in_width,
-                icon = " 柳",
+                icon = "柳",
+                separator = " ",
                 highlight = {colors.orange, colors.bg}
             }
         }
@@ -290,7 +273,8 @@ local function evilline()
             DiffRemove = {
                 provider = "DiffRemove",
                 condition = condition.hide_in_width,
-                icon = "  ",
+                icon = " ",
+                separator = " ",
                 highlight = {colors.red, colors.bg}
             }
         }
