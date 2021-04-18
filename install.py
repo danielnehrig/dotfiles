@@ -30,7 +30,7 @@ pacman_packages = []
 # source is context current folder + repo item
 linking_files_mac = [
         {
-            "source": ".tmux.conf",
+            "source": ".tmux.mac.conf",
             "dest": ".tmux.conf"
 
             },
@@ -119,17 +119,14 @@ brew_dependencies = [
         "mono",
         "tree",
         "gdb",
+        "fzf",
         "bat",
         "unrar",
         "cmake",
-        "ctags",
-        "the_silver_searcher",
         "kubectl",
-        "sqlite",
-        "mysql",
         "neofetch",
         "git-lfs",
-        "archey",
+        "neofetch",
         "radare2",
         "gcc",
         "htop",
@@ -155,19 +152,14 @@ cask_dependencies = [
         "virtualbox",
         "google-chrome",
         "google-cloud-sdk",
-        "cheatsheet",
         "firefox",
         "ghidra",
         "abstract",
-        "adobe-creative-cloud",
-        "slack",
-        "1password",
-        "1password-cli",
         "visual-studio-code",
         "microsoft-office",
         "postman",
-        "iterm2",
         "docker",
+        "alacritty",
         "whatsapp",
         "discord",
         "font-hack-nerd-font"
@@ -175,8 +167,9 @@ cask_dependencies = [
 
 node_packages = [
         "nodemon",
-        "webpack",
         "yarn",
+        "tsserver",
+        "typescript-language-server"
         "typescript"
         ]
 
@@ -265,7 +258,7 @@ def CompileDependency(arg):
             f.close()
         log.Success('Success Compile')
     except subprocess.CalledProcessError as e:
-        log.Error('Compilation Failed with return code {0}'.format(e.errno))
+        log.Error('Compilation Failed with return code {0}'.format(e))
 
 
 def InstallCliPackages(installCall, arr, options = ''):
@@ -316,7 +309,7 @@ def Install(call):
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
             f.close()
-    except subprocess.CalledProcessError as e:
+    except subprocess.CalledProcessError:
         log.Error('Failed to install {0}'.format(call))
 
 
@@ -328,7 +321,7 @@ def LinkFile(source, dest):
             subprocess.call(['ln', '-sfn', current_folder + '/' + source, home + dest], stdout=f)
             f.close()
         log.Success('Successfull linked file {0}'.format(source))
-    except subprocess.CalledProcessError as e:
+    except subprocess.CalledProcessError:
         log.Error('Failed to Link {0} to {1}'.format(source, dest))
 
 
@@ -397,7 +390,7 @@ def Linux():
 
         # linking
         LinkFiles(linking_files_arch)
-    except OSError as e:
+    except OSError:
         log.Error("Error while install")
 
 
@@ -417,7 +410,7 @@ def Darwin():
         log.Step("Check if git is installed", 1)
         if not Call("git"):
             Install('xcode-select --install')
-    except OSError as e:
+    except OSError:
         log.Error("git not found installing dev tools")
         Install('xcode-select --install')
 
@@ -426,7 +419,7 @@ def Darwin():
         log.Step("Check if Homebrew is installed", 2)
         if not Call("brew"):
             system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
-    except OSError as e:
+    except OSError:
         log.Error("brew not found installing brew")
 
     # git submodule pull
@@ -448,12 +441,13 @@ def Darwin():
     # install cask dependencies
     if not IsCI():
         log.Step("Installing Homebrew GUI dependencies", 7)
-        InstallPackages('brew cask install', cask_dependencies)
+        InstallPackages('brew install --cask', cask_dependencies)
 
     # install node
     log.Step("Installing Node", 8)
     Install('nodenv install 12.8.0')
-    Install('nodenv global 12.8.0')
+    Install('nodenv install 14.16.0')
+    Install('nodenv global 14.16.0')
 
     # node packages
     log.Step("Installing Node Packages", 9)
@@ -461,7 +455,7 @@ def Darwin():
 
     # install python packages
     log.Step("Installing Python PIP Packages", 10)
-    InstallPackages('pip3.8 install', pip_packages)
+    InstallPackages('pip3 install', pip_packages)
 
     # install fonts
     try:
@@ -472,44 +466,32 @@ def Darwin():
         FONT_NAME = "SourceCodeProAwesome.ttf"
         system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
         system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
-    except OSError as e:
+    except OSError:
         log.Error("Error while installing fonts")
 
     # cloning dependencies zsh theme and plugins
     try:
         log.Step("Cloning Shell Dependencies Themes Plugins", 13)
-        # Install('cp -r ./powerlevel10k ' + current_folder + '/oh-my-zsh/custom/themes/')
-        # Install('cp -r zsh-syntax-highlighting ' + current_folder + '/oh-my-zsh/custom/plugins/')
-
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
-        # fzf-tab
-        Install('git clone https://github.com/Aloxaf/fzf-tab ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-tab')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
-    except OSError as e:
+    except OSError:
         log.Error("Error while cloning")
 
     # linking files
     try:
         log.Step("Linking zsh and vim files Symbolic", 14)
         LinkFiles(linking_files_mac)
-    except OSError as e:
+    except OSError:
         log.Error("Error while linking files")
-
-    # install iterm segments
-    try:
-        log.Step("Install iTerm2 statusline segments", 15)
-        Install('./iterm2segments/install.py')
-    except OSError as e:
-        log.Error("Error while installing iTerm2 Statusline segments")
 
     # set default shell
     try:
         log.Step("Set zsh default shell", 15)
         Install('sudo chsh -s /usr/local/bin/zsh ' + user)
-    except OSError as e:
+    except OSError:
         log.Error("Error while settings zsh shell")
 
     # option to not compile
