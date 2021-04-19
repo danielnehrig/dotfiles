@@ -8,7 +8,6 @@ cmd("hi DiffAdd guifg=#81A1C1 guibg = none")
 cmd("hi DiffChange guifg =#3A3E44 guibg = none")
 cmd("hi DiffModified guifg = #81A1C1 guibg = none")
 cmd("hi EndOfBuffer guifg=#282c34")
-cmd("hi Normal guibg=NONE ctermbg=NONE")
 
 cmd("hi TelescopeBorder   guifg=#3e4451")
 cmd("hi TelescopePromptBorder   guifg=#3e4451")
@@ -22,8 +21,11 @@ cmd("hi NvimTreeIndentMarker guifg=#545862")
 cmd("hi CustomExplorerBg guibg=#242830")
 nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0")
 
--- lol
-cmd("hi GruvboxGreenSign ctermbg=none guibg=none")
-cmd("hi GruvboxRedSign ctermbg=none guibg=none")
-cmd("hi GruvboxRedSign ctermbg=none guibg=none")
-cmd("hi GruvboxAquaSign ctermbg=none guibg=none")
+-- gitsigns transparent
+
+if not vim.g.neovide then
+    cmd("hi GruvboxGreenSign ctermbg=none guibg=none")
+    cmd("hi GruvboxRedSign ctermbg=none guibg=none")
+    cmd("hi GruvboxRedSign ctermbg=none guibg=none")
+    cmd("hi GruvboxAquaSign ctermbg=none guibg=none")
+end

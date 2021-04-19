@@ -7,7 +7,9 @@ local function load_options()
     cmd "filetype plugin on"
     cmd "syntax enable"
     cmd "syntax on"
-    g.gruvbox_transparent_bg = 1
+    if not vim.g.neovide then
+        g.gruvbox_transparent_bg = 1
+    end
     g.mapleader = " "
     g.blamer_enabled = 1
     cmd "colorscheme gruvbox"
@@ -24,13 +26,18 @@ local function load_options()
     M.opt("o", "relativenumber", true)
     M.opt("o", "numberwidth", 2)
 
-    M.opt("o", "mouse", "a")
+    M.opt("o", "mouse", "a") -- mouse on don't use mouse lol
 
-    M.opt("w", "signcolumn", "auto:2")
+    M.opt("w", "signcolumn", "auto:2") -- 2 sign column
     M.opt("o", "cmdheight", 1)
 
+    if vim.g.neovide then
+        M.opt("o", "guifont", "Hack Nerd Font Mono:h12")
+        cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
+    end
+
     M.opt("o", "updatetime", 300) -- update interval for gitsigns
-    M.opt("o", "clipboard", "unnamedplus")
+    M.opt("o", "clipboard", "unnamedplus") -- clipboard yank
 
     -- for indenline
     M.opt("b", "expandtab", true)
