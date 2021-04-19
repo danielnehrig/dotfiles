@@ -28,6 +28,29 @@ function M.autocmd(event, triggers, operations)
     vim.cmd(cmd)
 end
 
+function M.clear_cache()
+    -- clear packer config namespace
+    for k, v in pairs(package.loaded) do
+        if string.match(k, "^packer-config") then
+            package.loaded[k] = nil
+        end
+    end
+    -- clear plugins config namespace
+    for k, v in pairs(package.loaded) do
+        if string.match(k, "^plugins") then
+            package.loaded[k] = nil
+        end
+    end
+    -- clear core config namespace
+    for k, v in pairs(package.loaded) do
+        if string.match(k, "^core") then
+            package.loaded[k] = nil
+        end
+    end
+
+    require("main")
+end
+
 function M.is_git()
     local is_git = false
     return is_git
