@@ -188,6 +188,7 @@ local function evilline()
                     return require("lsp-status").status()
                 end,
                 icon = "Status:",
+                separator = " ",
                 highlight = {colors.yellow, colors.bg, "bold"}
             }
         }
@@ -199,8 +200,6 @@ local function evilline()
             FileEncode = {
                 provider = "FileEncode",
                 condition = condition.hide_in_width,
-                separator = " ",
-                separator_highlight = {"NONE", colors.bg},
                 highlight = {colors.green, colors.bg, "bold"}
             }
         }
@@ -224,11 +223,9 @@ local function evilline()
         {
             GitIcon = {
                 provider = function()
-                    return "  "
+                    return "   "
                 end,
                 condition = condition.check_git_workspace,
-                separator = " ",
-                separator_highlight = {"NONE", colors.bg},
                 highlight = {colors.violet, colors.bg, "bold"}
             }
         }
@@ -239,6 +236,7 @@ local function evilline()
         {
             GitBranch = {
                 provider = "GitBranch",
+                separator = " ",
                 condition = condition.check_git_workspace,
                 highlight = {colors.violet, colors.bg, "bold"}
             }
@@ -252,7 +250,7 @@ local function evilline()
                 provider = "DiffAdd",
                 condition = condition.hide_in_width,
                 icon = " ",
-                separator = " ",
+                separator_highlight = {colors.bg, colors.bg},
                 highlight = {colors.green, colors.bg}
             }
         }
@@ -265,7 +263,7 @@ local function evilline()
                 provider = "DiffModified",
                 condition = condition.hide_in_width,
                 icon = "柳",
-                separator = " ",
+                separator = "",
                 highlight = {colors.orange, colors.bg}
             }
         }
@@ -278,7 +276,6 @@ local function evilline()
                 provider = "DiffRemove",
                 condition = condition.hide_in_width,
                 icon = " ",
-                separator = " ",
                 highlight = {colors.red, colors.bg}
             }
         }
@@ -291,7 +288,7 @@ local function evilline()
                 provider = function()
                     return TestStatus()
                 end,
-                separator = " ",
+                separator = "",
                 separator_highlight = {colors.bg, colors.bg},
                 highlight = {colors.fg, colors.bg, "bold"}
             }
@@ -303,13 +300,16 @@ local function evilline()
         {
             RainbowBlue = {
                 provider = function()
-                    return " ▊"
+                    return "  ▊"
                 end,
+                separator = "",
+                separator_highlight = {"NONE", colors.bg},
                 highlight = {colors.blue, colors.bg}
             }
         }
     )
 
+    -- shortline
     table.insert(
         gls.short_line_left,
         {

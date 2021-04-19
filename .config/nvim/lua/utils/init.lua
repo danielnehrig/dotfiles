@@ -32,21 +32,18 @@ function M.clear_cache()
     -- clear core config namespace
     for k, v in pairs(package.loaded) do
         if string.match(k, "^core") then
-            print(k)
             package.loaded[k] = nil
         end
     end
     -- clear plugins config namespace
     for k, v in pairs(package.loaded) do
         if string.match(k, "^utils") then
-            print(k)
             package.loaded[k] = nil
         end
     end
     -- clear plugins config namespace
     for k, v in pairs(package.loaded) do
         if string.match(k, "^plugins") then
-            print(k)
             package.loaded[k] = nil
         end
     end

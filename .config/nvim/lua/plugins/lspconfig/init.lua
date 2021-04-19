@@ -118,10 +118,10 @@ local custom_attach = function(client)
     autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-    fn.sign_define("LspDiagnosticsSignError", {text = "•"})
-    fn.sign_define("LspDiagnosticsSignWarning", {text = "•"})
-    fn.sign_define("LspDiagnosticsSignInformation", {text = "•"})
-    fn.sign_define("LspDiagnosticsSignHint", {text = "•"})
+    fn.sign_define("LspDiagnosticsSignError", {text = ""})
+    fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
+    fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
+    fn.sign_define("LspDiagnosticsSignHint", {text = ""})
 end
 
 -- lsp setups
