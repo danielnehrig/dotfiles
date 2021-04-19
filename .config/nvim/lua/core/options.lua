@@ -15,15 +15,16 @@ local function load_options()
     cmd "colorscheme gruvbox"
     vim.api.nvim_command("set foldmethod=expr")
     vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
-    M.opt("o", "hidden", true)
-    M.opt("o", "ignorecase", true)
-    M.opt("o", "splitbelow", true)
-    M.opt("o", "splitright", true)
-    M.opt("o", "termguicolors", true)
-    M.opt("o", "t_Co", "256")
+    M.opt("o", "hidden", true) -- buffer hidden
+    M.opt("o", "ignorecase", true) -- case sens ignore search
+    M.opt("o", "splitbelow", true) -- split behavior
+    M.opt("o", "splitright", true) -- split behavior
+    M.opt("o", "termguicolors", true) -- color stuff
+    M.opt("o", "t_Co", "256") -- color stuff
     M.opt("o", "t_ut", "")
-    M.opt("o", "background", "dark")
-    M.opt("o", "relativenumber", true)
+    M.opt("o", "background", "dark") -- dark
+    M.opt("o", "relativenumber", true) -- relative number to jump with jk
+    M.opt("o", "number", true) -- cursor line G number
     M.opt("o", "numberwidth", 2)
 
     M.opt("o", "mouse", "a") -- mouse on don't use mouse lol
