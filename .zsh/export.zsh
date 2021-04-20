@@ -13,14 +13,18 @@ fi
 
 # User exports
 if [[ `uname` == "Darwin"  ]]; then
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/Cellar:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/include"
+# export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/Cellar:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/include"
+PATH+=":/usr/local/sbin:/usr/local/bin"
 # PATH+=":/usr/local/share/dotnet"
 # PATH+=":/Library/TeX/texbin"
 # PATH+=":/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+PATH+=":/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+PATH+=":/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/go/bin"
 PATH+=":$HOME/Library/Python/2.7/bin"
 fi
+
 export EDITOR='nvim'
 export DEFAULT_USER="$USER"
 export UNCRUSTIFY_CONFIG=~/.dotfiles-darwin/.uncrustify
