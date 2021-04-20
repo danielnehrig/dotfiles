@@ -31,9 +31,9 @@ local function load_options()
 
     M.opt("w", "signcolumn", "auto:2") -- 2 sign column
     M.opt("o", "cmdheight", 1)
+    M.opt("o", "guifont", "FiraCode Nerd Font Mono:h12")
 
     if vim.g.neovide then
-        M.opt("o", "guifont", "FiraCode Nerd Font Mono:h12")
         cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
     end
 

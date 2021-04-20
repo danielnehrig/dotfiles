@@ -23,7 +23,8 @@ nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:curs
 
 -- gitsigns transparent
 
-if not vim.g.neovide then
+-- set signs transparent on terminal app
+if not vim.g.neovide or not vim.g.goneovim or not vim.g.uivonim then
     cmd("hi GruvboxGreenSign ctermbg=none guibg=none")
     cmd("hi GruvboxRedSign ctermbg=none guibg=none")
     cmd("hi GruvboxRedSign ctermbg=none guibg=none")

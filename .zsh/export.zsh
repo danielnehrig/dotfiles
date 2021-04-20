@@ -15,7 +15,6 @@ fi
 if [[ `uname` == "Darwin"  ]]; then
 PATH+=":/usr/local/share/dotnet"
 # PATH+=":/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
-PATH+=":$HOME/Library/Python/2.7/bin"
 fi
 
 export EDITOR='nvim'
