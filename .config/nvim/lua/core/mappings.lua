@@ -6,7 +6,7 @@ remap("n", "<Leader>qc", ":cclose<CR>", {silent = true, noremap = true})
 remap("n", "<Leader>qn", ":cnext<CR>", {silent = true, noremap = true})
 remap("n", "<Leader>qo", ":copen<CR>", {silent = true, noremap = true})
 remap("n", "<Leader>qp", ":cprev<CR>", {silent = true, noremap = true})
-remap("n", "<Leader>r", ":lua require('utils').clear_cache()<CR>", {silent = true, noremap = true})
+remap("n", "<Leader>r", ":lua require('nvim-reload').Reload()<CR>", {silent = true, noremap = true})
 
 -- telescope
 remap(

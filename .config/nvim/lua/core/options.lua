@@ -25,7 +25,7 @@ local function load_options()
     M.opt("o", "background", "dark") -- dark
     M.opt("o", "relativenumber", true) -- relative number to jump with jk
     M.opt("o", "number", true) -- cursor line G number
-    M.opt("o", "numberwidth", 2)
+    M.opt("o", "numberwidth", 2) -- width on numbeer row
 
     M.opt("o", "mouse", "a") -- mouse on don't use mouse lol
 
@@ -33,7 +33,7 @@ local function load_options()
     M.opt("o", "cmdheight", 1)
 
     if vim.g.neovide then
-        M.opt("o", "guifont", "Hack Nerd Font Mono:h12")
+        M.opt("o", "guifont", "FiraCode Nerd Font Mono:h12")
         cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
     end
 
