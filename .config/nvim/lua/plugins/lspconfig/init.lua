@@ -139,7 +139,16 @@ lspconfig.tsserver.setup {
 lspconfig.cssls.setup {on_attach = custom_attach}
 lspconfig.html.setup {on_attach = custom_attach}
 lspconfig.rust_analyzer.setup {
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
+        local ts_utils = require("nvim-lsp-ts-utils")
+        ts_utils.setup {
+            -- defaults
+            disable_commands = false,
+            enable_import_on_completion = false,
+            import_on_completion_timeout = 5000,
+            eslint_bin = "eslint", -- use eslint_d if possible!
+            eslint_enable_disable_comments = true
+        }
         if client.resolved_capabilities.document_formatting then
             vim.cmd [[augroup Format]]
             vim.cmd [[autocmd! * <buffer>]]
@@ -148,6 +157,8 @@ lspconfig.rust_analyzer.setup {
         end
 
         custom_attach(client)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gtr", ":TSLspRenameFile<CR>", {silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gti", ":TSLspImportAll<CR>", {silent = true})
     end,
     capabilities = capabilities
 }

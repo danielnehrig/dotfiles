@@ -29,6 +29,7 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"ts", "tsx"}} -- ts utils
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {
@@ -74,14 +75,14 @@ local function init()
     use {
         "AckslD/nvim-whichkey-setup.lua",
         requires = {"liuchengxu/vim-which-key"}
-    }
+    } -- nvim whichkey setup
     use "preservim/nerdcommenter" -- commenting
     use "junegunn/vim-slash" -- better search
     use "windwp/nvim-autopairs" -- autopairs "" {}
     use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
-    use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}}
+    use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim
     use "glepnir/dashboard-nvim" -- dashboard
     use {
         "lukas-reineke/indent-blankline.nvim",
