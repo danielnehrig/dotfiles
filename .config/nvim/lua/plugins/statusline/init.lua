@@ -42,17 +42,6 @@ local function LspStatus()
     return ""
 end
 
-local function trailing_whitespace()
-    local trail = vim.fn.search("\\s$", "nw")
-    if trail ~= 0 then
-        return " "
-    else
-        return nil
-    end
-end
-
-TrailingWhiteSpace = trailing_whitespace
-
 local buffer_not_empty = function()
     if vim.fn.empty(vim.fn.expand("%:t")) ~= 1 then
         return true
@@ -208,14 +197,6 @@ gls.left[10] = {
         separator = "",
         separator_highlight = {colors.bg, colors.line_bg},
         highlight = {colors.line_bg, colors.line_bg}
-    }
-}
-
-gls.left[11] = {
-    TrailingWhiteSpace = {
-        provider = TrailingWhiteSpace,
-        icon = "  ",
-        highlight = {colors.yellow, colors.bg}
     }
 }
 
