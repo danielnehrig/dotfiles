@@ -119,7 +119,7 @@ gls.left[2] = {
             }
             local vim_mode = vim.fn.mode()
             vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim_mode])
-            return alias[vim_mode] .. "   "
+            return alias[vim_mode] .. "   "
         end,
         highlight = {colors.red, colors.line_bg, "bold"}
     }
@@ -151,6 +151,8 @@ gls.left[5] = {
 gls.left[6] = {
     GitBranch = {
         provider = "GitBranch",
+        separator = " ",
+        separator_highlight = {colors.line_bg, colors.line_bg},
         condition = require("galaxyline.provider_vcs").check_git_workspace,
         highlight = {"#8FBCBB", colors.line_bg, "bold"}
     }
@@ -168,7 +170,7 @@ gls.left[7] = {
     DiffAdd = {
         provider = "DiffAdd",
         condition = checkwidth,
-        icon = "   ",
+        icon = " ",
         highlight = {colors.green, colors.line_bg}
     }
 }
