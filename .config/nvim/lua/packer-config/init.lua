@@ -105,7 +105,7 @@ local function init()
     -- lib
     use "norcalli/nvim_utils" -- utils
     use "nvim-lua/popup.nvim" -- LIB
-    use "nvim-lua/plenary.nvim" -- LIB
+    use {"nvim-lua/plenary.nvim", commit = "1a31d076a097ac23c0110537a99b686874ae2cdc"} -- LIB
 end
 
 local plugins =
