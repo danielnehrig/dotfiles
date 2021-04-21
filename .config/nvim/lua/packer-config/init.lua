@@ -29,7 +29,7 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
-    use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "tsx", "jsx", "typescriptreact"}} -- jest coverage
+    use {"ruanyl/coverage.vim", disable = true, opt = true, ft = {"js", "ts", "tsx", "jsx", "typescriptreact"}} -- jest coverage
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"ts", "tsx", "typescriptreact"}} -- ts utils
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
@@ -98,7 +98,7 @@ local function init()
     use {"tpope/vim-rhubarb", opt = true, cmd = "GBrowse"} -- GBrowse for gh
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
-    use {"tpope/vim-dispatch", disabled = true} -- compiler build solution
+    use {"tpope/vim-dispatch", disable = true} -- compiler build solution
     use {"vim-test/vim-test", opt = true, cmd = {"TestFile"}, requires = {"neomake/neomake"}} -- Testing and building
     -- debug
     use {"puremourning/vimspector", opt = true, cmd = {"Vimspector"}} -- debugger
