@@ -120,25 +120,11 @@ end
 -- lsp setups
 lspconfig.tsserver.setup {
     on_attach = function(client, bufnr)
-        local ts_utils = require("nvim-lsp-ts-utils")
-        ts_utils.setup {
-            -- defaults
-            disable_commands = false,
-            enable_import_on_completion = true,
-            import_on_completion_timeout = 5000,
-            eslint_bin = "eslint_d",
-            eslint_enable_disable_comments = true
-        }
         if client.config.flags then
             client.config.flags.allow_incremental_sync = true
         end
         client.resolved_capabilities.document_formatting = false
 
-        vim.lsp.buf_request_sync = ts_utils.buf_request_sync
-        vim.lsp.buf_request = ts_utils.buf_request
-
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gtr", ":TSLspRenameFile<CR>", {silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gti", ":TSLspImportAll<CR>", {silent = true})
         custom_attach(client)
     end,
     capabilities = capabilities
