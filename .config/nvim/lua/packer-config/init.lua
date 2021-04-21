@@ -29,7 +29,7 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
-    use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"ts", "tsx"}} -- ts utils
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"ts", "tsx", "typescriptreact"}} -- ts utils
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {
@@ -41,7 +41,7 @@ local function init()
     } -- markdown previewer
     use {"metakirby5/codi.vim", ft = {"js", "ts", "lua", "typescript", "javascript"}} -- code playground in buffer executed
     use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
-    use {"windwp/nvim-ts-autotag", opt = true, ft = {"tsx", "jsx", "html"}} -- autotag <>
+    use {"windwp/nvim-ts-autotag", opt = true, ft = {"tsx", "typescriptreact", "jsx", "html"}} -- autotag <>
     use {
         "shuntaka9576/preview-swagger.nvim",
         opt = true,

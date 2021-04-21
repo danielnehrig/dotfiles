@@ -156,9 +156,9 @@ lspconfig.rust_analyzer.setup {
             vim.cmd [[augroup END]]
         end
 
-        custom_attach(client)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gtr", ":TSLspRenameFile<CR>", {silent = true})
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gti", ":TSLspImportAll<CR>", {silent = true})
+        custom_attach(client)
     end,
     capabilities = capabilities
 }
