@@ -34,7 +34,8 @@ local colors = {
 }
 
 local function LspStatus()
-    if vim.lsp.buf_get_clients() > 0 then
+    ---@diagnostic disable-next-line: undefined-field
+    if table.getn(vim.lsp.buf_get_clients(0)) > 0 then
         return require("lsp-status").status()
     end
 
