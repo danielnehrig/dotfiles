@@ -29,6 +29,7 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
+    use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "tsx", "jsx", "typescriptreact"}} -- jest coverage
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"ts", "tsx", "typescriptreact"}} -- ts utils
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
