@@ -6,6 +6,7 @@ gl.short_line_list = {
     "LuaTree",
     "vista",
     "dbui",
+    "dashboard",
     "startify",
     "term",
     "nerdtree",
