@@ -1,0 +1,220 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.010  000.010: --- VIM STARTING ---
+000.153  000.143: Allocated generic buffers
+000.221  000.068: locale set
+000.234  000.013: GUI prepared
+000.240  000.006: clipboard setup
+000.244  000.004: window checked
+000.683  000.439: inits 1
+000.711  000.028: parsing arguments
+000.713  000.002: expanding arguments
+000.739  000.026: shell init
+001.065  000.326: Termcap init
+001.112  000.047: inits 2
+001.290  000.178: init highlight
+001.644  000.267  000.267: sourcing /usr/share/vim/vimfiles/archlinux.vim
+001.676  000.357  000.090: sourcing /etc/vimrc
+001.897  000.033  000.033: sourcing /usr/share/vim/vim82/ftoff.vim
+004.294  002.351  002.351: sourcing /home/dashie/.vim/autoload/plug.vim
+014.326  000.067  000.067: sourcing /home/dashie/.vim/filetype.vim
+015.046  000.063  000.063: sourcing /home/dashie/.vim/filetype.vim
+015.149  000.009  000.009: sourcing /home/dashie/.vim/plugged/vim-polyglot/filetype.vim
+021.207  000.035  000.035: sourcing /home/dashie/.vim/plugged/vim-openapi/ftdetect/openapi.vim
+021.283  000.011  000.011: sourcing /home/dashie/.vim/plugged/vim-polyglot/ftdetect/polyglot.vim
+021.348  000.032  000.032: sourcing /home/dashie/.vim/plugged/rust.vim/ftdetect/rust.vim
+021.587  000.011  000.011: sourcing /home/dashie/.vim/plugged/vim-fugitive/ftdetect/fugitive.vim
+021.654  000.009  000.009: sourcing /usr/share/vim/vimfiles/ftdetect/PKGBUILD.vim
+021.678  000.013  000.013: sourcing /usr/share/vim/vimfiles/ftdetect/conkyrc.vim
+021.708  000.017  000.017: sourcing /usr/share/vim/vimfiles/ftdetect/meson.vim
+021.727  000.008  000.008: sourcing /usr/share/vim/vimfiles/ftdetect/pullrequest.vim
+021.835  006.511  006.375: sourcing /usr/share/vim/vim82/filetype.vim
+022.007  000.025  000.025: sourcing /home/dashie/.vim/plugged/vim-openapi/ftdetect/openapi.vim
+022.068  000.009  000.009: sourcing /home/dashie/.vim/plugged/vim-polyglot/ftdetect/polyglot.vim
+022.123  000.027  000.027: sourcing /home/dashie/.vim/plugged/rust.vim/ftdetect/rust.vim
+022.351  000.008  000.008: sourcing /home/dashie/.vim/plugged/vim-fugitive/ftdetect/fugitive.vim
+022.413  000.008  000.008: sourcing /usr/share/vim/vimfiles/ftdetect/PKGBUILD.vim
+022.436  000.013  000.013: sourcing /usr/share/vim/vimfiles/ftdetect/conkyrc.vim
+022.462  000.016  000.016: sourcing /usr/share/vim/vimfiles/ftdetect/meson.vim
+022.480  000.007  000.007: sourcing /usr/share/vim/vimfiles/ftdetect/pullrequest.vim
+031.746  017.168  010.472: sourcing /home/dashie/.vim/plugged/vim-polyglot/autoload/polyglot/init.vim
+031.752  017.311  000.143: sourcing /home/dashie/.vim/plugged/vim-polyglot/filetype.vim
+031.888  000.008  000.008: sourcing /usr/share/vim/vim82/filetype.vim
+032.166  000.035  000.035: sourcing /usr/share/vim/vim82/ftplugin.vim
+032.434  000.025  000.025: sourcing /usr/share/vim/vim82/indent.vim
+033.484  000.500  000.500: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+033.577  000.842  000.342: sourcing /usr/share/vim/vim82/syntax/synload.vim
+033.637  001.152  000.310: sourcing /usr/share/vim/vim82/syntax/syntax.vim
+033.697  000.035  000.035: sourcing /home/dashie/.vim/filetype.vim
+033.920  000.007  000.007: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/filetype.vim
+033.939  000.007  000.007: sourcing /usr/share/vim/vim82/filetype.vim
+034.188  000.006  000.006: sourcing /usr/share/vim/vim82/ftplugin.vim
+034.259  000.032  000.032: sourcing /home/dashie/.vim/filetype.vim
+034.477  000.006  000.006: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/filetype.vim
+034.495  000.006  000.006: sourcing /usr/share/vim/vim82/filetype.vim
+034.742  000.006  000.006: sourcing /usr/share/vim/vim82/indent.vim
+035.069  000.272  000.272: sourcing /usr/share/vim/vim82/syntax/nosyntax.vim
+035.590  000.084  000.084: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+035.669  000.387  000.303: sourcing /usr/share/vim/vim82/syntax/synload.vim
+035.722  000.945  000.286: sourcing /usr/share/vim/vim82/syntax/syntax.vim
+036.120  000.103  000.103: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+036.588  000.104  000.104: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+036.987  000.113  000.113: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+041.090  004.904  004.687: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/gruvbox/colors/gruvbox.vim
+041.092  005.354  000.347: sourcing /home/dashie/.vim/startup/color.vim
+041.154  000.048  000.048: sourcing /home/dashie/.vim/startup/commands.vim
+041.175  000.011  000.011: sourcing /home/dashie/.vim/startup/functions.vim
+041.302  000.117  000.117: sourcing /home/dashie/.vim/startup/mappings.vim
+042.262  000.056  000.056: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/init.vim
+042.513  000.062  000.062: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/parts.vim
+042.645  000.013  000.013: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/formatter/short_path.vim
+043.118  000.951  000.820: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/section.vim
+043.415  002.100  001.149: sourcing /home/dashie/.vim/startup/settings.vim
+043.566  000.136  000.136: sourcing /home/dashie/.vim/plugged/lsp-examples/lsp.vim
+043.568  041.851  012.053: sourcing ~/.vim/vimrc
+043.569  000.071: sourcing vimrc file(s)
+046.055  002.395  002.395: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-devicons/plugin/webdevicons.vim
+046.526  000.097  000.097: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/util.vim
+046.580  000.469  000.372: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/plugin/airline.vim
+046.656  000.031  000.031: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline-themes/plugin/airline-themes.vim
+047.261  000.054  000.054: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale/events.vim
+047.422  000.719  000.665: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/ale/plugin/ale.vim
+048.382  000.908  000.908: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/YouCompleteMe/plugin/youcompleteme.vim
+048.740  000.177  000.177: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/colorizer/autoload/colorizer.vim
+049.010  000.573  000.396: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/colorizer/plugin/colorizer.vim
+049.149  000.040  000.040: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-swagger-preview/plugin/vim-swagger-preview.vim
+049.274  000.087  000.087: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-yaml-helper/plugin/vim-yaml-helper.vim
+049.383  000.058  000.058: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/rust.vim/plugin/cargo.vim
+049.419  000.024  000.024: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/rust.vim/plugin/rust.vim
+049.668  000.070  000.070: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-test/autoload/test.vim
+050.284  000.829  000.759: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-test/plugin/test.vim
+051.500  001.164  001.164: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-dispatch/plugin/dispatch.vim
+051.569  000.027  000.027: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vimux-jest-test/plugin/vimux-jest-test.vim
+051.667  000.062  000.062: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-node-inspect/plugin/nodeinspect.vim
+051.861  000.147  000.147: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startuptime/plugin/startuptime.vim
+052.268  000.364  000.364: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/quick-scope/plugin/quick_scope.vim
+052.399  000.086  000.086: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-peekaboo/plugin/peekaboo.vim
+052.521  000.083  000.083: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/plugin/startify.vim
+052.670  000.108  000.108: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-easy-align/plugin/easy_align.vim
+052.748  000.013  000.013: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/goyo.vim/plugin/goyo.vim
+052.811  000.028  000.028: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/limelight.vim/plugin/limelight.vim
+052.904  000.050  000.050: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gotofile/plugin/gotofile.vim
+053.205  000.093  000.093: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-indent-guides/autoload/indent_guides.vim
+053.432  000.486  000.393: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-indent-guides/plugin/indent_guides.vim
+053.722  000.242  000.242: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/auto-pairs/plugin/auto-pairs.vim
+053.959  000.185  000.185: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-matchit/plugin/matchit.vim
+056.999  002.997  002.997: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdcommenter/plugin/NERD_commenter.vim
+057.416  000.335  000.335: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-surround/plugin/surround.vim
+057.614  000.120  000.120: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-slash/plugin/slash.vim
+058.011  000.099  000.099: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/autoload/nerdtree.vim
+058.615  000.308  000.308: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/path.vim
+058.881  000.072  000.072: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/menu_controller.vim
+059.094  000.040  000.040: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/menu_item.vim
+059.318  000.053  000.053: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/key_map.vim
+059.598  000.110  000.110: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/bookmark.vim
+059.882  000.104  000.104: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/tree_file_node.vim
+060.280  000.216  000.216: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/tree_dir_node.vim
+060.548  000.096  000.096: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/opener.vim
+060.961  000.242  000.242: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/creator.vim
+061.207  000.076  000.076: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/flag_set.vim
+061.564  000.189  000.189: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/nerdtree.vim
+062.064  000.340  000.340: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/ui.vim
+062.247  000.018  000.018: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/event.vim
+062.461  000.047  000.047: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/notifier.vim
+063.311  000.666  000.666: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/autoload/nerdtree/ui_glue.vim
+065.059  000.225  000.225: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-devicons/nerdtree_plugin/webdevicons.vim
+065.461  000.055  000.055: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/nerdtree_plugin/exec_menuitem.vim
+065.886  000.411  000.411: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/nerdtree_plugin/fs_menu.vim
+065.934  000.030  000.030: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/nerdtree_plugin/vcs.vim
+066.091  008.432  005.035: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/plugin/NERD_tree.vim
+066.845  000.712  000.712: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/fzf/plugin/fzf.vim
+067.643  000.738  000.738: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/fzf.vim/plugin/fzf.vim
+067.809  000.101  000.101: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/fzf-session.vim/plugin/fzf_session.vim
+069.820  001.973  001.973: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/emmet-vim/plugin/emmet.vim
+070.328  000.431  000.431: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-template/plugin/templates.vim
+071.468  001.091  001.091: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-fugitive/plugin/fugitive.vim
+071.942  000.096  000.096: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/autoload/gitgutter/utility.vim
+072.338  000.083  000.083: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/autoload/gitgutter/highlight.vim
+073.231  001.701  001.522: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/plugin/gitgutter.vim
+073.656  000.025  000.025: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/setup.vim
+073.840  000.551  000.526: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/plugin/neomake.vim
+073.892  000.011  000.011: sourcing /usr/share/vim/vimfiles/plugin/fzf.vim
+074.120  000.191  000.191: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/plugin/polyglot.vim
+074.306  000.050  000.050: sourcing /usr/share/vim/vim82/plugin/getscriptPlugin.vim
+074.479  000.161  000.161: sourcing /usr/share/vim/vim82/plugin/gzip.vim
+074.633  000.139  000.139: sourcing /usr/share/vim/vim82/plugin/logiPat.vim
+074.665  000.017  000.017: sourcing /usr/share/vim/vim82/plugin/manpager.vim
+074.793  000.118  000.118: sourcing /usr/share/vim/vim82/plugin/matchparen.vim
+075.218  000.405  000.405: sourcing /usr/share/vim/vim82/plugin/netrwPlugin.vim
+075.262  000.022  000.022: sourcing /usr/share/vim/vim82/plugin/rrhelper.vim
+075.298  000.017  000.017: sourcing /usr/share/vim/vim82/plugin/spellfile.vim
+075.447  000.132  000.132: sourcing /usr/share/vim/vim82/plugin/tarPlugin.vim
+075.523  000.059  000.059: sourcing /usr/share/vim/vim82/plugin/tohtml.vim
+075.673  000.136  000.136: sourcing /usr/share/vim/vim82/plugin/vimballPlugin.vim
+075.848  000.147  000.147: sourcing /usr/share/vim/vim82/plugin/zipPlugin.vim
+075.862  002.328: loading plugins
+075.895  000.033: loading packages
+075.958  000.063: loading after plugins
+076.590  000.632: inits 3
+077.097  000.507: reading viminfo
+077.954  000.857: setup clipboard
+077.965  000.011: setting raw mode
+077.970  000.005: start termcap
+077.984  000.014: clearing screen
+078.565  000.187  000.187: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions.vim
+078.672  000.031  000.031: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/quickfix.vim
+078.824  000.104  000.104: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline.vim
+078.934  000.020  000.020: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/netrw.vim
+079.023  000.020  000.020: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/fzf.vim
+079.422  000.114  000.114: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/highlighter.vim
+079.641  000.478  000.364: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/term.vim
+079.810  000.059  000.059: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/hunks.vim
+080.047  000.129  000.129: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/branch.vim
+080.186  000.031  000.031: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/fugitiveline.vim
+080.341  000.054  000.054: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/ale.vim
+080.626  000.076  000.076: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/whitespace.vim
+080.800  000.028  000.028: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/neomake.vim
+080.921  000.034  000.034: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/po.vim
+081.044  000.056  000.056: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/wordcount.vim
+081.213  000.096  000.096: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline.vim
+081.318  000.030  000.030: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/autoshow.vim
+081.519  000.052  000.052: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/tabs.vim
+081.726  000.095  000.095: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/buffers.vim
+081.946  000.024  000.024: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/keymap.vim
+082.290  000.021  000.021: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/searchcount.vim
+083.257  000.025  000.025: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-devicons/autoload/airline/extensions/webdevicons.vim
+088.132  000.030  000.030: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/themes.vim
+089.602  001.591  001.561: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/gruvbox/autoload/airline/themes/gruvbox.vim
+108.096  000.097  000.097: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/builder.vim
+108.470  000.054  000.054: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/default.vim
+147.626  000.109  000.109: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale.vim
+147.952  066.467: opening buffers
+149.075  000.406  000.406: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/autoload/polyglot/sleuth.vim
+149.669  000.113  000.113: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-peekaboo/autoload/peekaboo.vim
+150.758  000.042  000.042: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/fzf-session.vim/autoload/fzf_session.vim
+151.064  000.071  000.071: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/autoload/gitgutter.vim
+152.153  000.048  000.048: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/core.vim
+152.477  000.619  000.571: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/utils.vim
+152.580  001.072  000.453: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/highlights.vim
+152.705  003.049: BufEnter autocommands
+152.706  000.001: editing files in windows
+153.410  000.582  000.582: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/YouCompleteMe/autoload/youcompleteme.vim
+204.846  000.332  000.332: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-node-inspect/autoload/nodeinspect.vim
+205.829  000.724  000.724: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/autoload/startify.vim
+205.985  000.034  000.034: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/buflist.vim
+206.866  000.578  000.578: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/autoload/startify/fortune.vim
+230.131  000.366  000.366: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/syntax/startify.vim
+232.881  000.207  000.207: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale/util.vim
+292.330  136.801: VimEnter autocommands
+292.332  000.002: before starting main loop
+293.531  000.934  000.934: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake.vim
+294.064  000.152  000.152: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale/linter.vim
+295.399  000.066  000.066: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/ctrlspace.vim
+295.513  000.056  000.056: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/tabws.vim
+295.854  000.077  000.077: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/builder.vim
+309.730  016.113: first screen update
+309.731  000.001: --- VIM STARTED ---
