@@ -84,7 +84,7 @@ local function init()
     use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
-    use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim
+    use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
     use "glepnir/dashboard-nvim" -- dashboard
     use {
         "lukas-reineke/indent-blankline.nvim",
@@ -95,12 +95,11 @@ local function init()
     use "ruifm/gitlinker.nvim" -- get repo file on remote as url
     use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
     use "tpope/vim-fugitive" -- git integration
-    use {"tpope/vim-rhubarb", cmd = "GBrowse"} -- GBrowse for gh
+    use {"tpope/vim-rhubarb", opt = true, cmd = "GBrowse"} -- GBrowse for gh
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
     use {"tpope/vim-dispatch", disabled = true} -- compiler build solution
-    use "vim-test/vim-test" -- vim testing
-    use "neomake/neomake" -- same as dispatch but async
+    use {"vim-test/vim-test", opt = true, cmd = {"TestFile"}, requires = {"neomake/neomake"}} -- Testing and building
     -- debug
     use {"puremourning/vimspector", opt = true, cmd = {"Vimspector"}} -- debugger
     -- lib
