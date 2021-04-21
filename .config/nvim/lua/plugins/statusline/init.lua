@@ -33,6 +33,14 @@ local colors = {
     red = "#ec5f67"
 }
 
+local function LspStatus()
+    if vim.lsp.buf_get_clients() > 0 then
+        return require("lsp-status").status()
+    end
+
+    return ""
+end
+
 local function trailing_whitespace()
     local trail = vim.fn.search("\\s$", "nw")
     if trail ~= 0 then
@@ -229,7 +237,7 @@ gls.left[14] = {
 gls.left[15] = {
     LspStatus = {
         provider = function()
-            return require("lsp-status").status()
+            return LspStatus()
         end,
         highlight = {colors.green, colors.bg},
         icon = "  λ "
