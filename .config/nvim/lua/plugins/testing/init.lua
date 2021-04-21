@@ -23,7 +23,7 @@ T.TestStatus = function()
 end
 
 vim.api.nvim_set_var("test#javascript#runnter", "jest")
-vim.api.nvim_set_var("test#javascript#jest#options", "--reporters jest-vim-reporter")
+vim.api.nvim_set_var("test#javascript#jest#options", "--reporters ~/.dotfiles-darwin/vim-qf-format.js")
 vim.api.nvim_set_var("test#strategy", "neomake")
 
 local autocmds = {
