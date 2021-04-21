@@ -86,11 +86,9 @@ local custom_attach = function(client)
     map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
     map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
     map("n", "<space>gd", '<cmd>lua require("lspsaga.provider").preview_definition()<CR>')
-    -- map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
     map("n", "K", '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
     map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
     map("n", "<space>gr", "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>")
-    -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
     map("n", "gs", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
     map("i", "<C-g>", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
     map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
@@ -98,11 +96,9 @@ local custom_attach = function(client)
     map("n", "<space>gw", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
     map("n", "<space>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
     map("n", "<space>ah", "<cmd>lua vim.lsp.buf.hover()<CR>")
-    -- map('n','<space>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
     map("n", "<space>af", '<cmd>lua require("lspsaga.codeaction").code_action()<CR>')
     map("v", "<space>ac", '<cmd>lua require("lspsaga.codeaction").range_code_action()<CR>')
     map("n", "<space>ee", "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>")
-    --map('n','<space>ar','<cmd>lua vim.lsp.buf.rename()<CR>')
     map("n", "<space>ar", '<cmd>lua require("lspsaga.rename").rename()<CR>')
     map("n", "gh", '<cmd>lua require("lspsaga.provider").lsp_finder()<CR>')
     map("n", "<space>=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
@@ -137,6 +133,9 @@ lspconfig.tsserver.setup {
             client.config.flags.allow_incremental_sync = true
         end
         client.resolved_capabilities.document_formatting = false
+
+        vim.lsp.buf_request_sync = ts_utils.buf_request_sync
+        vim.lsp.buf_request = ts_utils.buf_request
 
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gtr", ":TSLspRenameFile<CR>", {silent = true})
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gti", ":TSLspImportAll<CR>", {silent = true})
