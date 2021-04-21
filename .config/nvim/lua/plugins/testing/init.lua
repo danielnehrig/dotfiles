@@ -12,9 +12,9 @@ end
 T.TestFinished = function()
     local context = vim.api.nvim_get_var("neomake_hook_context")
     if context.jobinfo.exit_code == 0 then
-        TESTING_STATUS = "Test ✅"
+        TESTING_STATUS = "Test ✅  "
     else
-        TESTING_STATUS = "Test ❌"
+        TESTING_STATUS = "Test ❌  "
     end
 end
 
