@@ -98,9 +98,9 @@ local function init()
     use {"tpope/vim-rhubarb", cmd = "GBrowse"} -- GBrowse for gh
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
-    use {"tpope/vim-dispatch", opt = true, cmd = {"TestFile", "Dispatch", "Make", "Focus", "Start"}} -- compiler build solution
-    use {"vim-test/vim-test", opt = true, cmd = {"TestFile"}} -- vim testing
-    use {"neomake/neomake", opt = true, cmd = {"TestFile", "Neomake"}} -- same as dispatch but async
+    use {"tpope/vim-dispatch", disabled = true} -- compiler build solution
+    use "vim-test/vim-test" -- vim testing
+    use "neomake/neomake" -- same as dispatch but async
     -- debug
     use {"puremourning/vimspector", opt = true, cmd = {"Vimspector"}} -- debugger
     -- lib
