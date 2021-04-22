@@ -119,7 +119,7 @@ end
 
 -- lsp setups
 lspconfig.tsserver.setup {
-    on_attach = function(client, bufnr)
+    on_attach = function(client)
         if client.config.flags then
             client.config.flags.allow_incremental_sync = true
         end

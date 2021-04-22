@@ -98,7 +98,7 @@ local function init()
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
     use {"tpope/vim-dispatch", opt = true, cmd = {"Dispatch"}} -- compiler build solution
-    use {"vim-test/vim-test", opt = true, cmd = {"TestFile"}, requires = {"neomake/neomake"}} -- Testing and building
+    use {"vim-test/vim-test", opt = true, cmd = {"TestFile"}, requires = {"neomake/neomake", "tpope/vim-dispatch"}} -- Testing and building
     -- debug
     use {"puremourning/vimspector", opt = true, cmd = {"Vimspector"}} -- debugger
     -- lib
