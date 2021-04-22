@@ -19,3 +19,6 @@ remap(
 
 -- treesitter
 remap("n", "<Leader>dh", ":TSBufToggle highlight<CR>", {silent = true, noremap = true}) -- disable highlight
+
+-- vimspector
+vim.cmd [[command! Vimspector call vimspector#Launch()]]
