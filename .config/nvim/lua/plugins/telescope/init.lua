@@ -71,9 +71,7 @@ vim.api.nvim_set_keymap(
     [[<Cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>]],
     opt
 )
---vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require('telescope').extensions.fzf_writer.files()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fg", [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], opt)
---vim.api.nvim_set_keymap("n", "<Leader>fg", [[<Cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>]], opt)
 vim.api.nvim_set_keymap(
     "n",
     "<Leader>fp",
@@ -84,11 +82,6 @@ vim.api.nvim_set_keymap("n", "<Leader>fb", [[<Cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap("n", "<Leader>fh", [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fo", [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fm", [[<Cmd> Neoformat<CR>]], opt)
-vim.api.nvim_set_keymap(
-    "n",
-    "<C-p>",
-    ":lua require'telescope'.extensions.project.project{}<CR>",
-    {noremap = true, silent = true}
-)
+vim.api.nvim_set_keymap("n", "<C-p>", [[<Cmd>lua require'telescope'.extensions.project.project{}<CR>]], opt)
 
 vim.api.nvim_set_keymap("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)
