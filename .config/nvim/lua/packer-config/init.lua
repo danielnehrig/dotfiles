@@ -27,6 +27,7 @@ local function init()
     use "norcalli/nvim-colorizer.lua" -- colors hex
     use "ryanoasis/vim-devicons" -- devicons
     use "Dave-Elec/gruvbox" -- colorscheme
+    use "folke/tokyonight.nvim"
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
@@ -56,6 +57,12 @@ local function init()
     use "SirVer/ultisnips" -- snippets
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
+    use {
+        "folke/lsp-trouble.nvim",
+        config = function()
+            require("trouble").setup {}
+        end
+    }
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
