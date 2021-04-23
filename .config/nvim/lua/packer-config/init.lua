@@ -57,12 +57,7 @@ local function init()
     use "SirVer/ultisnips" -- snippets
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
-    use {
-        "folke/lsp-trouble.nvim",
-        config = function()
-            require("trouble").setup {}
-        end
-    }
+    use "folke/lsp-trouble.nvim"
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
