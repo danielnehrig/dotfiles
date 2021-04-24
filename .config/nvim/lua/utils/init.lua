@@ -19,8 +19,8 @@ function M.has_width_gt(cols)
     return vim.fn.winwidth(0) / 2 > cols
 end
 
-function M.map(type, key, value)
-    vim.api.nvim_buf_set_keymap(0, type, key, value, {noremap = true, silent = true})
+function M.map(bufnr, type, key, value)
+    vim.api.nvim_buf_set_keymap(bufnr, type, key, value, {noremap = true, silent = true})
 end
 
 function M.autocmd(event, triggers, operations)

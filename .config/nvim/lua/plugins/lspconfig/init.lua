@@ -80,33 +80,33 @@ end
 saga.init_lsp_saga()
 lsp_status.register_progress()
 -- custom attach config
-local custom_attach = function(client)
+local custom_attach = function(client, bufnr)
     lsp_status.on_attach(client)
 
-    map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-    map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-    map("n", "<space>gd", '<cmd>lua require("lspsaga.provider").preview_definition()<CR>')
-    map("n", "K", '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
-    map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-    map("n", "<space>gr", "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>")
-    map("n", "gs", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-    map("i", "<C-g>", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-    map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-    map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-    map("n", "<space>gw", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
-    map("n", "<space>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
-    map("n", "<space>ah", "<cmd>lua vim.lsp.buf.hover()<CR>")
-    map("n", "<space>af", '<cmd>lua require("lspsaga.codeaction").code_action()<CR>')
-    map("v", "<space>ac", '<cmd>lua require("lspsaga.codeaction").range_code_action()<CR>')
-    map("n", "<space>ee", "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>")
-    map("n", "<space>ar", '<cmd>lua require("lspsaga.rename").rename()<CR>')
-    map("n", "gh", '<cmd>lua require("lspsaga.provider").lsp_finder()<CR>')
-    map("n", "<space>=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-    map("n", "<space>ai", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
-    map("n", "<space>ao", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
-    map("i", "<C-space>", "<cmd>call compe#complete()<CR>")
-    map("i", "<TAB>", "<cmd>call compe#confirm()<CR>")
-    map("n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
+    map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+    map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+    map(bufnr, "n", "<space>gd", '<cmd>lua require("lspsaga.provider").preview_definition()<CR>')
+    map(bufnr, "n", "K", '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
+    map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+    map(bufnr, "n", "<space>gr", "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>")
+    map(bufnr, "n", "gs", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+    map(bufnr, "i", "<C-g>", '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+    map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+    map(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+    map(bufnr, "n", "<space>gw", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+    map(bufnr, "n", "<space>gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+    map(bufnr, "n", "<space>ah", "<cmd>lua vim.lsp.buf.hover()<CR>")
+    map(bufnr, "n", "<space>af", '<cmd>lua require("lspsaga.codeaction").code_action()<CR>')
+    map(bufnr, "v", "<space>ac", '<cmd>lua require("lspsaga.codeaction").range_code_action()<CR>')
+    map(bufnr, "n", "<space>ee", "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>")
+    map(bufnr, "n", "<space>ar", '<cmd>lua require("lspsaga.rename").rename()<CR>')
+    map(bufnr, "n", "gh", '<cmd>lua require("lspsaga.provider").lsp_finder()<CR>')
+    map(bufnr, "n", "<space>=", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+    map(bufnr, "n", "<space>ai", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
+    map(bufnr, "n", "<space>ao", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
+    map(bufnr, "i", "<C-space>", "<cmd>call compe#complete()<CR>")
+    map(bufnr, "i", "<TAB>", "<cmd>call compe#confirm()<CR>")
+    map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
 
     autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
@@ -119,13 +119,35 @@ end
 
 -- lsp setups
 lspconfig.tsserver.setup {
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
+        local ts_utils = require("nvim-lsp-ts-utils")
+
+        -- defaults
+        ts_utils.setup {
+            disable_commands = false,
+            enable_import_on_completion = true,
+            import_on_completion_timeout = 5000,
+            -- eslint
+            eslint_bin = "eslint_d",
+            eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
+            eslint_enable_disable_comments = true,
+            eslint_enable_diagnostics = false,
+            eslint_diagnostics_debounce = 250,
+            -- formatting
+            enable_formatting = false,
+            formatter = "prettier_d",
+            formatter_args = {"--stdin-filepath", "$FILENAME"},
+            format_on_save = false,
+            no_save_after_format = false
+        }
+        vim.lsp.buf_request = ts_utils.buf_request
         if client.config.flags then
             client.config.flags.allow_incremental_sync = true
         end
         client.resolved_capabilities.document_formatting = false
 
-        custom_attach(client)
+        custom_attach(client, bufnr)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", {silent = true})
     end,
     capabilities = capabilities
 }

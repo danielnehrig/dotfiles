@@ -31,6 +31,7 @@ local function init()
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils"}
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "tsx", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
