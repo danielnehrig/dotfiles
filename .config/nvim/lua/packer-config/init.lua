@@ -76,7 +76,6 @@ local function init()
     use "justinmk/vim-sneak" -- movement plugin
     use "unblevable/quick-scope" -- f F t T improved highlight
     -- quality of life
-    use "code-biscuits/nvim-biscuits" -- highligh bracket ending and what not
     use "kevinhwang91/nvim-bqf" -- better quickfix
     use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
     use {
