@@ -173,6 +173,9 @@ node_packages = [
         "typescript"
         ]
 
+go_packages = []
+rust_packages = []
+
 arrow = '====>'
 
 
@@ -457,23 +460,13 @@ def Darwin():
     log.Step("Installing Python PIP Packages", 10)
     InstallPackages('pip3 install', pip_packages)
 
-    # install fonts
-    try:
-        # Fonts https://github.com/gabrielelana/awesome-terminal-fonts
-        log.Step("Installing Fonts", 12)
-        # and nerd fonts https://github.com/ryanoasis/nerd-fonts
-        FONT = "https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf"
-        FONT_NAME = "SourceCodeProAwesome.ttf"
-        system('wget -L ' + FONT + ' -O ' + FONT_NAME + ' > /dev/null 2>&1')
-        system('cp ' + current_folder + '/' + FONT_NAME + ' ~/Library/Fonts/' + FONT_NAME)
-    except OSError:
-        log.Error("Error while installing fonts")
-
     # cloning dependencies zsh theme and plugins
     try:
         log.Step("Cloning Shell Dependencies Themes Plugins", 13)
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
+
+        Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
@@ -493,16 +486,6 @@ def Darwin():
         Install('sudo chsh -s /usr/local/bin/zsh ' + user)
     except OSError:
         log.Error("Error while settings zsh shell")
-
-    # option to not compile
-    for option in sys.argv:
-        if option == '--all':
-            log.Step("Compile Programs", 16)
-            # compile pwndbg for reversing c / c++
-            log.Info("Compile pwndbg")
-            os.chdir(current_folder + '/pwndbg')
-            CompileDependency('./setup.sh')
-            os.chdir(current_folder)
 
     # exec zsh
     finish = datetime.now().strftime('%H:%M:%S')
