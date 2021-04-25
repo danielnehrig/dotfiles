@@ -8,15 +8,9 @@
     - [GUI Programs (Default)](#gui-programs-default)
     - [CLI Programs (Default)](#cli-programs-default)
     - [ZSH Configuration](#zsh-configuration)
-    - [Todo](#todo)
   - [Installation](#installation)
     - [OSX](#osx)
     - [LINUX](#linux)
-  - [Thumbnails](#thumbnails)
-    - [OSX Thumbnails](#osx-thumbnails)
-      - [Cherry](#cherry-profile)
-      - [Default](#default-profile)
-      - [Parklet](#parklet-profile)
 
 ## Description
 
@@ -33,12 +27,7 @@ TMUX, VIM, ZSH Configurations
 ### GUI Programs (Default)
 
 - VS-Code
-- iTerm2
-- 1Password
 - All Major Browsers
-- Slack
-- Skype for Business
-- Cheatsheet
 - VirtualBox
 - Ghidra
 - Postman
@@ -50,7 +39,7 @@ TMUX, VIM, ZSH Configurations
 - htop
 - tmux
 - fzf
-- vim
+- nvim
 - gdb
 - radare2
 - etc... see install.py
@@ -64,18 +53,6 @@ TMUX, VIM, ZSH Configurations
 - Syntaxhighlight
 - Autosuggest
 
-### Todo
-
-- Adding automated Key signing for debuging (gdb, radare2)
-- Automated installation of iterm2 settings
-- Adding dotnet
-- Adding Linux Support
-- Adding Windows Support
-- Make Design Modular
-  - Powerline10k zsh Settings
-  - Powerline tmux Settings
-  - Powerline vim Settings
-
 ## Installation
 
 ### OSX
@@ -86,16 +63,6 @@ TMUX, VIM, ZSH Configurations
 - options
   - --all (to compile ycm and pwndbg)
 - note check makefile or ./install.py --help
-
-#### Iterm2
-
-How to import from above JSON file format which is actually a plist format:
-
-- go to your home directory cd ~
-- cd Library/Application Support/iTerm2/DynamicProfiles
-- copy your json file you saves to this DynamicProfiles folder
-- cp dotfilesrepo/itermprofiles.json .
-- Restart iTerm2 now in profiles it should show all your old profiles
 
 ### LINUX
 
@@ -141,9 +108,6 @@ Mod = cmd/win
 ## Thumbnails
 
 ### Arch Thumbnails
-
-## Stargaze
-[![Thumbnail1 arch](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/snap.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/arch)
 
 ## Seasonschange
 [![Thumbnail2 arch](https://i.imgur.com/xWP2mlu.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/arch)
