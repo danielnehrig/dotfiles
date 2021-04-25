@@ -27,11 +27,11 @@ local function init()
     use "norcalli/nvim-colorizer.lua" -- colors hex
     use "ryanoasis/vim-devicons" -- devicons
     use "Dave-Elec/gruvbox" -- colorscheme
-    use "folke/tokyonight.nvim"
+    use "folke/tokyonight.nvim" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
-    use {"jose-elias-alvarez/nvim-lsp-ts-utils"}
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils"} -- eslint code actions
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "tsx", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
@@ -76,7 +76,8 @@ local function init()
     use "justinmk/vim-sneak" -- movement plugin
     use "unblevable/quick-scope" -- f F t T improved highlight
     -- quality of life
-    use "kevinhwang91/nvim-bqf"
+    use "code-biscuits/nvim-biscuits" -- highligh bracket ending and what not
+    use "kevinhwang91/nvim-bqf" -- better quickfix
     use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
     use {
         "AckslD/nvim-whichkey-setup.lua",
