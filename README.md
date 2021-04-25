@@ -140,27 +140,6 @@ Mod = cmd/win
 
 ## Thumbnails
 
-### OSX Thumbnails
-
-- Images Showcase iTerm2 Color Schemes and tmux powerline theme
-- Showcasing zsh vim tmux fzf
-- Click Image to see more Screenshots
-
-#### Cherry Profile
-
-[![Thumbnail1 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/cherry/terminal.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Cherry)
-[![Thumbnail1 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/cherry/vim%202%20fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Cherry)
-
-#### Default Profile
-
-[![Thumbnail2 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/terminal_suggest.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
-[![Thumbnail2 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/default/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Default)
-
-#### Parklet Profile
-
-[![Thumbnail3 Terminal](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/terminal.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
-[![Thumbnail3 vim fzf](https://raw.githubusercontent.com/danielnehrig/.dotfiles-darwin/master/.thumbnails/parklet/vim_fzf.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/Parklet)
-
 ### Arch Thumbnails
 
 ## Stargaze
