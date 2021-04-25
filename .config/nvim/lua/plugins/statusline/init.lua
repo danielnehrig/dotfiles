@@ -1,6 +1,6 @@
 local gl = require("galaxyline")
 local gls = gl.section
-local TestStatus = require("plugins.testing").TestStatus
+local MakeStatus = require("plugins.testing").MakeStatus
 
 gl.short_line_list = {
     "LuaTree",
@@ -237,7 +237,7 @@ gls.right[1] = {
 gls.right[3] = {
     Test = {
         provider = function()
-            return "  | " .. TestStatus()
+            return "  | " .. MakeStatus()
         end,
         highlight = {colors.fg, colors.line_bg}
     }
@@ -258,22 +258,6 @@ gls.right[5] = {
         highlight = {colors.cyan, colors.darkblue, "bold"}
     }
 }
-
--- gls.right[4] = {
---   ScrollBar = {
---     provider = 'ScrollBar',
---     highlight = {colors.blue,colors.purple},
---   }
--- }
---
--- gls.right[3] = {
---   Vista = {
---     provider = VistaPlugin,
---     separator = ' ',
---     separator_highlight = {colors.bg,colors.line_bg},
---     highlight = {colors.fg,colors.line_bg,'bold'},
---   }
--- }
 
 gls.short_line_left[1] = {
     BufferType = {
