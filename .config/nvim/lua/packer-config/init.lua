@@ -20,19 +20,18 @@ local function init()
     local use = packer.use
     packer.reset()
 
-    use {"wbthomason/packer.nvim", opt = true}
+    use {"wbthomason/packer.nvim", opt = true} -- packer
     -- theme
     use "glepnir/galaxyline.nvim" -- statusbar
     use "romgrk/barbar.nvim" -- bufferline
     use "norcalli/nvim-colorizer.lua" -- colors hex
     use "ryanoasis/vim-devicons" -- devicons
     use "Dave-Elec/gruvbox" -- colorscheme
-    use "folke/tokyonight.nvim" -- colorscheme
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
-    use {"jose-elias-alvarez/nvim-lsp-ts-utils"} -- eslint code actions
-    use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "tsx", "jsx", "typescriptreact"}} -- jest coverage
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"ts", "typescriptreact"}} -- eslint code actions
+    use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {
@@ -58,7 +57,7 @@ local function init()
     use "SirVer/ultisnips" -- snippets
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
-    use "folke/lsp-trouble.nvim"
+    use "folke/lsp-trouble.nvim" -- window for showing LSP detected issues in code
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
@@ -70,7 +69,7 @@ local function init()
     use "nvim-telescope/telescope-project.nvim" -- project manager
     use "nvim-telescope/telescope.nvim" -- fuzzy finder
     use "nvim-telescope/telescope-media-files.nvim" -- media files showing
-    use "kyazdani42/nvim-tree.lua" -- Drawboard style like nerdtree
+    use "kyazdani42/nvim-tree.lua" -- Drawerboard style like nerdtree
     -- movement
     use "adelarsq/vim-matchit" -- matchit % jump
     use "justinmk/vim-sneak" -- movement plugin
