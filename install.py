@@ -466,6 +466,8 @@ def Darwin():
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
+        Install('git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ' + current_folder + '/oh-my-zsh/custom' + '/themes/powerlevel10k')
+
         Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
 
         # fzf docker
