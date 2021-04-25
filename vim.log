@@ -218,3 +218,211 @@ times in msec
 295.854  000.077  000.077: sourcing /home/dashie/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/builder.vim
 309.730  016.113: first screen update
 309.731  000.001: --- VIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.011  000.011: --- VIM STARTING ---
+000.134  000.123: Allocated generic buffers
+000.703  000.569: locale set
+000.707  000.004: clipboard setup
+000.715  000.008: window checked
+001.425  000.710: inits 1
+001.436  000.011: parsing arguments
+001.437  000.001: expanding arguments
+005.363  003.926: shell init
+005.912  000.549: Termcap init
+005.927  000.015: inits 2
+006.069  000.142: init highlight
+006.783  000.069  000.069: sourcing /usr/local/share/vim/vim82/ftoff.vim
+008.914  002.007  002.007: sourcing /Users/dNehrig/.vim/autoload/plug.vim
+017.706  000.063  000.063: sourcing /Users/dNehrig/.vim/filetype.vim
+018.675  000.062  000.062: sourcing /Users/dNehrig/.vim/filetype.vim
+018.894  000.012  000.012: sourcing /Users/dNehrig/.vim/plugged/vim-polyglot/filetype.vim
+025.907  000.040  000.040: sourcing /Users/dNehrig/.vim/plugged/vim-openapi/ftdetect/openapi.vim
+026.092  000.014  000.014: sourcing /Users/dNehrig/.vim/plugged/vim-polyglot/ftdetect/polyglot.vim
+026.256  000.040  000.040: sourcing /Users/dNehrig/.vim/plugged/rust.vim/ftdetect/rust.vim
+026.748  000.013  000.013: sourcing /Users/dNehrig/.vim/plugged/vim-fugitive/ftdetect/fugitive.vim
+026.935  000.017  000.017: sourcing /usr/local/share/vim/vimfiles/ftdetect/pullrequest.vim
+027.097  007.825  007.701: sourcing /usr/local/share/vim/vim82/filetype.vim
+027.473  000.036  000.036: sourcing /Users/dNehrig/.vim/plugged/vim-openapi/ftdetect/openapi.vim
+027.638  000.012  000.012: sourcing /Users/dNehrig/.vim/plugged/vim-polyglot/ftdetect/polyglot.vim
+027.784  000.037  000.037: sourcing /Users/dNehrig/.vim/plugged/rust.vim/ftdetect/rust.vim
+028.235  000.011  000.011: sourcing /Users/dNehrig/.vim/plugged/vim-fugitive/ftdetect/fugitive.vim
+028.408  000.016  000.016: sourcing /usr/local/share/vim/vimfiles/ftdetect/pullrequest.vim
+042.674  024.510  016.499: sourcing /Users/dNehrig/.vim/plugged/vim-polyglot/autoload/polyglot/init.vim
+042.685  024.761  000.251: sourcing /Users/dNehrig/.vim/plugged/vim-polyglot/filetype.vim
+043.012  000.014  000.014: sourcing /usr/local/share/vim/vim82/filetype.vim
+043.484  000.039  000.039: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/ftplugin.vim
+043.940  000.033  000.033: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/indent.vim
+045.527  000.632  000.632: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/syncolor.vim
+045.656  001.165  000.533: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/synload.vim
+045.737  001.663  000.498: sourcing /usr/local/share/vim/vim82/syntax/syntax.vim
+045.859  000.046  000.046: sourcing /Users/dNehrig/.vim/filetype.vim
+046.220  000.011  000.011: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/filetype.vim
+046.298  000.011  000.011: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/filetype.vim
+046.727  000.011  000.011: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/ftplugin.vim
+046.875  000.045  000.045: sourcing /Users/dNehrig/.vim/filetype.vim
+047.232  000.010  000.010: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/filetype.vim
+047.308  000.011  000.011: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/filetype.vim
+047.732  000.011  000.011: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/indent.vim
+048.233  000.316  000.316: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/nosyntax.vim
+049.148  000.113  000.113: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/syncolor.vim
+049.271  000.638  000.525: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/synload.vim
+049.340  001.502  000.548: sourcing /usr/local/share/vim/vim82/syntax/syntax.vim
+050.007  000.137  000.137: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/syncolor.vim
+050.800  000.180  000.180: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/syncolor.vim
+051.424  000.135  000.135: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/syntax/syncolor.vim
+056.876  006.749  006.434: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/gruvbox/colors/gruvbox.vim
+056.882  007.484  000.598: sourcing /Users/dNehrig/.vim/startup/color.vim
+056.992  000.051  000.051: sourcing /Users/dNehrig/.vim/startup/commands.vim
+057.060  000.018  000.018: sourcing /Users/dNehrig/.vim/startup/functions.vim
+057.259  000.152  000.152: sourcing /Users/dNehrig/.vim/startup/mappings.vim
+059.044  000.112  000.112: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/init.vim
+059.492  000.108  000.108: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/parts.vim
+059.736  000.021  000.021: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/formatter/short_path.vim
+060.473  001.647  001.406: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/section.vim
+060.894  003.586  001.939: sourcing /Users/dNehrig/.vim/startup/settings.vim
+081.737  020.776  020.776: sourcing /Users/dNehrig/.vim/plugged/lsp-examples/lsp.vim
+081.744  075.277  012.903: sourcing ~/.vim/vimrc
+081.748  000.402: sourcing vimrc file(s)
+084.351  002.318  002.318: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-devicons/plugin/webdevicons.vim
+085.226  000.158  000.158: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/util.vim
+085.324  000.809  000.651: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/plugin/airline.vim
+085.510  000.038  000.038: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline-themes/plugin/airline-themes.vim
+086.485  000.095  000.095: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale/events.vim
+086.676  001.015  000.920: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/ale/plugin/ale.vim
+087.213  000.399  000.399: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/YouCompleteMe/plugin/youcompleteme.vim
+087.906  000.296  000.296: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/colorizer/autoload/colorizer.vim
+088.283  000.907  000.611: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/colorizer/plugin/colorizer.vim
+088.609  000.077  000.077: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-swagger-preview/plugin/vim-swagger-preview.vim
+088.889  000.143  000.143: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-yaml-helper/plugin/vim-yaml-helper.vim
+089.117  000.069  000.069: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/rust.vim/plugin/cargo.vim
+089.205  000.037  000.037: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/rust.vim/plugin/rust.vim
+089.740  000.124  000.124: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-test/autoload/test.vim
+090.687  001.347  001.223: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-test/plugin/test.vim
+092.577  001.750  001.750: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-dispatch/plugin/dispatch.vim
+092.762  000.040  000.040: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vimux-jest-test/plugin/vimux-jest-test.vim
+092.969  000.076  000.076: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-node-inspect/plugin/nodeinspect.vim
+093.317  000.215  000.215: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startuptime/plugin/startuptime.vim
+094.197  000.738  000.738: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/quick-scope/plugin/quick_scope.vim
+094.448  000.110  000.110: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-peekaboo/plugin/peekaboo.vim
+094.691  000.112  000.112: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/plugin/startify.vim
+094.980  000.156  000.156: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-easy-align/plugin/easy_align.vim
+095.251  000.020  000.020: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/goyo.vim/plugin/goyo.vim
+095.450  000.041  000.041: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/limelight.vim/plugin/limelight.vim
+095.665  000.071  000.071: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gotofile/plugin/gotofile.vim
+096.283  000.152  000.152: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-indent-guides/autoload/indent_guides.vim
+096.599  000.799  000.647: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-indent-guides/plugin/indent_guides.vim
+097.136  000.398  000.398: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/auto-pairs/plugin/auto-pairs.vim
+097.504  000.234  000.234: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-matchit/plugin/matchit.vim
+102.091  004.451  004.451: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdcommenter/plugin/NERD_commenter.vim
+102.844  000.519  000.519: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-surround/plugin/surround.vim
+103.149  000.165  000.165: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-slash/plugin/slash.vim
+104.002  000.195  000.195: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/autoload/nerdtree.vim
+104.993  000.437  000.437: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/path.vim
+105.480  000.126  000.126: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/menu_controller.vim
+105.895  000.073  000.073: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/menu_item.vim
+106.329  000.098  000.098: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/key_map.vim
+106.869  000.201  000.201: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/bookmark.vim
+107.406  000.192  000.192: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/tree_file_node.vim
+108.128  000.379  000.379: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/tree_dir_node.vim
+108.638  000.177  000.177: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/opener.vim
+109.336  000.364  000.364: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/creator.vim
+109.766  000.093  000.093: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/flag_set.vim
+110.381  000.282  000.282: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/nerdtree.vim
+111.203  000.499  000.499: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/ui.vim
+111.565  000.030  000.030: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/event.vim
+111.971  000.074  000.074: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/lib/nerdtree/notifier.vim
+113.215  000.885  000.885: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/autoload/nerdtree/ui_glue.vim
+116.499  000.358  000.358: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-devicons/nerdtree_plugin/webdevicons.vim
+117.314  000.089  000.089: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/nerdtree_plugin/exec_menuitem.vim
+118.119  000.750  000.750: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/nerdtree_plugin/fs_menu.vim
+118.225  000.047  000.047: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/nerdtree_plugin/vcs.vim
+118.551  015.266  009.917: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/nerdtree/plugin/NERD_tree.vim
+119.389  000.705  000.705: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/fzf/plugin/fzf.vim
+120.352  000.818  000.818: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/fzf.vim/plugin/fzf.vim
+120.630  000.128  000.128: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/fzf-session.vim/plugin/fzf_session.vim
+123.389  002.589  002.589: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/emmet-vim/plugin/emmet.vim
+124.085  000.546  000.546: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-template/plugin/templates.vim
+125.721  001.483  001.483: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-fugitive/plugin/fugitive.vim
+126.561  000.171  000.171: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/autoload/gitgutter/utility.vim
+127.301  000.155  000.155: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/autoload/gitgutter/highlight.vim
+128.207  002.336  002.010: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/plugin/gitgutter.vim
+128.945  000.041  000.041: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/setup.vim
+129.036  000.671  000.630: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/plugin/neomake.vim
+129.452  000.255  000.255: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/plugin/polyglot.vim
+130.120  000.058  000.058: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/getscriptPlugin.vim
+130.419  000.234  000.234: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/gzip.vim
+130.702  000.217  000.217: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/logiPat.vim
+130.805  000.031  000.031: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/manpager.vim
+131.043  000.176  000.176: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/matchparen.vim
+131.663  000.553  000.553: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/netrwPlugin.vim
+131.756  000.014  000.014: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/rrhelper.vim
+131.852  000.026  000.026: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/spellfile.vim
+132.090  000.171  000.171: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/tarPlugin.vim
+132.261  000.098  000.098: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/tohtml.vim
+132.506  000.172  000.172: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/vimballPlugin.vim
+132.800  000.213  000.213: sourcing /usr/local/Cellar/vim/8.2.2750/share/vim/vim82/plugin/zipPlugin.vim
+132.828  007.266: loading plugins
+132.922  000.094: loading packages
+133.044  000.122: loading after plugins
+133.051  000.007: inits 3
+141.040  007.989: reading viminfo
+141.069  000.029: setting raw mode
+141.073  000.004: start termcap
+141.089  000.016: clearing screen
+142.569  000.355  000.355: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions.vim
+142.780  000.055  000.055: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/quickfix.vim
+143.080  000.182  000.182: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline.vim
+143.855  000.164  000.164: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/netrw.vim
+144.144  000.043  000.043: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/fzf.vim
+145.326  000.320  000.320: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/highlighter.vim
+145.689  001.079  000.759: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/term.vim
+146.062  000.111  000.111: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/hunks.vim
+146.580  000.279  000.279: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/branch.vim
+146.967  000.075  000.075: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/fugitiveline.vim
+147.462  000.115  000.115: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/ale.vim
+148.408  000.156  000.156: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/whitespace.vim
+149.031  000.049  000.049: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/neomake.vim
+149.315  000.065  000.065: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/po.vim
+149.561  000.097  000.097: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/wordcount.vim
+149.881  000.175  000.175: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline.vim
+150.085  000.051  000.051: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/autoshow.vim
+150.586  000.099  000.099: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/tabs.vim
+150.966  000.175  000.175: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/buffers.vim
+151.367  000.038  000.038: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/keymap.vim
+152.146  000.051  000.051: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/searchcount.vim
+167.016  000.069  000.069: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/themes.vim
+169.473  002.802  002.733: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/gruvbox/autoload/airline/themes/gruvbox.vim
+196.929  000.156  000.156: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/builder.vim
+197.426  000.090  000.090: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/default.vim
+258.447  000.180  000.180: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale.vim
+259.025  111.294: opening buffers
+261.347  000.630  000.630: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-polyglot/autoload/polyglot/sleuth.vim
+262.257  000.180  000.180: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-peekaboo/autoload/peekaboo.vim
+264.041  000.072  000.072: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/fzf-session.vim/autoload/fzf_session.vim
+264.670  000.164  000.164: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-gitgutter/autoload/gitgutter.vim
+266.962  000.093  000.093: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/core.vim
+267.583  001.253  001.160: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/utils.vim
+267.728  002.156  000.903: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake/highlights.vim
+267.900  005.673: BufEnter autocommands
+267.902  000.002: editing files in windows
+269.048  000.890  000.890: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/YouCompleteMe/autoload/youcompleteme.vim
+332.840  000.605  000.605: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-node-inspect/autoload/nodeinspect.vim
+336.003  001.993  001.993: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/autoload/startify.vim
+336.402  000.077  000.077: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/buflist.vim
+338.312  001.353  001.353: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/autoload/startify/fortune.vim
+431.518  000.807  000.807: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-startify/syntax/startify.vim
+441.062  000.460  000.460: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale/util.vim
+493.799  219.712: VimEnter autocommands
+493.802  000.003: before starting main loop
+496.227  001.763  001.763: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/neomake/autoload/neomake.vim
+497.289  000.337  000.337: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/ale/autoload/ale/linter.vim
+499.870  000.133  000.133: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/ctrlspace.vim
+500.151  000.120  000.120: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/tabws.vim
+500.795  000.165  000.165: sourcing /Users/dNehrig/.dotfiles-darwin/.dotfiles-vim/plugged/vim-airline/autoload/airline/extensions/tabline/builder.vim
+526.780  030.460: first screen update
+526.783  000.003: --- VIM STARTED ---
