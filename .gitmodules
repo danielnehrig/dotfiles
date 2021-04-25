@@ -5,24 +5,3 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
-[submodule ".tmux"]
-	path = .tmux
-	url = https://github.com/gpakosz/.tmux.git
-[submodule "zsh-syntax-highlighting"]
-	path = zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "pwndbg"]
-	path = pwndbg
-	url = https://github.com/pwndbg/pwndbg
-[submodule "iTerm2-Color-Schemes"]
-	path = iTerm2-Color-Schemes
-	url = https://github.com/mbadolato/iTerm2-Color-Schemes
-[submodule "powerlevel10k"]
-	path = powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k
-[submodule "awesome-terminal-fonts"]
-	path = awesome-terminal-fonts
-	url = https://github.com/gabrielelana/awesome-terminal-fonts
-[submodule "iterm2segments"]
-	path = iterm2segments
-	url = https://github.com/danielnehrig/iterm2segments
