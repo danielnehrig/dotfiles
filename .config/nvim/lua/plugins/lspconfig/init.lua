@@ -147,7 +147,7 @@ lspconfig.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
 
         custom_attach(client, bufnr)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", {silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
     end,
     capabilities = capabilities
 }
