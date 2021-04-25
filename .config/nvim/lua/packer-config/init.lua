@@ -76,6 +76,7 @@ local function init()
     use "justinmk/vim-sneak" -- movement plugin
     use "unblevable/quick-scope" -- f F t T improved highlight
     -- quality of life
+    use "kevinhwang91/nvim-bqf"
     use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
     use {
         "AckslD/nvim-whichkey-setup.lua",
