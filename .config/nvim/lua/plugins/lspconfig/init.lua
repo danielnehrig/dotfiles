@@ -142,12 +142,12 @@ lspconfig.tsserver.setup {
             format_on_save = false,
             no_save_after_format = false
         }
-        vim.lsp.buf_request = ts_utils.buf_request
         if client.config.flags then
             client.config.flags.allow_incremental_sync = true
         end
         client.resolved_capabilities.document_formatting = false
 
+        ts_utils.setup_client(client)
         custom_attach(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
     end,
