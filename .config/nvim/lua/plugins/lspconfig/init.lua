@@ -2,7 +2,6 @@ local map = require "utils".map
 local autocmd = require "utils".autocmd
 local lsp_status = require("lsp-status")
 local lspconfig = require("lspconfig")
-local cmd = vim.cmd
 local fn = vim.fn
 local setOption = vim.api.nvim_set_option
 local saga = require("lspsaga")
@@ -34,6 +33,7 @@ require("compe").setup(
         max_abbr_width = 100,
         max_kind_width = 100,
         max_menu_width = 100,
+        documentation = true,
         source = {
             path = true,
             buffer = true,
@@ -44,12 +44,12 @@ require("compe").setup(
             spell = false,
             tags = false,
             snippets_nvim = true,
-            treesitter = true
+            treesitter = false
         }
     }
 )
 
-cmd [[set completeopt=menuone,noinsert,noselect]]
+vim.o.completeopt = "menuone,noselect"
 
 vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
     if err ~= nil or result == nil then
@@ -68,6 +68,7 @@ end
 FormatToggle = function(value)
     vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
 end
+
 vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
 vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
 
@@ -115,6 +116,7 @@ local custom_attach = function(client, bufnr)
     fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
     fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
     fn.sign_define("LspDiagnosticsSignHint", {text = ""})
+    require "lsp_signature".on_attach()
 end
 
 -- lsp setups
@@ -257,7 +259,7 @@ local function get_lua_runtime()
     return result
 end
 
-require "lspconfig".sumneko_lua.setup {
+lspconfig.sumneko_lua.setup {
     on_attach = custom_attach,
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {

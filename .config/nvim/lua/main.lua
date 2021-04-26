@@ -1,25 +1,6 @@
 local cmd = vim.cmd
 local g = vim.g
 
--- cmd [[set guifont= Hack\ Nerd\ Font\ Mono:h15]]
-
--- disable unused default plugins
-local disabled_built_ins = {
-    "gzip",
-    "man",
-    "matchparen",
-    "shada_plugin",
-    "tarPlugin",
-    "tar",
-    "zipPlugin",
-    "zip",
-    "netrwPlugin"
-}
-
-for i = 1, 9 do
-    g["loaded_" .. disabled_built_ins[i]] = 1
-end
-
 -- check if we are in vscode nvim
 -- if not do not apply plugins
 -- slows down vscode and makes it non usable

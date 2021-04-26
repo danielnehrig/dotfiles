@@ -30,7 +30,7 @@ local function init()
     use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
-    use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"ts", "typescriptreact"}} -- eslint code actions
+    use "jose-elias-alvarez/nvim-lsp-ts-utils" -- eslint code actions
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
@@ -57,6 +57,7 @@ local function init()
     use "SirVer/ultisnips" -- snippets
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
+    use "ray-x/lsp_signature.nvim"
     use "folke/lsp-trouble.nvim" -- window for showing LSP detected issues in code
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
@@ -71,6 +72,8 @@ local function init()
     use "nvim-telescope/telescope-media-files.nvim" -- media files showing
     use "kyazdani42/nvim-tree.lua" -- Drawerboard style like nerdtree
     -- movement
+    use "chaoren/vim-wordmotion" -- better word motion
+    use "wellle/targets.vim" -- extended motions
     use "adelarsq/vim-matchit" -- matchit % jump
     use "justinmk/vim-sneak" -- movement plugin
     use "unblevable/quick-scope" -- f F t T improved highlight
