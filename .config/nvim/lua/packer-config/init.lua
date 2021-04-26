@@ -51,7 +51,7 @@ local function init()
         ft = {"yaml", "yml"},
         cmd = "SwaggerPreview"
     } -- openapi preview
-    use {"https://github.com/vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex"}}
+    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex"}}
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -90,6 +90,7 @@ local function init()
     use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
+    use "tjdevries/train.nvim"
     use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
     use "glepnir/dashboard-nvim" -- dashboard
     use {
@@ -99,6 +100,7 @@ local function init()
     use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
     -- git
     use "ruifm/gitlinker.nvim" -- get repo file on remote as url
+    use "pwntester/octo.nvim"
     use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
     use "tpope/vim-fugitive" -- git integration
     use {"tpope/vim-rhubarb", opt = true, cmd = "GBrowse"} -- GBrowse for gh
