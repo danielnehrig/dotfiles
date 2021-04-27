@@ -57,7 +57,7 @@ local function init()
     use "SirVer/ultisnips" -- snippets
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
-    use "ray-x/lsp_signature.nvim"
+    use "ray-x/lsp_signature.nvim" -- auto signature trigger
     use "folke/lsp-trouble.nvim" -- window for showing LSP detected issues in code
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
@@ -72,7 +72,7 @@ local function init()
     use "nvim-telescope/telescope-media-files.nvim" -- media files showing
     use "kyazdani42/nvim-tree.lua" -- Drawerboard style like nerdtree
     -- movement
-    use "chaoren/vim-wordmotion" -- better word motion
+    use "chaoren/vim-wordmotion" -- better word motion (also matches camelCase)
     use "wellle/targets.vim" -- extended motions
     use "adelarsq/vim-matchit" -- matchit % jump
     use "justinmk/vim-sneak" -- movement plugin
@@ -90,7 +90,8 @@ local function init()
     use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
-    use "tjdevries/train.nvim"
+    use "windwp/nvim-projectconfig"
+    use {"tjdevries/train.nvim", opt = true, cmd = {"TrainClear", "TrainUpDown", "TrainWord", "TrainTextObj"}}
     use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
     use "glepnir/dashboard-nvim" -- dashboard
     use {
@@ -100,9 +101,9 @@ local function init()
     use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
     -- git
     use "ruifm/gitlinker.nvim" -- get repo file on remote as url
-    use "pwntester/octo.nvim"
+    use {"pwntester/octo.nvim", opt = true, cmd = {"Octo", "OctoAddReviewComment", "OctoAddReviewSuggestion"}}
     use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
-    use "tpope/vim-fugitive" -- git integration
+    use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff"}} -- git integration
     use {"tpope/vim-rhubarb", opt = true, cmd = "GBrowse"} -- GBrowse for gh
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
