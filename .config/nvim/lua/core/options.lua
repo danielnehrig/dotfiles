@@ -44,14 +44,6 @@ local function load_options()
     -- for indenline
     M.opt("b", "expandtab", true)
     M.opt("b", "shiftwidth", 2)
-
-    -- for coverage
-    --" Specify the path to `coverage.json` file relative to your current working directory.
-    g.coverage_json_report_path = "coverage/coverage-final.json"
-    g.coverage_sign_covered = "⦿"
-    g.coverage_interval = 5000
-    g.coverage_show_covered = 1
-    g.coverage_show_uncovered = 1
 end
 
 load_options()

@@ -20,6 +20,7 @@ if not g.vscode then
     require("plugins.testing")
     require("plugins.nvimTree")
     require("plugins.telescope")
+    require("plugins.coverage")
     require("plugins.lspconfig")
     require("plugins.indent-blankline")
     require("plugins.bufferline")
