@@ -14,7 +14,7 @@ local folder_list = function(opts)
     return list
 end
 
-local file_creation = function(opts)
+local file_create = function(opts)
     opts = opts or {}
     local results = folder_list(opts)
 
@@ -33,4 +33,4 @@ local file_creation = function(opts)
     ):find()
 end
 
-return telescope.register_extension {exports = {file_creation = file_creation}}
+return telescope.register_extension {exports = {file_create = file_create}}
