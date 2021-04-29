@@ -54,7 +54,45 @@ local mappings = {
         f = {"Find File"},
         g = {"Search in Files"},
         r = {"Open Recent File"},
-        n = {"New File"}
+        n = {"New File"},
+        d = {"Dotfiles"},
+        p = {"Media Files"},
+        b = {"Buffers"},
+        h = {"Help Tags"},
+        o = {"Old Files"}
+    },
+    g = {
+        name = "+LSP Peek",
+        d = {"Difinition Peek"},
+        r = {"Reference Peek"},
+        y = {"Git File Link Range"}
+    },
+    a = {
+        name = "+LSP Action",
+        r = {"Rename"},
+        f = {"Code Action"}
+    },
+    c = {
+        name = "+Commenting"
+    },
+    h = {
+        name = "+GitSigns",
+        p = {"Preview Hunk"},
+        r = {"Reset Hunk"},
+        s = {"Stage Hunk"},
+        u = {"Undo Hunk"},
+        b = {"Blame"}
+    },
+    q = {
+        name = "+QuickFix",
+        a = "Select Current",
+        n = "Next",
+        p = "Previous",
+        o = "Open",
+        c = "Close"
+    },
+    t = {
+        name = "+TABLINE"
     }
 }
 
