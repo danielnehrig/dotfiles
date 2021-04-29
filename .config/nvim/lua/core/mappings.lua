@@ -9,14 +9,6 @@ remap("n", "<Leader>qp", ":cprev<CR>", {silent = true, noremap = true})
 remap("n", "<Leader>qa", ":cc<CR>", {silent = true, noremap = true})
 remap("n", "<Leader>r", ":lua require('nvim-reload').Reload()<CR>", {silent = true, noremap = true})
 
--- telescope
-remap(
-    "n",
-    "<Leader>fd",
-    ":Telescope dotfiles path=" .. home .. "/.dotfiles-darwin/.config<CR>",
-    {silent = true, noremap = true}
-)
-
 -- treesitter
 remap("n", "<Leader>dh", ":TSBufToggle highlight<CR>", {silent = true, noremap = true}) -- disable highlight
 

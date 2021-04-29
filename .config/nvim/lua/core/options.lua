@@ -29,7 +29,7 @@ local function load_options()
 
     M.opt("o", "mouse", "a") -- mouse on don't use mouse lol
 
-    M.opt("w", "signcolumn", "auto:2") -- 2 sign column
+    M.opt("w", "signcolumn", "auto") -- 2 sign column
     M.opt("o", "cmdheight", 1)
     M.opt("o", "guifont", "FiraCode Nerd Font Mono:h12")
 

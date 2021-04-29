@@ -72,7 +72,6 @@ local function init()
     use "nvim-telescope/telescope-media-files.nvim" -- media files showing
     use "kyazdani42/nvim-tree.lua" -- Drawerboard style like nerdtree
     -- movement
-    use "chaoren/vim-wordmotion" -- better word motion (also matches camelCase)
     use "wellle/targets.vim" -- extended motions
     use "adelarsq/vim-matchit" -- matchit % jump
     use "justinmk/vim-sneak" -- movement plugin
