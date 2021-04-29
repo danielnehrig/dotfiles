@@ -84,15 +84,9 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("n", "<Leader>fb", [[<Cmd>lua require('telescope.builtin').buffers()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fh", [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fo", [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], opt)
-vim.api.nvim_set_keymap("n", "<Leader>fm", [[<Cmd> Neoformat<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<C-p>", [[<Cmd>lua require'telescope'.extensions.project.project{}<CR>]], opt)
 
-remap(
-    "n",
-    "<Leader>fd",
-    ":Telescope dotfiles path=" .. home .. "/.dotfiles-darwin/.config<CR>",
-    {silent = true, noremap = true}
-)
-remap("n", "<Leader>fn", ":Telescope file_create<CR>", {silent = true, noremap = true})
+remap("n", "<Leader>fd", ":Telescope dotfiles path=" .. home .. "/.dotfiles-darwin/.config<CR>", opt)
+remap("n", "<Leader>fn", ":Telescope file_create<CR>", opt)
 
 vim.api.nvim_set_keymap("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)

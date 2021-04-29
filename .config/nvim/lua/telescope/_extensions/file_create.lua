@@ -1,5 +1,5 @@
 local telescope = require("telescope")
--- local actions = require("telescope.actions")
+local actions = require("telescope.actions")
 local finders = require("telescope.finders")
 local pickers = require("telescope.pickers")
 local action_state = require("telescope.actions.state")
@@ -113,8 +113,8 @@ local file_create = function(opts)
             },
             previewer = conf.file_previewer(opts),
             sorter = conf.file_sorter(opts),
-            attach_mappings = function(prompt_bufnr, map)
-                local create_new_file = function()
+            attach_mappings = function(_, map)
+                local create_new_file = function(bufnr)
                     local new_cwd = vim.fn.expand(action_state.get_selected_entry().path)
                     local fileName = vim.fn.input("File Name: ")
                     if fileName == "" and not new_cwd then
@@ -123,9 +123,11 @@ local file_create = function(opts)
                     end
                     local result = new_cwd .. "/" .. fileName
                     create_file(result)
+                    actions.close(bufnr)
+                    vim.cmd(string.format(":e %s", result))
                 end
 
-                local delete_folder = function()
+                local delete_folder = function(bufnr)
                     local new_cwd = vim.fn.expand(action_state.get_selected_entry().path)
 
                     print("Are you sure you wanna delete this File? y / n")
@@ -136,6 +138,7 @@ local file_create = function(opts)
                     end
                     print(new_cwd)
                     remove_dir(new_cwd)
+                    actions.close(bufnr)
                 end
 
                 local rename_folder = function()
