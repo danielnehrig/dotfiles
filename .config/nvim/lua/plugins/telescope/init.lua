@@ -8,10 +8,10 @@ require("telescope").setup {
             "--no-heading",
             "--with-filename",
             "--line-number",
-            "--hidden",
             "--column",
             "--smart-case"
         },
+        hidden = true,
         prompt_position = "bottom",
         prompt_prefix = "🔍 ",
         selection_caret = "> ",
