@@ -78,7 +78,15 @@ _G.formatting = function()
     end
 end
 
-saga.init_lsp_saga()
+saga.init_lsp_saga {
+    code_action_prompt = {
+        enable = true,
+        sign = false,
+        sign_priority = 20,
+        virtual_text = true
+    }
+}
+
 lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client, bufnr)
