@@ -38,6 +38,7 @@ local function load_options()
     end
 
     M.opt("o", "updatetime", 300) -- update interval for gitsigns
+    vim.cmd("set timeoutlen=500")
     M.opt("o", "clipboard", "unnamedplus") -- clipboard yank
 
     -- for indenline

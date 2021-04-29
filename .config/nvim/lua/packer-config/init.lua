@@ -79,11 +79,7 @@ local function init()
     use "unblevable/quick-scope" -- f F t T improved highlight
     -- quality of life
     use "kevinhwang91/nvim-bqf" -- better quickfix
-    use "liuchengxu/vim-which-key" -- show key/map functionality for map chain
-    use {
-        "AckslD/nvim-whichkey-setup.lua",
-        requires = {"liuchengxu/vim-which-key"}
-    } -- nvim whichkey setup
+    use "folke/which-key.nvim" -- which key
     use "preservim/nerdcommenter" -- commenting
     use "junegunn/vim-slash" -- better search
     use "windwp/nvim-autopairs" -- autopairs "" {}
