@@ -51,7 +51,7 @@ local function init()
         ft = {"yaml", "yml"},
         cmd = "SwaggerPreview"
     } -- openapi preview
-    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex"}}
+    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
