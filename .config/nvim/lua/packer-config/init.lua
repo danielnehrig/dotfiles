@@ -58,8 +58,7 @@ local function init()
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
     use "ray-x/lsp_signature.nvim" -- auto signature trigger
-    use {"ray-x/guihua.lua", run = {"cd lua/fzy && make"}}
-    use "ray-x/navigator.lua" -- sig highlight
+    use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
     use "folke/lsp-trouble.nvim" -- window for showing LSP detected issues in code
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
