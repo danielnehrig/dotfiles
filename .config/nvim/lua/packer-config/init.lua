@@ -97,7 +97,7 @@ local function init()
     } -- show indentation
     use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
     -- git
-    use "TimUntersberger/neogit"
+    use {"TimUntersberger/neogit"}
     use "ruifm/gitlinker.nvim" -- get repo file on remote as url
     use {"pwntester/octo.nvim", opt = true, cmd = {"Octo", "OctoAddReviewComment", "OctoAddReviewSuggestion"}}
     use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
