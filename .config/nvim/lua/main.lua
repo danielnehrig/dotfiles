@@ -30,6 +30,7 @@ if not g.vscode then
     require("plugins.dashboard")
     require("plugins.which")
     require("plugins.swagger")
+    require("plugins.diffview")
     require("plugins.autopairs")
     require("plugins.treesitter")
     require("plugins.gitlinker")
