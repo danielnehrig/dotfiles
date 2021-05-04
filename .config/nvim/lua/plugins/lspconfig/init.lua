@@ -221,12 +221,12 @@ lspconfig.efm.setup {
     settings = {
         -- lintDebounce = 200,
         languages = {
-            javascript = {eslint},
-            javascriptreact = {eslint},
-            ["javascript.jsx"] = {eslint},
-            typescript = {eslint},
+            javascript = {prettier, eslint},
+            javascriptreact = {prettier, eslint},
+            ["javascript.jsx"] = {prettier, eslint},
+            typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
-            ["typescript.tsx"] = {eslint},
+            ["typescript.tsx"] = {prettier, eslint},
             lua = {luafmt}
         }
     },
