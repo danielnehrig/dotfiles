@@ -1,6 +1,10 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 local cmd = vim.cmd
+local global = require("core.global")
+local data_path = global.data_path
+local packer_compiled = data_path .. "packer_compiled.vim"
+local compile_to_lua = data_path .. "lua" .. global.path_sep .. "_compiled.lua"
 
 -- bootstrap packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
@@ -12,22 +16,25 @@ end
 
 local packer = nil
 local function init()
-    if packer == nil then
+    if not packer then
+        vim.api.nvim_command("packadd packer.nvim")
         packer = require("packer")
-        packer.init({disable_commands = true})
     end
-
-    local use = packer.use
+    packer.init(
+        {
+            compile_path = packer_compiled,
+            disable_commands = true,
+            git = {clone_timeout = 120}
+        }
+    )
     packer.reset()
+    local use = packer.use
 
-    use {"wbthomason/packer.nvim", opt = true} -- packer
     -- theme
-    use "glepnir/galaxyline.nvim" -- statusbar
-    use "romgrk/barbar.nvim" -- bufferline
+    use {"glepnir/galaxyline.nvim", branch = "main", requires = "kyazdani42/nvim-web-devicons"} -- statusbar
+    use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
     use "norcalli/nvim-colorizer.lua" -- colors hex
-    use "ryanoasis/vim-devicons" -- devicons
     use "Dave-Elec/gruvbox" -- colorscheme
-    use "kyazdani42/nvim-web-devicons" -- more icons
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
     use "jose-elias-alvarez/nvim-lsp-ts-utils" -- eslint code actions
@@ -59,19 +66,41 @@ local function init()
     -- completion
     use "ray-x/lsp_signature.nvim" -- auto signature trigger
     use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
-    use "folke/lsp-trouble.nvim" -- window for showing LSP detected issues in code
+    use {
+        "folke/lsp-trouble.nvim",
+        config = function()
+            require("plugins.trouble")
+        end,
+        event = "BufRead",
+        requires = "kyazdani42/nvim-web-devicons"
+    } -- window for showing LSP detected issues in code
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
     use "nvim-lua/lsp_extensions.nvim" -- lsp extensions inlay hints etc
     use "neovim/nvim-lspconfig" -- default configs for lsp and setup lsp
-    use "hrsh7th/nvim-compe" -- completion engine
+    use {
+        "hrsh7th/nvim-compe",
+        event = "InsertEnter",
+        config = function()
+            require("plugins.lspconfig").compe()
+        end
+    } -- completion engine
     -- navigation
-    use "nvim-telescope/telescope-github.nvim" -- github telescope
-    use "nvim-telescope/telescope-project.nvim" -- project manager
-    use "nvim-telescope/telescope.nvim" -- fuzzy finder
-    use "nvim-telescope/telescope-media-files.nvim" -- media files showing
-    use "kyazdani42/nvim-tree.lua" -- Drawerboard style like nerdtree
+    use {
+        "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
+        config = function()
+            require("plugins.telescope")()
+        end,
+        requires = {
+            {"nvim-lua/popup.nvim", opt = true},
+            {"nvim-lua/plenary.nvim", opt = true},
+            {"nvim-telescope/telescope-fzy-native.nvim", opt = true},
+            {"nvim-telescope/telescope-project.nvim", opt = true}
+        }
+    } -- fuzzy finder
+    use {"kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons"} -- Drawerboard style like nerdtree
     -- movement
     use "wellle/targets.vim" -- extended motions
     use "adelarsq/vim-matchit" -- matchit % jump
@@ -93,16 +122,33 @@ local function init()
     use "glepnir/dashboard-nvim" -- dashboard
     use {
         "lukas-reineke/indent-blankline.nvim",
+        event = "BufRead",
         branch = "lua"
     } -- show indentation
     use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
     -- git
-    use "sindrets/diffview.nvim"
-    use {"TimUntersberger/neogit"}
-    use "ruifm/gitlinker.nvim" -- get repo file on remote as url
-    -- use {"pwntester/octo.nvim", opt = true, cmd = {"Octo", "OctoAddReviewComment", "OctoAddReviewSuggestion"}}
-    use {"pwntester/octo.nvim"}
-    use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
+    use {
+        "sindrets/diffview.nvim",
+        config = function()
+            require("plugins.diffview")
+        end
+    }
+    use {"TimUntersberger/neogit", event = {"BufRead", "BufNewFile"}, requires = {"nvim-lua/plenary.nvim", opt = true}}
+    use {
+        "ruifm/gitlinker.nvim",
+        config = function()
+            require("plugins.gitlinker")
+        end
+    } -- get repo file on remote as url
+    use {"pwntester/octo.nvim", requires = {"nvim-lua/plenary.nvim", opt = true}}
+    use {
+        "lewis6991/gitsigns.nvim",
+        event = {"BufRead", "BufNewFile"},
+        config = function()
+            require("plugins.gitsigns")
+        end,
+        requires = {{"nvim-lua/plenary.nvim", opt = true}, {"nvim-lua/popup.nvim", opt = true}}
+    } -- like gitgutter shows hunks etc on sign column
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff"}} -- git integration
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
@@ -116,11 +162,9 @@ local function init()
         }
     }
     -- debug
-    use {"puremourning/vimspector", opt = true, cmd = {"Vimspector"}} -- debugger
+    use {"puremourning/vimspector", opt = true} -- debugger
     -- lib
-    use "norcalli/nvim_utils" -- utils
-    use "nvim-lua/popup.nvim" -- LIB
-    use "nvim-lua/plenary.nvim" -- LIB
+    use {"wbthomason/packer.nvim", opt = true} -- packer
 end
 
 local plugins =
@@ -128,16 +172,58 @@ local plugins =
     {},
     {
         __index = function(_, key)
-            init()
+            if not packer then
+                init()
+            end
             return packer[key]
         end
     }
 )
 
-cmd [[command! PackerInstall packadd packer.nvim | lua require('packer-config').install()]]
-cmd [[command! PackerUpdate packadd packer.nvim | lua require('packer-config').update()]]
-cmd [[command! PackerSync packadd packer.nvim | lua require('packer-config').sync()]]
-cmd [[command! PackerClean packadd packer.nvim | lua require('packer-config').clean()]]
-cmd [[command! PackerCompile packadd packer.nvim | lua require('packer-config').compile()]]
+function plugins.ensure_plugins()
+    init()
+end
+
+function plugins.convert_compile_file()
+    local lines = {}
+    local lnum = 1
+    lines[#lines + 1] = "vim.cmd [[packadd packer.nvim]]\n"
+    for line in io.lines(packer_compiled) do
+        lnum = lnum + 1
+        if lnum > 15 then
+            lines[#lines + 1] = line .. "\n"
+            if line == "END" then
+                break
+            end
+        end
+    end
+    table.remove(lines, #lines)
+    if fn.isdirectory(data_path .. "lua") ~= 1 then
+        os.execute("mkdir -p " .. data_path .. "lua")
+    end
+    if fn.filereadable(compile_to_lua) == 1 then
+        os.remove(compile_to_lua)
+    end
+    local file = io.open(compile_to_lua, "w")
+    for _, line in ipairs(lines) do
+        file:write(line)
+    end
+    file:close()
+
+    os.remove(packer_compiled)
+end
+
+function plugins.auto_compile()
+    plugins.compile()
+    plugins.convert_compile_file()
+end
+
+cmd [[command! PackerInstall lua require('packer-config').install()]]
+cmd [[command! PackerUpdate lua require('packer-config').update()]]
+cmd [[command! PackerSync lua require('packer-config').sync()]]
+cmd [[command! PackerClean lua require('packer-config').clean()]]
+cmd [[command! PackerCompile lua require('packer-config').compile()]]
+cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
+cmd [[command! PackerStatus  lua require('packer-config').status()]]
 
 return plugins

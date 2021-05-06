@@ -1,3 +1,5 @@
+local Func = require("core.func")
+
 local definitions = {
     ft = {
         {"FileType", "dashboard", "set showtabline=0"},
@@ -6,4 +8,4 @@ local definitions = {
     }
 }
 
-nvim_create_augroups(definitions)
+Func.nvim_create_augroups(definitions)
