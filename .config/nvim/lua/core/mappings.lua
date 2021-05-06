@@ -38,4 +38,5 @@ remap("n", "<Leader>fn", ":Telescope file_create<CR>", opt)
 remap("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)
 
 -- vimspector
+remap("n", "<Leader>dl", [[ <Cmd>lua require'plugins.vimspector'.launch()<CR>]], opt)
 vim.cmd [[command! Vimspector call vimspector#Launch()]]
