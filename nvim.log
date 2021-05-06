@@ -610,3 +610,142 @@ times in msec
 299.837  003.801  000.395: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vsnip.vim
 303.203  004.268: first screen update
 303.206  000.003: --- NVIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.011  000.011: --- NVIM STARTING ---
+001.005  000.995: locale set
+001.624  000.618: inits 1
+001.651  000.027: window checked
+001.656  000.005: parsing arguments
+001.952  000.296: expanding arguments
+002.027  000.075: inits 2
+002.476  000.449: init highlight
+002.477  000.002: waiting for UI
+005.403  002.926: done waiting for UI
+005.435  000.032: initialized screen early for UI
+019.932  000.038  000.038: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/query.vim
+020.043  000.029  000.029: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/ultisnips/ftdetect/snippets.vim
+022.267  000.031  000.031: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/filetype.vim
+023.468  000.030  000.030: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/filetype.vim
+025.201  000.041  000.041: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/query.vim
+025.313  000.029  000.029: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/ultisnips/ftdetect/snippets.vim
+025.420  000.022  000.022: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/ftdetect/polyglot.vim
+042.618  021.503  021.350: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/autoload/polyglot/init.vim
+042.650  022.530  001.027: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/ftdetect/polyglot.vim
+043.235  032.476  009.879: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/filetype.vim
+044.135  000.031  000.031: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/filetype.vim
+044.904  000.083  000.083: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/ftplugin.vim
+046.689  000.275  000.275: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syncolor.vim
+047.557  001.325  001.050: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/synload.vim
+047.683  001.654  000.329: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syntax.vim
+048.636  000.648  000.648: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/nosyntax.vim
+049.278  000.167  000.167: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syncolor.vim
+050.372  001.502  001.335: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/synload.vim
+050.464  002.625  000.475: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syntax.vim
+051.857  000.181  000.181: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syncolor.vim
+053.298  000.159  000.159: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syncolor.vim
+061.098  009.891  009.552: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/gruvbox/colors/gruvbox.vim
+062.649  000.257  000.257: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syncolor.vim
+064.528  000.244  000.244: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/syntax/syncolor.vim
+071.465  009.628  009.128: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/gruvbox/colors/gruvbox.vim
+075.628  000.118  000.118: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/plugin/tree.vim
+105.689  000.048  000.048: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+157.210  095.219: sourcing vimrc file(s)
+157.391  000.048  000.048: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/indent.vim
+166.314  000.039  000.039: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/opt/plenary.nvim/plugin/plenary.vim
+175.346  000.050  000.050: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-treesitter/autoload/nvim_treesitter.vim
+175.767  000.046  000.046: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim
+175.785  011.910  011.776: sourcing /Users/dNehrig/.config/nvim/plugin/packer_compiled.vim
+176.119  000.015  000.015: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+176.315  000.016  000.016: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/plugin/tree.vim
+177.493  000.946  000.946: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/plugin/polyglot.vim
+178.529  000.195  000.195: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/gzip.vim
+178.621  000.022  000.022: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/health.vim
+178.776  000.091  000.091: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/man.vim
+181.112  000.179  000.179: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+181.184  002.342  002.163: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/matchit.vim
+181.403  000.147  000.147: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/matchparen.vim
+181.506  000.028  000.028: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/netrwPlugin.vim
+181.782  000.017  000.017: sourcing /Users/dNehrig/.local/share/nvim/rplugin.vim
+181.790  000.219  000.202: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/rplugin.vim
+181.987  000.129  000.129: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/shada.vim
+182.097  000.033  000.033: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/spellfile.vim
+182.332  000.162  000.162: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/tarPlugin.vim
+182.489  000.084  000.084: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/tohtml.vim
+182.593  000.030  000.030: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/tutor.vim
+182.846  000.182  000.182: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/plugin/zipPlugin.vim
+182.952  009.145: loading plugins
+184.376  000.026  000.026: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/barbar.nvim/autoload/bufferline.vim
+184.903  000.073  000.073: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/barbar.nvim/autoload/bufferline/highlight.vim
+189.086  005.260  005.160: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/barbar.nvim/plugin/bufferline.vim
+189.941  000.289  000.289: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/blamer.nvim/autoload/blamer.vim
+190.058  000.712  000.424: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/blamer.nvim/plugin/blamer.vim
+190.573  000.263  000.263: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim/plugin/dashboard.vim
+190.957  000.127  000.127: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/diffview.nvim/plugin/diffview.vim
+191.336  000.148  000.148: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/galaxyline.nvim/plugin/galaxyline.vim
+192.338  000.318  000.318: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/lspsaga.nvim/plugin/lspsaga.vim
+192.777  000.051  000.051: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/navigator.lua/plugin/navigator.vim
+197.569  004.564  004.564: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nerdcommenter/plugin/NERD_commenter.vim
+198.367  000.493  000.493: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-autopairs/plugin/nvim-autopairs.vim
+198.702  000.039  000.039: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-bqf/plugin/bqf.vim
+199.001  000.049  000.049: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua/plugin/colorizer.vim
+199.501  000.106  000.106: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
+199.782  000.028  000.028: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-projectconfig/plugin/nvim-projectconfig.vim
+200.070  000.026  000.026: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/plugin/tree.vim
+201.094  000.781  000.781: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.vim
+201.278  000.041  000.041: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-treesitter/ftdetect/query.vim
+201.556  000.025  000.025: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+210.859  009.047  009.047: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/octo.nvim/plugin/octo.vim
+211.772  000.529  000.529: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/quick-scope/plugin/quick_scope.vim
+212.352  000.242  000.242: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/targets.vim/plugin/targets.vim
+213.070  000.102  000.102: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/ultisnips/autoload/UltiSnips/map_keys.vim
+213.142  000.478  000.376: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/ultisnips/plugin/UltiSnips.vim
+213.300  000.034  000.034: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/ultisnips/ftdetect/snippets.vim
+213.676  000.152  000.152: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-illuminate/plugin/illuminate.vim
+213.954  000.039  000.039: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-matchit/plugin/matchit.vim
+214.339  000.156  000.156: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/plugin/polyglot.vim
+214.489  000.027  000.027: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/ftdetect/polyglot.vim
+214.864  000.163  000.163: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-slash/plugin/slash.vim
+216.865  001.768  001.768: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-sneak/plugin/sneak.vim
+217.658  000.527  000.527: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-surround/plugin/surround.vim
+218.341  000.412  000.412: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/plugin/vsnip.vim
+218.624  000.035  000.035: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/which-key.nvim/plugin/which-key.vim
+218.840  009.252: loading packages
+219.141  000.106  000.106: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/ultisnips/after/plugin/UltiSnips_after.vim
+219.560  000.614: loading after plugins
+219.574  000.014: inits 3
+221.572  001.999: reading ShaDa
+223.397  001.825: opening buffers
+225.117  000.590  000.590: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-polyglot/autoload/polyglot/sleuth.vim
+257.752  000.296  000.296: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/quick-scope/autoload/quick_scope.vim
+258.042  033.759: BufEnter autocommands
+258.047  000.005: editing files in windows
+259.676  000.178  000.178: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim/autoload/dashboard.vim
+260.388  000.084  000.084: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/barbar.nvim/autoload/bufferline/animate.vim
+261.338  000.050  000.050: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim/autoload/dashboard/utils.vim
+261.735  000.072  000.072: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim/autoload/dashboard/header.vim
+263.329  000.150  000.150: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim/autoload/dashboard/section.vim
+264.881  000.222  000.222: sourcing /usr/local/Cellar/neovim/HEAD-59eae3b_2/share/nvim/runtime/autoload/provider/clipboard.vim
+270.034  000.152  000.152: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim/syntax/dashboard.vim
+270.809  000.019  000.019: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/dashboard-nvim/syntax/dashboard.vim
+288.004  029.030: VimEnter autocommands
+288.008  000.004: UIEnter autocommands
+288.012  000.004: before starting main loop
+288.512  000.140  000.140: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-illuminate/autoload/illuminate.vim
+290.027  000.334  000.334: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/vsnip.vim
+290.309  000.100  000.100: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/_vsnip/VS/LSP/Position.vim
+290.494  000.064  000.064: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/_vsnip.vim
+290.785  001.336  000.838: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vsnip/snippet.vim
+291.107  000.144  000.144: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/_vsnip/VS/LSP/TextEdit.vim
+291.415  000.077  000.077: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/_vsnip/VS/LSP/Text.vim
+291.801  000.132  000.132: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/_vsnip/VS/Vim/Buffer.vim
+292.128  000.081  000.081: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/_vsnip/VS/Vim/Option.vim
+292.567  000.164  000.164: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vital/_vsnip/VS/LSP/Diff.vim
+292.757  003.501  001.566: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vsnip/session.vim
+292.956  003.838  000.337: sourcing /Users/dNehrig/.local/share/nvim/site/pack/packer/start/vim-vsnip/autoload/vsnip.vim
+295.113  003.122: first screen update
+295.115  000.003: --- NVIM STARTED ---
