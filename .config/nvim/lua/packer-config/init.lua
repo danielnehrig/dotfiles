@@ -14,12 +14,17 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute "packadd packer.nvim"
 end
 
+function PACKERWHERE()
+    print(packer_compiled)
+end
+
 local packer = nil
 local function init()
     if not packer then
         vim.api.nvim_command("packadd packer.nvim")
         packer = require("packer")
     end
+    print(packer_compiled)
     packer.init(
         {
             compile_path = packer_compiled,
