@@ -1,6 +1,5 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
-local cmd = vim.cmd
 local global = require("core.global")
 local data_path = global.data_path
 local packer_compiled = data_path .. "packer_compiled.vim"
@@ -20,7 +19,6 @@ local function init()
         vim.api.nvim_command("packadd packer.nvim")
         packer = require("packer")
     end
-    print(packer_compiled)
     packer.init(
         {
             compile_path = packer_compiled,
@@ -222,10 +220,9 @@ end
 
 function plugins.load_compile()
     if fn.filereadable(compile_to_lua) == 1 then
-        require('_compiled')
+        require("_compiled")
     else
-        assert(
-            'Missing packer compile file Run PackerCompile Or PackerInstall to fix')
+        assert("Missing packer compile file Run PackerCompile Or PackerInstall to fix")
     end
     vim.cmd [[command! PackerCompile lua require('packer-config').auto_compile()]]
     vim.cmd [[command! PackerInstall lua require('packer-config').install()]]
