@@ -8,10 +8,10 @@
 amount=$(virsh -c qemu:///system list --all | grep running | wc -l)
 
 if [[ $amount == '0' ]]; then
-  virsh -c qemu:///system start win10-games-2
+  virsh -c qemu:///system start win10
   notify-send "WIN Started"
 else
-  virsh -c qemu:///system shutdown win10-games-2
+  virsh -c qemu:///system shutdown win10
   notify-send "WIN Stopped"
 fi
 

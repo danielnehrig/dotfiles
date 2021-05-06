@@ -29,3 +29,4 @@ source ~/.dotfiles-darwin/.zsh/forgit.zsh
 source <(kubectl completion zsh)
 alias krtlc="kubectl config rename-context gke-production rtl-production"
 alias kcc="kubectl config use-context"
+if [ -e /home/dashie/.nix-profile/etc/profile.d/nix.sh ]; then . /home/dashie/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
