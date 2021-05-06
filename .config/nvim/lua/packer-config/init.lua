@@ -37,7 +37,8 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
-    use "jose-elias-alvarez/nvim-lsp-ts-utils" -- eslint code actions
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
+    use "kabouzeid/nvim-lspinstall"
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools

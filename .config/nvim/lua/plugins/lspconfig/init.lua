@@ -146,6 +146,7 @@ end
 -- lsp setups
 lspconfig.tsserver.setup {
     on_attach = function(client, bufnr)
+        vim.cmd [[packadd nvim-lsp-ts-utils]]
         local ts_utils = require("nvim-lsp-ts-utils")
 
         -- defaults
