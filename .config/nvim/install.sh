@@ -45,7 +45,7 @@ install_node_deps () {
 }
 
 install_ts() {
-  install_node_deps typescript typescript-language-server prettier
+  install_node_deps typescript typescript-language-server prettier_d_slim eslint_d
 }
 
 install_html() {
