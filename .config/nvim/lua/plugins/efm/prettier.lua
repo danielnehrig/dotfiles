@@ -1,12 +1,4 @@
 return {
-    formatCommand = ([[
-        prettier_d
-        ${--config-precedence:configPrecedence}
-        ${--tab-width:tabWidth}
-        ${--single-quote:singleQuote}
-        ${--trailing-comma:trailingComma}
-    ]]):gsub(
-        "\n",
-        ""
-    )
+    formatCommand = "prettier_d_slim ${--config-precedence:configPrecedence} --stdin --stdin-filepath ${INPUT}",
+    formatStdin = true
 }

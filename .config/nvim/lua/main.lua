@@ -30,6 +30,7 @@ if not g.vscode then
     require("plugins.dashboard")
     require("plugins.which")
     require("plugins.swagger")
+    require("plugins.diffview")
     require("plugins.autopairs")
     require("plugins.treesitter")
     require("plugins.gitlinker")
@@ -40,6 +41,8 @@ if not g.vscode then
     -- those are not worth of own file extraction
     require("colorizer").setup()
     require("lspkind").init({File = " "})
+    require("neogit").setup {}
+    require "octo".setup()
 
     -- matchit <> tag jump %
     cmd [[ let b:match_words = '(:),\[:\],{:},<:>,' . '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>' ]]

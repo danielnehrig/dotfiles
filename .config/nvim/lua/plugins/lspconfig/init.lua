@@ -87,10 +87,15 @@ saga.init_lsp_saga {
     }
 }
 
+vim.api.nvim_command [[ hi def link LspReferenceText CursorLine ]]
+vim.api.nvim_command [[ hi def link LspReferenceWrite CursorLine ]]
+vim.api.nvim_command [[ hi def link LspReferenceRead CursorLine ]]
+
 lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client, bufnr)
     lsp_status.on_attach(client)
+    require "illuminate".on_attach(client)
 
     map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
     map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -124,7 +129,14 @@ local custom_attach = function(client, bufnr)
     fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
     fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
     fn.sign_define("LspDiagnosticsSignHint", {text = ""})
-    require "lsp_signature".on_attach()
+    require "lsp_signature".on_attach(
+        {
+            bind = true, -- This is mandatory, otherwise border config won't get registered.
+            handler_opts = {
+                border = "single"
+            }
+        }
+    )
 end
 
 -- lsp setups
@@ -209,12 +221,12 @@ lspconfig.efm.setup {
     settings = {
         -- lintDebounce = 200,
         languages = {
-            javascript = {eslint},
-            javascriptreact = {eslint},
-            ["javascript.jsx"] = {eslint},
-            typescript = {eslint},
+            javascript = {prettier, eslint},
+            javascriptreact = {prettier, eslint},
+            ["javascript.jsx"] = {prettier, eslint},
+            typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
-            ["typescript.tsx"] = {eslint},
+            ["typescript.tsx"] = {prettier, eslint},
             lua = {luafmt}
         }
     },

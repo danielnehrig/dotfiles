@@ -6,36 +6,38 @@ For a VIM user for now 8+ years and maintaining dotfiles for it i just
 created this config and moving from my beloved VIM configuration to nvim  
 and revisiting most of my configuration i noticed a lack of features and  
 also a a lot of unused features  
-it's important to understand what you're lacking and missing  
 repetitive annoying behaviour or to compicated tasks done fast and easy is key  
 when i used to use spacemacs(emacs) i really loved the intuitive key maps  
 also it gave me good ideas on how to improve my vim configuration  
 and i found a lot of features there which i don't wanna miss now  
 so how does this all translate into this config ?
 
+Started 09.04.21
+
 ## The Main Goals
 
-- make vim more like an IDE
-- Debloating the Config
-- remove unused plugins
+- make vim more like an IDE (/)
+- Debloating the Config (/)
+- remove unused plugins (/)
 - implement plugins and mappings that are needed which  
-  were identified while working with VIM
-- move to the build in LSP
-- intutive mappings
-- fast tab/buffer navigation
-- project managment
-- session managment
-- file managment
+  were identified while working with VIM (/)
+- move to the build in LSP (/)
+- intutive mappings (/)
+- fast tab/buffer navigation (/)
+- project managment (/)
+- session managment (x)
+- file managment (/)
+- lazy load plugins (/)
 
 ## Philosophy
 
 ### Do you really need this?
 
 Often times over the span of experience i realized a lot of plugins  
-are really not needed because vim can do them by itself  
+are really not needed because vim can do them natively  
 while its preference in some cases on how certain actions happen  
 if you use for example easymotion vs relative number jumps with F(find) and T(till) jumps  
-i think limiting yourself to those plugins will not let you embrance the full capactie of VIM  
+i think limiting yourself to those plugins will not let you embrance the full capabillities of VIM  
 you won't use f and t as well as relative jumps for vertical navigation  
 what will happen in most cases is you'll jump to a specific word and then go from there  
 instead of training youself to see a 13 lines below a starting function and press 13jf{  
@@ -61,7 +63,4 @@ i use it for project wide searches vimgrep (for example)
 testing files with vim-test and neomake  
 there are various other use cases for the quickfix list
 
-## Future Plans
-
-better file navigation and file creation
-maybe fallback and use NETRW ?
+now fully using quickfix and locationlist (/)

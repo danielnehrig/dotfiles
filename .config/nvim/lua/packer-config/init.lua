@@ -58,6 +58,7 @@ local function init()
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
     use "ray-x/lsp_signature.nvim" -- auto signature trigger
+    use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
     use "folke/lsp-trouble.nvim" -- window for showing LSP detected issues in code
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
@@ -85,7 +86,8 @@ local function init()
     use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
-    use "windwp/nvim-projectconfig"
+    use "windwp/nvim-projectconfig" -- project dependable cfg
+    use "RRethy/vim-illuminate" -- illuminate
     use {"tjdevries/train.nvim", opt = true, cmd = {"TrainClear", "TrainUpDown", "TrainWord", "TrainTextObj"}}
     use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
     use "glepnir/dashboard-nvim" -- dashboard
@@ -95,11 +97,13 @@ local function init()
     } -- show indentation
     use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
     -- git
+    use "sindrets/diffview.nvim"
+    use {"TimUntersberger/neogit"}
     use "ruifm/gitlinker.nvim" -- get repo file on remote as url
-    use {"pwntester/octo.nvim", opt = true, cmd = {"Octo", "OctoAddReviewComment", "OctoAddReviewSuggestion"}}
+    -- use {"pwntester/octo.nvim", opt = true, cmd = {"Octo", "OctoAddReviewComment", "OctoAddReviewSuggestion"}}
+    use {"pwntester/octo.nvim"}
     use "lewis6991/gitsigns.nvim" -- like gitgutter shows hunks etc on sign column
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff"}} -- git integration
-    use {"tpope/vim-rhubarb", opt = true, cmd = "GBrowse"} -- GBrowse for gh
     use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
     use {
