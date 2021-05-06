@@ -14,10 +14,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute "packadd packer.nvim"
 end
 
-function PACKERWHERE()
-    print(packer_compiled)
-end
-
 local packer = nil
 local function init()
     if not packer then
@@ -224,12 +220,20 @@ function plugins.auto_compile()
     plugins.convert_compile_file()
 end
 
-cmd [[command! PackerInstall lua require('packer-config').install()]]
-cmd [[command! PackerUpdate lua require('packer-config').update()]]
-cmd [[command! PackerSync lua require('packer-config').sync()]]
-cmd [[command! PackerClean lua require('packer-config').clean()]]
-cmd [[command! PackerCompile lua require('packer-config').compile()]]
-cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
-cmd [[command! PackerStatus  lua require('packer-config').status()]]
+function plugins.load_compile()
+    if fn.filereadable(compile_to_lua) == 1 then
+        require('_compiled')
+    else
+        assert(
+            'Missing packer compile file Run PackerCompile Or PackerInstall to fix')
+    end
+    vim.cmd [[command! PackerCompile lua require('packer-config').auto_compile()]]
+    vim.cmd [[command! PackerInstall lua require('packer-config').install()]]
+    vim.cmd [[command! PackerUpdate lua require('packer-config').update()]]
+    vim.cmd [[command! PackerSync lua require('packer-config').sync()]]
+    vim.cmd [[command! PackerClean lua require('packer-config').clean()]]
+    vim.cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
+    vim.cmd [[command! PackerStatus  lua require('packer-config').status()]]
+end
 
 return plugins

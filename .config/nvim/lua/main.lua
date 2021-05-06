@@ -6,7 +6,9 @@ local g = vim.g
 -- slows down vscode and makes it non usable
 if not g.vscode then
     -- load packer plugins
-    require("packer-config")
+    local pack = require("packer-config")
+    pack.ensure_plugins()
+    pack.load_compile()
 
     -- setup conf and lua modules
     require("core.global")
