@@ -34,7 +34,7 @@ function load()
                     mirror = false
                 }
             },
-            file_sorter = require "telescope.sorters".get_fuzzy_file,
+            file_sorter = require "telescope.sorters".get_fzy_sorter,
             file_ignore_patterns = {},
             generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
             shorten_path = true,
@@ -53,12 +53,6 @@ function load()
             qflist_previewer = require "telescope.previewers".vim_buffer_qflist.new,
             -- Developer configurations: Not meant for general override
             buffer_previewer_maker = require "telescope.previewers".buffer_previewer_maker
-        },
-        extensions = {
-            media_files = {
-                filetypes = {"png", "webp", "jpg", "jpeg"},
-                find_cmd = "rg" -- find command (defaults to `fd`)
-            }
         }
     }
     require("telescope").load_extension("fzy_native")
