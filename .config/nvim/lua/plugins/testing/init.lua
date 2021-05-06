@@ -1,5 +1,4 @@
--- vim test settings
-require "nvim_utils"
+local Func = require("core.func")
 
 vim.g.neomake_open_list = 2
 
@@ -35,6 +34,6 @@ local autocmds = {
     }
 }
 
-nvim_create_augroups(autocmds)
+Func.nvim_create_augroups(autocmds)
 
 return T

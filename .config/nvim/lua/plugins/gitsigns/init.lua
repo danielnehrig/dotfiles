@@ -1,4 +1,6 @@
-local gitsigns = require("gitsigns")
+if not packer_plugins["plenary.nvim"].loaded then
+    vim.cmd [[packadd plenary.nvim]]
+end
 
 local signs = {
     add = {hl = "GitSignsAdd", text = "▌", numhl = "GitSignsAdd", linehl = "GitSignsAddLn"},
@@ -8,7 +10,7 @@ local signs = {
     changedelete = {hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn"}
 }
 
-gitsigns.setup {
+require("gitsigns").setup {
     signs = signs,
     numhl = true,
     linehl = false,
@@ -32,7 +34,3 @@ gitsigns.setup {
     use_decoration_api = true,
     use_internal_diff = true -- If luajit is present
 }
--- lol
-
--- refresh for hotreload
-gitsigns.refresh()

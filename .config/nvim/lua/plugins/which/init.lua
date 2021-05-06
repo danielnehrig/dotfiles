@@ -56,7 +56,6 @@ local mappings = {
         r = {"Open Recent File"},
         n = {"New File"},
         d = {"Dotfiles"},
-        p = {"Media Files"},
         b = {"Buffers"},
         h = {"Help Tags"},
         o = {"Old Files"}
