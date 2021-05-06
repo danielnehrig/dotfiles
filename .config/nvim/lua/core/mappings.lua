@@ -19,11 +19,11 @@ remap("n", "<Leader>la", ":lc<CR>", opt)
 
 -- mappings
 remap("n", "<Leader>ff", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", opt)
-remap("n", "<Leader>fg", ":Telescope live_grep find_command=rg,--ignore,--hidden", opt)
-remap("n", "<Leader>fb", ":Telescope buffers", opt)
-remap("n", "<Leader>fh", ":Telescope help_tags", opt)
-remap("n", "<Leader>fo", ":Telescope oldfiles", opt)
-remap("n", "<C-p>", ":Telescope project", opt)
+remap("n", "<Leader>fg", ":Telescope live_grep find_command=rg,--ignore,--hidden<CR>", opt)
+remap("n", "<Leader>fb", ":Telescope buffers<CR>", opt)
+remap("n", "<Leader>fh", ":Telescope help_tags<CR>", opt)
+remap("n", "<Leader>fo", ":Telescope oldfiles<CR>", opt)
+remap("n", "<C-p>", ":Telescope project<CR>", opt)
 
 remap("n", "<Leader>fd", ":Telescope dotfiles path=" .. home .. "/.dotfiles-darwin/.config<CR>", opt)
 remap("n", "<Leader>fn", ":Telescope file_create<CR>", opt)
