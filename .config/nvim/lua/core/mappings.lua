@@ -15,7 +15,7 @@ remap("n", "<Leader>lc", ":lclose<CR>", opt)
 remap("n", "<Leader>ln", ":lnext<CR>", opt)
 remap("n", "<Leader>lo", ":lopen<CR>", opt)
 remap("n", "<Leader>lp", ":lprev<CR>", opt)
-remap("n", "<Leader>la", ":lc<CR>", opt)
+remap("n", "<Leader>la", ":ll<CR>", opt)
 
 -- mappings
 remap("n", "<Leader>ff", ":Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", opt)
