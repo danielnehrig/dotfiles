@@ -71,6 +71,7 @@ local function init()
         config = function()
             require("plugins.trouble")
         end,
+        cmd = {"LspTrouble"},
         event = "BufRead",
         requires = "kyazdani42/nvim-web-devicons"
     } -- window for showing LSP detected issues in code
