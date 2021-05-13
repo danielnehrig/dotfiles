@@ -2,6 +2,7 @@ local scopes = {o = vim.o, b = vim.bo, w = vim.wo, g = vim.g}
 
 local M = {}
 
+-- TODO 
 function M.opt(scope, key, value)
     scopes[scope][key] = value
     if scope ~= "o" then

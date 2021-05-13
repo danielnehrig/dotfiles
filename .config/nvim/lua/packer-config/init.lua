@@ -75,6 +75,13 @@ local function init()
         event = "BufRead",
         requires = "kyazdani42/nvim-web-devicons"
     } -- window for showing LSP detected issues in code
+    use {
+        "folke/todo-comments.nvim",
+        config = function()
+            require("plugins.todo")
+        end,
+        cmd = {"TodoQuickFix", "TodoTrouble", "TodoTelescope"}
+    }
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
