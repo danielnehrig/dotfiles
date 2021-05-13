@@ -97,8 +97,8 @@ local function init()
         requires = {
             {"nvim-lua/popup.nvim", opt = true},
             {"nvim-lua/plenary.nvim", opt = true},
-            {"nvim-telescope/telescope-fzy-native.nvim", opt = true},
-            {"nvim-telescope/telescope-project.nvim", opt = true}
+            {"nvim-telescope/telescope-project.nvim", opt = true},
+            {"nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make"}
         }
     } -- fuzzy finder
     use {"kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons"} -- Drawerboard style like nerdtree

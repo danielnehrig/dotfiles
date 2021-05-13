@@ -3,7 +3,7 @@ function load()
         vim.cmd [[packadd plenary.nvim]]
         vim.cmd [[packadd popup.nvim]]
         vim.cmd [[packadd telescope-project.nvim]]
-        vim.cmd [[packadd telescope-fzy-native.nvim]]
+        vim.cmd [[packadd telescope-fzf-native.nvim]]
     end
     require("telescope").setup {
         defaults = {
@@ -34,7 +34,7 @@ function load()
                     mirror = false
                 }
             },
-            file_sorter = require "telescope.sorters".get_fzy_sorter,
+            file_sorter = require "telescope.sorters".get_generic_sorter,
             file_ignore_patterns = {},
             generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
             shorten_path = true,
@@ -53,9 +53,16 @@ function load()
             qflist_previewer = require "telescope.previewers".vim_buffer_qflist.new,
             -- Developer configurations: Not meant for general override
             buffer_previewer_maker = require "telescope.previewers".buffer_previewer_maker
+        },
+        extensions = {
+            fzf = {
+                override_generic_sorter = true, -- override the generic sorter
+                override_file_sorter = true, -- override the file sorter
+                case_mode = "smart_case" -- or "ignore_case" or "respect_case"
+            }
         }
     }
-    require("telescope").load_extension("fzy_native")
+    require("telescope").load_extension("fzf")
     require("telescope").load_extension("project")
     require("telescope").load_extension("dotfiles")
     require("telescope").load_extension("file_create")
