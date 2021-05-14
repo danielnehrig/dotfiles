@@ -33,6 +33,15 @@ local colors = {
     red = "#ec5f67"
 }
 
+-- https://colordesigner.io/gradient-generator
+local run_grad = {
+    "#ec5f67",
+    "#be5278",
+    "#894c78",
+    "#574465",
+    "#353644"
+}
+
 local function LspStatus()
     ---@diagnostic disable-next-line: undefined-field
     if table.getn(vim.lsp.buf_get_clients(0)) > 0 then
@@ -276,25 +285,75 @@ table.insert(
 table.insert(
     gls.right,
     {
-        FileFormat = {
-            provider = "FileFormat",
-            separator = " ",
-            separator_highlight = {colors.bg, colors.line_bg},
-            highlight = {colors.fg, colors.line_bg, "bold"}
+        MakeAnimation1 = {
+            provider = function()
+                return " "
+            end,
+            highlight = {run_grad[1], colors.bg}
         }
     }
 )
+
+table.insert(
+    gls.right,
+    {
+        MakeAnimation2 = {
+            provider = function()
+                return " "
+            end,
+            highlight = {run_grad[2], run_grad[1]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeAnimation3 = {
+            provider = function()
+                return " "
+            end,
+            highlight = {run_grad[3], run_grad[2]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeAnimation4 = {
+            provider = function()
+                return " "
+            end,
+            highlight = {run_grad[4], run_grad[3]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeAnimation5 = {
+            provider = function()
+                return " "
+            end,
+            highlight = {run_grad[5], run_grad[4]}
+        }
+    }
+)
+
 table.insert(
     gls.right,
     {
         Test = {
             provider = function()
-                return "  | " .. MakeStatus()
+                return "  " .. MakeStatus()
             end,
             highlight = {colors.fg, colors.line_bg}
         }
     }
 )
+
 table.insert(
     gls.right,
     {
@@ -306,6 +365,7 @@ table.insert(
         }
     }
 )
+
 table.insert(
     gls.right,
     {

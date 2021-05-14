@@ -6,10 +6,12 @@ local MAKE_STATUS = "Make"
 
 T = {}
 
+-- Set Make Started
 T.MakeStarted = function()
     MAKE_STATUS = "Make ⌛ "
 end
 
+-- Set Make Status to Finished
 T.MakeFinished = function()
     local context = vim.api.nvim_get_var("neomake_hook_context")
     if context.jobinfo.exit_code == 0 then
@@ -19,6 +21,7 @@ T.MakeFinished = function()
     end
 end
 
+-- Returns the Status of Make
 T.MakeStatus = function()
     return MAKE_STATUS
 end
