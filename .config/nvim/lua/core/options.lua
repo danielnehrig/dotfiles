@@ -11,7 +11,7 @@ local function load_options()
     end
     g.mapleader = " "
     g.blamer_enabled = 1
-    g.beacon_enable = 0
+    g.beacon_enable = 1
     cmd "colorscheme gruvbox"
     M.opt("o", "hidden", true) -- buffer hidden
     M.opt("o", "ignorecase", true) -- case sens ignore search
