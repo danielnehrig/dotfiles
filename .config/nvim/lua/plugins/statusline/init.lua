@@ -50,6 +50,14 @@ local success = {
     "#353644"
 }
 
+local progress = {
+    "#008080",
+    "#0e5970",
+    "#1b4161",
+    "#283552",
+    "#353644"
+}
+
 local function LspStatus()
     ---@diagnostic disable-next-line: undefined-field
     if table.getn(vim.lsp.buf_get_clients(0)) > 0 then
