@@ -11,9 +11,8 @@ local function load_options()
     end
     g.mapleader = " "
     g.blamer_enabled = 1
+    g.beacon_enable = 0
     cmd "colorscheme gruvbox"
-    vim.api.nvim_command("set foldmethod=expr")
-    vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
     M.opt("o", "hidden", true) -- buffer hidden
     M.opt("o", "ignorecase", true) -- case sens ignore search
     M.opt("o", "splitbelow", true) -- split behavior

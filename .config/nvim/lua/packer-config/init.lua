@@ -115,6 +115,7 @@ local function init()
     use "justinmk/vim-sneak" -- movement plugin
     use "unblevable/quick-scope" -- f F t T improved highlight
     -- quality of life
+    use "danilamihailov/beacon.nvim" -- jump indicator
     use "kevinhwang91/nvim-bqf" -- better quickfix
     use "folke/which-key.nvim" -- which key
     use "preservim/nerdcommenter" -- commenting
