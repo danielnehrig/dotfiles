@@ -40,6 +40,9 @@ end
 
 function Make:Start()
     self.status = "Make GO"
+    self.running = true
+    self.failed = false
+    self.success = false
 end
 
 function Make:GetFailed()

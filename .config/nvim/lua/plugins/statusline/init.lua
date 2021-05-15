@@ -50,7 +50,7 @@ local success = {
     "#353644"
 }
 
-local progress = {
+local Running = {
     "#008080",
     "#0e5970",
     "#1b4161",
@@ -434,6 +434,76 @@ table.insert(
                 end
             end,
             highlight = {success[5], success[4]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning1 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[1], colors.bg}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning2 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[2], Running[1]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning3 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[3], Running[2]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning4 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[4], Running[3]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning5 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[5], Running[4]}
         }
     }
 )
