@@ -34,11 +34,19 @@ local colors = {
 }
 
 -- https://colordesigner.io/gradient-generator
-local run_grad = {
+local failed = {
     "#ec5f67",
     "#be5278",
     "#894c78",
     "#574465",
+    "#353644"
+}
+
+local success = {
+    "#afd700",
+    "#28ab15",
+    "#25835a",
+    "#2f5561",
     "#353644"
 }
 
@@ -287,10 +295,11 @@ table.insert(
     {
         MakeFailed1 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            condition = make.GetFailed,
-            highlight = {run_grad[1], colors.bg}
+            highlight = {failed[1], colors.bg}
         }
     }
 )
@@ -300,10 +309,11 @@ table.insert(
     {
         MakeFailed2 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            condition = make.GetFailed,
-            highlight = {run_grad[2], run_grad[1]}
+            highlight = {failed[2], failed[1]}
         }
     }
 )
@@ -313,10 +323,11 @@ table.insert(
     {
         MakeFailed3 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            condition = make.GetFailed,
-            highlight = {run_grad[3], run_grad[2]}
+            highlight = {failed[3], failed[2]}
         }
     }
 )
@@ -326,10 +337,11 @@ table.insert(
     {
         MakeFailed4 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            condition = make.GetFailed,
-            highlight = {run_grad[4], run_grad[3]}
+            highlight = {failed[4], failed[3]}
         }
     }
 )
@@ -339,10 +351,11 @@ table.insert(
     {
         MakeFailed5 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            condition = make.GetFailed,
-            highlight = {run_grad[5], run_grad[4]}
+            highlight = {failed[5], failed[4]}
         }
     }
 )
@@ -352,10 +365,11 @@ table.insert(
     {
         MakeSuccess1 = {
             provider = function()
-                return " "
+                if make:GetSuccess() then
+                    return " "
+                end
             end,
-            condition = make.GetSuccess,
-            highlight = {run_grad[1], colors.bg}
+            highlight = {success[1], colors.bg}
         }
     }
 )
@@ -365,10 +379,11 @@ table.insert(
     {
         MakeSuccess2 = {
             provider = function()
-                return " "
+                if make:GetSuccess() then
+                    return " "
+                end
             end,
-            condition = make.GetSuccess,
-            highlight = {run_grad[2], run_grad[1]}
+            highlight = {success[2], success[1]}
         }
     }
 )
@@ -378,10 +393,11 @@ table.insert(
     {
         MakeSuccess3 = {
             provider = function()
-                return " "
+                if make:GetSuccess() then
+                    return " "
+                end
             end,
-            condition = make.GetSuccess,
-            highlight = {run_grad[3], run_grad[2]}
+            highlight = {success[3], success[2]}
         }
     }
 )
@@ -391,10 +407,11 @@ table.insert(
     {
         MakeSuccess4 = {
             provider = function()
-                return " "
+                if make:GetSuccess() then
+                    return " "
+                end
             end,
-            condition = make.GetSuccess,
-            highlight = {run_grad[4], run_grad[3]}
+            highlight = {success[4], success[3]}
         }
     }
 )
@@ -404,10 +421,11 @@ table.insert(
     {
         MakeSuccess5 = {
             provider = function()
-                return " "
+                if make:GetSuccess() then
+                    return " "
+                end
             end,
-            condition = make.GetSuccess,
-            highlight = {run_grad[5], run_grad[4]}
+            highlight = {success[5], success[4]}
         }
     }
 )
@@ -417,7 +435,7 @@ table.insert(
     {
         Test = {
             provider = function()
-                return "  " .. make.MakeStatus()
+                return "  " .. make:Status()
             end,
             highlight = {colors.fg, colors.line_bg}
         }

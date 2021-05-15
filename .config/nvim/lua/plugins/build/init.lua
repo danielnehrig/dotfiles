@@ -6,68 +6,60 @@ vim.api.nvim_set_var("test#javascript#runnter", "jest")
 vim.api.nvim_set_var("test#javascript#jest#options", "--reporters ~/.dotfiles-darwin/vim-qf-format.js")
 vim.api.nvim_set_var("test#strategy", "neomake")
 
-local function Make(super)
-    local T = {}
-    T.__index = T
-    T.make_status = "Make"
-    T.success = false
-    T.failed = false
-    setmetatable(T, super)
+local Make = {
+    failed = false,
+    success = false,
+    running = false,
+    status = "Make"
+}
 
-    function T.new(...)
-        if T._instance then
-            return T._instance
-        end
+Make.__index = Make
 
-        local instance = setmetatable({}, T)
-        if instance.ctor then
-            instance:ctor(...)
-        end
-
-        return T._instance
-    end
-
-    function T.MakeFinished()
-        local context = vim.api.nvim_get_var("neomake_hook_context")
-        if context.jobinfo.exit_code == 0 then
-            T.make_status = "Make ✅ "
-            T.failed = false
-            T.success = true
-        else
-            T.failed = true
-            T.success = false
-            T.make_status = "Make ❌ "
-        end
-    end
-
-    function T.MakeStarted()
-        T.make_status = "Make ⌛ "
-        T.failed = false
-        T.success = false
-        T.running = true
-    end
-
-    function T.MakeStatus()
-        return T.make_status
-    end
-
-    function T.GetFailed()
-        return T.failed
-    end
-
-    function T.GetSuccess()
-        return T.success
-    end
-
-    return T
+function Make:new(o)
+    o = o or {}
+    setmetatable(o, Make)
+    return o
 end
 
-local make = Make()
+function Make:Status()
+    return self.status
+end
+
+function Make:Finished()
+    local context = vim.api.nvim_get_var("neomake_hook_context")
+    if context.jobinfo.exit_code == 0 then
+        self.success = true
+        self.failed = false
+        self.status = "Make ✅"
+    else
+        self.success = false
+        self.failed = true
+        self.status = "Make ❌"
+    end
+end
+
+function Make:Start()
+    self.status = "Make GO"
+end
+
+function Make:GetFailed()
+    return self.failed
+end
+
+function Make:GetSuccess()
+    return self.success
+end
+
+function Make:GetRunning()
+    return self.running
+end
+
+local make = Make:new()
 
 local autocmds = {
     neomake_hook = {
-        {"User", "NeomakeJobFinished", "lua require('plugins.build').MakeFinished()"},
-        {"User", "NeomakeJobStarted", "lua require('plugins.build').MakeStarted()"}
+        {"User", "NeomakeJobFinished", "lua require('plugins.build'):Finished()"},
+        {"User", "NeomakeJobStarted", "lua require('plugins.build'):Start()"}
     }
 }
 
