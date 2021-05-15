@@ -301,13 +301,24 @@ table.insert(
 table.insert(
     gls.right,
     {
+        RightEnd = {
+            separator = "",
+            separator_highlight = {colors.bg, colors.line_bg},
+            highlight = {colors.fg, colors.line_bg}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
         MakeFailed1 = {
             provider = function()
                 if make:GetFailed() then
                     return " "
                 end
             end,
-            highlight = {failed[1], colors.bg}
+            highlight = {failed[1], colors.line_bg}
         }
     }
 )
@@ -377,7 +388,7 @@ table.insert(
                     return " "
                 end
             end,
-            highlight = {success[1], colors.bg}
+            highlight = {success[1], colors.line_bg}
         }
     }
 )
