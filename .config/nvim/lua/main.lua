@@ -18,7 +18,7 @@ if not g.vscode then
     require("core.autocmd")
 
     -- load configs for packer plugins
-    require("plugins.testing")
+    require("plugins.build")
     require("plugins.nvimTree")
     require("plugins.coverage")
     require("plugins.lspconfig")

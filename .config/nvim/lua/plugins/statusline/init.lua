@@ -1,6 +1,6 @@
 local gl = require("galaxyline")
 local gls = gl.section
-local MakeStatus = require("plugins.testing").MakeStatus
+local make = require("plugins.build")
 
 gl.short_line_list = {
     "LuaTree",
@@ -285,10 +285,11 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation1 = {
+        MakeFailed1 = {
             provider = function()
                 return " "
             end,
+            condition = make.GetFailed,
             highlight = {run_grad[1], colors.bg}
         }
     }
@@ -297,10 +298,11 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation2 = {
+        MakeFailed2 = {
             provider = function()
                 return " "
             end,
+            condition = make.GetFailed,
             highlight = {run_grad[2], run_grad[1]}
         }
     }
@@ -309,10 +311,11 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation3 = {
+        MakeFailed3 = {
             provider = function()
                 return " "
             end,
+            condition = make.GetFailed,
             highlight = {run_grad[3], run_grad[2]}
         }
     }
@@ -321,10 +324,11 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation4 = {
+        MakeFailed4 = {
             provider = function()
                 return " "
             end,
+            condition = make.GetFailed,
             highlight = {run_grad[4], run_grad[3]}
         }
     }
@@ -333,10 +337,76 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation5 = {
+        MakeFailed5 = {
             provider = function()
                 return " "
             end,
+            condition = make.GetFailed,
+            highlight = {run_grad[5], run_grad[4]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess1 = {
+            provider = function()
+                return " "
+            end,
+            condition = make.GetSuccess,
+            highlight = {run_grad[1], colors.bg}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess2 = {
+            provider = function()
+                return " "
+            end,
+            condition = make.GetSuccess,
+            highlight = {run_grad[2], run_grad[1]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess3 = {
+            provider = function()
+                return " "
+            end,
+            condition = make.GetSuccess,
+            highlight = {run_grad[3], run_grad[2]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess4 = {
+            provider = function()
+                return " "
+            end,
+            condition = make.GetSuccess,
+            highlight = {run_grad[4], run_grad[3]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess5 = {
+            provider = function()
+                return " "
+            end,
+            condition = make.GetSuccess,
             highlight = {run_grad[5], run_grad[4]}
         }
     }
@@ -347,7 +417,7 @@ table.insert(
     {
         Test = {
             provider = function()
-                return "  " .. MakeStatus()
+                return "  " .. make.MakeStatus()
             end,
             highlight = {colors.fg, colors.line_bg}
         }
