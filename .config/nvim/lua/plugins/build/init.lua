@@ -27,6 +27,7 @@ end
 
 function Make:Finished()
     local context = vim.api.nvim_get_var("neomake_hook_context")
+    self.running = false
     if context.jobinfo.exit_code == 0 then
         self.success = true
         self.failed = false
