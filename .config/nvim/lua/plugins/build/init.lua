@@ -40,7 +40,7 @@ function Make:Finished()
 end
 
 function Make:Start()
-    self.status = "Make GO"
+    self.status = "Make"
     self.running = true
     self.failed = false
     self.success = false
