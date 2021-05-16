@@ -18,7 +18,7 @@ if not g.vscode then
     require("core.autocmd")
 
     -- load configs for packer plugins
-    require("plugins.testing")
+    require("plugins.build")
     require("plugins.nvimTree")
     require("plugins.coverage")
     require("plugins.lspconfig")
@@ -39,5 +39,5 @@ if not g.vscode then
     require("lspkind").init({File = " "})
 
     -- matchit <> tag jump %
-    cmd [[ let b:match_words = '(:),\[:\],{:},<:>,' . '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>' ]]
+    vim.b.match_words = table.concat({"(:),\\[:\\],{:},<:>,", "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>"})
 end

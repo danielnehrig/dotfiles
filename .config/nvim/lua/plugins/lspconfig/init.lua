@@ -43,7 +43,7 @@ function lsp:compe()
                 calc = true,
                 vsnip = true,
                 nvim_lsp = true,
-                nvim_lua = true,
+                nvim_lua = false,
                 spell = false,
                 tags = false,
                 snippets_nvim = true,
@@ -129,10 +129,10 @@ local custom_attach = function(client, bufnr)
     autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-    fn.sign_define("LspDiagnosticsSignError", {text = ""})
-    fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
-    fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
-    fn.sign_define("LspDiagnosticsSignHint", {text = ""})
+    fn.sign_define("LspDiagnosticsSignError", {text = ""})
+    fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
+    fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
+    fn.sign_define("LspDiagnosticsSignHint", {text = ""})
     require "lsp_signature".on_attach(
         {
             bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -284,10 +284,12 @@ local function get_lua_runtime()
     return result
 end
 
-lspconfig.sumneko_lua.setup(require("plugins.lspconfig.lua-lsp"))
-lspconfig.sumneko_lua.setup {
+local luaConf = {
     on_attach = custom_attach,
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
 }
+table.insert(luaConf, require("plugins.lspconfig.lua-lsp"))
+
+lspconfig.sumneko_lua.setup(luaConf)
 
 return lsp

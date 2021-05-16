@@ -1,6 +1,6 @@
 local gl = require("galaxyline")
 local gls = gl.section
-local MakeStatus = require("plugins.testing").MakeStatus
+local make = require("plugins.build")
 
 gl.short_line_list = {
     "LuaTree",
@@ -34,11 +34,27 @@ local colors = {
 }
 
 -- https://colordesigner.io/gradient-generator
-local run_grad = {
+local failed = {
     "#ec5f67",
     "#be5278",
     "#894c78",
     "#574465",
+    "#353644"
+}
+
+local success = {
+    "#afd700",
+    "#28ab15",
+    "#25835a",
+    "#2f5561",
+    "#353644"
+}
+
+local Running = {
+    "#008080",
+    "#0e5970",
+    "#1b4161",
+    "#283552",
     "#353644"
 }
 
@@ -285,11 +301,13 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation1 = {
+        RightSepStart = {
             provider = function()
-                return " "
+                return nil
             end,
-            highlight = {run_grad[1], colors.bg}
+            separator = "",
+            separator_highlight = {colors.bg, colors.line_bg},
+            highlight = {colors.fg, colors.line_bg}
         }
     }
 )
@@ -297,11 +315,13 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation2 = {
+        MakeFailed1 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            highlight = {run_grad[2], run_grad[1]}
+            highlight = {failed[1], colors.line_bg}
         }
     }
 )
@@ -309,11 +329,13 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation3 = {
+        MakeFailed2 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            highlight = {run_grad[3], run_grad[2]}
+            highlight = {failed[2], failed[1]}
         }
     }
 )
@@ -321,11 +343,13 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation4 = {
+        MakeFailed3 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            highlight = {run_grad[4], run_grad[3]}
+            highlight = {failed[3], failed[2]}
         }
     }
 )
@@ -333,11 +357,167 @@ table.insert(
 table.insert(
     gls.right,
     {
-        MakeAnimation5 = {
+        MakeFailed4 = {
             provider = function()
-                return " "
+                if make:GetFailed() then
+                    return " "
+                end
             end,
-            highlight = {run_grad[5], run_grad[4]}
+            highlight = {failed[4], failed[3]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeFailed5 = {
+            provider = function()
+                if make:GetFailed() then
+                    return " "
+                end
+            end,
+            highlight = {failed[5], failed[4]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess1 = {
+            provider = function()
+                if make:GetSuccess() then
+                    return " "
+                end
+            end,
+            highlight = {success[1], colors.line_bg}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess2 = {
+            provider = function()
+                if make:GetSuccess() then
+                    return " "
+                end
+            end,
+            highlight = {success[2], success[1]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess3 = {
+            provider = function()
+                if make:GetSuccess() then
+                    return " "
+                end
+            end,
+            highlight = {success[3], success[2]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess4 = {
+            provider = function()
+                if make:GetSuccess() then
+                    return " "
+                end
+            end,
+            highlight = {success[4], success[3]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeSuccess5 = {
+            provider = function()
+                if make:GetSuccess() then
+                    return " "
+                end
+            end,
+            highlight = {success[5], success[4]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning1 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[1], colors.bg}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning2 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[2], Running[1]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning3 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[3], Running[2]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning4 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[4], Running[3]}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
+        MakeRunning5 = {
+            provider = function()
+                if make:GetRunning() then
+                    return " "
+                end
+            end,
+            highlight = {Running[5], Running[4]}
         }
     }
 )
@@ -347,7 +527,7 @@ table.insert(
     {
         Test = {
             provider = function()
-                return "  " .. MakeStatus()
+                return "  " .. make:Status()
             end,
             highlight = {colors.fg, colors.line_bg}
         }
