@@ -37,7 +37,7 @@ if not g.vscode then
     -- those are not worth of own file extraction
     require("colorizer").setup()
     require("lspkind").init({File = " "})
+
     -- matchit <> tag jump %
-    -- cmd [[ let b:match_words = '(:),\[:\],{:},<:>,' . '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>' ]]
     vim.b.match_words = table.concat({"(:),\\[:\\],{:},<:>,", "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>"})
 end
