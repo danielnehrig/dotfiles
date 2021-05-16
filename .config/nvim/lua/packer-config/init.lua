@@ -58,7 +58,11 @@ local function init()
         ft = {"yaml", "yml"},
         cmd = "SwaggerPreview"
     } -- openapi preview
-    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
+    -- use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
+    use {
+        "oberblastmeister/neuron.nvim",
+        opt = true
+    }
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -97,6 +101,7 @@ local function init()
     -- navigation
     use {
         "nvim-telescope/telescope.nvim",
+        opt = true,
         cmd = "Telescope",
         config = function()
             require("plugins.telescope")()
