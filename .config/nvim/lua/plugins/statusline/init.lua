@@ -301,7 +301,10 @@ table.insert(
 table.insert(
     gls.right,
     {
-        RightEnd = {
+        RightSepStart = {
+            provider = function()
+                return nil
+            end,
             separator = "",
             separator_highlight = {colors.bg, colors.line_bg},
             highlight = {colors.fg, colors.line_bg}
