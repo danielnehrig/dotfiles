@@ -1,17 +1,23 @@
 local M = require("utils")
 local cmd = vim.cmd
-local g = vim.g
+local g, b = vim.g, vim.b
 
 local function load_options()
     cmd "filetype plugin on"
     cmd "syntax enable"
     cmd "syntax on"
+
     if not vim.g.neovide then
         g.gruvbox_transparent_bg = 1
     end
+
     g.mapleader = " "
     g.blamer_enabled = 1
     g.beacon_enable = 1
+
+    -- Tag Jump
+    b.match_words = table.concat({"(:),\\[:\\],{:},<:>,", "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>"})
+
     cmd "colorscheme gruvbox"
     M.opt("o", "hidden", true) -- buffer hidden
     M.opt("o", "ignorecase", true) -- case sens ignore search
