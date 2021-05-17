@@ -14,6 +14,10 @@ gl.short_line_list = {
     "packer",
     "fugitive",
     "fugitiveblame",
+    "dapui_scopes",
+    "dapui_stacks",
+    "dapui_watches",
+    "dap-repl",
     "plug"
 }
 
