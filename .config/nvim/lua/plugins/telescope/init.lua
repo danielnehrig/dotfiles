@@ -2,7 +2,6 @@ function load()
     if not packer_plugins["plenary.nvim"].loaded then
         vim.cmd [[packadd plenary.nvim]]
         vim.cmd [[packadd popup.nvim]]
-        vim.cmd [[packadd neuron.nvim]]
         vim.cmd [[packadd telescope-project.nvim]]
         vim.cmd [[packadd telescope-fzf-native.nvim]]
     end
@@ -67,14 +66,6 @@ function load()
     require("telescope").load_extension("project")
     require("telescope").load_extension("dotfiles")
     require("telescope").load_extension("file_create")
-
-    require "neuron".setup {
-        virtual_titles = true,
-        mappings = true,
-        run = nil, -- function to run when in neuron dir
-        neuron_dir = "~/neuron", -- the directory of all of your notes, expanded by default (currently supports only one directory for notes, find a way to detect neuron.dhall to use any directory)
-        leader = "<space>z" -- the leader key to for all mappings, remember with 'go zettel'
-    }
 end
 
 return load

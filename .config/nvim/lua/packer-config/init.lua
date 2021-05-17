@@ -58,11 +58,7 @@ local function init()
         ft = {"yaml", "yml"},
         cmd = "SwaggerPreview"
     } -- openapi preview
-    -- use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
-    use {
-        "oberblastmeister/neuron.nvim",
-        opt = true
-    }
+    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
@@ -176,7 +172,14 @@ local function init()
         }
     }
     -- debug
-    use {"puremourning/vimspector", opt = true} -- debugger
+    use {
+        "mfussenegger/nvim-dap",
+        opt = true,
+        config = function()
+            require("plugins.dap")
+        end
+    }
+    use {"rcarriga/nvim-dap-ui", opt = true, requires = {"mfussenegger/nvim-dap"}}
     -- lib
     use {"wbthomason/packer.nvim", opt = true} -- packer
 end
