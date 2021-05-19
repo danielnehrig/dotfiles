@@ -247,6 +247,8 @@ function plugins.load_compile()
     end
 end
 
+-- put outside of load compile so packer install can still be triggered
+-- if config fails to load properly because of who knows what
 vim.cmd [[command! PackerCompile lua require('packer-config').auto_compile()]]
 vim.cmd [[command! PackerInstall lua require('packer-config').install()]]
 vim.cmd [[command! PackerUpdate lua require('packer-config').update()]]
