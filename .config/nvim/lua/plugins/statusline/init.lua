@@ -541,6 +541,22 @@ table.insert(
 table.insert(
     gls.right,
     {
+        Debug = {
+            provider = function()
+                local debugStatus = require('dap').status()
+
+                if debugStatus then
+                    return "  " .. debugStatus
+                end
+            end,
+            highlight = {colors.fg, colors.line_bg}
+        }
+    }
+)
+
+table.insert(
+    gls.right,
+    {
         LineInfo = {
             provider = "LineColumn",
             separator = " | ",
