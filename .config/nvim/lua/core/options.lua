@@ -6,8 +6,12 @@ local function load_options()
     cmd "filetype plugin on"
     cmd "syntax enable"
     cmd "syntax on"
-    cmd "set number"
-    cmd "set relativenumber"
+
+    vim.api.nvim_win_set_option(0, 'number', true)
+    vim.api.nvim_win_set_option(0, 'relativenumber', true)
+    vim.api.nvim_set_option('path', "**/*")
+    vim.api.nvim_set_option('wildignore', "node_module")
+
     if not vim.g.neovide then
         g.gruvbox_transparent_bg = 1
     end
@@ -26,8 +30,6 @@ local function load_options()
     M.opt("o", "termguicolors", true) -- color stuff
     M.opt("o", "t_Co", "256") -- color stuff
     M.opt("o", "t_ut", "")
-    M.opt("o", "relativenumber", true) -- relative number to jump with jk
-    M.opt("o", "number", true) -- cursor line G number
     M.opt("o", "background", "dark") -- dark
     M.opt("o", "numberwidth", 2) -- width on numbeer row
 
