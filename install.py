@@ -32,7 +32,14 @@ linking_files_mac = [
         {
             "source": ".tmux.mac.conf",
             "dest": ".tmux.conf"
-
+            },
+        {
+            "source": ".config/yabai/yabairc",
+            "dest": ".config/yabai/yabairc"
+            },
+        {
+            "source": ".config/skhd/skhdrc",
+            "dest": ".config/skhd/skhdrc"
             },
         {
             "source": ".zsh/zshrc",
@@ -45,6 +52,10 @@ linking_files_mac = [
         {
             "source": ".dotfiles-vim",
             "dest": ".vim"
+            },
+        {
+            "source": ".config/nvim",
+            "dest": ".config/nvim"
             },
         {
             "source": ".dotfiles-vim/vimrc",
@@ -140,10 +151,12 @@ brew_dependencies = [
         "github/gh/gh",
         "hub",
         "lua",
-        "vim",
+        "neovim --HEAD",
         "zsh",
         "nodenv",
         "docker",
+        "koekeishiya/formulae/skhd",
+        "koekeishiya/formulae/yabai",
         "docker-compose",
         "docker-machine"
         ]
@@ -151,6 +164,7 @@ brew_dependencies = [
 cask_dependencies = [
         "virtualbox",
         "google-chrome",
+        "brave-browser",
         "google-cloud-sdk",
         "firefox",
         "ghidra",

@@ -30,6 +30,23 @@ remap("n", "<Leader>fn", ":Telescope file_create<CR>", opt)
 
 remap("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)
 
--- vimspector
-remap("n", "<Leader>dl", [[ <Cmd>lua require'plugins.vimspector'.launch()<CR>]], opt)
-vim.cmd [[command! Vimspector call vimspector#Launch()]]
+-- vimspector or dap
+remap("n", "<Leader>dhl", [[ <Cmd>lua require'plugins.dap.attach'.attach()<CR>]], opt)
+remap("n", "<Leader>dhs", [[ <Cmd>lua require'dap'.stop()<CR>]], opt)
+remap("n", "<Leader>dhd", [[ <Cmd>lua require'dap'.discconect()<CR>]], opt)
+remap("n", "<Leader>dc", [[ <Cmd>lua require'dap'.continue()<CR>]], opt)
+remap("n", "<Leader>db", [[ <Cmd>lua require'dap'.toggle_breakpoint()<CR>]], opt)
+remap(
+    "n",
+    "<Leader>dB",
+    [[ <Cmd>lua require'dap'.set_breakpoint(nil, nul vim.fn.input('Log point message: '))<CR>]],
+    opt
+)
+remap("n", "<Leader>dO", [[ <Cmd>lua require'dap'.step_over()<CR>]], opt)
+remap("n", "<Leader>di", [[ <Cmd>lua require'dap'.step_into()<CR>]], opt)
+remap("n", "<Leader>do", [[ <Cmd>lua require'dap'.step_out()<CR>]], opt)
+remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]], opt)
+remap("n", "<Leader>dge", [[ <Cmd>lua require'dapui'.eval()<CR>]], opt)
+remap("n", "<Leader>dgf", [[ <Cmd>lua require'dapui'.float_element()<CR>]], opt)
+-- remap("n", "<Leader>dl", [[ <Cmd>lua require'plugins.vimspector'.launch()<CR>]], opt)
+-- vim.cmd [[command! Vimspector call vimspector#Launch()]]
