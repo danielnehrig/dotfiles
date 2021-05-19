@@ -6,13 +6,13 @@ local function load_options()
     cmd "filetype plugin on"
     cmd "syntax enable"
     cmd "syntax on"
-
+    cmd "set number"
+    cmd "set relativenumber"
     if not vim.g.neovide then
         g.gruvbox_transparent_bg = 1
     end
 
     g.mapleader = " "
-    g.blamer_enabled = 1
     g.beacon_enable = 1
 
     -- Tag Jump
@@ -26,9 +26,9 @@ local function load_options()
     M.opt("o", "termguicolors", true) -- color stuff
     M.opt("o", "t_Co", "256") -- color stuff
     M.opt("o", "t_ut", "")
-    M.opt("o", "background", "dark") -- dark
     M.opt("o", "relativenumber", true) -- relative number to jump with jk
     M.opt("o", "number", true) -- cursor line G number
+    M.opt("o", "background", "dark") -- dark
     M.opt("o", "numberwidth", 2) -- width on numbeer row
 
     M.opt("o", "mouse", "a") -- mouse on don't use mouse lol

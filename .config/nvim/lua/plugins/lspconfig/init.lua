@@ -43,7 +43,7 @@ function lsp:compe()
                 calc = true,
                 vsnip = true,
                 nvim_lsp = true,
-                nvim_lua = false,
+                nvim_lua = true,
                 spell = false,
                 tags = false,
                 snippets_nvim = true,
@@ -99,7 +99,6 @@ lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client, bufnr)
     lsp_status.on_attach(client)
-    require "illuminate".on_attach(client)
 
     map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
     map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -126,7 +125,8 @@ local custom_attach = function(client, bufnr)
     map(bufnr, "i", "<TAB>", "<cmd>call compe#confirm()<CR>")
     map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
 
-    autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
+    -- TODO: Make Toggleable since it overlaps with floating elements
+    -- autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     fn.sign_define("LspDiagnosticsSignError", {text = ""})
@@ -206,32 +206,24 @@ local luafmt = require("plugins.efm.luafmt")
 
 lspconfig.efm.setup {
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = true
         if client.resolved_capabilities.document_formatting then
             vim.cmd [[augroup Format]]
             vim.cmd [[autocmd! * <buffer>]]
             vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
             vim.cmd [[augroup END]]
         end
-
-        custom_attach(client)
     end,
     root_dir = function()
         return vim.fn.getcwd()
     end,
     init_options = {
-        documentFormatting = false,
-        codeAction = true
+        documentFormatting = false
     },
     settings = {
-        -- lintDebounce = 200,
+        lintDebounce = 200,
         languages = {
-            javascript = {prettier, eslint},
-            javascriptreact = {prettier, eslint},
-            ["javascript.jsx"] = {prettier, eslint},
             typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
-            ["typescript.tsx"] = {prettier, eslint},
             lua = {luafmt}
         }
     },

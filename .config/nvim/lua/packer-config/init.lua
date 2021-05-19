@@ -37,7 +37,7 @@ local function init()
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
-    use "kabouzeid/nvim-lspinstall"
+    use {"kabouzeid/nvim-lspinstall", opt = true, cmd = {"LspInstall"}}
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
@@ -48,7 +48,7 @@ local function init()
         ft = {"markdown", "md"},
         cmd = "MarkdownPreview"
     } -- markdown previewer
-    use {"metakirby5/codi.vim", ft = {"js", "ts", "lua", "typescript", "javascript"}} -- code playground in buffer executed
+    use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"js", "ts", "lua", "typescript", "javascript"}} -- code playground in buffer executed
     use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
     use {"windwp/nvim-ts-autotag", opt = true, ft = {"tsx", "typescriptreact", "jsx", "html"}} -- autotag <>
     use {
@@ -65,7 +65,6 @@ local function init()
     use "hrsh7th/vim-vsnip" -- snippets
     -- completion
     use "ray-x/lsp_signature.nvim" -- auto signature trigger
-    use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
     use {
         "folke/lsp-trouble.nvim",
         config = function()
@@ -125,8 +124,7 @@ local function init()
     use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
     -- misc
-    use "windwp/nvim-projectconfig" -- project dependable cfg
-    use "RRethy/vim-illuminate" -- illuminate
+    use {"windwp/nvim-projectconfig", disable = true} -- project dependable cfg
     use {"tjdevries/train.nvim", opt = true, cmd = {"TrainClear", "TrainUpDown", "TrainWord", "TrainTextObj"}}
     use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
     use "glepnir/dashboard-nvim" -- dashboard
@@ -139,18 +137,25 @@ local function init()
     -- git
     use {
         "sindrets/diffview.nvim",
+        disable = true,
         config = function()
             require("plugins.diffview")
         end
     }
-    use {"TimUntersberger/neogit", event = {"BufRead", "BufNewFile"}, requires = {"nvim-lua/plenary.nvim", opt = true}}
+    use {
+        "TimUntersberger/neogit",
+        disable = true,
+        event = {"BufRead", "BufNewFile"},
+        requires = {"nvim-lua/plenary.nvim", opt = true}
+    }
     use {
         "ruifm/gitlinker.nvim",
+        disable = true,
         config = function()
             require("plugins.gitlinker")
         end
     } -- get repo file on remote as url
-    use {"pwntester/octo.nvim", requires = {"nvim-lua/plenary.nvim", opt = true}}
+    use {"pwntester/octo.nvim", disable = true, requires = {"nvim-lua/plenary.nvim", opt = true}}
     use {
         "lewis6991/gitsigns.nvim",
         event = {"BufRead", "BufNewFile"},
@@ -160,7 +165,6 @@ local function init()
         requires = {{"nvim-lua/plenary.nvim", opt = true}, {"nvim-lua/popup.nvim", opt = true}}
     } -- like gitgutter shows hunks etc on sign column
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff"}} -- git integration
-    use "APZelos/blamer.nvim" -- line blamer on cursor hold
     -- testing
     use {
         "vim-test/vim-test",
@@ -241,13 +245,14 @@ function plugins.load_compile()
     else
         assert("Missing packer compile file Run PackerCompile Or PackerInstall to fix")
     end
-    vim.cmd [[command! PackerCompile lua require('packer-config').auto_compile()]]
-    vim.cmd [[command! PackerInstall lua require('packer-config').install()]]
-    vim.cmd [[command! PackerUpdate lua require('packer-config').update()]]
-    vim.cmd [[command! PackerSync lua require('packer-config').sync()]]
-    vim.cmd [[command! PackerClean lua require('packer-config').clean()]]
-    vim.cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
-    vim.cmd [[command! PackerStatus  lua require('packer-config').status()]]
 end
+
+vim.cmd [[command! PackerCompile lua require('packer-config').auto_compile()]]
+vim.cmd [[command! PackerInstall lua require('packer-config').install()]]
+vim.cmd [[command! PackerUpdate lua require('packer-config').update()]]
+vim.cmd [[command! PackerSync lua require('packer-config').sync()]]
+vim.cmd [[command! PackerClean lua require('packer-config').clean()]]
+vim.cmd [[autocmd User PackerComplete lua require('packer-config').auto_compile()]]
+vim.cmd [[command! PackerStatus  lua require('packer-config').status()]]
 
 return plugins
