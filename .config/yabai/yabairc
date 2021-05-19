@@ -1,30 +1,62 @@
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-yabai -m config layout bsp
-yabai -m config window_placement second_child
-yabai -m config status_bar                   on
+# global settings
+yabai -m config external_bar                 main:20:0
+yabai -m config mouse_follows_focus          on
+yabai -m config focus_follows_mouse          autoraise
+yabai -m config window_placement             second_child
+yabai -m config window_topmost               on
+yabai -m config window_shadow                off
+yabai -m config window_opacity               on
+yabai -m config window_opacity_duration      0.0
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.85
+yabai -m config window_border                on
+yabai -m config window_border_width          6
+yabai -m config active_window_border_color   0xff775759
+yabai -m config normal_window_border_color   0xff555555
+yabai -m config insert_feedback_color        0xaad75f5f
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 on
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
 
-yabai -m config top_padding    20
-yabai -m config bottom_padding 20
-yabai -m config left_padding   20
-yabai -m config right_padding  20
-yabai -m config window_gap     20
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding                  20
+yabai -m config bottom_padding               20
+yabai -m config left_padding                 20
+yabai -m config right_padding                20
+yabai -m config window_gap                   10
 
-yabai -m config window_opacity on
-yabai -m config active_window_opacity 1.0
-yabai -m config normal_window_opacity 0.9
+# mission-control desktop labels
+yabai -m space 1 --label code
+yabai -m space 2 --label mail
+yabai -m space 3 --label web
+yabai -m space 4 --label notes
+yabai -m space 5 --label re
+yabai -m space 6 --label media
+yabai -m space 7 --label social
+yabai -m space 8 --label games
 
-yabai -m config external_bar main:20:0
-yabai -m config mouse_follows_focus on
-# set mouse interaction modifier key (default: fn)
-yabai -m config mouse_modifier fn
+# specific space settings
+yabai -m config --space mail  layout        stack
+yabai -m config --space games layout        float
 
-# set modifier + left-click drag to resize window (default: move)
-yabai -m config mouse_action1 move
-
-# set modifier + right-click drag to resize window (default: resize)
-yabai -m config mouse_action2 resize
+# window rules
+yabai -m rule --add app="^Alacritty$" space=code
+yabai -m rule --add app="^Mail$" space=mail
+yabai -m rule --add app="^Safari$" space=web
+yabai -m rule --add app="^Chrome$" space=web
+yabai -m rule --add app="^Firefox$" space=web
+yabai -m rule --add app="^Brave$" space=web
+yabai -m rule --add app="^Notes$" space=notes
+yabai -m rule --add app="^Transmission$" space=media
+yabai -m rule --add app="^Spotify$" space=media
+yabai -m rule --add app="^Discord$" space=social grid=1:1:0:0:1:1 manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
 
 # Refresh spaces widget on space change
 yabai -m signal --add event=space_changed action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-spaces-jsx\"'"
