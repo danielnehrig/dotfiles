@@ -543,7 +543,9 @@ table.insert(
     {
         Debug = {
             provider = function()
-                local debugStatus = require('dap').status()
+                if not packer_plugins["nvim-dap"].loaded then
+                    return
+                end
 
                 if debugStatus then
                     return "  " .. debugStatus
