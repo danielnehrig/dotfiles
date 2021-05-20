@@ -43,7 +43,7 @@ function lsp:compe()
                 calc = true,
                 vsnip = true,
                 nvim_lsp = true,
-                nvim_lua = true,
+                nvim_lua = false,
                 spell = false,
                 tags = false,
                 snippets_nvim = true,
@@ -126,7 +126,7 @@ local custom_attach = function(client, bufnr)
     map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
 
     -- TODO: Make Toggleable since it overlaps with floating elements
-    -- autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
+    autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
     vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     fn.sign_define("LspDiagnosticsSignError", {text = ""})
@@ -206,6 +206,7 @@ local luafmt = require("plugins.efm.luafmt")
 
 lspconfig.efm.setup {
     on_attach = function(client)
+        client.resolved_capabilities.document_formatting = true
         if client.resolved_capabilities.document_formatting then
             vim.cmd [[augroup Format]]
             vim.cmd [[autocmd! * <buffer>]]
@@ -217,10 +218,11 @@ lspconfig.efm.setup {
         return vim.fn.getcwd()
     end,
     init_options = {
-        documentFormatting = false
+        documentFormatting = false,
+        codeAction = true
     },
     settings = {
-        lintDebounce = 200,
+        -- lintDebounce = 200,
         languages = {
             typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
@@ -276,12 +278,23 @@ local function get_lua_runtime()
     return result
 end
 
-local luaConf = {
-    on_attach = custom_attach,
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
-}
-table.insert(luaConf, require("plugins.lspconfig.lua-lsp"))
+local luadev =
+    require("lua-dev").setup(
+    {
+        -- add any options here, or leave empty to use the default settings
+        lspconfig = {
+            -- on_attach = custom_attach,
+            cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
+        }
+    }
+)
 
-lspconfig.sumneko_lua.setup(luaConf)
+-- local luaConf = {
+--     on_attach = custom_attach,
+--     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
+-- }
+-- table.insert(luaConf, require("plugins.lspconfig.lua-lsp"))
+
+lspconfig.sumneko_lua.setup(luadev)
 
 return lsp

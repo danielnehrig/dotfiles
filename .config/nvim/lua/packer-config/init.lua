@@ -36,6 +36,7 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
+    use {"folke/lua-dev.nvim"}
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
     use {"kabouzeid/nvim-lspinstall", opt = true, cmd = {"LspInstall"}}
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage

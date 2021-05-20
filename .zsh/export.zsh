@@ -14,6 +14,7 @@ fi
 # User exports
 if [[ `uname` == "Darwin"  ]]; then
 PATH+=":/usr/local/share/dotnet"
+PATH+=":/usr/local/opt/llvm/bin/"
 
 PATH+=":$HOME/.dotfiles-darwin/lua-language-server/bin/macOS"
 # PATH+=":/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
