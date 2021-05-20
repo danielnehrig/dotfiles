@@ -20,4 +20,26 @@ dap.configurations.typescript = {
     }
 }
 
+dap.configurations.typescriptreact = {
+    {
+        type = "node2",
+        request = "attach",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector"
+    }
+}
+
+dap.configurations.javascript = {
+    {
+        type = "node2",
+        request = "attach",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector"
+    }
+}
+
 require("dapui").setup()
