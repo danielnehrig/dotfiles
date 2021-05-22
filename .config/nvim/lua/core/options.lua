@@ -14,7 +14,7 @@ local function load_options()
 
     -- Set so that folders are index for find command
     vim.o.path = vim.o.path .. "**/*"
-    vim.o.wildignore = vim.o.wildignore .. "node_modules"
+    vim.o.wildignore = vim.o.wildignore .. "node_modules,.git"
 
     -- neovide should not be transparent
     if not vim.g.neovide then
