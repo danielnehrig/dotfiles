@@ -4,18 +4,17 @@ local g, b = vim.g, vim.b
 
 local function load_options()
     -- default vim stuff
-    cmd "filetype plugin on"
     cmd "syntax enable"
     cmd "syntax on"
 
     -- activate line numbers
     -- TODO: make toggleable for pair programming
-    vim.api.nvim_win_set_option(0, 'number', true)
-    vim.api.nvim_win_set_option(0, 'relativenumber', true)
+    vim.api.nvim_win_set_option(0, "number", true)
+    vim.api.nvim_win_set_option(0, "relativenumber", true)
 
     -- Set so that folders are index for find command
-    vim.api.nvim_set_option('path', "**/*")
-    vim.api.nvim_set_option('wildignore', "node_module")
+    vim.o.path = vim.o.path .. "**/*"
+    vim.o.wildignore = vim.o.wildignore .. "node_modules"
 
     -- neovide should not be transparent
     if not vim.g.neovide then

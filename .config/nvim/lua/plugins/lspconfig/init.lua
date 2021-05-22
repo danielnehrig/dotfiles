@@ -283,7 +283,7 @@ local luadev =
     {
         -- add any options here, or leave empty to use the default settings
         lspconfig = {
-            -- on_attach = custom_attach,
+            on_attach = custom_attach,
             cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
         }
     }
