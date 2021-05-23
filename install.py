@@ -403,8 +403,27 @@ def Linux():
 
     # cloning dependencies zsh theme and plugins
     try:
-        Install('sudo pacman -S base-devel nvidia docker docker-compose alacritty network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 python')
+        Install('sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip')
         Install('yay -S nodenv-git nodenv-node-build brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont ttf-nerd-fonts-hack-complete-git')
+
+        # nodenv setup
+        Install('nodenv install 14.0.1')
+        Install('nodenv install 12.8.0')
+        Install('nodenv install 14.16.0')
+        Install('nodenv global 14.16.0')
+
+        # python setup
+        Install('pip install neovim bpytop')
+        Install('pip2 install neovim')
+
+        # npm
+        Install('npm install -g yarn typescript-language-server prettier_d_slim eslint_d')
+
+        # rust setup
+        Install('rustup install nightly')
+
+        # langservers
+        Install('go get github.com/mattn/efm-langserver')
 
         # lua lsp
         Install('git clone https://github.com/sumneko/lua-language-server')
@@ -419,12 +438,14 @@ def Linux():
         Install('git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ' + current_folder + '/oh-my-zsh/custom' + '/themes/powerlevel10k')
 
         # tmux plugin manager
+        Install('mkdir -p ~/.tmux/plugins/tpm')
         Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
 
         # linking
+        Install('mkdir -p ~/.config/')
         LinkFiles(linking_files_arch)
     except OSError:
         log.Error("Error while install")
