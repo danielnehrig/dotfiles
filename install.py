@@ -394,7 +394,8 @@ def Linux():
 
     # cloning dependencies zsh theme and plugins
     try:
-        Install('yay -S python-pynvim ueberzug neovim-nightly-git')
+        Install('sudo pacman -S bat fd ripgrep')
+        Install('yay -S nodenv-git python-pynvim ueberzug neovim-nightly-git')
 
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
