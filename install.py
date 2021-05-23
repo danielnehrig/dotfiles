@@ -403,8 +403,11 @@ def Linux():
 
     # cloning dependencies zsh theme and plugins
     try:
-        Install('sudo pacman -S bat fd ripgrep')
-        Install('yay -S nodenv-git python-pynvim ueberzug neovim-nightly-git')
+        Install('sudo pacman -S base-devel nvidia docker docker-compose alacritty network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 python')
+        Install('yay -S nodenv-git nodenv-node-build brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont ttf-nerd-fonts-hack-complete-git')
+
+        # lua lsp
+        Install('git clone https://github.com/sumneko/lua-language-server')
 
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
