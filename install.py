@@ -106,7 +106,7 @@ linking_files_arch = [
             "dest": ".config/dunst"
             },
         {
-            "source": ".config/rofi",
+            "source": ".config/themes/rofi/oxide",
             "dest": ".config/rofi"
             },
         {
@@ -120,6 +120,15 @@ linking_files_arch = [
         {
             "source": ".xinitrc",
             "dest": ".xinitrc"
+                },
+        {
+            "source": ".Xresources",
+            "dest": ".Xresources"
+                },
+
+        {
+            "source": "polybar-powerline",
+            "dest": ".config/polybar"
                 }
         ]
 pip_packages = [
@@ -394,18 +403,50 @@ def Linux():
 
     # cloning dependencies zsh theme and plugins
     try:
-        Install('yay -S ranger python-pynvim ueberzug')
+        Install('sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja')
+        Install('yay -S nodenv-git nodenv-node-build brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont ttf-nerd-fonts-hack-complete-git bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx')
+
+        # nodenv setup
+        Install('nodenv install 14.0.1')
+        Install('nodenv install 12.8.0')
+        Install('nodenv install 14.16.0')
+        Install('nodenv global 14.16.0')
+
+        # python setup
+        Install('pip install neovim bpytop')
+        Install('pip2 install neovim')
+
+        # npm
+        Install('npm install -g yarn typescript-language-server prettier_d_slim eslint_d pyright vscode-html-languageserver-bin vscode-css-languageserver-bin dockerfile-language-server-nodejs @bitwarden/cli')
+
+        # rust setup
+        Install('rustup install nightly')
+        Install('rustup +nightly component add rust-analyzer-preview')
+
+        # langservers
+        Install('go get github.com/mattn/efm-langserver')
+
+        # lua lsp
+        Install('git clone https://github.com/sumneko/lua-language-server')
 
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
+        # highlight
+        Install('git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-syntax-highlighting')
+
+        # powerlevel10k
+        Install('git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ' + current_folder + '/oh-my-zsh/custom' + '/themes/powerlevel10k')
+
         # tmux plugin manager
+        Install('mkdir -p ~/.tmux/plugins/tpm')
         Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
 
         # linking
+        Install('mkdir -p ~/.config/')
         LinkFiles(linking_files_arch)
     except OSError:
         log.Error("Error while install")

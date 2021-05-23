@@ -258,11 +258,9 @@ table.insert(
     {
         LeftEnd = {
             provider = function()
-                return ""
+                return ""
             end,
-            separator = "",
-            separator_highlight = {colors.bg, colors.line_bg},
-            highlight = {colors.line_bg, colors.line_bg}
+            highlight = {colors.line_bg}
         }
     }
 )
@@ -273,7 +271,7 @@ table.insert(
         DiagnosticError = {
             provider = "DiagnosticError",
             icon = "  ",
-            highlight = {colors.red, colors.bg}
+            highlight = {colors.red}
         }
     }
 )
@@ -284,7 +282,7 @@ table.insert(
         DiagnosticWarn = {
             provider = "DiagnosticWarn",
             icon = "  ",
-            highlight = {colors.yellow, colors.bg}
+            highlight = {colors.yellow}
         }
     }
 )
@@ -296,7 +294,7 @@ table.insert(
             provider = function()
                 return LspStatus()
             end,
-            highlight = {colors.green, colors.bg},
+            highlight = {colors.green},
             icon = "  λ "
         }
     }
@@ -307,11 +305,9 @@ table.insert(
     {
         RightSepStart = {
             provider = function()
-                return nil
+                return ""
             end,
-            separator = "",
-            separator_highlight = {colors.bg, colors.line_bg},
-            highlight = {colors.fg, colors.line_bg}
+            highlight = {colors.line_bg}
         }
     }
 )
@@ -547,9 +543,7 @@ table.insert(
                     return
                 end
 
-                if debugStatus then
-                    return "  " .. debugStatus
-                end
+                return "  " .. require("nvim-dap").status()
             end,
             highlight = {colors.fg, colors.line_bg}
         }
@@ -585,9 +579,9 @@ table.insert(
     {
         BufferType = {
             provider = "FileTypeName",
-            separator = "",
+            separator = "",
             condition = has_file_type,
-            separator_highlight = {colors.purple, colors.bg},
+            separator_highlight = {colors.purple},
             highlight = {colors.fg, colors.purple}
         }
     }
@@ -598,9 +592,9 @@ table.insert(
     {
         BufferIcon = {
             provider = "BufferIcon",
-            separator = "",
+            separator = "",
             condition = has_file_type,
-            separator_highlight = {colors.purple, colors.bg},
+            separator_highlight = {colors.purple},
             highlight = {colors.fg, colors.purple}
         }
     }

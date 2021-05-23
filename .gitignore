@@ -1,8 +1,12 @@
 fonts
+wallpapers
 .gdb_history
+tokens
+yay
 .zsh/tokens.zsh
 .DS_STORE
 SourceCodeProAwesome.ttf
+polybar-powerline
 lua-language-server
 **/speedlog
 .config/nvim/plugin/packer_compiled.vim
