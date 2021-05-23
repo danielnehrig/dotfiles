@@ -417,7 +417,7 @@ def Linux():
         Install('pip2 install neovim')
 
         # npm
-        Install('npm install -g yarn typescript-language-server prettier_d_slim eslint_d')
+        Install('npm install -g yarn typescript-language-server prettier_d_slim eslint_d pyright vscode-html-languageserver-bin vscode-css-languageserver-bin dockerfile-language-server-nodejs')
 
         # rust setup
         Install('rustup install nightly')
