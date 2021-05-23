@@ -421,6 +421,7 @@ def Linux():
 
         # rust setup
         Install('rustup install nightly')
+        Install('rustup +nightly component add rust-analyzer-preview')
 
         # langservers
         Install('go get github.com/mattn/efm-langserver')
