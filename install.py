@@ -120,6 +120,15 @@ linking_files_arch = [
         {
             "source": ".xinitrc",
             "dest": ".xinitrc"
+                },
+        {
+            "source": ".Xresources",
+            "dest": ".Xresources"
+                },
+
+        {
+            "source": "polybar-powerline",
+            "dest": ".config/polybar"
                 }
         ]
 pip_packages = [
