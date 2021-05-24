@@ -166,8 +166,7 @@ brew_dependencies = [
         "docker",
         "koekeishiya/formulae/skhd",
         "koekeishiya/formulae/yabai",
-        "docker-compose",
-        "docker-machine"
+        "docker-compose"
         ]
 
 cask_dependencies = [
@@ -191,8 +190,7 @@ cask_dependencies = [
 node_packages = [
         "nodemon",
         "yarn",
-        "tsserver",
-        "typescript-language-server"
+        "typescript-language-server",
         "typescript"
         ]
 
@@ -387,15 +385,20 @@ def Help():
             sys.exit(0)
 
 
-def Upgrade():
+def UpgradeDarwin():
     for option in sys.argv:
         if option == '--upgrade' or option == '-u':
             InstallCliPackages('brew upgrade', brew_dependencies)
             sys.exit(0)
 
+def UpgradeLinux():
+    for option in sys.argv:
+        if option == '--upgrade' or option == '-u':
+            InstallCliPackages('yay -Syu', [''])
+            sys.exit(0)
 
 def Linux():
-    log.Critical('Linux is Not Supported Yet')
+    log.Critical('Linux is WIP')
 
     # git submodule pull
     log.Step("Pulling submodules", 1)
@@ -460,6 +463,7 @@ def Cygwin():
 
 
 def Darwin():
+    UpgradeDarwin()
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
 
@@ -553,7 +557,6 @@ def Darwin():
 
 if __name__ == "__main__":
     Help()
-    Upgrade()
     if sys.platform == 'linux':
         Linux()
     if sys.platform == 'darwin':

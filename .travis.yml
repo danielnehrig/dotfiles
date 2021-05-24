@@ -1,9 +1,0 @@
-os: osx
-osx_image: xcode11.2
-
-jobs:
-  include:
-  - name: "Mac Build"
-    env: PARAM=--all
-
-script: ./install.py $PARAM
