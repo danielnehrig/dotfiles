@@ -36,6 +36,7 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
+    use {"folke/lua-dev.nvim"}
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
     use {"kabouzeid/nvim-lspinstall", opt = true, cmd = {"LspInstall"}}
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage
@@ -247,6 +248,8 @@ function plugins.load_compile()
     end
 end
 
+-- put outside of load compile so packer install can still be triggered
+-- if config fails to load properly because of who knows what
 vim.cmd [[command! PackerCompile lua require('packer-config').auto_compile()]]
 vim.cmd [[command! PackerInstall lua require('packer-config').install()]]
 vim.cmd [[command! PackerUpdate lua require('packer-config').update()]]

@@ -3,11 +3,20 @@ local cmd = vim.cmd
 local g, b = vim.g, vim.b
 
 local function load_options()
-    cmd "filetype plugin on"
+    -- default vim stuff
     cmd "syntax enable"
     cmd "syntax on"
-    cmd "set number"
-    cmd "set relativenumber"
+
+    -- activate line numbers
+    -- TODO: make toggleable for pair programming
+    vim.api.nvim_win_set_option(0, "number", true)
+    vim.api.nvim_win_set_option(0, "relativenumber", true)
+
+    -- Set so that folders are index for find command
+    vim.o.path = vim.o.path .. "**/*"
+    vim.o.wildignore = vim.o.wildignore .. "node_modules,.git"
+
+    -- neovide should not be transparent
     if not vim.g.neovide then
         g.gruvbox_transparent_bg = 1
     end
@@ -18,7 +27,7 @@ local function load_options()
     -- Tag Jump
     b.match_words = table.concat({"(:),\\[:\\],{:},<:>,", "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>"})
 
-    cmd "colorscheme gruvbox"
+    cmd "colorscheme gruvbox" -- :)
     M.opt("o", "hidden", true) -- buffer hidden
     M.opt("o", "ignorecase", true) -- case sens ignore search
     M.opt("o", "splitbelow", true) -- split behavior
@@ -26,8 +35,6 @@ local function load_options()
     M.opt("o", "termguicolors", true) -- color stuff
     M.opt("o", "t_Co", "256") -- color stuff
     M.opt("o", "t_ut", "")
-    M.opt("o", "relativenumber", true) -- relative number to jump with jk
-    M.opt("o", "number", true) -- cursor line G number
     M.opt("o", "background", "dark") -- dark
     M.opt("o", "numberwidth", 2) -- width on numbeer row
 
@@ -47,6 +54,7 @@ local function load_options()
     M.opt("o", "clipboard", "unnamedplus") -- clipboard yank
 
     -- for indenline
+    -- indentation settings
     M.opt("b", "expandtab", true)
     M.opt("b", "shiftwidth", 2)
 end

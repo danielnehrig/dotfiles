@@ -6,14 +6,14 @@ local function attach()
     end
     require("plugins.dap")
     local dap = require "dap"
+    require('dap').set_log_level('DEBUG')
     dap.run(
         {
             type = "node2",
             request = "attach",
             cwd = vim.fn.getcwd(),
             sourceMaps = true,
-            protocol = "inspector",
-            skipFiles = {"<node_internals>/**/*.ts"}
+            protocol = "inspector"
         }
     )
 end

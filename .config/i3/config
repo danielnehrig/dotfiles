@@ -279,7 +279,7 @@ exec_always --no-startup-id gromit-mpx
 
 
 ################## change wallpaper ######################
-exec_always --no-startup-id feh --bg-fill ~/wallpapers/herbst.png
+exec_always --no-startup-id feh --bg-fill ~/.dotfiles-darwin/wallpapers/herbst.png
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
