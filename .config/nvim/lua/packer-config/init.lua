@@ -111,9 +111,6 @@ local function init()
     } -- fuzzy finder
     use {"kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons"} -- Drawerboard style like nerdtree
     -- movement
-    use "wellle/targets.vim" -- extended motions
-    use "adelarsq/vim-matchit" -- matchit % jump
-    use "justinmk/vim-sneak" -- movement plugin
     use "unblevable/quick-scope" -- f F t T improved highlight
     -- quality of life
     use "danilamihailov/beacon.nvim" -- jump indicator
