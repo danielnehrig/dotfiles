@@ -19,7 +19,6 @@ if not g.vscode then
 
     -- load configs for packer plugins
     require("plugins.build")
-    require("plugins.nvimTree")
     require("plugins.coverage")
     require("plugins.lspconfig")
     require("plugins.indent-blankline")

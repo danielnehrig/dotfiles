@@ -1,4 +1,4 @@
-vim.cmd [[packadd nvim-tree.lua]]
+-- vim.cmd [[packadd nvim-tree.lua]]
 
 vim.g.nvim_tree_side = "left"
 vim.g.nvim_tree_width = 25
@@ -40,18 +40,6 @@ vim.g.nvim_tree_icons = {
 local get_lua_cb = function(cb_name)
     return string.format(":lua require'nvim-tree'.on_keypress('%s')<CR>", cb_name)
 end
-
--- Mappings for nvimtree
-
-vim.api.nvim_set_keymap(
-    "n",
-    "<C-n>",
-    ":NvimTreeToggle<CR>",
-    {
-        noremap = true,
-        silent = true
-    }
-)
 
 vim.g.nvim_tree_bindings = {
     ["<CR>"] = get_lua_cb("edit"),

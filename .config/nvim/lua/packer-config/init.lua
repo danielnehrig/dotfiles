@@ -16,7 +16,7 @@ end
 local packer = nil
 local function init()
     if not packer then
-        vim.api.nvim_command("packadd packer.nvim")
+        execute("packadd packer.nvim")
         packer = require("packer")
     end
     packer.init(
@@ -109,7 +109,15 @@ local function init()
             {"nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make"}
         }
     } -- fuzzy finder
-    use {"kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons"} -- Drawerboard style like nerdtree
+    use {
+        "kyazdani42/nvim-tree.lua",
+        opt = true,
+        config = function()
+            require("plugins.nvimTree")
+        end,
+        cmd = {"NvimTreeToggle"},
+        requires = "kyazdani42/nvim-web-devicons"
+    } -- Drawerboard style like nerdtree
     -- movement
     use "unblevable/quick-scope" -- f F t T improved highlight
     -- quality of life
@@ -162,7 +170,7 @@ local function init()
         end,
         requires = {{"nvim-lua/plenary.nvim", opt = true}, {"nvim-lua/popup.nvim", opt = true}}
     } -- like gitgutter shows hunks etc on sign column
-    use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff"}} -- git integration
+    use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame"}} -- git integration
     -- testing
     use {
         "vim-test/vim-test",
