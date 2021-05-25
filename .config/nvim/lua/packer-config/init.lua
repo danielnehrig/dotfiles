@@ -36,9 +36,9 @@ local function init()
     use "Dave-Elec/gruvbox" -- colorscheme
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
-    use {"folke/lua-dev.nvim"}
+    use {"folke/lua-dev.nvim"} -- lua nvim setup
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
-    use {"kabouzeid/nvim-lspinstall", opt = true, cmd = {"LspInstall"}}
+    use {"kabouzeid/nvim-lspinstall", opt = true, cmd = {"LspInstall"}} -- install lsp server
     use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", opt = true, ft = {"rust", "rs"}} -- rust language tools
@@ -81,7 +81,7 @@ local function init()
             require("plugins.todo")
         end,
         cmd = {"TodoQuickFix", "TodoTrouble", "TodoTelescope"}
-    }
+    } -- show todos in qf
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
@@ -131,7 +131,6 @@ local function init()
     use "tpope/vim-surround" -- surround "" ''
     -- misc
     use {"windwp/nvim-projectconfig", disable = true} -- project dependable cfg
-    use {"tjdevries/train.nvim", opt = true, cmd = {"TrainClear", "TrainUpDown", "TrainWord", "TrainTextObj"}}
     use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
     use "glepnir/dashboard-nvim" -- dashboard
     use {
@@ -141,13 +140,6 @@ local function init()
     } -- show indentation
     use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
     -- git
-    use {
-        "sindrets/diffview.nvim",
-        disable = true,
-        config = function()
-            require("plugins.diffview")
-        end
-    }
     use {
         "TimUntersberger/neogit",
         disable = true,

@@ -264,20 +264,6 @@ end
 local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
-local function get_lua_runtime()
-    local result = {}
-    for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
-        local lua_path = path .. "/lua/"
-        if vim.fn.isdirectory(lua_path) then
-            result[lua_path] = true
-        end
-    end
-    result[vim.fn.expand("$VIMRUNTIME/lua")] = true
-    result[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true
-
-    return result
-end
-
 local luadev =
     require("lua-dev").setup(
     {
@@ -288,12 +274,6 @@ local luadev =
         }
     }
 )
-
--- local luaConf = {
---     on_attach = custom_attach,
---     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
--- }
--- table.insert(luaConf, require("plugins.lspconfig.lua-lsp"))
 
 lspconfig.sumneko_lua.setup(luadev)
 
