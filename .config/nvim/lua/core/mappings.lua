@@ -49,6 +49,10 @@ remap("n", "<Leader>dr", [[ <Cmd>lua require'dap'.repl.open()<CR>]], opt)
 remap("n", "<Leader>dge", [[ <Cmd>lua require'dapui'.eval()<CR>]], opt)
 remap("n", "<Leader>dgf", [[ <Cmd>lua require'dapui'.float_element()<CR>]], opt)
 
+-- gitlinker
+remap("n", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):normal()<CR>]], opt)
+remap("v", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):visual()<CR>]], opt)
+
 -- marker
 remap("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>", opt)
 remap("v", "<Leader>2", ":<c-u>HSHighlight 2<CR>", opt)

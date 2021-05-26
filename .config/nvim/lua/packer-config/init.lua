@@ -182,10 +182,7 @@ local function init()
     }
     use {
         "ruifm/gitlinker.nvim",
-        disable = true,
-        config = function()
-            require("plugins.gitlinker")
-        end
+        opt = true
     } -- get repo file on remote as url
     use {"pwntester/octo.nvim", disable = true, requires = {"nvim-lua/plenary.nvim", opt = true}}
     use {
