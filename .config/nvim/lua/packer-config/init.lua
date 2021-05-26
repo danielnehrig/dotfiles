@@ -141,7 +141,6 @@ local function init()
         cmd = {"HSHighlight", "HSRmHighlight"},
         config = function()
             local high_str = require("high-str")
-
             high_str.setup(
                 {
                     verbosity = 0,
