@@ -29,6 +29,7 @@ if not g.vscode then
     require("plugins.which")
     require("plugins.swagger")
     require("plugins.autopairs")
+    require("plugins.nvimTree")
     require("plugins.treesitter")
     require("plugins.bqf")
 

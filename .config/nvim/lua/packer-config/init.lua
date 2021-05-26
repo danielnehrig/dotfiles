@@ -114,11 +114,11 @@ local function init()
     } -- fuzzy finder
     use {
         "kyazdani42/nvim-tree.lua",
-        opt = true,
-        config = function()
-            require("plugins.nvimTree")
-        end,
-        cmd = {"NvimTreeToggle"},
+        -- opt = true,
+        -- config = function()
+        --     require("plugins.nvimTree")
+        -- end,
+        -- cmd = {"NvimTreeToggle"},
         requires = "kyazdani42/nvim-web-devicons"
     } -- Drawerboard style like nerdtree
 
@@ -165,7 +165,14 @@ local function init()
 
     -- misc
     use {"windwp/nvim-projectconfig", disable = true} -- project dependable cfg
-    use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
+    use {
+        "famiu/nvim-reload",
+        opt = true,
+        cmd = {"Reload", "Restart"},
+        config = function()
+            vim.cmd [[packadd plenary.nvim]]
+        end
+    } -- reload nvim config
     use "glepnir/dashboard-nvim" -- dashboard
     use {
         "lukas-reineke/indent-blankline.nvim",
