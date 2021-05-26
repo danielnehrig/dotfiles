@@ -28,6 +28,7 @@ remap("n", "<Leader>fd", ":Telescope dotfiles path=" .. home .. "/.dotfiles-darw
 remap("n", "<Leader>fn", ":Telescope file_create<CR>", opt)
 
 -- nvim tree
+remap("n", "<Leader>n", ":NvimTreeFindFile<CR>", opt)
 remap("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
 
 -- dap
