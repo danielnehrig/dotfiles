@@ -1,6 +1,7 @@
 local M = require("utils")
 local cmd = vim.cmd
 local g, b = vim.g, vim.b
+local autocmd = require "utils".autocmd
 
 local function load_options()
     -- default vim stuff
@@ -15,6 +16,11 @@ local function load_options()
     -- Set so that folders are index for find command
     vim.o.path = vim.o.path .. "**/*"
     vim.o.wildignore = vim.o.wildignore .. "node_modules,.git"
+
+    -- save view on leave and load on buf enter
+    -- used for manuall fold loading
+    autocmd("BufWinLeave", "*.*", "mkview")
+    autocmd("BufWinEnter", "*.*", "silent loadview")
 
     -- neovide should not be transparent
     if not vim.g.neovide then
