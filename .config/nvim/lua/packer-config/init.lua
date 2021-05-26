@@ -34,6 +34,7 @@ local function init()
     use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
     use "norcalli/nvim-colorizer.lua" -- colors hex
     use "Dave-Elec/gruvbox" -- colorscheme
+
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax
     use {"folke/lua-dev.nvim"} -- lua nvim setup
@@ -59,11 +60,12 @@ local function init()
         ft = {"yaml", "yml"},
         cmd = "SwaggerPreview"
     } -- openapi preview
-    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
+
     -- snip
     use "norcalli/snippets.nvim" -- snippets
     use "SirVer/ultisnips" -- snippets
     use "hrsh7th/vim-vsnip" -- snippets
+
     -- completion
     use "ray-x/lsp_signature.nvim" -- auto signature trigger
     use {
@@ -94,6 +96,7 @@ local function init()
             require("plugins.lspconfig").compe()
         end
     } -- completion engine
+
     -- navigation
     use {
         "nvim-telescope/telescope.nvim",
@@ -118,8 +121,10 @@ local function init()
         cmd = {"NvimTreeToggle"},
         requires = "kyazdani42/nvim-web-devicons"
     } -- Drawerboard style like nerdtree
+
     -- movement
     use "unblevable/quick-scope" -- f F t T improved highlight
+
     -- quality of life
     use "danilamihailov/beacon.nvim" -- jump indicator
     use "kevinhwang91/nvim-bqf" -- better quickfix
@@ -129,6 +134,35 @@ local function init()
     use "windwp/nvim-autopairs" -- autopairs "" {}
     use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
+    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
+    use {
+        "kdav5758/HighStr.nvim",
+        opt = true,
+        cmd = {"HSHighlight", "HSRmHighlight"},
+        config = function()
+            local high_str = require("high-str")
+
+            high_str.setup(
+                {
+                    verbosity = 0,
+                    highlight_colors = {
+                        -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
+                        color_0 = {"#000000", "smart"}, -- Chartreuse yellow
+                        color_1 = {"#e5c07b", "smart"}, -- Pastel yellow
+                        color_2 = {"#7FFFD4", "smart"}, -- Aqua menthe
+                        color_3 = {"#8A2BE2", "smart"}, -- Proton purple
+                        color_4 = {"#FF4500", "smart"}, -- Orange red
+                        color_5 = {"#008000", "smart"}, -- Office green
+                        color_6 = {"#0000FF", "smart"}, -- Just blue
+                        color_7 = {"#FFC0CB", "smart"}, -- Blush pink
+                        color_8 = {"#FFF9E3", "smart"}, -- Cosmic latte
+                        color_9 = {"#7d5c34", "smart"} -- Fallow brown
+                    }
+                }
+            )
+        end
+    }
+
     -- misc
     use {"windwp/nvim-projectconfig", disable = true} -- project dependable cfg
     use {"famiu/nvim-reload", opt = true, cmd = {"Reload", "Restart"}} -- reload nvim config
@@ -163,7 +197,8 @@ local function init()
         requires = {{"nvim-lua/plenary.nvim", opt = true}, {"nvim-lua/popup.nvim", opt = true}}
     } -- like gitgutter shows hunks etc on sign column
     use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame"}} -- git integration
-    -- testing
+
+    -- testing / building
     use {
         "vim-test/vim-test",
         opt = true,
@@ -173,6 +208,7 @@ local function init()
             {"tpope/vim-dispatch", opt = true, cmd = {"Dispatch"}}
         }
     }
+
     -- debug
     use {
         "mfussenegger/nvim-dap",
@@ -182,6 +218,7 @@ local function init()
         end
     }
     use {"rcarriga/nvim-dap-ui", opt = true, requires = {"mfussenegger/nvim-dap"}}
+
     -- lib
     use {"wbthomason/packer.nvim", opt = true} -- packer
 end
