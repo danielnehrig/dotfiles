@@ -19,8 +19,8 @@ local function load_options()
 
     -- save view on leave and load on buf enter
     -- used for manuall fold loading
-    autocmd("BufWinLeave", "*.*", "mkview")
-    autocmd("BufWinEnter", "*.*", "silent loadview")
+    -- autocmd("BufWinLeave", "*.*", "mkview")
+    -- autocmd("BufWinEnter", "*.*", "silent loadview")
 
     -- neovide should not be transparent
     if not vim.g.neovide then
