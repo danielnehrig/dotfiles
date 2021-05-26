@@ -181,19 +181,20 @@ lspconfig.tsserver.setup {
 
 lspconfig.cssls.setup {on_attach = custom_attach}
 lspconfig.html.setup {on_attach = custom_attach}
-lspconfig.rust_analyzer.setup {
-    on_attach = function(client)
-        if client.resolved_capabilities.document_formatting then
-            vim.cmd [[augroup Format]]
-            vim.cmd [[autocmd! * <buffer>]]
-            vim.cmd [[autocmd BufWritePost <buffer> RustFmt]]
-            vim.cmd [[augroup END]]
-        end
-
-        custom_attach(client)
-    end,
-    capabilities = capabilities
-}
+require("rust-tools").setup()
+-- lspconfig.rust_analyzer.setup {
+--     on_attach = function(client)
+--         if client.resolved_capabilities.document_formatting then
+--             vim.cmd [[augroup Format]]
+--             vim.cmd [[autocmd! * <buffer>]]
+--             vim.cmd [[autocmd BufWritePost <buffer> RustFmt]]
+--             vim.cmd [[augroup END]]
+--         end
+--
+--         custom_attach(client)
+--     end,
+--     capabilities = capabilities
+-- }
 lspconfig.gopls.setup {on_attach = custom_attach}
 lspconfig.pyright.setup {on_attach = custom_attach}
 lspconfig.dockerls.setup {on_attach = custom_attach}
