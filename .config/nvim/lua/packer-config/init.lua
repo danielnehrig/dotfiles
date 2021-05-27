@@ -114,11 +114,6 @@ local function init()
     } -- fuzzy finder
     use {
         "kyazdani42/nvim-tree.lua",
-        -- opt = true,
-        -- config = function()
-        --     require("plugins.nvimTree")
-        -- end,
-        -- cmd = {"NvimTreeToggle"},
         requires = "kyazdani42/nvim-web-devicons"
     } -- Drawerboard style like nerdtree
 
@@ -127,7 +122,6 @@ local function init()
 
     -- quality of life
     use "danilamihailov/beacon.nvim" -- jump indicator
-    -- use "kevinhwang91/nvim-bqf" -- better quickfix
     use "folke/which-key.nvim" -- which key
     use "preservim/nerdcommenter" -- commenting
     use "junegunn/vim-slash" -- better search

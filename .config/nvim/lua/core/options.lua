@@ -1,7 +1,7 @@
 local M = require("utils")
 local cmd = vim.cmd
 local g, b = vim.g, vim.b
-local autocmd = require "utils".autocmd
+-- local autocmd = require "utils".autocmd
 
 local function load_options()
     -- default vim stuff
