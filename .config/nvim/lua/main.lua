@@ -31,7 +31,6 @@ if not g.vscode then
     require("plugins.autopairs")
     require("plugins.nvimTree")
     require("plugins.treesitter")
-    -- require("plugins.bqf")
 
     -- setup plugins and init them
     -- those are not worth of own file extraction

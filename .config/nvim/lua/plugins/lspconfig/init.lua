@@ -64,21 +64,8 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
         vim.lsp.util.apply_text_edits(result, bufnr)
         vim.fn.winrestview(view)
         if bufnr == vim.api.nvim_get_current_buf() then
-            vim.cmd [[noautocmd :update]]
+            vim.api.nvim_command("noautocmd :update")
         end
-    end
-end
-
-FormatToggle = function(value)
-    vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
-end
-
-vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
-vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
-
-_G.formatting = function()
-    if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
-        vim.lsp.buf.formatting(vim.g[string.format("format_options_%s", vim.bo.filetype)] or {})
     end
 end
 
@@ -125,14 +112,13 @@ local custom_attach = function(client, bufnr)
     map(bufnr, "i", "<TAB>", "<cmd>call compe#confirm()<CR>")
     map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
 
-    -- TODO: Make Toggleable since it overlaps with floating elements
     autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
-    vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     fn.sign_define("LspDiagnosticsSignError", {text = ""})
     fn.sign_define("LspDiagnosticsSignWarning", {text = ""})
     fn.sign_define("LspDiagnosticsSignInformation", {text = ""})
     fn.sign_define("LspDiagnosticsSignHint", {text = ""})
+
     require "lsp_signature".on_attach(
         {
             bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -149,32 +135,43 @@ lspconfig.tsserver.setup {
         vim.cmd [[packadd nvim-lsp-ts-utils]]
         local ts_utils = require("nvim-lsp-ts-utils")
 
-        -- defaults
+        -- disable TS formatting since we use efm
+        client.resolved_capabilities.document_formatting = false
+
+        -- ts utils code action and file import update
         ts_utils.setup {
+            debug = false,
             disable_commands = false,
-            enable_import_on_completion = true,
+            enable_import_on_completion = false,
             import_on_completion_timeout = 5000,
             -- eslint
+            eslint_enable_code_actions = true,
             eslint_bin = "eslint_d",
             eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
             eslint_enable_disable_comments = true,
+            -- experimental settings!
+            -- eslint diagnostics
             eslint_enable_diagnostics = false,
             eslint_diagnostics_debounce = 250,
             -- formatting
             enable_formatting = false,
-            formatter = "prettier_d",
+            formatter = "prettier_d_slim",
             formatter_args = {"--stdin-filepath", "$FILENAME"},
-            format_on_save = false,
-            no_save_after_format = false
+            format_on_save = true,
+            no_save_after_format = false,
+            -- parentheses completion
+            complete_parens = false,
+            signature_help_in_parens = false,
+            -- update imports on file move
+            update_imports_on_move = true,
+            require_confirmation_on_move = false,
+            watch_dir = "/domain"
         }
-        if client.config.flags then
-            client.config.flags.allow_incremental_sync = true
-        end
-        client.resolved_capabilities.document_formatting = false
 
         ts_utils.setup_client(client)
         custom_attach(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ae", ":TSLspRenameFile<CR>", {silent = true})
     end,
     capabilities = capabilities
 }
@@ -182,19 +179,6 @@ lspconfig.tsserver.setup {
 lspconfig.cssls.setup {on_attach = custom_attach}
 lspconfig.html.setup {on_attach = custom_attach}
 require("rust-tools").setup()
--- lspconfig.rust_analyzer.setup {
---     on_attach = function(client)
---         if client.resolved_capabilities.document_formatting then
---             vim.cmd [[augroup Format]]
---             vim.cmd [[autocmd! * <buffer>]]
---             vim.cmd [[autocmd BufWritePost <buffer> RustFmt]]
---             vim.cmd [[augroup END]]
---         end
---
---         custom_attach(client)
---     end,
---     capabilities = capabilities
--- }
 lspconfig.gopls.setup {on_attach = custom_attach}
 lspconfig.pyright.setup {on_attach = custom_attach}
 lspconfig.dockerls.setup {on_attach = custom_attach}
@@ -209,21 +193,20 @@ lspconfig.efm.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = true
         if client.resolved_capabilities.document_formatting then
-            vim.cmd [[augroup Format]]
-            vim.cmd [[autocmd! * <buffer>]]
-            vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
-            vim.cmd [[augroup END]]
+            vim.api.nvim_command [[augroup Format]]
+            vim.api.nvim_command [[autocmd! * <buffer>]]
+            vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+            vim.api.nvim_command [[augroup END]]
         end
     end,
     root_dir = function()
         return vim.fn.getcwd()
     end,
     init_options = {
-        documentFormatting = false,
+        documentFormatting = true,
         codeAction = true
     },
     settings = {
-        -- lintDebounce = 200,
         languages = {
             typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},

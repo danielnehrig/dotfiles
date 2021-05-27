@@ -52,6 +52,7 @@ local function init()
     } -- markdown previewer
     use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"js", "ts", "lua", "typescript", "javascript"}} -- code playground in buffer executed
     use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
+    use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
     use {"windwp/nvim-ts-autotag", opt = true, ft = {"tsx", "typescriptreact", "jsx", "html"}} -- autotag <>
     use {
         "shuntaka9576/preview-swagger.nvim",
