@@ -38,6 +38,10 @@ linking_files_mac = [
             "dest": ".config/yabai/yabairc"
             },
         {
+            "source": ".config/kak",
+            "dest": ".config/kak"
+            },
+        {
             "source": ".config/skhd/skhdrc",
             "dest": ".config/skhd/skhdrc"
             },
@@ -84,6 +88,10 @@ linking_files_arch = [
         {
             "source": ".dotfiles-vim",
             "dest": ".vim"
+            },
+        {
+            "source": ".config/kak",
+            "dest": ".config/kak"
             },
         {
             "source": ".dotfiles-vim/vimrc",
