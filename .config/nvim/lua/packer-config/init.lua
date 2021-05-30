@@ -115,7 +115,8 @@ local function init()
     } -- fuzzy finder
     use {
         "kyazdani42/nvim-tree.lua",
-        requires = "kyazdani42/nvim-web-devicons"
+        requires = "kyazdani42/nvim-web-devicons",
+        cmd = {"NvimTreeToggle", "NvimTreeFindFile"}
     } -- Drawerboard style like nerdtree
 
     -- movement
@@ -179,7 +180,7 @@ local function init()
         "TimUntersberger/neogit",
         disable = true,
         event = {"BufRead", "BufNewFile"},
-        requires = {"nvim-lua/plenary.nvim", opt = true}
+        requires = {"nvim-lua/plenary.nvim"}
     }
     use {
         "ruifm/gitlinker.nvim",
