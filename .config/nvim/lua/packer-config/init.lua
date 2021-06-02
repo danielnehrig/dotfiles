@@ -69,6 +69,8 @@ local function init()
 
     -- completion
     use "ray-x/lsp_signature.nvim" -- auto signature trigger
+    use "RRethy/vim-illuminate"
+    use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
     use {
         "folke/lsp-trouble.nvim",
         config = function()

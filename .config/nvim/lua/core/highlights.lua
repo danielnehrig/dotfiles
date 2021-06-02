@@ -19,6 +19,8 @@ cmd("hi PmenuSel  guibg=#98c379")
 cmd("hi NvimTreeFolderIcon guifg = #61afef")
 cmd("hi NvimTreeIndentMarker guifg=#545862")
 cmd("hi CustomExplorerBg guibg=#242830")
+cmd("hi default GHTextViewDark guifg=#e0d8f4 guibg=#332e55")
+cmd("hi default GHListDark guifg=#e0d8f4 guibg=#103234")
 nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0")
 
 -- gitsigns transparent

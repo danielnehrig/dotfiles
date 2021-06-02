@@ -122,59 +122,129 @@ local custom_attach = function(client, bufnr)
     require "lsp_signature".on_attach(
         {
             bind = true, -- This is mandatory, otherwise border config won't get registered.
+            -- If you want to hook lspsaga or other signature handler, pls set to false
+            doc_lines = 2, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+            -- set to 0 if you DO NOT want any API comments be shown
+            -- This setting only take effect in insert mode, it does not affect signature help in normal
+            -- mode
+            floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+            hint_enable = true, -- virtual hint enable
+            hint_prefix = "🐼 ", -- Panda for parameter
+            hint_scheme = "String",
+            use_lspsaga = false, -- set to true if you want to use lspsaga popup
+            hi_parameter = "Search", -- how your parameter will be highlight
             handler_opts = {
-                border = "single"
+                border = "single" -- double, single, shadow, none
             }
+            -- deprecate
+            -- decorator = {"`", "`"}  -- decoractor can be `decorator = {"***", "***"}`  `decorator = {"**", "**"}` `decorator = {"**_", "_**"}`
+            -- `decorator = {"*", "*"} see markdown help for more details
+            -- <u></u> ~ ~ does not supported by nvim
         }
     )
 end
 
 -- lsp setups
-lspconfig.tsserver.setup {
-    on_attach = function(client, bufnr)
-        vim.cmd [[packadd nvim-lsp-ts-utils]]
-        local ts_utils = require("nvim-lsp-ts-utils")
+-- lspconfig.tsserver.setup {
+--     on_attach = function(client, bufnr)
+--         vim.cmd [[packadd nvim-lsp-ts-utils]]
+--         local ts_utils = require("nvim-lsp-ts-utils")
+--
+--         -- disable TS formatting since we use efm
+--         client.resolved_capabilities.document_formatting = false
+--
+--         -- ts utils code action and file import update
+--         ts_utils.setup {
+--             debug = false,
+--             disable_commands = false,
+--             enable_import_on_completion = false,
+--             import_on_completion_timeout = 5000,
+--             -- eslint
+--             eslint_enable_code_actions = true,
+--             eslint_bin = "eslint_d",
+--             eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
+--             eslint_enable_disable_comments = true,
+--             -- experimental settings!
+--             -- eslint diagnostics
+--             eslint_enable_diagnostics = false,
+--             eslint_diagnostics_debounce = 250,
+--             -- formatting
+--             enable_formatting = false,
+--             formatter = "prettier_d_slim",
+--             formatter_args = {"--stdin-filepath", "$FILENAME"},
+--             format_on_save = true,
+--             no_save_after_format = false,
+--             -- parentheses completion
+--             complete_parens = false,
+--             signature_help_in_parens = false,
+--             -- update imports on file move
+--             update_imports_on_move = true,
+--             require_confirmation_on_move = false,
+--             watch_dir = "/domain"
+--         }
+--
+--         ts_utils.setup_client(client)
+--         custom_attach(client, bufnr)
+--         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
+--         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ae", ":TSLspRenameFile<CR>", {silent = true})
+--     end,
+--     capabilities = capabilities
+-- }
+require("navigator").setup(
+    {
+        lsp = {
+            format_on_save = false,
+            tsserver = {
+                filetypes = {"typescript", "typescriptreact"},
+                on_attach = function(client, bufnr)
+                    vim.cmd [[packadd nvim-lsp-ts-utils]]
+                    local ts_utils = require("nvim-lsp-ts-utils")
 
-        -- disable TS formatting since we use efm
-        client.resolved_capabilities.document_formatting = false
+                    -- disable TS formatting since we use efm
+                    client.resolved_capabilities.document_formatting = false
 
-        -- ts utils code action and file import update
-        ts_utils.setup {
-            debug = false,
-            disable_commands = false,
-            enable_import_on_completion = false,
-            import_on_completion_timeout = 5000,
-            -- eslint
-            eslint_enable_code_actions = true,
-            eslint_bin = "eslint_d",
-            eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
-            eslint_enable_disable_comments = true,
-            -- experimental settings!
-            -- eslint diagnostics
-            eslint_enable_diagnostics = false,
-            eslint_diagnostics_debounce = 250,
-            -- formatting
-            enable_formatting = false,
-            formatter = "prettier_d_slim",
-            formatter_args = {"--stdin-filepath", "$FILENAME"},
-            format_on_save = true,
-            no_save_after_format = false,
-            -- parentheses completion
-            complete_parens = false,
-            signature_help_in_parens = false,
-            -- update imports on file move
-            update_imports_on_move = true,
-            require_confirmation_on_move = false,
-            watch_dir = "/domain"
-        }
+                    -- ts utils code action and file import update
+                    ts_utils.setup {
+                        debug = false,
+                        disable_commands = false,
+                        enable_import_on_completion = false,
+                        import_on_completion_timeout = 5000,
+                        -- eslint
+                        eslint_enable_code_actions = true,
+                        eslint_bin = "eslint_d",
+                        eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
+                        eslint_enable_disable_comments = true,
+                        -- experimental settings!
+                        -- eslint diagnostics
+                        eslint_enable_diagnostics = false,
+                        eslint_diagnostics_debounce = 250,
+                        -- formatting
+                        enable_formatting = false,
+                        formatter = "prettier_d_slim",
+                        formatter_args = {"--stdin-filepath", "$FILENAME"},
+                        format_on_save = true,
+                        no_save_after_format = false,
+                        -- parentheses completion
+                        complete_parens = false,
+                        signature_help_in_parens = false,
+                        -- update imports on file move
+                        update_imports_on_move = true,
+                        require_confirmation_on_move = false,
+                        watch_dir = "/domain"
+                    }
 
-        ts_utils.setup_client(client)
-        custom_attach(client, bufnr)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ae", ":TSLspRenameFile<CR>", {silent = true})
-    end,
-    capabilities = capabilities
-}
+                    ts_utils.setup_client(client)
+                    custom_attach(client, bufnr)
+                    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
+                    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ae", ":TSLspRenameFile<CR>", {silent = true})
+                end
+            }
+        },
+        on_attach = function(client, bufnr)
+            require "illuminate".on_attach(client)
+        end
+    }
+)
 
 lspconfig.cssls.setup {on_attach = custom_attach}
 lspconfig.html.setup {on_attach = custom_attach}
