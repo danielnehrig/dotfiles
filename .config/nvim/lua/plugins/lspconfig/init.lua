@@ -5,6 +5,9 @@ local lspconfig = require("lspconfig")
 local fn = vim.fn
 local setOption = vim.api.nvim_set_option
 local saga = require("lspsaga")
+local globals = require("core.global")
+local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
+local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-language-server"
 
 setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -193,6 +196,8 @@ end
 require("navigator").setup(
     {
         default_mapping = false,
+        sumneko_root_path = sumneko_root_path,
+        sumneko_binary = sumneko_binary,
         lsp = {
             format_on_save = false,
             tsserver = {
@@ -241,7 +246,7 @@ require("navigator").setup(
                 end
             }
         },
-        on_attach = function(client, bufnr)
+        on_attach = function(client, _)
             require "illuminate".on_attach(client)
         end
     }
@@ -295,6 +300,7 @@ lspconfig.efm.setup {
     }
 }
 
+-- disable virtual text
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -303,22 +309,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     }
 )
 
--- lua sumenko
-local system_name
-if vim.fn.has("mac") == 1 then
-    system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-    system_name = "Linux"
-elseif vim.fn.has("win32") == 1 then
-    system_name = "Windows"
-else
-    print("Unsupported system for sumneko")
-end
-
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
-
 local luadev =
     require("lua-dev").setup(
     {

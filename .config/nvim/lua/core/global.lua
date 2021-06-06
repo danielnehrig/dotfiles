@@ -8,6 +8,7 @@ function global:load_variables()
     self.is_mac = os_name == "Darwin"
     self.is_linux = os_name == "Linux"
     self.is_windows = os_name == "Windows"
+    self.os_name = os_name
     self.vim_path = vim.fn.stdpath("config")
     self.cache_path = home .. path_sep .. ".cache" .. path_sep .. "nvim" .. path_sep
     self.modules_path = self.vim_path .. path_sep .. "lua" .. path_sep .. "modules"

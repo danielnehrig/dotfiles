@@ -1,6 +1,7 @@
 local M = require("utils")
 local cmd = vim.cmd
 local g, b, opt, go = vim.g, vim.b, vim.opt, vim.go
+local nvim_command = vim.api.nvim_command
 -- local autocmd = require "utils".autocmd
 
 local function load_options()
@@ -25,6 +26,7 @@ local function load_options()
     b.match_words = table.concat({"(:),\\[:\\],{:},<:>,", "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>"})
 
     cmd "colorscheme gruvbox" -- :)
+    nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0")
     opt.hidden = true -- buffer hidden
     opt.ignorecase = true -- case sens ignore search
     opt.splitbelow = true -- split behavior

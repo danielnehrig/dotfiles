@@ -1,3 +1,5 @@
+local cmd = vim.cmd
+
 if not packer_plugins["plenary.nvim"].loaded then
     vim.cmd [[packadd plenary.nvim]]
 end
@@ -9,6 +11,15 @@ local signs = {
     topdelete = {hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn"},
     changedelete = {hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn"}
 }
+
+-- set signs transparent on terminal app
+if not vim.g.neovide or not vim.g.goneovim or not vim.g.uivonim then
+    cmd("hi SignColumn guibg=none")
+    cmd("hi GruvboxGreenSign ctermbg=none guibg=none")
+    cmd("hi GruvboxRedSign ctermbg=none guibg=none")
+    cmd("hi GruvboxRedSign ctermbg=none guibg=none")
+    cmd("hi GruvboxAquaSign ctermbg=none guibg=none")
+end
 
 require("gitsigns").setup {
     signs = signs,
