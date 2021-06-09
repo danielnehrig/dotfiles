@@ -39,8 +39,6 @@ local function init()
     use {"danielnehrig/vim-polyglot"} -- syntax
     use {"folke/lua-dev.nvim"} -- lua nvim setup
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
-    use {"kabouzeid/nvim-lspinstall", opt = true, cmd = {"LspInstall"}} -- install lsp server
-    use {"ruanyl/coverage.vim", opt = true, ft = {"js", "ts", "jsx", "typescriptreact"}} -- jest coverage
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim"} -- rust language tools
     use {
@@ -80,6 +78,7 @@ local function init()
         event = "BufRead",
         requires = "kyazdani42/nvim-web-devicons"
     } -- window for showing LSP detected issues in code
+    use {"camspiers/snap"}
     use {
         "folke/todo-comments.nvim",
         config = function()
@@ -180,16 +179,9 @@ local function init()
     use {"dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 10]]} -- show startup time
     -- git
     use {
-        "TimUntersberger/neogit",
-        disable = true,
-        event = {"BufRead", "BufNewFile"},
-        requires = {"nvim-lua/plenary.nvim"}
-    }
-    use {
         "ruifm/gitlinker.nvim",
         opt = true
     } -- get repo file on remote as url
-    use {"pwntester/octo.nvim", disable = true, requires = {"nvim-lua/plenary.nvim", opt = true}}
     use {
         "lewis6991/gitsigns.nvim",
         event = {"BufRead", "BufNewFile"},
