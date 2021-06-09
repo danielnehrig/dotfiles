@@ -22,5 +22,5 @@ function SN.grep()
     }
 end
 
-remap("n", "<Leader>ff", ":lua SN.find()<CR>", opt)
-remap("n", "<Leader>fg", ":lua SN.grep()<CR>", opt)
+-- remap("n", "<Leader>ff", ":lua SN.find()<CR>", opt)
+-- remap("n", "<Leader>fg", ":lua SN.grep()<CR>", opt)
