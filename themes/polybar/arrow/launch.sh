@@ -9,4 +9,4 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 ## Launch
-MONITOR=DP-4 polybar -c ~/.config/polybar/config.ini top &
+MONITOR=DP-0 polybar -c ~/.config/polybar/config.ini top &

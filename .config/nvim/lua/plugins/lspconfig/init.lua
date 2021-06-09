@@ -147,59 +147,29 @@ local custom_attach = function(client, bufnr)
     )
 end
 
--- lsp setups
--- lspconfig.tsserver.setup {
---     on_attach = function(client, bufnr)
---         vim.cmd [[packadd nvim-lsp-ts-utils]]
---         local ts_utils = require("nvim-lsp-ts-utils")
---
---         -- disable TS formatting since we use efm
---         client.resolved_capabilities.document_formatting = false
---
---         -- ts utils code action and file import update
---         ts_utils.setup {
---             debug = false,
---             disable_commands = false,
---             enable_import_on_completion = false,
---             import_on_completion_timeout = 5000,
---             -- eslint
---             eslint_enable_code_actions = true,
---             eslint_bin = "eslint_d",
---             eslint_args = {"-f", "json", "--stdin", "--stdin-filename", "$FILENAME"},
---             eslint_enable_disable_comments = true,
---             -- experimental settings!
---             -- eslint diagnostics
---             eslint_enable_diagnostics = false,
---             eslint_diagnostics_debounce = 250,
---             -- formatting
---             enable_formatting = false,
---             formatter = "prettier_d_slim",
---             formatter_args = {"--stdin-filepath", "$FILENAME"},
---             format_on_save = true,
---             no_save_after_format = false,
---             -- parentheses completion
---             complete_parens = false,
---             signature_help_in_parens = false,
---             -- update imports on file move
---             update_imports_on_move = true,
---             require_confirmation_on_move = false,
---             watch_dir = "/domain"
---         }
---
---         ts_utils.setup_client(client)
---         custom_attach(client, bufnr)
---         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
---         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ae", ":TSLspRenameFile<CR>", {silent = true})
---     end,
---     capabilities = capabilities
--- }
+-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+local luadev =
+    require("lua-dev").setup(
+    {
+        -- add any options here, or leave empty to use the default settings
+        lspconfig = {
+            on_attach = custom_attach,
+            cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
+        }
+    }
+)
+
+lspconfig.sumneko_lua.setup(luadev)
+
 require("navigator").setup(
     {
         default_mapping = false,
         sumneko_root_path = sumneko_root_path,
         sumneko_binary = sumneko_binary,
+        code_action_prompt = {enable = false, sign = true, sign_priority = 40, virtual_text = true},
         lsp = {
             format_on_save = false,
+            sumneko_lua = luadev,
             tsserver = {
                 filetypes = {"typescript", "typescriptreact"},
                 on_attach = function(client, bufnr)
@@ -308,19 +278,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         virtual_text = false
     }
 )
-
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local luadev =
-    require("lua-dev").setup(
-    {
-        -- add any options here, or leave empty to use the default settings
-        lspconfig = {
-            on_attach = custom_attach,
-            cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
-        }
-    }
-)
-
-lspconfig.sumneko_lua.setup(luadev)
 
 return lsp

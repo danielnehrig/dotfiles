@@ -1,4 +1,3 @@
-local cmd = vim.cmd
 local g = vim.g
 
 -- check if we are in vscode nvim
