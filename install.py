@@ -71,6 +71,14 @@ linking_files_mac = [
             }
         ]
 
+# TODO add logic to link executables to path
+bin_files_arch = [
+    {
+        "source": "./scripts/locker.sh",
+        "dest": "/usr/local/bin"
+    }
+]
+
 linking_files_arch = [
         {
             "source": ".tmux.conf",
