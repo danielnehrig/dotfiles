@@ -159,17 +159,20 @@ local luadev =
     }
 )
 
-lspconfig.sumneko_lua.setup(luadev)
-
 require("navigator").setup(
     {
         default_mapping = false,
-        sumneko_root_path = sumneko_root_path,
-        sumneko_binary = sumneko_binary,
         code_action_prompt = {enable = false, sign = true, sign_priority = 40, virtual_text = true},
         lsp = {
             format_on_save = false,
-            sumneko_lua = luadev,
+            sumneko_lua = {
+                sumneko_root_path = sumneko_root_path,
+                sumneko_binary = sumneko_binary,
+                settings = luadev.settings,
+                on_attach = function(client, bufnr)
+                    custom_attach(client, bufnr)
+                end
+            },
             tsserver = {
                 filetypes = {"typescript", "typescriptreact"},
                 on_attach = function(client, bufnr)
@@ -210,9 +213,9 @@ require("navigator").setup(
                     }
 
                     ts_utils.setup_client(client)
-                    custom_attach(client, bufnr)
                     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>gi", ":TSLspImportAll<CR>", {silent = true})
                     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ae", ":TSLspRenameFile<CR>", {silent = true})
+                    custom_attach(client, bufnr)
                 end
             }
         },
