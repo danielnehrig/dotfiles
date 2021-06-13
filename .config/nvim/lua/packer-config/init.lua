@@ -41,6 +41,7 @@ local function init()
                 vim.g.gruvbox_transparent = true
             end
             vim.g.gruvbox_terminal_colors = true
+            vim.g.gruvbox_flat_style = "dark"
             vim.g.gruvbox_flat_style = "hard"
             vim.cmd "colorscheme gruvbox-flat" -- :)
             require("core.highlights")
@@ -74,8 +75,6 @@ local function init()
 
     -- snip
     use "norcalli/snippets.nvim" -- snippets
-    use "SirVer/ultisnips" -- snippets
-    use "hrsh7th/vim-vsnip" -- snippets
 
     -- completion
     use "ray-x/lsp_signature.nvim" -- auto signature trigger

@@ -11,6 +11,8 @@ local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-
 
 setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
+-- snippets setup
+-- https://github.com/hrsh7th/nvim-compe#how-to-use-lsp-snippet
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -44,7 +46,7 @@ function lsp:compe()
                 path = true,
                 buffer = true,
                 calc = true,
-                vsnip = true,
+                vsnip = false,
                 nvim_lsp = true,
                 nvim_lua = false,
                 spell = false,
@@ -116,6 +118,9 @@ local custom_attach = function(client, bufnr)
     map(bufnr, "n", "<space>ai", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
     map(bufnr, "n", "<space>ao", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
     map(bufnr, "i", "<C-space>", "<cmd>call compe#complete()<CR>")
+    map(bufnr, "i", "<C-e>", "<cmd>call compe#close('<C-e>')<CR>")
+    map(bufnr, "i", "<C-f>", "<cmd>call compe#scroll({ delta: +4 })<CR>")
+    map(bufnr, "i", "<C-d>", "<cmd>call compe#scroll({ delta: -4 })<CR>")
     map(bufnr, "i", "<TAB>", "<cmd>call compe#confirm()<CR>")
     map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
 
@@ -163,7 +168,7 @@ local luadev =
     }
 )
 
-local rust_tools = require("rust-tools").setup()
+-- local rust_tools = require("rust-tools").setup()
 require("navigator").setup(
     {
         default_mapping = false,
@@ -174,6 +179,11 @@ require("navigator").setup(
                 sumneko_root_path = sumneko_root_path,
                 sumneko_binary = sumneko_binary,
                 settings = luadev.settings,
+                on_attach = function(client, bufnr)
+                    custom_attach(client, bufnr)
+                end
+            },
+            rust_analyzer = {
                 on_attach = function(client, bufnr)
                     custom_attach(client, bufnr)
                 end
