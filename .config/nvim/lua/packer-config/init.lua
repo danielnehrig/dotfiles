@@ -34,12 +34,15 @@ local function init()
     use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
     use "norcalli/nvim-colorizer.lua" -- colors hex
     use {
-        "Dave-Elec/gruvbox",
+        "eddyekofo94/gruvbox-flat.nvim",
         config = function()
             if not vim.g.neovide then
                 vim.g.gruvbox_transparent_bg = 1
+                vim.g.gruvbox_transparent = true
             end
-            vim.cmd "colorscheme gruvbox" -- :)
+            vim.g.gruvbox_terminal_colors = true
+            vim.g.gruvbox_flat_style = "hard"
+            vim.cmd "colorscheme gruvbox-flat" -- :)
             require("core.highlights")
         end
     } -- colorscheme

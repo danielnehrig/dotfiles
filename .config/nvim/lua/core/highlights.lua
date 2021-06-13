@@ -13,6 +13,7 @@ cmd("autocmd ColorScheme * highlight TelescopeBorder   guifg=#3e4451")
 cmd("autocmd ColorScheme * highlight TelescopePromptBorder   guifg=#3e4451")
 cmd("autocmd ColorScheme * highlight TelescopeResultsBorder  guifg=#3e4451")
 cmd("autocmd ColorScheme * highlight TelescopePreviewBorder  guifg=#525865")
+
 -- tree folder name , icon color
 cmd("autocmd ColorScheme * highlight NvimTreeFolderIcon guifg = #61afef")
 cmd("autocmd ColorScheme * highlight NvimTreeIndentMarker guifg=#545862")
@@ -22,7 +23,7 @@ cmd("autocmd ColorScheme * highlight default GHListDark guifg=#e0d8f4 guibg=#103
 
 cmd("autocmd ColorScheme * highlight NormalFloat guifg=#fff guibg=none ctermbg=none")
 cmd("autocmd ColorScheme * highlight FloatBorder guifg=#FF6111 guibg=none ctermbg=none")
-cmd("autocmd ColorScheme * highlight PmenuSel guibg=#98c379")
+cmd("autocmd ColorScheme * highlight PmenuSel guifg=#c14a4a guibg=#98c379")
 
 -- gitsigns transparent
 -- set signs transparent on terminal app
