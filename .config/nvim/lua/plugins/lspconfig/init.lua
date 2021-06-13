@@ -9,6 +9,7 @@ local globals = require("core.global")
 local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-language-server"
 
+-- set omnifunc
 setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 -- snippets setup
@@ -24,8 +25,8 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
+-- lsp object for exporting and lazyload
 local lsp = {}
-
 -- compe setup
 function lsp:compe()
     require("compe").setup(
@@ -58,8 +59,10 @@ function lsp:compe()
     )
 end
 
+-- completion menu settings
 vim.o.completeopt = "menuone,noselect"
 
+-- formatting and save
 vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
     if err ~= nil or result == nil then
         return
@@ -86,10 +89,6 @@ saga.init_lsp_saga {
     hint_sign = "",
     infor_sign = ""
 }
-
-vim.api.nvim_command [[ hi def link LspReferenceText CursorLine ]]
-vim.api.nvim_command [[ hi def link LspReferenceWrite CursorLine ]]
-vim.api.nvim_command [[ hi def link LspReferenceRead CursorLine ]]
 
 lsp_status.register_progress()
 -- custom attach config
@@ -135,7 +134,7 @@ local custom_attach = function(client, bufnr)
         {
             bind = true, -- This is mandatory, otherwise border config won't get registered.
             -- If you want to hook lspsaga or other signature handler, pls set to false
-            doc_lines = 4, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+            doc_lines = 6, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
             -- set to 0 if you DO NOT want any API comments be shown
             -- This setting only take effect in insert mode, it does not affect signature help in normal
             -- mode
