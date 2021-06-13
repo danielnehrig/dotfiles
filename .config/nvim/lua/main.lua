@@ -13,7 +13,6 @@ if not g.vscode then
     require("core.global")
     require("core.options")
     require("core.mappings")
-    require("core.highlights")
     require("core.autocmd")
 
     -- load configs for packer plugins

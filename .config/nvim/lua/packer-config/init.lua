@@ -33,7 +33,16 @@ local function init()
     use {"glepnir/galaxyline.nvim", branch = "main", requires = "kyazdani42/nvim-web-devicons"} -- statusbar
     use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
     use "norcalli/nvim-colorizer.lua" -- colors hex
-    use "Dave-Elec/gruvbox" -- colorscheme
+    use {
+        "Dave-Elec/gruvbox",
+        config = function()
+            if not vim.g.neovide then
+                vim.g.gruvbox_transparent_bg = 1
+            end
+            vim.cmd "colorscheme gruvbox" -- :)
+            require("core.highlights")
+        end
+    } -- colorscheme
 
     -- language
     use {"danielnehrig/vim-polyglot"} -- syntax

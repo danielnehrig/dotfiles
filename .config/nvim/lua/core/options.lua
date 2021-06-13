@@ -14,18 +14,12 @@ local function load_options()
     opt.path:append("**/*")
     opt.wildignore:append("node_modules,.git")
 
-    -- neovide should not be transparent
-    if not g.neovide then
-        g.gruvbox_transparent_bg = 1
-    end
-
     g.mapleader = " "
     g.beacon_enable = 1
 
     -- Tag Jump
     b.match_words = table.concat({"(:),\\[:\\],{:},<:>,", "<\\@<=\\([^/][^ \t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=/\1>"})
 
-    cmd "colorscheme gruvbox" -- :)
     nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0")
     opt.hidden = true -- buffer hidden
     opt.ignorecase = true -- case sens ignore search
@@ -34,7 +28,7 @@ local function load_options()
     go.termguicolors = true
     go.t_Co = "256"
     go.t_ut = ""
-    opt.background = "dark" -- dark
+    -- opt.background = "dark" -- dark
     opt.numberwidth = 2 -- width on numbeer row
 
     opt.mouse = "a" -- mouse on don't use mouse lol
