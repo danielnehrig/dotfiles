@@ -49,11 +49,11 @@ local function init()
     } -- colorscheme
 
     -- language
-    use {"danielnehrig/vim-polyglot"} -- syntax
+    use {"HerringtonDarkholme/yats.vim", ft = {"typescript", "typescriptreact"}} -- ts syntax
     use {"folke/lua-dev.nvim"} -- lua nvim setup
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
-    use {"simrat39/rust-tools.nvim"} -- rust language tools
+    use {"simrat39/rust-tools.nvim", disable = true} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && yarn install",
@@ -77,8 +77,8 @@ local function init()
     use "norcalli/snippets.nvim" -- snippets
 
     -- completion
-    use "ray-x/lsp_signature.nvim" -- auto signature trigger
-    use "RRethy/vim-illuminate"
+    use {"ray-x/lsp_signature.nvim", opt = true} -- auto signature trigger
+    use {"RRethy/vim-illuminate", opt = true}
     use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
     use {
         "folke/lsp-trouble.nvim",
@@ -100,7 +100,7 @@ local function init()
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
-    use "nvim-lua/lsp_extensions.nvim" -- lsp extensions inlay hints etc
+    use {"nvim-lua/lsp_extensions.nvim", disable = true} -- lsp extensions inlay hints etc
     use "neovim/nvim-lspconfig" -- default configs for lsp and setup lsp
     use {
         "hrsh7th/nvim-compe",

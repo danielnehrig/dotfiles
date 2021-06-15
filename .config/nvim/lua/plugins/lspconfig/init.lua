@@ -93,6 +93,9 @@ saga.init_lsp_saga {
 lsp_status.register_progress()
 -- custom attach config
 local custom_attach = function(client, bufnr)
+    if not packer_plugins["lsp_signature.nvim"].loaded then
+        vim.cmd [[packadd lsp_signature.nvim]]
+    end
     lsp_status.on_attach(client)
 
     map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
@@ -235,6 +238,9 @@ require("navigator").setup(
         },
         on_attach = function(client, _)
             -- float
+            if not packer_plugins["illuminate"].loaded then
+                vim.cmd [[packadd illuminate]]
+            end
             require "illuminate".on_attach(client)
         end
     }
