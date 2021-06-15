@@ -35,8 +35,8 @@ remap("n", "<C-n>", ":NvimTreeToggle<CR>", opt)
 remap("n", "<Leader>dhl", [[ <Cmd>lua require'plugins.dap.attach'.attach()<CR>]], opt)
 remap("n", "<Leader>dhs", [[ <Cmd>lua require'dap'.stop()<CR>]], opt)
 remap("n", "<Leader>dhd", [[ <Cmd>lua require'dap'.disconnect()<CR>]], opt)
-remap("n", "<Leader>dc", [[ <Cmd>lua require'dap'.continue()<CR>]], opt)
-remap("n", "<Leader>db", [[ <Cmd>lua require'dap'.toggle_breakpoint()<CR>]], opt)
+remap("n", "<Leader>dc", [[ <Cmd>lua require("plugins.dap.attach");require'dap'.continue()<CR>]], opt)
+remap("n", "<Leader>db", [[ <Cmd>lua require("plugins.dap.attach");require'dap'.toggle_breakpoint()<CR>]], opt)
 remap(
     "n",
     "<Leader>dB",

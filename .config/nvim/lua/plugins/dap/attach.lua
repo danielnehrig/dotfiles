@@ -1,23 +1,19 @@
-local function attach()
-    print("attaching")
+local function addPlug()
     if not packer_plugins["nvim-dap"].loaded then
         vim.cmd [[packadd nvim-dap]]
         vim.cmd [[packadd nvim-dap-ui]]
     end
     require("plugins.dap")
+end
+
+local function attach()
+    print("attaching")
+    addPlug()
     local dap = require "dap"
-    require('dap').set_log_level('DEBUG')
-    dap.run(
-        {
-            type = "node2",
-            request = "attach",
-            cwd = vim.fn.getcwd(),
-            sourceMaps = true,
-            protocol = "inspector"
-        }
-    )
+    dap.continue()
 end
 
 return {
-    attach = attach
+    attach = attach,
+    addPlug = addPlug
 }

@@ -217,10 +217,7 @@ local function init()
     -- debug
     use {
         "mfussenegger/nvim-dap",
-        opt = true,
-        config = function()
-            require("plugins.dap")
-        end
+        opt = true
     }
     use {"rcarriga/nvim-dap-ui", opt = true, requires = {"mfussenegger/nvim-dap"}}
 
