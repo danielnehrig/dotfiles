@@ -171,9 +171,11 @@ local luadev =
 )
 
 -- local rust_tools = require("rust-tools").setup()
+local single = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
 require("navigator").setup(
     {
         default_mapping = false,
+        border = single,
         code_action_prompt = {enable = false, sign = true, sign_priority = 40, virtual_text = true},
         lsp = {
             format_on_save = false,

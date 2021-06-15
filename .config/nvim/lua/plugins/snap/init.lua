@@ -1,6 +1,6 @@
 local snap = require("snap")
-local remap = vim.api.nvim_set_keymap
-local opt = {noremap = true, silent = true}
+-- local remap = vim.api.nvim_set_keymap
+-- local opt = {noremap = true, silent = true}
 
 SN = {}
 
