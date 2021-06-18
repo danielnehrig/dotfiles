@@ -28,6 +28,8 @@ CONFIG SETUP:
 - session managment ✅
 - file managment ✅
 - lazy load plugins ✅
+- Treesitter Setup ☑️
+  - HI and FOLD Waits for TS/TSX merges so TS not supported ❓
 - DONE AS OF 18.05.21
 
 ENGRAVE WORKFLOW:  
@@ -37,6 +39,7 @@ ENGRAVE WORKFLOW:
 - properly use ctrl o / i  jumplist and shift ^ ✅
 - use changelist ✅
 - learn vim regex properly \v with capture groups etc ✅
+- Treesitter Textobjects *TODO*
 
 ## Philosophy
 
