@@ -1,4 +1,4 @@
-local Func = require("core.func")
+local Func = require("utils")
 
 vim.g.neomake_open_list = 2
 
