@@ -1,15 +1,16 @@
 local map = require "utils".map
+local augroups = require "utils".nvim_create_augroups
 local autocmd = require "utils".autocmd
 local lsp_status = require("lsp-status")
 local lspconfig = require("lspconfig")
-local fn, cmd = vim.fn, vim.cmd
+local fn = vim.fn
 local setOption = vim.api.nvim_set_option
 local saga = require("lspsaga")
 local globals = require("core.global")
 local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-language-server"
 
--- set omnifunc
+-- set omnifunc needed for compe
 setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 -- snippets setup
@@ -63,6 +64,7 @@ end
 vim.o.completeopt = "menuone,noselect"
 
 -- formatting and save
+-- Overwrite the formatting handler
 vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
     if err ~= nil or result == nil then
         return
@@ -77,6 +79,8 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
     end
 end
 
+-- saga setup
+-- TODO: rethink might remove
 saga.init_lsp_saga {
     code_action_prompt = {
         enable = true,
@@ -91,7 +95,7 @@ saga.init_lsp_saga {
 }
 
 lsp_status.register_progress()
--- custom attach config
+-- custom attach config for most LSP configs
 local custom_attach = function(client, bufnr)
     if not packer_plugins["lsp_signature.nvim"].loaded then
         vim.cmd [[packadd lsp_signature.nvim]]
@@ -158,11 +162,10 @@ local custom_attach = function(client, bufnr)
     )
 end
 
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+-- Lua Settings for nvim config and plugin development
 local luadev =
     require("lua-dev").setup(
     {
-        -- add any options here, or leave empty to use the default settings
         lspconfig = {
             on_attach = custom_attach,
             cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
@@ -170,7 +173,8 @@ local luadev =
     }
 )
 
--- local rust_tools = require("rust-tools").setup()
+-- navigator setup also sets up some LSP configs for
+-- rust and tsserver and sumenko lua
 local single = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
 require("navigator").setup(
     {
@@ -248,6 +252,7 @@ require("navigator").setup(
     }
 )
 
+-- lsp setups
 lspconfig.cssls.setup {on_attach = custom_attach}
 lspconfig.html.setup {on_attach = custom_attach}
 lspconfig.gopls.setup {on_attach = custom_attach}
@@ -256,18 +261,22 @@ lspconfig.dockerls.setup {on_attach = custom_attach}
 lspconfig.clangd.setup {on_attach = custom_attach}
 lspconfig.vimls.setup {on_attach = custom_attach}
 
+-- efm setups
 local eslint = require("plugins.efm.eslint")
 local prettier = require("plugins.efm.prettier")
 local luafmt = require("plugins.efm.luafmt")
 
+-- formatting and linting with efm
 lspconfig.efm.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = true
         if client.resolved_capabilities.document_formatting then
-            vim.api.nvim_command [[augroup Format]]
-            vim.api.nvim_command [[autocmd! * <buffer>]]
-            vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
-            vim.api.nvim_command [[augroup END]]
+            local autocmds = {
+                Format = {
+                    {"BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()"}
+                }
+            }
+            augroups(autocmds)
         end
     end,
     root_dir = function()
