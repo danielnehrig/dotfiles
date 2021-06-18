@@ -1,3 +1,9 @@
+-- Main Load File
+-- Execution Flow of each loaded configuration
+-- for various plugins
+-- also a lot of configuration for plugins can be found
+-- in the packer_config setup
+-- because of lazloading
 local g = vim.g
 
 -- check if we are in vscode nvim
