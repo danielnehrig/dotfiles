@@ -64,7 +64,24 @@ local mappings = {
         name = "+LSP Peek",
         d = {"Difinition Peek"},
         r = {"Reference Peek"},
+        t = {"Trouble"},
+        w = {"Symbol"},
+        W = {"Workspace Symbol"},
         y = {"Git File Link Range"}
+    },
+    d = {
+        name = "+Debug DAP",
+        c = {"Continue"},
+        b = {"Breakpoint"},
+        B = {"Breakpoint Toggle"},
+        i = {"Step Into"},
+        o = {"Step Out"},
+        O = {"Step Over"},
+        e = {"Eval"},
+        f = {"Float element"},
+        s = {"Stop"},
+        d = {"Disconnect"},
+        r = {"Repl"}
     },
     a = {
         name = "+LSP Action",
@@ -99,8 +116,16 @@ local mappings = {
         c = "Close"
     },
     t = {
-        name = "+TABLINE"
-    }
+        name = "+TABLINE",
+        t = {"Pick Tab"},
+        one = {"GoTo 1"},
+        two = {"GoTo 2"},
+        p = {"Previous"},
+        n = {"Next"},
+        c = {"Close Buffer"},
+        a = {"Close All but Current"}
+    },
+    equal = "LSP Format"
 }
 
 wk.register(mappings, opts("<leader>"))

@@ -30,6 +30,10 @@ pacman_packages = []
 # source is context current folder + repo item
 linking_files_mac = [
         {
+            "source": ".config/alacritty_mac.yml",
+            "dest": ".config/alacritty.yml"
+            },
+        {
             "source": ".tmux.mac.conf",
             "dest": ".tmux.conf"
             },
