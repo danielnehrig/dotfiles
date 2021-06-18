@@ -4,11 +4,9 @@ local definitions = {
     ft = {
         {"FileType", "dashboard", "set showtabline=0"}, -- disable tabline in dashboard
         {"BufNewFile,BufRead", "*", "set showtabline=2"}, -- renable it
-        {"BufNewFile,BufRead", "*", "set number"}, -- set number
-        {"BufNewFile,BufRead", "*", "set relativenumber"}, -- set relativenumber
-        {"TermOpen", "*", "set number!"},
-        {"TermOpen", "*", "set relativenumber!"},
-        {"TermOpen", "*", "set showtabline=2"}, -- renable it
+        {"TermOpen", "*", "set nonumber"},
+        {"TermOpen", "*", "set norelativenumber"},
+        {"TermOpen", "*", "set showtabline=0"}, -- renable it
         {"BufNewFile,BufRead", "*.toml", " setf toml"} -- set toml filetype
     }
 }

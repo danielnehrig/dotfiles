@@ -4,21 +4,18 @@ local make = require("plugins.build")
 
 gl.short_line_list = {
     "LuaTree",
-    "vista",
     "dbui",
     "dashboard",
-    "startify",
     "term",
-    "nerdtree",
     "NvimTree",
+    "terminal",
     "packer",
     "fugitive",
     "fugitiveblame",
     "dapui_scopes",
     "dapui_stacks",
     "dapui_watches",
-    "dap-repl",
-    "plug"
+    "dap-repl"
 }
 
 local colors = {
