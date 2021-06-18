@@ -16,18 +16,27 @@ Started 09.04.21
 
 ## The Main Goals
 
-- make vim more like an IDE (/)
-- Debloating the Config (/)
-- remove unused plugins (/)
-- implement plugins and mappings that are needed which  
-  were identified while working with VIM (/)
-- move to the build in LSP (/)
-- intutive mappings (/)
-- fast tab/buffer navigation (/)
-- project managment (/)
-- session managment (x)
-- file managment (/)
-- lazy load plugins (/)
+CONFIG SETUP:  
+
+- make vim more like an IDE ✅
+- Debloating the Config ✅
+- remove unused plugins ✅
+- move to the build in LSP ✅
+- intutive mappings ✅
+- fast tab/buffer navigation ✅
+- project managment ✅
+- session managment ✅
+- file managment ✅
+- lazy load plugins ✅
+- DONE AS OF 18.05.21
+
+ENGRAVE WORKFLOW:  
+
+- use quickfix list and location list ✅
+- use cdo/argdo to execute stuff over quickfix/arglist buffers ✅
+- properly use ctrl o / i  jumplist and shift ^ ✅
+- use changelist ✅
+- learn vim regex properly \v with capture groups etc ✅
 
 ## Philosophy
 
@@ -55,12 +64,3 @@ i stoped asking because i do it for fun
 so if you feel like you wanna be faster and more efficiant then go for it  
 learn outside your comfort zone try around what happens when you press certain keys  
 or look up a cheat sheet of vim to see the usages of your not so often vim features
-
-### Integrate Quickfix into workflow
-
-For what?  
-i use it for project wide searches vimgrep (for example)  
-testing files with vim-test and neomake  
-there are various other use cases for the quickfix list
-
-now fully using quickfix and locationlist (/)
