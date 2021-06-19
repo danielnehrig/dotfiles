@@ -1,11 +1,11 @@
 local M = {}
 
-function M.map(bufnr, type, key, value)
-    vim.api.nvim_buf_set_keymap(bufnr, type, key, value, {noremap = true, silent = true})
+function M.map(bufnr, type, key, value, expr)
+    vim.api.nvim_buf_set_keymap(bufnr, type, key, value, {noremap = true, silent = expr})
 end
 
-function M.map_global(type, key, value)
-    vim.api.nvim_set_keymap(type, key, value, {noremap = true, silent = true})
+function M.map_global(type, key, value, expr)
+    vim.api.nvim_set_keymap(type, key, value, {noremap = true, silent = true, expr = expr})
 end
 
 function M.autocmd(event, triggers, operations)

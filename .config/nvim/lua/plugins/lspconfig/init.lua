@@ -1,4 +1,5 @@
 local map = require "utils".map
+local map_global = require "utils".map_global
 local augroups = require "utils".nvim_create_augroups
 local autocmd = require "utils".autocmd
 local lsp_status = require("lsp-status")
@@ -45,15 +46,15 @@ function lsp:compe()
             max_menu_width = 100,
             documentation = true,
             source = {
-                path = true,
-                buffer = true,
-                calc = true,
-                vsnip = false,
                 nvim_lsp = true,
                 nvim_lua = false,
+                snippets_nvim = true,
+                path = true,
+                buffer = false,
+                calc = true,
+                vsnip = false,
                 spell = false,
                 tags = false,
-                snippets_nvim = true,
                 treesitter = false
             }
         }
@@ -127,8 +128,9 @@ local custom_attach = function(client, bufnr)
     map(bufnr, "i", "<C-e>", "<cmd>call compe#close('<C-e>')<CR>")
     map(bufnr, "i", "<C-f>", "<cmd>call compe#scroll({ delta: +4 })<CR>")
     map(bufnr, "i", "<C-d>", "<cmd>call compe#scroll({ delta: -4 })<CR>")
-    map(bufnr, "i", "<TAB>", "<cmd>call compe#confirm()<CR>")
     map(bufnr, "n", "<space>cd", '<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>')
+    map(bufnr, "i", "<c-k>", '<cmd>lua return require"snippets".expand_or_advance(1)')
+    map(bufnr, "i", "<c-j>", '<cmd>lua return require"snippets".advance_snippet(-1)<CR>')
 
     autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
