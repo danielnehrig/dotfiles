@@ -22,6 +22,14 @@ CONFIG SETUP:
 - Debloating the Config ✅
 - remove unused plugins ✅
 - move to the build in LSP ✅
+  - Java LSP ❓
+- Debug ☑️
+  - Typescript NodeJS
+  - Browser Javascript ❓
+  - Rust ❓
+  - Go ❓
+  - Python ❓
+  - Java ❓
 - intutive mappings ✅
 - fast tab/buffer navigation ✅
 - project managment ✅
@@ -40,6 +48,7 @@ ENGRAVE WORKFLOW:
 - use changelist ✅
 - learn vim regex properly \v with capture groups etc ✅
 - Treesitter Textobjects *TODO*
+- Journaling with Vimwiki *TODO*
 
 ## Philosophy
 
