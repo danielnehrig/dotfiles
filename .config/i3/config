@@ -79,6 +79,7 @@ no_focus [class="Conky"]
 
 # custom scripts controlls
 bindsym $mod+shift+m exec --no-startup-id dm-tool lock
+bindsym $mod+mod1+k exec "pkill ffmpeg || ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f pulse -ac 2 -i default output.mkv"
 bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam.sh
 bindsym $mod+mod1+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam1.sh
 bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/scripts/screenrecord.sh
