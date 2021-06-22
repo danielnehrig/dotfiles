@@ -280,7 +280,7 @@ exec_always --no-startup-id dunst &
 
 
 ################## change wallpaper ######################
-exec_always --no-startup-id feh --bg-fill ~/Downloads/anime_bg_3.jpg
+exec_always --no-startup-id feh --bg-fill ~/.dotfiles-darwin/wallpapers/anime_bg_3.jpg
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
