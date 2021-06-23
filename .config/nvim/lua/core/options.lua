@@ -35,7 +35,7 @@ local function load_options()
 
     opt.signcolumn = "auto" -- 2 sign column
     opt.cmdheight = 1
-    opt.guifont = "FiraCode Nerd Font Mono:h12"
+    opt.guifont = "Hack Nerd Font Mono:h12"
 
     if g.neovide then
         cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
