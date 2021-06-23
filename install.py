@@ -419,6 +419,8 @@ def UpgradeLinux():
 
 def Linux():
     log.Critical('Linux is WIP')
+    Install('mkdir -p ~/Pictures/Screenshots')
+    Install('mkdir -p ~/.config')
 
     # git submodule pull
     log.Step("Pulling submodules", 1)
@@ -486,6 +488,8 @@ def Darwin():
     UpgradeDarwin()
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
+    Install('mkdir -p ~/Pictures/Screenshots')
+    Install('mkdir -p ~/.config')
 
     # check if git is installed
     try:
