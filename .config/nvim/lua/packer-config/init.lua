@@ -135,6 +135,7 @@ local function init()
     use "unblevable/quick-scope" -- f F t T improved highlight
 
     -- quality of life
+    use {"hkupty/nvimux"} -- tmux in nvim
     use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
     use "danilamihailov/beacon.nvim" -- jump indicator
     use "folke/which-key.nvim" -- which key
