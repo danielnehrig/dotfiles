@@ -4,6 +4,7 @@ function load()
         vim.cmd [[packadd popup.nvim]]
         vim.cmd [[packadd telescope-project.nvim]]
         vim.cmd [[packadd telescope-fzf-native.nvim]]
+        vim.cmd [[packadd octo.nvim]]
     end
     require("telescope").setup {
         defaults = {
@@ -70,6 +71,7 @@ function load()
     require("telescope").load_extension("project")
     require("telescope").load_extension("dotfiles")
     require("telescope").load_extension("file_create")
+    require "octo".setup()
 end
 
 return load

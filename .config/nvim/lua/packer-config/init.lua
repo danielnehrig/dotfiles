@@ -191,6 +191,10 @@ local function init()
 
     -- git
     use {
+        "pwntester/octo.nvim",
+        opt = true
+    }
+    use {
         "ruifm/gitlinker.nvim",
         opt = true
     } -- get repo file on remote as url
