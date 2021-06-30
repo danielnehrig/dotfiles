@@ -7,4 +7,4 @@
 #
 
 
-pkill -f /dev/video0 || mpv --no-osc --geometry=-0-0 --autofit=30% av://v4l2:/dev/video0 --profile=low-latency --untimed
+pkill -f mpv || mpv --no-osc --geometry=-0-0 --autofit=30% av://v4l2:/dev/video0 --profile=low-latency --untimed
