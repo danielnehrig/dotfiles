@@ -237,6 +237,7 @@ bindsym $mod+x exec i3lock-fancy
 assign [class="brave"] $ws2
 assign [class="spotify"] $ws3
 assign [class="discord"] $ws4
+assign [class="microsoft teams"] $ws4
 assign [class="looking-glass-client"] $ws6
 assign [class="virt-manager"] $ws7
 
@@ -281,7 +282,7 @@ exec_always --no-startup-id dunst &
 
 
 ################## change wallpaper ######################
-exec_always --no-startup-id feh --bg-fill ~/.dotfiles-darwin/wallpapers/herbst.png
+exec_always --no-startup-id feh --bg-fill ~/.dotfiles-darwin/wallpapers/anime_bg_3.jpg
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
