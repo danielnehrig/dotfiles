@@ -113,7 +113,7 @@ local function init()
     use {
         "nvim-telescope/telescope.nvim",
         opt = true,
-        cmd = "Telescope",
+        cmd = {"Telescope", "Octo"},
         config = function()
             require("plugins.telescope")()
         end,
