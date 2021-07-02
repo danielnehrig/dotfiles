@@ -18,7 +18,6 @@ function load()
                 "--smart-case"
             },
             hidden = true,
-            prompt_position = "bottom",
             prompt_prefix = "🔍 ",
             selection_caret = "> ",
             entry_prefix = "  ",
@@ -40,10 +39,6 @@ function load()
             generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
             shorten_path = true,
             winblend = 0,
-            width = 0.75,
-            preview_cutoff = 120,
-            results_height = 1,
-            results_width = 0.8,
             border = {},
             borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
             color_devicons = true,
