@@ -53,7 +53,7 @@ local function init()
     use {"folke/lua-dev.nvim"} -- lua nvim setup
     use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
-    use {"simrat39/rust-tools.nvim", disable = true} -- rust language tools
+    use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}} -- rust language tools
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && yarn install",
@@ -137,7 +137,21 @@ local function init()
     -- quality of life
     use {"hkupty/nvimux"} -- tmux in nvim
     use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
-    use "danilamihailov/beacon.nvim" -- jump indicator
+    use {
+        "karb94/neoscroll.nvim",
+        keys = {"<C-u>", "<C-d>", "gg", "G"},
+        config = function()
+            require("plugins.scroll")
+        end
+    }
+    use {
+        "edluffy/specs.nvim",
+        after = "neoscroll.nvim",
+        config = function()
+            require("plugins.specs")
+        end
+    }
+
     use "folke/which-key.nvim" -- which key
     use "preservim/nerdcommenter" -- commenting
     use "junegunn/vim-slash" -- better search
