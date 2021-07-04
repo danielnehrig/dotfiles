@@ -24,7 +24,7 @@ export FZF_DEFAULT_OPTS="-i"
 
 source ~/dotfiles/oh-my-zsh/oh-my-zsh.sh
 source ~/dotfiles/.zsh/forgit.zsh
-[[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/.dotfiles-darwin/.zsh/.p10k.zsh
+[[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/dotfiles/.zsh/.p10k.zsh
 
 source <(kubectl completion zsh)
 alias krtlc="kubectl config rename-context gke-production rtl-production"
