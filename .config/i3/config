@@ -80,15 +80,15 @@ no_focus [class="Conky"]
 # custom scripts controlls
 bindsym $mod+shift+m exec --no-startup-id dm-tool lock
 bindsym $mod+mod1+k exec "pkill ffmpeg || ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f pulse -ac 2 -i default output.mkv"
-bindsym $mod+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam.sh
-bindsym $mod+mod1+c exec --no-startup-id ~/.dotfiles-darwin/scripts/cam1.sh
-bindsym $mod+shift+c exec --no-startup-id ~/.dotfiles-darwin/scripts/screenrecord.sh
-bindsym $mod+o exec --no-startup-id ~/.dotfiles-darwin/scripts/screenkey.sh
-bindsym $mod+Shift+w exec --no-startup-id ~/.dotfiles-darwin/scripts/lg.sh
-bindsym $mod+i exec --no-startup-id ~/.dotfiles-darwin/scripts/loopbackinput.sh
-bindsym $mod+Shift+v exec --no-startup-id ~/.dotfiles-darwin/scripts/vpn.sh
-bindsym --release $mod+shift+s exec ~/.dotfiles-darwin/scripts/screenshot.sh
-bindsym --release $mod+shift+u exec ~/.dotfiles-darwin/scripts/imgur.sh
+bindsym $mod+c exec --no-startup-id ~/dotfiles/scripts/cam.sh
+bindsym $mod+mod1+c exec --no-startup-id ~/dotfiles/scripts/cam1.sh
+bindsym $mod+shift+c exec --no-startup-id ~/dotfiles/scripts/screenrecord.sh
+bindsym $mod+o exec --no-startup-id ~/dotfiles/scripts/screenkey.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/dotfiles/scripts/lg.sh
+bindsym $mod+i exec --no-startup-id ~/dotfiles/scripts/loopbackinput.sh
+bindsym $mod+Shift+v exec --no-startup-id ~/dotfiles/scripts/vpn.sh
+bindsym --release $mod+shift+s exec ~/dotfiles/scripts/screenshot.sh
+bindsym --release $mod+shift+u exec ~/dotfiles/scripts/imgur.sh
 
 
 # change container layout (stacked, tabbed, toggle split)
@@ -104,7 +104,7 @@ bindsym $mod+shift+z exec "import -window root snap.png"
 
 # change focus between tiling / floating windows
 bindsym $mod+shift+space focus mode_toggle
-bindsym $mod+shift+d exec "alacritty -e vim ~/.dotfiles-darwin/.config/i3/config"
+bindsym $mod+shift+d exec "alacritty -e vim ~/dotfiles/.config/i3/config"
 
 # focus the parent container
 #bindsym $mod+a focus parent
@@ -282,7 +282,7 @@ exec_always --no-startup-id dunst &
 
 
 ################## change wallpaper ######################
-exec_always --no-startup-id feh --bg-fill ~/.dotfiles-darwin/wallpapers/anime_bg_3.jpg
+exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/anime_bg_3.jpg
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##

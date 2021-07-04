@@ -38,6 +38,6 @@ Auto install WIP
 ### Arch Thumbnails
 
 ## Seasonschange
-[![Thumbnail2 arch](https://i.imgur.com/xWP2mlu.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/arch)
-[![Thumbnail3 arch](https://i.imgur.com/DWxgVRB.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/arch)
-[![Thumbnail4 arch](https://i.imgur.com/5QFGV6y.png)](https://github.com/danielnehrig/.dotfiles-darwin/wiki/arch)
+[![Thumbnail2 arch](https://i.imgur.com/xWP2mlu.png)](https://github.com/danielnehrig/dotfiles/wiki/arch)
+[![Thumbnail3 arch](https://i.imgur.com/DWxgVRB.png)](https://github.com/danielnehrig/dotfiles/wiki/arch)
+[![Thumbnail4 arch](https://i.imgur.com/5QFGV6y.png)](https://github.com/danielnehrig/dotfiles/wiki/arch)

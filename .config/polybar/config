@@ -300,7 +300,7 @@ tail = true
 
 [module/updates]
 type = custom/script
-exec = ~/.dotfiles-darwin/aupdates.sh 2>/dev/null
+exec = ~/dotfiles/aupdates.sh 2>/dev/null
 format = "<label> |"
 format-prefix = "%{F#FFFFFF} "
 interval = 30

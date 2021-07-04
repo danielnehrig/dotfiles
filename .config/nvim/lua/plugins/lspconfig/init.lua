@@ -8,7 +8,7 @@ local fn = vim.fn
 local setOption = vim.api.nvim_set_option
 local saga = require("lspsaga")
 local globals = require("core.global")
-local sumneko_root_path = os.getenv("HOME") .. "/.dotfiles-darwin/lua-language-server"
+local sumneko_root_path = os.getenv("HOME") .. "/dotfiles/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-language-server"
 
 -- set omnifunc needed for compe
