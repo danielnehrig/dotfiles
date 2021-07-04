@@ -6,12 +6,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # User Settings
-source ~/.dotfiles-darwin/.zsh/export.zsh
-source ~/.dotfiles-darwin/.zsh/settings.zsh
-source ~/.dotfiles-darwin/.zsh/function.zsh
-source ~/.dotfiles-darwin/.zsh/alias.zsh
-source ~/.dotfiles-darwin/.zsh/github.zsh
-source ~/.dotfiles-darwin/.zsh/tokens.zsh
+source ~/dotfiles/.zsh/export.zsh
+source ~/dotfiles/.zsh/settings.zsh
+source ~/dotfiles/.zsh/function.zsh
+source ~/dotfiles/.zsh/alias.zsh
+source ~/dotfiles/.zsh/github.zsh
+source ~/dotfiles/.zsh/tokens.zsh
 
 # Nodenv init
 eval "$(nodenv init -)"
@@ -22,13 +22,13 @@ export FZF_CTRL_T_COMMAND='find -L . -type f ! -path "*/\.git/*" ! -path "*/\nod
 # export FZF_DEFAULT_OPTS="-i --preview 'bat --style=numbers --color=always {}'"
 export FZF_DEFAULT_OPTS="-i"
 
-source ~/.dotfiles-darwin/oh-my-zsh/oh-my-zsh.sh
-source ~/.dotfiles-darwin/.zsh/forgit.zsh
-[[ ! -f ~/.dotfiles-darwin/.zsh/.p10k.zsh ]] || source ~/.dotfiles-darwin/.zsh/.p10k.zsh
+source ~/dotfiles/oh-my-zsh/oh-my-zsh.sh
+source ~/dotfiles/.zsh/forgit.zsh
+[[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/.dotfiles-darwin/.zsh/.p10k.zsh
 
 source <(kubectl completion zsh)
 alias krtlc="kubectl config rename-context gke-production rtl-production"
 alias kcc="kubectl config use-context"
 if [ -e /home/dashie/.nix-profile/etc/profile.d/nix.sh ]; then . /home/dashie/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-alias luamake=/Users/dnehrig/.dotfiles-darwin/lua-language-server/3rd/luamake/luamake
+alias luamake=/Users/dnehrig/dotfiles/lua-language-server/3rd/luamake/luamake

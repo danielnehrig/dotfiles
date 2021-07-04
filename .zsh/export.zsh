@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.dotfiles-darwin/oh-my-zsh"
+export ZSH="$HOME/dotfiles/oh-my-zsh"
 
 # Adding Path Data Linux
 if [[ `uname` == "Linux"  ]]; then
@@ -16,12 +16,12 @@ if [[ `uname` == "Darwin"  ]]; then
 PATH+=":/usr/local/share/dotnet"
 PATH+=":/usr/local/opt/llvm/bin/"
 
-PATH+=":$HOME/.dotfiles-darwin/lua-language-server/bin/macOS"
+PATH+=":$HOME/dotfiles/lua-language-server/bin/macOS"
 # PATH+=":/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
 fi
 
 export EDITOR='nvim'
 export DEFAULT_USER="$USER"
-export UNCRUSTIFY_CONFIG=~/.dotfiles-darwin/.uncrustify
+export UNCRUSTIFY_CONFIG=~/dotfiles/.uncrustify
 export COMPOSE_PARALLEL_LIMIT=1000
 export COMPOSE_HTTP_TIMEOUT=120
