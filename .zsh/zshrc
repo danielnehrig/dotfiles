@@ -27,6 +27,7 @@ source ~/dotfiles/.zsh/forgit.zsh
 [[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/dotfiles/.zsh/.p10k.zsh
 
 source <(kubectl completion zsh)
+source <(kustomize completion zsh)
 alias krtlc="kubectl config rename-context gke-production rtl-production"
 alias kcc="kubectl config use-context"
 if [ -e /home/$USER/.nix-profile/etc/profile.d/nix.sh ]; then . /home/$USER/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
