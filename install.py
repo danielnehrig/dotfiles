@@ -114,10 +114,6 @@ linking_files_arch = [
             "dest": ".config/nvim"
             },
         {
-            "source": ".config/ranger",
-            "dest": ".config/ranger"
-            },
-        {
             "source": ".config/i3",
             "dest": ".config/i3"
             },
@@ -126,7 +122,7 @@ linking_files_arch = [
             "dest": ".config/dunst"
             },
         {
-            "source": ".config/themes/rofi/oxide",
+            "source": "themes/rofi/oxide",
             "dest": ".config/rofi"
             },
         {
