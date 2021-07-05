@@ -243,14 +243,7 @@ require("navigator").setup(
                     custom_attach(client, bufnr)
                 end
             }
-        },
-        on_attach = function(client, _)
-            -- float
-            if not packer_plugins["illuminate"].loaded then
-                vim.cmd [[packadd illuminate]]
-            end
-            require "illuminate".on_attach(client)
-        end
+        }
     }
 )
 
