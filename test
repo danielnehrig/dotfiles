@@ -1,0 +1,2 @@
+kustomize 2.1.0
+kubectl apply -f yaml --dry-run

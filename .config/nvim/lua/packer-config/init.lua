@@ -136,20 +136,20 @@ local function init()
     -- quality of life
     use {"hkupty/nvimux"} -- tmux in nvim
     use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
-    use {
-        "karb94/neoscroll.nvim",
-        keys = {"<C-u>", "<C-d>", "gg", "G"},
-        config = function()
-            require("plugins.scroll")
-        end
-    }
-    use {
-        "edluffy/specs.nvim",
-        after = "neoscroll.nvim",
-        config = function()
-            require("plugins.specs")
-        end
-    }
+    -- use {
+    --     "karb94/neoscroll.nvim",
+    --     keys = {"<C-u>", "<C-d>", "gg", "G"},
+    --     config = function()
+    --         require("plugins.scroll")
+    --     end
+    -- }
+    -- use {
+    --     "edluffy/specs.nvim",
+    --     after = "neoscroll.nvim",
+    --     config = function()
+    --         require("plugins.specs")
+    --     end
+    -- }
 
     use "folke/which-key.nvim" -- which key
     use "preservim/nerdcommenter" -- commenting
