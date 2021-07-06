@@ -57,7 +57,7 @@ function load()
                 case_mode = "smart_case" -- or "ignore_case" or "respect_case"
             },
             project = {
-                base_dir = "~/code",
+                base_dirs = {"~/code"},
                 max_depth = 4
             }
         }
