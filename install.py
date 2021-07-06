@@ -395,25 +395,31 @@ def Help():
         if option == '--help' or option == '-h':
             log.Info('./install.py [options]')
             log.Info('Options:')
-            log.Info('-a , --all || will compile pwndbg')
-            log.Info('-u, --upgrade || will upgrade dependencies')
-            log.Info('Note: Check Makefile or cmd : make TAB')
+            log.Info('-u option, --update=option       | option = linux,darwin,sym')
             sys.exit(0)
 
 
 def UpgradeDarwin():
     for option in sys.argv:
-        if option == '--upgrade' or option == '-u':
+        if option == '--update=darwin' or option == '-u darwin':
             InstallCliPackages('brew upgrade', brew_dependencies)
             sys.exit(0)
 
 def UpgradeLinux():
     for option in sys.argv:
-        if option == '--upgrade' or option == '-u':
+        if option == '--update=linux' or option == '-u linux':
             InstallCliPackages('yay -Syu', [''])
             sys.exit(0)
 
+def UpdateSymLinks(files_dict):
+    for option in sys.argv:
+        if option == '--update=sym' or option == '-u sym':
+            LinkFiles(files_dict)
+            sys.exit(0)
+
 def Linux():
+    UpgradeLinux()
+    UpdateSymLinks(linking_files_arch)
     log.Critical('Linux is WIP')
     Install('mkdir -p ~/Pictures/Screenshots')
     Install('mkdir -p ~/.config')
