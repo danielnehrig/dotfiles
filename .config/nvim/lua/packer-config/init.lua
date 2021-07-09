@@ -51,7 +51,7 @@ local function init()
     -- language
     use {"HerringtonDarkholme/yats.vim", ft = {"typescript", "typescriptreact"}} -- ts syntax
     use {"folke/lua-dev.nvim"} -- lua nvim setup
-    use {"jose-elias-alvarez/nvim-lsp-ts-utils", opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils", disable = true, opt = true, ft = {"typescriptreact", "typescript"}} -- eslint code actions
     use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
     use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}} -- rust language tools
     use {
@@ -74,7 +74,7 @@ local function init()
     } -- openapi preview
 
     -- snip
-    use "norcalli/snippets.nvim" -- snippets
+    use "L3MON4D3/LuaSnip" -- snippets
 
     -- completion
     use {"ray-x/lsp_signature.nvim", opt = true} -- auto signature trigger
@@ -107,6 +107,8 @@ local function init()
             require("plugins.lspconfig").compe()
         end
     } -- completion engine
+    use {"tzachar/compe-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
+    use {"tamago324/compe-zsh", requires = "hrsh7th/nvim-compe"}
 
     -- navigation
     use {
