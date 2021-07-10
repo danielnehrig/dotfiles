@@ -38,6 +38,9 @@ end
 local lsp = {}
 -- compe setup
 function lsp:compe()
+    if not packer_plugins["plenary.nvim"].loaded then
+        vim.cmd [[packadd plenary.nvim]]
+    end
     require("compe").setup(
         {
             enabled = true,
@@ -142,7 +145,7 @@ end
 saga.init_lsp_saga {
     code_action_prompt = {
         enable = true,
-        sign = true,
+        sign = false,
         sign_priority = 20,
         virtual_text = false
     },

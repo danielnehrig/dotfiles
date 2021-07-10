@@ -103,7 +103,6 @@ local function init()
     use "neovim/nvim-lspconfig" -- default configs for lsp and setup lsp
     use {
         "hrsh7th/nvim-compe",
-        event = "InsertEnter",
         config = function()
             require("plugins.lspconfig").compe()
         end
