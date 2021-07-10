@@ -75,6 +75,7 @@ local function init()
 
     -- snip
     use "L3MON4D3/LuaSnip" -- snippets
+    use "rafamadriz/friendly-snippets"
 
     -- completion
     use {"ray-x/lsp_signature.nvim", opt = true} -- auto signature trigger
