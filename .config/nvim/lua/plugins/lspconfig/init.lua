@@ -62,14 +62,14 @@ function lsp:compe()
             },
             source = {
                 tabnine = true,
-                zsh = true,
                 nvim_lsp = true,
+                luasnip = true,
+                zsh = true,
+                path = true,
+                calc = true,
                 nvim_lua = false,
                 snippets_nvim = false,
-                luasnip = true,
-                path = true,
                 buffer = false,
-                calc = true,
                 vsnip = false,
                 spell = false,
                 tags = false,
@@ -283,6 +283,7 @@ lspconfig.vimls.setup {on_attach = custom_attach}
 local eslint = require("plugins.efm.eslint")
 local prettier = require("plugins.efm.prettier")
 local luafmt = require("plugins.efm.luafmt")
+local rustfmt = require("plugins.efm.rustfmt")
 
 -- formatting and linting with efm
 lspconfig.efm.setup {
@@ -308,7 +309,8 @@ lspconfig.efm.setup {
         languages = {
             typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
-            lua = {luafmt}
+            lua = {luafmt},
+            rust = {rustfmt}
         }
     },
     filetypes = {
