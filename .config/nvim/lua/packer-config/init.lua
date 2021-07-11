@@ -95,30 +95,27 @@ local function init()
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
-    use {"nvim-lua/lsp_extensions.nvim", disable = true} -- lsp extensions inlay hints etc
-    use "neovim/nvim-lspconfig" -- default configs for lsp and setup lsp
+    use {"neovim/nvim-lspconfig",
+        config = require("plugins.lspconfig").init
+    } -- default configs for lsp and setup lsp
     use {
         "hrsh7th/nvim-compe",
         event = "InsertEnter",
-        config = function()
-            require("plugins.lspconfig").compe()
-        end
+        config = require("plugins.compe").init
     } -- completion engine
     use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
     use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
 
     -- snip
-    use {"L3MON4D3/LuaSnip", after = "nvim-compe"} -- snippets
-    use {"rafamadriz/friendly-snippets", after = "nvim-compe"}
+    use {"rafamadriz/friendly-snippets"}
+    use {"L3MON4D3/LuaSnip", config = function() require('plugins.compe.luasnip') end} -- snippets
 
     -- navigation
     use {
         "nvim-telescope/telescope.nvim",
         opt = true,
         cmd = {"Telescope", "Octo"},
-        config = function()
-            require("plugins.telescope")()
-        end,
+        config = require("plugins.telescope"),
         requires = {
             {"nvim-lua/popup.nvim", opt = true},
             {"nvim-lua/plenary.nvim", opt = true},

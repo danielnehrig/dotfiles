@@ -1,17 +1,9 @@
 local map = require "utils".map
-local augroups = require "utils".nvim_create_augroups
 local autocmd = require "utils".autocmd
 local lsp_status = require("lsp-status")
-local lspconfig = require("lspconfig")
 local fn = vim.fn
-local setOption = vim.api.nvim_set_option
 local saga = require("lspsaga")
-local globals = require("core.global")
-local sumneko_root_path = os.getenv("HOME") .. "/dotfiles/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/" .. globals.os_name .. "/lua-language-server"
-
--- set omnifunc needed for compe
-setOption("omnifunc", "v:lua.vim.lsp.omnifunc")
+local lsp = {}
 
 -- snippets setup
 -- https://github.com/hrsh7th/nvim-compe#how-to-use-lsp-snippet
@@ -26,106 +18,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
-local function prequire(...)
-    local status, lib = pcall(require, ...)
-    if (status) then
-        return lib
-    end
-    return nil
-end
-
--- lsp object for exporting and lazyload
-local lsp = {}
--- compe setup
-function lsp:compe()
-    if not packer_plugins["plenary.nvim"].loaded then
-        vim.cmd [[packadd plenary.nvim]]
-    end
-    if not packer_plugins["luasnip"].loaded then
-        vim.cmd [[packadd luasnip]]
-    end
-    require("compe").setup(
-        {
-            enabled = true,
-            autocomplete = true,
-            debug = false,
-            min_length = 1,
-            preselect = "enable",
-            throttle_time = 80,
-            source_timeout = 200,
-            resolve_timeout = 800,
-            incomplete_delay = 400,
-            max_abbr_width = 100,
-            max_kind_width = 100,
-            max_menu_width = 100,
-            documentation = {
-                border = {"", "", "", " ", "", "", "", " "}, -- the border option is the same as `|help nvim_open_win|`
-                winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-                max_width = 120,
-                min_width = 60,
-                max_height = math.floor(vim.o.lines * 0.3),
-                min_height = 1
-            },
-            source = {
-                tabnine = true,
-                nvim_lsp = true,
-                luasnip = true,
-                zsh = true,
-                path = true,
-                calc = true,
-                nvim_lua = false,
-                snippets_nvim = false,
-                buffer = false,
-                vsnip = false,
-                spell = false,
-                tags = false,
-                treesitter = false
-            }
-        }
-    )
-
-    local luasnip = prequire("luasnip")
-    require("luasnip/loaders/from_vscode").lazy_load(
-        {paths = {"~/.local/share/nvim/site/pack/packer/start/friendly-snippets"}}
-    )
-
-    local t = function(str)
-        return vim.api.nvim_replace_termcodes(str, true, true, true)
-    end
-
-    local check_back_space = function()
-        local col = vim.fn.col(".") - 1
-        if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-            return true
-        else
-            return false
-        end
-    end
-
-    _G.tab_complete = function()
-        if vim.fn.pumvisible() == 1 then
-            return t "<C-n>"
-        elseif luasnip and luasnip.expand_or_jumpable() then
-            return t "<Plug>luasnip-expand-or-jump"
-        elseif check_back_space() then
-            return t "<Tab>"
-        else
-            return vim.fn["compe#complete"]()
-        end
-    end
-    _G.s_tab_complete = function()
-        if vim.fn.pumvisible() == 1 then
-            return t "<C-p>"
-        elseif luasnip and luasnip.jumpable(-1) then
-            return t "<Plug>luasnip-jump-prev"
-        else
-            return t "<S-Tab>"
-        end
-    end
-end
-
--- completion menu settings
-vim.o.completeopt = "menuone,noselect"
+table.insert(lsp,{ capabilities })
 
 -- formatting and save
 -- Overwrite the formatting handler
@@ -158,13 +51,11 @@ saga.init_lsp_saga {
     infor_sign = ""
 }
 
-lsp_status.register_progress()
 -- custom attach config for most LSP configs
-local custom_attach = function(client, bufnr)
+function lsp:custom_attach(_, bufnr)
     if not packer_plugins["lsp_signature.nvim"].loaded then
         vim.cmd [[packadd lsp_signature.nvim]]
     end
-    lsp_status.on_attach(client)
 
     map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
     map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -229,115 +120,6 @@ local custom_attach = function(client, bufnr)
     )
 end
 
--- Lua Settings for nvim config and plugin development
-local luadev =
-    require("lua-dev").setup(
-    {
-        lspconfig = {
-            on_attach = custom_attach,
-            cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
-        }
-    }
-)
-
--- navigator setup also sets up some LSP configs for
--- rust and tsserver and sumenko lua
-local single = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
-require("navigator").setup(
-    {
-        default_mapping = false,
-        border = single,
-        code_action_prompt = {enable = false, sign = true, sign_priority = 40, virtual_text = true},
-        lsp = {
-            format_on_save = false,
-            sumneko_lua = {
-                sumneko_root_path = sumneko_root_path,
-                sumneko_binary = sumneko_binary,
-                settings = luadev.settings,
-                on_attach = function(client, bufnr)
-                    custom_attach(client, bufnr)
-                end
-            },
-            rust_analyzer = {
-                on_attach = function(client, bufnr)
-                    if client.resolved_capabilities.document_formatting then
-                        local autocmds = {
-                            Format = {
-                                {"BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()"}
-                            }
-                        }
-                        augroups(autocmds)
-                    end
-                    custom_attach(client, bufnr)
-                end
-            },
-            tsserver = {
-                filetypes = {"typescript", "typescriptreact"},
-                on_attach = function(client, bufnr)
-                    -- disable TS formatting since we use efm
-                    client.resolved_capabilities.document_formatting = false
-
-                    custom_attach(client, bufnr)
-                end
-            }
-        }
-    }
-)
-
--- lsp setups
-lspconfig.cssls.setup {on_attach = custom_attach}
-lspconfig.html.setup {on_attach = custom_attach}
-lspconfig.gopls.setup {on_attach = custom_attach}
-lspconfig.pyright.setup {on_attach = custom_attach}
-lspconfig.dockerls.setup {on_attach = custom_attach}
-lspconfig.clangd.setup {on_attach = custom_attach}
-lspconfig.vimls.setup {on_attach = custom_attach}
-
--- efm setups
-local eslint = require("plugins.efm.eslint")
-local prettier = require("plugins.efm.prettier")
-local luafmt = require("plugins.efm.luafmt")
-local rustfmt = require("plugins.efm.rustfmt")
-
--- formatting and linting with efm
-lspconfig.efm.setup {
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = true
-        if client.resolved_capabilities.document_formatting then
-            local autocmds = {
-                Format = {
-                    {"BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()"}
-                }
-            }
-            augroups(autocmds)
-        end
-    end,
-    root_dir = function()
-        return vim.fn.getcwd()
-    end,
-    init_options = {
-        documentFormatting = true,
-        codeAction = true
-    },
-    settings = {
-        languages = {
-            typescript = {prettier, eslint},
-            typescriptreact = {prettier, eslint},
-            lua = {luafmt},
-            rust = {rustfmt}
-        }
-    },
-    filetypes = {
-        "lua",
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx"
-    }
-}
-
 -- disable virtual text
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(
@@ -346,5 +128,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         virtual_text = false
     }
 )
+
+-- load all language files
+function lsp:init()
+    local servers = {
+        'lua', 'rust', 'python', 'css', 'go', 'docker', 'ts', 'efm', 'c',
+    }
+    for _, server in ipairs(servers) do
+        local settings = {lsp_config = "plugins.lspconfig." .. server}
+        require(settings.lsp_config)
+    end
+end
 
 return lsp

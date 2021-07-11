@@ -23,8 +23,6 @@ if not g.vscode then
 
     -- load configs for packer plugins
     require("plugins.build")
-    require("plugins.coverage")
-    require("plugins.lspconfig")
     require("plugins.indent-blankline")
     require("plugins.bufferline")
     require("plugins.statusline")
