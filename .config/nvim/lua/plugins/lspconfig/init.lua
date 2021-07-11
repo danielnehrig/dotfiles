@@ -18,7 +18,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
-table.insert(lsp,{ capabilities })
+table.insert(lsp, {capabilities})
 
 -- formatting and save
 -- Overwrite the formatting handler
@@ -132,7 +132,15 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 -- load all language files
 function lsp:init()
     local servers = {
-        'lua', 'rust', 'python', 'css', 'go', 'docker', 'ts', 'efm', 'c',
+        "lua",
+        "rust",
+        "python",
+        "css",
+        "go",
+        "docker",
+        "ts",
+        "efm",
+        "c"
     }
     for _, server in ipairs(servers) do
         local settings = {lsp_config = "plugins.lspconfig." .. server}
