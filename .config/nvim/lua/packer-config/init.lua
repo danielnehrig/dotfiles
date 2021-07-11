@@ -75,7 +75,6 @@ local function init()
 
     -- completion
     use {"ray-x/lsp_signature.nvim", opt = true} -- auto signature trigger
-    use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
     use {
         "folke/lsp-trouble.nvim",
         config = function()
@@ -95,7 +94,8 @@ local function init()
     use "nvim-lua/lsp-status.nvim" -- lsp status
     use "glepnir/lspsaga.nvim" -- fancy popups lsp
     use "onsails/lspkind-nvim" -- lsp extensions stuff
-    use {"neovim/nvim-lspconfig",
+    use {
+        "neovim/nvim-lspconfig",
         config = require("plugins.lspconfig").init
     } -- default configs for lsp and setup lsp
     use {
@@ -108,7 +108,12 @@ local function init()
 
     -- snip
     use {"rafamadriz/friendly-snippets"}
-    use {"L3MON4D3/LuaSnip", config = function() require('plugins.compe.luasnip') end} -- snippets
+    use {
+        "L3MON4D3/LuaSnip",
+        config = function()
+            require("plugins.compe.luasnip")
+        end
+    } -- snippets
 
     -- navigation
     use {
