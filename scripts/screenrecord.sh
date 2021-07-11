@@ -7,11 +7,15 @@
 #
 
 pc="dnehrig"
+priv="dashie"
 macbook="lain"
 filePath=~/screencast/screen1_recording_`date '+%Y-%m-%d_%H-%M-%S'`.mp4
 SERVICE="ffmpeg"
 
 if [[ "$USER" == "$pc" ]]
+then
+  pkill -f ffmpeg && notify-send "ffmpeg stopped" || ffmpeg -y -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f pulse -ac 2 -i 0 ~/screencast/screen1_recording_`date '+%Y-%m-%d_%H-%M-%S'`.mp4 && notify-send "Record screen1_recording_`date '+%Y-%m-%d_%H-%M-%S'`.mp4"
+elif [[ "$USER" == "$priv" ]]
 then
   pkill -f ffmpeg && notify-send "ffmpeg stopped" || ffmpeg -y -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f pulse -ac 2 -i 0 ~/screencast/screen1_recording_`date '+%Y-%m-%d_%H-%M-%S'`.mp4 && notify-send "Record screen1_recording_`date '+%Y-%m-%d_%H-%M-%S'`.mp4"
 elif [[ "$USER" == "$macbook" ]]
