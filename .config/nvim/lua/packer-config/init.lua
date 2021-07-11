@@ -101,15 +101,15 @@ local function init()
         "hrsh7th/nvim-compe",
         event = "InsertEnter",
         config = function()
-            require("plugins.lspconfig").compe()
+            require("plugins.lspconfig"):compe()
         end
     } -- completion engine
     use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
     use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
 
     -- snip
-    use {"L3MON4D3/LuaSnip", after = "nvim-compe"} -- snippets
-    use {"rafamadriz/friendly-snippets", after = "nvim-compe"}
+    use {"rafamadriz/friendly-snippets"}
+    use {"L3MON4D3/LuaSnip"} -- snippets
 
     -- navigation
     use {

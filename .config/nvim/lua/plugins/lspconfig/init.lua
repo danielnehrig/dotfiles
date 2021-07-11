@@ -41,9 +41,6 @@ function lsp:compe()
     if not packer_plugins["plenary.nvim"].loaded then
         vim.cmd [[packadd plenary.nvim]]
     end
-    if not packer_plugins["luasnip"].loaded then
-        vim.cmd [[packadd luasnip]]
-    end
     require("compe").setup(
         {
             enabled = true,
