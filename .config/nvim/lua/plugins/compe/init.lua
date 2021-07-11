@@ -1,6 +1,5 @@
 local compe = {}
 
-
 function compe:init()
     if not packer_plugins["plenary.nvim"].loaded then
         vim.cmd [[packadd plenary.nvim]]
@@ -28,7 +27,7 @@ function compe:init()
                 min_height = 1
             },
             source = {
-                tabnine = true,
+                tabnine = false,
                 nvim_lsp = true,
                 luasnip = true,
                 zsh = true,
@@ -44,7 +43,6 @@ function compe:init()
             }
         }
     )
-
 end
 
 return compe
