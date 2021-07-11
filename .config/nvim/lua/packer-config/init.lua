@@ -73,10 +73,6 @@ local function init()
         cmd = "SwaggerPreview"
     } -- openapi preview
 
-    -- snip
-    use "L3MON4D3/LuaSnip" -- snippets
-    use "rafamadriz/friendly-snippets"
-
     -- completion
     use {"ray-x/lsp_signature.nvim", opt = true} -- auto signature trigger
     use {"ray-x/navigator.lua", requires = {"ray-x/guihua.lua", run = "cd lua/fzy && make"}}
@@ -111,6 +107,10 @@ local function init()
     use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
     use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
 
+    -- snip
+    use {"L3MON4D3/LuaSnip", after = "nvim-compe"} -- snippets
+    use {"rafamadriz/friendly-snippets", after = "nvim-compe"}
+
     -- navigation
     use {
         "nvim-telescope/telescope.nvim",
@@ -139,28 +139,14 @@ local function init()
     -- quality of life
     use {"hkupty/nvimux"} -- tmux in nvim
     use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
-    -- use {
-    --     "karb94/neoscroll.nvim",
-    --     keys = {"<C-u>", "<C-d>", "gg", "G"},
-    --     config = function()
-    --         require("plugins.scroll")
-    --     end
-    -- }
-    -- use {
-    --     "edluffy/specs.nvim",
-    --     after = "neoscroll.nvim",
-    --     config = function()
-    --         require("plugins.specs")
-    --     end
-    -- }
 
     use "folke/which-key.nvim" -- which key
     use "preservim/nerdcommenter" -- commenting
     use "junegunn/vim-slash" -- better search
     use "windwp/nvim-autopairs" -- autopairs "" {}
-    use {"alvan/vim-closetag", opt = true, ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
+    use {"alvan/vim-closetag", ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
     use "tpope/vim-surround" -- surround "" ''
-    use {"vimwiki/vimwiki", opt = true, cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
+    use {"vimwiki/vimwiki", cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
     use {
         "kdav5758/HighStr.nvim",
         opt = true,
@@ -206,6 +192,7 @@ local function init()
     -- git
     use {
         "pwntester/octo.nvim",
+        cmd = {"Octo"},
         opt = true
     }
     use {
@@ -225,11 +212,10 @@ local function init()
     -- testing / building
     use {
         "vim-test/vim-test",
-        opt = true,
         cmd = {"TestFile"},
         requires = {
-            {"neomake/neomake", opt = true, cmd = {"Neomake"}},
-            {"tpope/vim-dispatch", opt = true, cmd = {"Dispatch"}}
+            {"neomake/neomake", cmd = {"Neomake"}},
+            {"tpope/vim-dispatch", cmd = {"Dispatch"}}
         }
     }
 
