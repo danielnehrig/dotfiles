@@ -103,12 +103,13 @@ local function init()
     use "neovim/nvim-lspconfig" -- default configs for lsp and setup lsp
     use {
         "hrsh7th/nvim-compe",
+        event = "InsertEnter",
         config = function()
             require("plugins.lspconfig").compe()
         end
     } -- completion engine
-    use {"tzachar/compe-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
-    use {"tamago324/compe-zsh", requires = "hrsh7th/nvim-compe"}
+    use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
+    use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
 
     -- navigation
     use {
@@ -191,7 +192,6 @@ local function init()
     use {"windwp/nvim-projectconfig", disable = true} -- project dependable cfg
     use {
         "famiu/nvim-reload",
-        opt = true,
         cmd = {"Reload", "Restart"},
         config = function()
             vim.cmd [[packadd plenary.nvim]]
@@ -200,8 +200,7 @@ local function init()
     use "glepnir/dashboard-nvim" -- dashboard
     use {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufRead",
-        branch = "lua"
+        event = "BufRead"
     } -- show indentation
 
     -- git
