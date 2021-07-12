@@ -6,6 +6,10 @@ local eslint = require("plugins.efm.eslint")
 local prettier = require("plugins.efm.prettier")
 local luafmt = require("plugins.efm.luafmt")
 local rustfmt = require("plugins.efm.rustfmt")
+local python = require("plugins.efm.python")
+local dprint = require("plugins.efm.dprint")
+local shellcheck = require("plugins.efm.shellcheck")
+local shfmt = require("plugins.efm.shfmt")
 
 -- formatting and linting with efm
 lspconfig.efm.setup {
@@ -25,23 +29,33 @@ lspconfig.efm.setup {
     end,
     init_options = {
         documentFormatting = true,
-        codeAction = true
+        documentSymbol = false,
+        completion = false,
+        codeAction = false,
+        hover = false
     },
     settings = {
+        rootMarkers = {"package.json", "go.mod", ".git/", ".zshrc"},
         languages = {
             typescript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
             lua = {luafmt},
-            rust = {rustfmt}
+            rust = {rustfmt},
+            markdown = {dprint},
+            python = {python},
+            bash = {shellcheck, shfmt},
+            sh = {shellcheck, shfmt}
         }
     },
     filetypes = {
         "lua",
+        "python",
+        "bash",
+        "sh",
+        "markdown",
         "javascript",
         "javascriptreact",
-        "javascript.jsx",
-        "typescript",
         "typescriptreact",
-        "typescript.tsx"
+        "typescript"
     }
 }

@@ -14,5 +14,5 @@ lspconfig.rust_analyzer.setup {
         end
         lsp.custom_attach(client, bufnr)
     end,
-    capabilities = lsp.capabilities,
+    capabilities = lsp.capabilities
 }
