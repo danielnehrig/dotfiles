@@ -32,30 +32,26 @@ yabai -m config right_padding                20
 yabai -m config window_gap                   10
 
 # mission-control desktop labels
-yabai -m space 1 --label code
-yabai -m space 2 --label mail
-yabai -m space 3 --label web
-yabai -m space 4 --label notes
-yabai -m space 5 --label re
-yabai -m space 6 --label media
-yabai -m space 7 --label social
-yabai -m space 8 --label games
-
-# specific space settings
-yabai -m config --space mail  layout        stack
-yabai -m config --space games layout        float
+yabai -m space 1
+yabai -m space 2
+yabai -m space 3
+yabai -m space 4 
+yabai -m space 5 
+yabai -m space 6 
+yabai -m space 7 
+yabai -m space 8 
 
 # window rules
-yabai -m rule --add app="^Alacritty$" space=code
+yabai -m rule --add app="^Alacritty$" space=1
 yabai -m rule --add app="^Mail$" space=mail
-yabai -m rule --add app="^Safari$" space=web
-yabai -m rule --add app="^Chrome$" space=web
-yabai -m rule --add app="^Firefox$" space=web
-yabai -m rule --add app="^Brave$" space=web
-yabai -m rule --add app="^Notes$" space=notes
-yabai -m rule --add app="^Transmission$" space=media
-yabai -m rule --add app="^Spotify$" space=media
-yabai -m rule --add app="^Discord$" space=social grid=1:1:0:0:1:1 manage=off
+yabai -m rule --add app="^Safari$" space=2
+yabai -m rule --add app="^Chrome$" space=2
+yabai -m rule --add app="^Firefox$" space=2
+yabai -m rule --add app="^Brave$" space=2
+yabai -m rule --add app="^Spotify$" space=3
+yabai -m rule --add app="^Discord$" space=4
+yabai -m rule --add app="^Microsoft$" space=4
+yabai -m rule --add app="^Outlook$" space=4
 yabai -m rule --add app="^System Preferences$" manage=off
 
 # Refresh spaces widget on space change
