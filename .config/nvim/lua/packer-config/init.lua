@@ -216,8 +216,8 @@ local function init()
         "vim-test/vim-test",
         cmd = {"TestFile"},
         requires = {
-            {"neomake/neomake", cmd = {"TestFile", "Neomake"}},
-            {"tpope/vim-dispatch", cmd = {"TestFile", "Dispatch"}}
+            {"neomake/neomake", cmd = {"Neomake"}},
+            {"tpope/vim-dispatch", cmd = {"Dispatch"}}
         }
     }
 
