@@ -1,22 +1,8 @@
 local map = require "utils".map
 local autocmd = require "utils".autocmd
 local fn = vim.fn
-local lsp = {}
-
--- snippets setup
--- https://github.com/hrsh7th/nvim-compe#how-to-use-lsp-snippet
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_extend("keep", capabilities or {}, {})
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits"
-    }
-}
-
-table.insert(lsp, {capabilities})
+local LSP = {}
+LSP.__index = LSP
 
 -- formatting and save
 -- Overwrite the formatting handler
@@ -35,10 +21,12 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
 end
 
 -- custom attach config for most LSP configs
-function lsp:custom_attach(_, bufnr)
+function LSP:on_attach(client, bufnr)
     if not packer_plugins["lsp_signature.nvim"].loaded then
         vim.cmd [[packadd lsp_signature.nvim]]
     end
+
+    require("lsp-status").on_attach(client)
 
     map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
     map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -111,7 +99,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 )
 
 -- load all language files
-function lsp:init()
+function LSP:init()
     local servers = {
         "lua",
         "rust",
@@ -129,4 +117,4 @@ function lsp:init()
     end
 end
 
-return lsp
+return LSP

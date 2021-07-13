@@ -1,4 +1,8 @@
 local lspconfig = require("lspconfig")
-local custom_attach = require("plugins.lspconfig").custom_attach
+local lsp = require("plugins.lspconfig")
 
-lspconfig.cssls.setup {on_attach = custom_attach}
+lspconfig.cssls.setup {
+    on_attach = function(client, bufnr)
+        lsp:on_attach(client, bufnr)
+    end
+}

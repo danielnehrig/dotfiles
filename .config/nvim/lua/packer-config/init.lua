@@ -87,7 +87,12 @@ local function init()
                 end,
                 cmd = {"TodoQuickFix", "TodoTrouble", "TodoTelescope"}
             } -- show todos in qf
-            use "nvim-lua/lsp-status.nvim" -- lsp status
+            use {
+                "nvim-lua/lsp-status.nvim",
+                config = function()
+                    require("plugins.lspStatus")
+                end
+            } -- lsp status
             use "glepnir/lspsaga.nvim" -- fancy popups lsp
             use "onsails/lspkind-nvim" -- lsp extensions stuff
             use {
@@ -97,8 +102,8 @@ local function init()
             } -- default configs for lsp and setup lsp
             use {
                 "hrsh7th/nvim-compe",
-                event = "InsertEnter"
-                -- config = require("plugins.compe").init
+                event = "InsertEnter",
+                config = require("plugins.compe").init
             } -- completion engine
             use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
             use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
