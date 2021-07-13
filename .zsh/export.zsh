@@ -21,6 +21,7 @@ PATH+=":$HOME/dotfiles/lua-language-server/bin/macOS"
 fi
 
 export EDITOR='nvim'
+export MYVIMRC='~/.vimrc'
 export DEFAULT_USER="$USER"
 export UNCRUSTIFY_CONFIG=~/dotfiles/.uncrustify
 export COMPOSE_PARALLEL_LIMIT=1000
