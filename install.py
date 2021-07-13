@@ -421,8 +421,8 @@ def Linux():
     UpgradeLinux()
     UpdateSymLinks(linking_files_arch)
     log.Critical('Linux is WIP')
-    Install('mkdir -p ~/Pictures/Screenshots')
-    Install('mkdir -p ~/.config')
+    Install('mkdir -p ' + home + '/Pictures/Screenshots')
+    Install('mkdir -p ' + home + '/.config')
 
     # git submodule pull
     log.Step("Pulling submodules", 1)
@@ -466,14 +466,14 @@ def Linux():
         Install('git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ' + current_folder + '/oh-my-zsh/custom' + '/themes/powerlevel10k')
 
         # tmux plugin manager
-        Install('mkdir -p ~/.tmux/plugins/tpm')
-        Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
+        Install('mkdir -p ' + home + '/.tmux/plugins/tpm')
+        Install('git clone https://github.com/tmux-plugins/tpm ' + home + '/.tmux/plugins/tpm')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
 
         # linking
-        Install('mkdir -p ~/.config/')
+        Install('mkdir -p ' + home + '/.config/')
         LinkFiles(linking_files_arch)
     except OSError:
         log.Error("Error while install")
@@ -490,8 +490,8 @@ def Darwin():
     UpgradeDarwin()
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
-    Install('mkdir -p ~/Pictures/Screenshots')
-    Install('mkdir -p ~/.config')
+    Install('mkdir -p ' + home + '/Pictures/Screenshots')
+    Install('mkdir -p ' + home + '/.config')
 
     # check if git is installed
     try:
@@ -553,7 +553,7 @@ def Darwin():
 
         Install('git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ' + current_folder + '/oh-my-zsh/custom' + '/themes/powerlevel10k')
 
-        Install('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm')
+        Install('git clone https://github.com/tmux-plugins/tpm ' + home + '/.tmux/plugins/tpm')
 
         # fzf docker
         Install('git clone https://github.com/pierpo/fzf-docker ' + current_folder + '/oh-my-zsh/custom' + '/plugins/fzf-docker')
