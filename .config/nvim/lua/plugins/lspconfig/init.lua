@@ -1,14 +1,12 @@
 local map = require "utils".map
 local autocmd = require "utils".autocmd
-local lsp_status = require("lsp-status")
 local fn = vim.fn
-local saga = require("lspsaga")
 local lsp = {}
 
 -- snippets setup
 -- https://github.com/hrsh7th/nvim-compe#how-to-use-lsp-snippet
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
+capabilities = vim.tbl_extend("keep", capabilities or {}, {})
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = {
@@ -35,21 +33,6 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
         end
     end
 end
-
--- saga setup
--- TODO: rethink might remove
-saga.init_lsp_saga {
-    code_action_prompt = {
-        enable = true,
-        sign = false,
-        sign_priority = 20,
-        virtual_text = false
-    },
-    error_sign = "", -- 
-    warn_sign = "",
-    hint_sign = "",
-    infor_sign = ""
-}
 
 -- custom attach config for most LSP configs
 function lsp:custom_attach(_, bufnr)
