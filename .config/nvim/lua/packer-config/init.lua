@@ -107,13 +107,13 @@ local function init()
     use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
 
     -- snip
-    -- use {"rafamadriz/friendly-snippets"}
-    -- use {
-    --     "L3MON4D3/LuaSnip",
-    --     config = function()
-    --         require("plugins.compe.luasnip")
-    --     end
-    -- } -- snippets
+    use {"rafamadriz/friendly-snippets"}
+    use {
+        "L3MON4D3/LuaSnip",
+        config = function()
+            require("plugins.compe.luasnip")
+        end
+    } -- snippets
 
     -- navigation
     use {
