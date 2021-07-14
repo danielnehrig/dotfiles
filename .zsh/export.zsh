@@ -8,7 +8,6 @@ PATH+=":$HOME/.local/bin"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/go/bin"
 PATH+=":$HOME/.gem/ruby/2.7.0/bin"
-PATH+=":$HOME/.npm/bin"
 fi
 
 # User exports
@@ -16,6 +15,7 @@ if [[ `uname` == "Darwin"  ]]; then
 PATH+=":/usr/local/share/dotnet"
 PATH+=":/usr/local/opt/llvm/bin/"
 
+# sumneko path
 PATH+=":$HOME/dotfiles/lua-language-server/bin/macOS"
 # PATH+=":/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
 fi

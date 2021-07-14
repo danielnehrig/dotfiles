@@ -3,7 +3,7 @@ local capabilities = require("plugins.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 
 lspconfig.tsserver.setup {
-    filetypes = {"typescript", "typescriptreact"},
+    filetypes = {"typescript", "typescriptreact", "javascript", "javascriptreact"},
     capabilities = capabilities,
     flags = {debounce_text_changes = 500},
     on_attach = function(client, bufnr)
