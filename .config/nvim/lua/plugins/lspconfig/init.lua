@@ -108,6 +108,8 @@ function LSP:init()
         "go",
         "docker",
         "ts",
+        "java",
+        "php",
         "efm",
         "c"
     }
