@@ -29,51 +29,51 @@ pacman_packages = []
 
 # source is context current folder + repo item
 linking_files_mac = [
-        {
-            "source": ".config/alacritty_mac.yml",
-            "dest": ".config/alacritty.yml"
-            },
-        {
-            "source": ".tmux.mac.conf",
-            "dest": ".tmux.conf"
-            },
-        {
-            "source": ".config/yabai/yabairc",
-            "dest": ".config/yabai/yabairc"
-            },
-        {
-            "source": ".config/kak",
-            "dest": ".config/kak"
-            },
-        {
-            "source": ".config/skhd/skhdrc",
-            "dest": ".config/skhd/skhdrc"
-            },
-        {
-            "source": ".zsh/zshrc",
-            "dest": ".zshrc"
-            },
-        {
-            "source": ".ssh/config",
-            "dest": ".ssh/config"
-            },
-        {
-            "source": ".dotfiles-vim",
-            "dest": ".vim"
-            },
-        {
-            "source": ".config/nvim",
-            "dest": ".config/nvim"
-            },
-        {
-            "source": ".dotfiles-vim/vimrc",
-            "dest": ".vimrc"
-            },
-        {
-            "source": ".uncrustify",
-            "dest": ".uncrustify"
-            }
-        ]
+    {
+        "source": ".config/alacritty_mac.yml",
+        "dest": ".config/alacritty.yml"
+    },
+    {
+        "source": ".tmux.mac.conf",
+        "dest": ".tmux.conf"
+    },
+    {
+        "source": ".config/yabai/yabairc",
+        "dest": ".config/yabai/yabairc"
+    },
+    {
+        "source": ".config/kak",
+        "dest": ".config/kak"
+    },
+    {
+        "source": ".config/skhd/skhdrc",
+        "dest": ".config/skhd/skhdrc"
+    },
+    {
+        "source": ".zsh/zshrc",
+        "dest": ".zshrc"
+    },
+    {
+        "source": ".ssh/config",
+        "dest": ".ssh/config"
+    },
+    {
+        "source": ".dotfiles-vim",
+        "dest": ".vim"
+    },
+    {
+        "source": ".config/nvim",
+        "dest": ".config/nvim"
+    },
+    {
+        "source": ".dotfiles-vim/vimrc",
+        "dest": ".vimrc"
+    },
+    {
+        "source": ".uncrustify",
+        "dest": ".uncrustify"
+    }
+]
 
 # TODO add logic to link executables to path
 bin_files_arch = [
@@ -84,133 +84,142 @@ bin_files_arch = [
 ]
 
 linking_files_arch = [
-        {
-            "source": ".tmux.conf",
-            "dest": ".tmux.conf"
+    {
+        "source": ".tmux.conf",
+        "dest": ".tmux.conf"
 
-            },
-        {
-            "source": ".zsh/zshrc",
-            "dest": ".zshrc"
-            },
-        {
-            "source": ".ssh/config",
-            "dest": ".ssh/config"
-            },
-        {
-            "source": ".dotfiles-vim",
-            "dest": ".vim"
-            },
-        {
-            "source": ".config/kak",
-            "dest": ".config/kak"
-            },
-        {
-            "source": ".dotfiles-vim/vimrc",
-            "dest": ".vimrc"
-            },
-        {
-            "source": ".config/nvim",
-            "dest": ".config/nvim"
-            },
-        {
-            "source": ".config/i3",
-            "dest": ".config/i3"
-            },
-        {
-            "source": ".config/dunst",
-            "dest": ".config/dunst"
-            },
-        {
-            "source": "themes/rofi/oxide",
-            "dest": ".config/rofi"
-            },
-        {
-            "source": ".config/picom.conf",
-            "dest": ".config/picom.conf"
-                },
-        {
-            "source": ".config/alacritty.yml",
-            "dest": ".config/alacritty.yml"
-                },
-        {
-            "source": ".xinitrc",
-            "dest": ".xinitrc"
-                },
-        {
-            "source": ".Xresources",
-            "dest": ".Xresources"
-                },
+    },
+    {
+        "source": ".zsh/zshrc",
+        "dest": ".zshrc"
+    },
+    {
+        "source": ".ssh/config",
+        "dest": ".ssh/config"
+    },
+    {
+        "source": ".dotfiles-vim",
+        "dest": ".vim"
+    },
+    {
+        "source": ".config/kak",
+        "dest": ".config/kak"
+    },
+    {
+        "source": ".dotfiles-vim/vimrc",
+        "dest": ".vimrc"
+    },
+    {
+        "source": ".config/nvim",
+        "dest": ".config/nvim"
+    },
+    {
+        "source": ".config/i3",
+        "dest": ".config/i3"
+    },
+    {
+        "source": ".config/dunst",
+        "dest": ".config/dunst"
+    },
+    {
+        "source": "themes/rofi/oxide",
+        "dest": ".config/rofi"
+    },
+    {
+        "source": ".config/picom.conf",
+        "dest": ".config/picom.conf"
+    },
+    {
+        "source": ".config/alacritty.yml",
+        "dest": ".config/alacritty.yml"
+    },
+    {
+        "source": ".xinitrc",
+        "dest": ".xinitrc"
+    },
+    {
+        "source": ".Xresources",
+        "dest": ".Xresources"
+    },
 
-        {
-            "source": "polybar-powerline",
-            "dest": ".config/polybar"
-                }
-        ]
+    {
+        "source": "polybar-powerline",
+        "dest": ".config/polybar"
+    }
+]
 pip_packages = [
-        "psutil"
-        ]
+    "psutil"
+]
 
 brew_dependencies = [
-        "mono",
-        "tree",
-        "gdb",
-        "fzf",
-        "bat",
-        "unrar",
-        "cmake",
-        "kubectl",
-        "neofetch",
-        "git-lfs",
-        "neofetch",
-        "radare2",
-        "gcc",
-        "htop",
-        "make",
-        "python",
-        "tmux",
-        "ruby",
-        "go",
-        "rust",
-        "perl",
-        "github/gh/gh",
-        "hub",
-        "lua",
-        "neovim --HEAD",
-        "zsh",
-        "nodenv",
-        "docker",
-        "koekeishiya/formulae/skhd",
-        "koekeishiya/formulae/yabai",
-        "docker-compose"
-        ]
+    "mono",
+    "tree",
+    "gdb",
+    "fzf",
+    "bat",
+    "unrar",
+    "cmake",
+    "kubectl",
+    "neofetch",
+    "git-lfs",
+    "neofetch",
+    "radare2",
+    "gcc",
+    "htop",
+    "make",
+    "python",
+    "tmux",
+    "ruby",
+    "go",
+    "rust",
+    "perl",
+    "github/gh/gh",
+    "hub",
+    "lua",
+    "neovim --HEAD",
+    "zsh",
+    "nodenv",
+    "docker",
+    "koekeishiya/formulae/skhd",
+    "koekeishiya/formulae/yabai",
+    "docker-compose"
+]
 
 cask_dependencies = [
-        "virtualbox",
-        "google-chrome",
-        "brave-browser",
-        "google-cloud-sdk",
-        "firefox",
-        "ghidra",
-        "abstract",
-        "visual-studio-code",
-        "microsoft-office",
-        "postman",
-        "docker",
-        "alacritty",
-        "whatsapp",
-        "discord",
-        "font-hack-nerd-font"
-        ]
+    "virtualbox",
+    "google-chrome",
+    "brave-browser",
+    "google-cloud-sdk",
+    "firefox",
+    "ghidra",
+    "abstract",
+    "visual-studio-code",
+    "microsoft-office",
+    "postman",
+    "docker",
+    "alacritty",
+    "whatsapp",
+    "discord",
+    "font-hack-nerd-font"
+]
 
 node_packages = [
-        "nodemon",
-        "yarn",
-        "typescript-language-server",
-        "typescript"
-        ]
+    "nodemon",
+    "yarn",
+    "typescript-language-server",
+    "typescript",
+    "lua-fmt",
+    "vscode-html-languageserver-bin",
+    "css-language-server",
+    "svelte-language-server",
+    "bash-language-server",
+    "dockerfile-language-server-nodejs",
+    "dprint"
+]
 
-go_packages = []
+go_packages = [
+    "mvdan.cc/sh/v3/cmd/shfmt"
+]
 rust_packages = []
 
 arrow = '====>'
@@ -588,4 +597,4 @@ if __name__ == "__main__":
     if sys.platform == 'darwin':
         Darwin()
     if sys.platform == 'cygwin':
-        Cygwin()
+Cygwin()
