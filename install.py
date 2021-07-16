@@ -213,7 +213,7 @@ node_packages = [
     "css-language-server",
     "svelte-language-server",
     "bash-language-server",
-    "yaml-language-server"
+    "yaml-language-server",
     "dockerfile-language-server-nodejs",
     "dprint",
     "pyright",
