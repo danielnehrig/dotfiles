@@ -42,22 +42,20 @@ local function init()
             -- language
             use {"HerringtonDarkholme/yats.vim", ft = {"typescript", "typescriptreact"}} -- ts syntax
             use {"folke/lua-dev.nvim"} -- lua nvim setup
-            use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
+            use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
             use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}} -- rust language tools
             use {
                 "iamcco/markdown-preview.nvim",
                 run = "cd app && yarn install",
-                opt = true,
                 ft = {"markdown", "md"},
                 cmd = "MarkdownPreview"
             } -- markdown previewer
-            use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"js", "ts", "lua", "typescript", "javascript"}} -- code playground in buffer executed
+            use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"javascript", "typescript", "lua"}} -- code playground in buffer executed
             use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
-            use {"windwp/nvim-ts-autotag", opt = true, ft = {"tsx", "typescriptreact", "jsx", "html"}} -- autotag <>
+            use {"windwp/nvim-ts-autotag", ft = {"typescriptreact", "javascriptreact", "html"}} -- autotag <>
             use {
                 "shuntaka9576/preview-swagger.nvim",
-                opt = true,
                 run = "yarn install",
                 ft = {"yaml", "yml"},
                 cmd = "SwaggerPreview"
@@ -137,7 +135,6 @@ local function init()
             use {"hkupty/nvimux"} -- tmux in nvim
             use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
             use "folke/which-key.nvim" -- which key
-            use "preservim/nerdcommenter" -- commenting
             use "junegunn/vim-slash" -- better search
             use "windwp/nvim-autopairs" -- autopairs "" {}
             use {"alvan/vim-closetag", ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
@@ -229,7 +226,8 @@ local function init()
                 requires = {
                     {"neomake/neomake", cmd = {"Neomake"}},
                     {"tpope/vim-dispatch", cmd = {"Dispatch"}}
-                }
+                },
+                after = {"vim-dispatch", "neomake"}
             }
 
             -- debug
