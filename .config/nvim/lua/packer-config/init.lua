@@ -144,6 +144,15 @@ local function init()
             use "tpope/vim-surround" -- surround "" ''
             use {"vimwiki/vimwiki", cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
             use {
+                "kristijanhusak/orgmode.nvim",
+                keys = {"<leader>oc", "<leader>oa"},
+                config = function()
+                    require("orgmode").setup {
+                        org_agenda_files = {"~/org/**/*"}
+                    }
+                end
+            }
+            use {
                 "kdav5758/HighStr.nvim",
                 opt = true,
                 cmd = {"HSHighlight", "HSRmHighlight"},

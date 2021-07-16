@@ -28,6 +28,7 @@ function compe:init()
             },
             source = {
                 tabnine = false,
+                orgmode = true,
                 nvim_lsp = true,
                 luasnip = true,
                 zsh = true,
