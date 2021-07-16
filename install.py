@@ -423,6 +423,12 @@ def UpgradeLinux():
             InstallCliPackages('yay -Syu', [''])
             sys.exit(0)
 
+def UpdateNode():
+    for option in sys.argv:
+        if option == '--update=node' or option == '-u node':
+            InstallCliPackages('npm install -g', node_packages)
+            sys.exit(0)
+            
 def UpdateSymLinks(files_dict):
     for option in sys.argv:
         if option == '--update=sym' or option == '-u sym':
@@ -432,6 +438,7 @@ def UpdateSymLinks(files_dict):
 def Linux():
     UpgradeLinux()
     UpdateSymLinks(linking_files_arch)
+    UpdateNode()
     log.Critical('Linux is WIP')
     Install('mkdir -p ' + home + '/Pictures/Screenshots')
     Install('mkdir -p ' + home + '/.config')
