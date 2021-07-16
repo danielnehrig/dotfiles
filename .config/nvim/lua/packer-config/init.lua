@@ -42,12 +42,6 @@ local function init()
             -- language
             use {"HerringtonDarkholme/yats.vim", ft = {"typescript", "typescriptreact"}} -- ts syntax
             use {"folke/lua-dev.nvim"} -- lua nvim setup
-            use {
-                "jose-elias-alvarez/nvim-lsp-ts-utils",
-                disable = true,
-                opt = true,
-                ft = {"typescriptreact", "typescript"}
-            } -- eslint code actions
             use {"rust-lang/rust.vim", opt = true, ft = {"rust", "rs"}} -- rust language tools
             use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}} -- rust language tools
             use {
@@ -120,8 +114,7 @@ local function init()
             -- navigation
             use {
                 "nvim-telescope/telescope.nvim",
-                opt = true,
-                cmd = {"Telescope", "Octo"},
+                cmd = {"Telescope"},
                 config = require("plugins.telescope"),
                 requires = {
                     {"nvim-lua/popup.nvim", opt = true},
@@ -143,7 +136,6 @@ local function init()
             -- quality of life
             use {"hkupty/nvimux"} -- tmux in nvim
             use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
-
             use "folke/which-key.nvim" -- which key
             use "preservim/nerdcommenter" -- commenting
             use "junegunn/vim-slash" -- better search
@@ -201,8 +193,8 @@ local function init()
             -- git
             use {
                 "pwntester/octo.nvim",
-                cmd = {"Octo"},
-                opt = true
+                requires = {"nvim-telescope/telescope.nvim"},
+                after = "telescope.nvim"
             }
             use {
                 "ruifm/gitlinker.nvim",
