@@ -215,7 +215,9 @@ node_packages = [
     "bash-language-server",
     "yaml-language-server"
     "dockerfile-language-server-nodejs",
-    "dprint"
+    "dprint",
+    "pyright",
+    "@bitwarden/cli"
 ]
 
 go_packages = [
@@ -454,7 +456,7 @@ def Linux():
         Install('pip2 install neovim')
 
         # npm
-        Install('npm install -g yarn typescript-language-server prettier_d_slim eslint_d pyright vscode-html-languageserver-bin vscode-css-languageserver-bin dockerfile-language-server-nodejs @bitwarden/cli')
+        InstallCliPackages('npm install -g', node_packages)
 
         # rust setup
         Install('rustup install nightly')
@@ -549,7 +551,7 @@ def Darwin():
 
     # node packages
     log.Step("Installing Node Packages", 9)
-    InstallCliPackages('npm install', node_packages, '--global')
+    InstallCliPackages('npm install -g', node_packages)
 
     # install python packages
     log.Step("Installing Python PIP Packages", 10)
@@ -598,4 +600,4 @@ if __name__ == "__main__":
     if sys.platform == 'darwin':
         Darwin()
     if sys.platform == 'cygwin':
-Cygwin()
+        Cygwin()
