@@ -36,8 +36,7 @@ function compe:init()
                 calc = true,
                 nvim_lua = false,
                 snippets_nvim = false,
-                buffer = false,
-                vsnip = false,
+                buffer = true,
                 spell = false,
                 tags = false,
                 treesitter = false

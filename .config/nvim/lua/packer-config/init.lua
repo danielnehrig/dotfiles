@@ -113,10 +113,11 @@ local function init()
             use {
                 "nvim-telescope/telescope.nvim",
                 cmd = {"Telescope"},
+                branch = "async_v2",
                 config = require("plugins.telescope"),
                 requires = {
                     {"nvim-lua/popup.nvim", opt = true},
-                    {"nvim-lua/plenary.nvim", opt = true},
+                    {"nvim-lua/plenary.nvim", opt = true, branch = "async_jobs_v2"},
                     {"nvim-telescope/telescope-project.nvim", opt = true},
                     {"nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make"}
                 }
@@ -142,10 +143,10 @@ local function init()
             use {"vimwiki/vimwiki", cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
             use {
                 "kristijanhusak/orgmode.nvim",
-                keys = {"<leader>oc", "<leader>oa"},
                 config = function()
                     require("orgmode").setup {
-                        org_agenda_files = {"~/org/**/*"}
+                        org_agenda_files = {"~/org/*"},
+                        org_default_notes_file = "~/org/refile.org"
                     }
                 end
             }
