@@ -4,12 +4,12 @@ local finders = require("telescope.finders")
 local pickers = require("telescope.pickers")
 local action_state = require("telescope.actions.state")
 local Path = require("plenary.path")
+local os_sep = Path.path.sep
+local scan = require("plenary.scandir")
+local utils = require("telescope.utils")
 -- local action_set = require("telescope.actions.set")
 local make_entry = require("telescope.make_entry")
 local conf = require("telescope.config").values
--- local Path = require("plenary.path")
--- local os_sep = Path.path.sep
-local open_mode = vim.loop.constants.O_CREAT + vim.loop.constants.O_WRONLY + vim.loop.constants.O_TRUNC
 
 local folder_list = function()
     local list = {}
@@ -40,6 +40,86 @@ end
 local file_create = function(opts)
     opts = opts or {}
     local results = folder_list()
+    local is_dir = function(value)
+        return value:sub(-1, -1) == os_sep
+    end
+    opts.new_finder =
+        opts.new_finder or
+        function(o)
+            opts.cwd = o.path
+            opts.hidden = o.hidden
+            local data = {}
+
+            if not vim.loop.fs_access(o.path, "X") then
+                print("You don't have access to this directory")
+                return nil
+            end
+
+            scan.scan_dir(
+                o.path,
+                {
+                    hidden = opts.hidden or false,
+                    add_dirs = true,
+                    depth = opts.depth,
+                    on_insert = function(entry, typ)
+                        table.insert(data, typ == "directory" and (entry .. os_sep) or entry)
+                    end
+                }
+            )
+            table.insert(data, 1, ".." .. os_sep)
+
+            local maker = function()
+                local mt = {}
+                mt.cwd = opts.cwd
+                mt.display = function(entry)
+                    local hl_group
+                    local display = utils.transform_path(opts, entry.value)
+                    if is_dir(entry.value) then
+                        display = display .. os_sep
+                        if not opts.disable_devicons then
+                            display = (opts.dir_icon or "") .. " " .. display
+                            hl_group = "Default"
+                        end
+                    else
+                        display, hl_group = utils.transform_devicons(entry.value, display, opts.disable_devicons)
+                    end
+
+                    if hl_group then
+                        return display, {{{1, 3}, hl_group}}
+                    else
+                        return display
+                    end
+                end
+
+                mt.__index = function(t, k)
+                    local raw = rawget(mt, k)
+                    if raw then
+                        return raw
+                    end
+
+                    if k == "path" then
+                        local retpath = Path:new({t.cwd, t.value}):absolute()
+                        if not vim.loop.fs_access(retpath, "R", nil) then
+                            retpath = t.value
+                        end
+                        if is_dir(t.value) then
+                            retpath = retpath .. os_sep
+                        end
+                        return retpath
+                    end
+
+                    return rawget(t, rawget({value = 1}, k))
+                end
+
+                return function(line)
+                    local tbl = {line}
+                    tbl.ordinal = Path:new(line):make_relative(opts.cwd)
+                    return setmetatable(tbl, mt)
+                end
+            end
+
+            return finders.new_table {results = data, entry_maker = maker()}
+        end
 
     pickers.new(
         opts,
@@ -115,6 +195,21 @@ local file_create = function(opts)
                     end
                 end
 
+                local enter = function()
+                    local current_picker = action_state.get_current_picker(prompt_bufnr)
+                    local new_cwd = vim.fn.expand(action_state.get_selected_entry().path)
+                    current_picker:refresh(
+                        opts.new_finder(
+                            {
+                                path = new_cwd
+                            }
+                        ),
+                        {reset_prompt = true}
+                    )
+                end
+
+                map("i", "<CR>", enter)
+                map("n", "<CR>", enter)
                 map("i", "<C-e>", create_new_file)
                 map("n", "<C-e>", create_new_file)
                 map("i", "<C-d>", remove_file)
