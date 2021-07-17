@@ -189,9 +189,7 @@ local function init()
             } -- reload nvim config
             use {
                 "glepnir/dashboard-nvim",
-                config = function()
-                    require("plugins.dashboard")
-                end
+                config = require("plugins.dashboard").dashboard
             } -- dashboard
             use {
                 "lukas-reineke/indent-blankline.nvim",
