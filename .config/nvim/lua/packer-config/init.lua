@@ -149,7 +149,9 @@ local function init()
                         org_agenda_files = {"~/org/*"},
                         org_default_notes_file = "~/org/refile.org"
                     }
-                end
+                end,
+                after = "nvim-compe",
+                requires = "hrsh7th/nvim-compe"
             }
             use {
                 "kdav5758/HighStr.nvim",
