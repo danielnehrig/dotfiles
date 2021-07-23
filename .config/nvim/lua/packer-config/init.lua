@@ -25,7 +25,12 @@ local function init()
             -- theme
             use {"glepnir/galaxyline.nvim", branch = "main", requires = "kyazdani42/nvim-web-devicons"} -- statusbar
             use {"romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons"} -- bufferline
-            use "norcalli/nvim-colorizer.lua" -- colors hex
+            use {
+                "norcalli/nvim-colorizer.lua",
+                config = function()
+                    require("colorizer").setup()
+                end
+            } -- colors hex
             use {
                 "eddyekofo94/gruvbox-flat.nvim",
                 config = function()
@@ -89,7 +94,12 @@ local function init()
                 end
             } -- lsp status
             use "glepnir/lspsaga.nvim" -- fancy popups lsp
-            use "onsails/lspkind-nvim" -- lsp extensions stuff
+            use {
+                "onsails/lspkind-nvim",
+                config = function()
+                    require("lspkind").init({File = " "})
+                end
+            } -- lsp extensions stuff
             use {
                 "neovim/nvim-lspconfig",
                 config = require("plugins.lspconfig").init,
@@ -154,7 +164,13 @@ local function init()
             use {"ggandor/lightspeed.nvim", keys = {"s"}} -- lightspeed motion
 
             -- quality of life
-            use {"hkupty/nvimux"} -- tmux in nvim
+            use {
+                "hkupty/nvimux",
+                keys = {"<C-a>"},
+                config = function()
+                    require("plugins.nvimux")
+                end
+            } -- tmux in nvim
             use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
             use "folke/which-key.nvim" -- which key
             use {"junegunn/vim-slash", keys = {"/"}} -- better search
@@ -215,6 +231,9 @@ local function init()
             }
             use {
                 "ruifm/gitlinker.nvim",
+                requires = {
+                    {"nvim-lua/plenary.nvim", opt = true, branch = "async_jobs_v2"}
+                },
                 opt = true
             } -- get repo file on remote as url
             use {
@@ -228,7 +247,7 @@ local function init()
                     {"nvim-lua/popup.nvim", after = "gitsigns.nvim"}
                 }
             } -- like gitgutter shows hunks etc on sign column
-            use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame"}} -- git integration
+            use {"tpope/vim-fugitive", opt = true, cmd = {"Git", "Gdiff", "Gblame", "Glog"}} -- git integration
 
             -- testing / building
             use {
@@ -238,7 +257,7 @@ local function init()
                     {"neomake/neomake", cmd = {"Neomake"}},
                     {"tpope/vim-dispatch", cmd = {"Dispatch"}}
                 },
-                after = {"vim-dispatch", "neomake"}
+                wants = {"vim-dispatch", "neomake"}
             }
 
             -- debug
