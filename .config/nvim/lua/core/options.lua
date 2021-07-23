@@ -62,7 +62,7 @@ local function load_options()
     opt.shiftwidth = 2
 
     -- spell
-    opt.spelllang = "en"
+    opt.spelllang = "en,de"
     opt.spell = true
 end
 
