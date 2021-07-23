@@ -96,19 +96,25 @@ local function init()
             use {
                 "hrsh7th/nvim-compe",
                 event = "InsertEnter",
-                config = require("plugins.compe").init
+                config = require("plugins.compe").init,
+                wants = "LuaSnip",
+                requires = {
+                    {
+                        "L3MON4D3/LuaSnip",
+                        wants = "friendly-snippets",
+                        event = "InsertCharPre",
+                        config = function()
+                            require "plugins.compe.luasnip"
+                        end
+                    },
+                    {
+                        "rafamadriz/friendly-snippets",
+                        event = "InsertCharPre"
+                    }
+                }
             } -- completion engine
             use {"tzachar/compe-tabnine", after = "nvim-compe", run = "./install.sh", requires = "hrsh7th/nvim-compe"}
             use {"tamago324/compe-zsh", after = "nvim-compe", requires = "hrsh7th/nvim-compe"}
-
-            -- snip
-            use {"rafamadriz/friendly-snippets"}
-            use {
-                "L3MON4D3/LuaSnip",
-                config = function()
-                    require("plugins.compe.luasnip")
-                end
-            } -- snippets
 
             -- navigation
             use {
