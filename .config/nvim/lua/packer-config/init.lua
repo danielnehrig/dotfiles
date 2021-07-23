@@ -149,7 +149,7 @@ local function init()
             -- navigation
             use {
                 "nvim-telescope/telescope.nvim",
-                cmd = {"Telescope"},
+                cmd = {"Telescope", "Octo"},
                 branch = "async_v2",
                 config = require("plugins.telescope"),
                 requires = {
