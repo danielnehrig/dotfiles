@@ -6,6 +6,9 @@ local lspconfig = require("lspconfig")
 local capabilities = require("plugins.lspconfig").capabilities
 
 -- Lua Settings for nvim config and plugin development
+if not packer_plugins["lua-dev.nvim"].loaded then
+    vim.cmd [[packadd lua-dev.nvim]]
+end
 local luadev =
     require("lua-dev").setup(
     {

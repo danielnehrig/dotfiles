@@ -18,6 +18,8 @@ local function init()
     packer.reset()
     local use = packer.use
 
+    -- after = string or list,      -- Specifies plugins to load before this plugin. See "sequencing" below
+    -- wants = string or list,      -- Specifies plugins to load
     require("packer").startup {
         function()
             -- theme
@@ -41,9 +43,8 @@ local function init()
 
             -- language
             use {"HerringtonDarkholme/yats.vim", ft = {"typescript", "typescriptreact"}} -- ts syntax
-            use {"folke/lua-dev.nvim"} -- lua nvim setup
+            use {"folke/lua-dev.nvim", opt = true} -- lua nvim setup
             use {"rust-lang/rust.vim", ft = {"rust", "rs"}} -- rust language tools
-            use {"simrat39/rust-tools.nvim", ft = {"rust", "rs"}} -- rust language tools
             use {
                 "iamcco/markdown-preview.nvim",
                 run = "cd app && yarn install",
@@ -78,6 +79,7 @@ local function init()
                 config = function()
                     require("plugins.todo")
                 end,
+                wants = "telescope.nvim",
                 cmd = {"TodoQuickFix", "TodoTrouble", "TodoTelescope"}
             } -- show todos in qf
             use {
@@ -97,7 +99,7 @@ local function init()
                 "hrsh7th/nvim-compe",
                 event = "InsertEnter",
                 config = require("plugins.compe").init,
-                wants = "LuaSnip",
+                wants = {"LuaSnip"},
                 requires = {
                     {
                         "L3MON4D3/LuaSnip",
@@ -110,6 +112,18 @@ local function init()
                     {
                         "rafamadriz/friendly-snippets",
                         event = "InsertCharPre"
+                    },
+                    {
+                        "kristijanhusak/orgmode.nvim",
+                        config = function()
+                            require("orgmode").setup {
+                                org_agenda_files = {"~/org/*"},
+                                org_default_notes_file = "~/org/refile.org"
+                            }
+                        end,
+                        keys = {"<space>oc", "<space>oa"},
+                        ft = {"org"},
+                        wants = "nvim-compe"
                     }
                 }
             } -- completion engine
@@ -137,28 +151,17 @@ local function init()
 
             -- movement
             use "unblevable/quick-scope" -- f F t T improved highlight
-            use {"ggandor/lightspeed.nvim"} -- lightspeed motion
+            use {"ggandor/lightspeed.nvim", keys = {"s"}} -- lightspeed motion
 
             -- quality of life
             use {"hkupty/nvimux"} -- tmux in nvim
             use {"lambdalisue/suda.vim", cmd = {"SudaWrite"}} -- save as root
             use "folke/which-key.nvim" -- which key
-            use "junegunn/vim-slash" -- better search
+            use {"junegunn/vim-slash", keys = {"/"}} -- better search
             use "windwp/nvim-autopairs" -- autopairs "" {}
             use {"alvan/vim-closetag", ft = {"html", "jsx", "tsx", "xhtml", "xml"}} -- close <> tag for xhtml ... maybe remove because of TS tag
             use "tpope/vim-surround" -- surround "" ''
             use {"vimwiki/vimwiki", cmd = {"VimwikiIndex", "VimwikiDiaryIndex", "VimwikiMakeDiaryNote"}}
-            use {
-                "kristijanhusak/orgmode.nvim",
-                config = function()
-                    require("orgmode").setup {
-                        org_agenda_files = {"~/org/*"},
-                        org_default_notes_file = "~/org/refile.org"
-                    }
-                end,
-                after = "nvim-compe",
-                requires = "hrsh7th/nvim-compe"
-            }
             use {
                 "kdav5758/HighStr.nvim",
                 opt = true,
@@ -197,7 +200,7 @@ local function init()
             } -- reload nvim config
             use {
                 "glepnir/dashboard-nvim",
-                config = require("plugins.dashboard").dashboard
+                setup = require("plugins.dashboard").dashboard
             } -- dashboard
             use {
                 "lukas-reineke/indent-blankline.nvim",
