@@ -224,7 +224,9 @@ go_packages = [
     "mvdan.cc/sh/v3/cmd/shfmt"
 ]
 
-rust_packages = []
+rust_packages = [
+    "blackd-client"
+]
 
 arrow = '====>'
 
@@ -431,7 +433,7 @@ def UpdateNode():
         if option == '--update=node' or option == '-u node':
             InstallCliPackages('npm install -g', node_packages)
             sys.exit(0)
-            
+
 def UpdateSymLinks(files_dict):
     for option in sys.argv:
         if option == '--update=sym' or option == '-u sym':
@@ -620,4 +622,4 @@ if __name__ == "__main__":
     if sys.platform == 'cygwin':
         Cygwin()
 
-    sys.exit(0)
+sys.exit(0)
