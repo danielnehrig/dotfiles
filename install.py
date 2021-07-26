@@ -24,7 +24,7 @@ now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 current_folder = os.path.abspath(os.getcwd())
 user = getuser()
-home = os.environ["HOME"] + "/"
+home = "{0}{1}".format(os.environ.get("HOME"), "/")
 pacman_packages = []
 
 # source is context current folder + repo item
@@ -63,7 +63,7 @@ linking_files_arch = [
     {"source": "polybar-powerline", "dest": ".config/polybar"},
 ]
 
-pip_packages = ["psutil", "black", "aiohttp", "aiohttp_cors"]
+pip_packages = ["psutil", "black", "aiohttp", "aiohttp_cors", "neovim"]
 
 brew_dependencies = [
     "mono",
@@ -200,8 +200,11 @@ log = Log()
 
 def IsCI():
     result = False
-    if os.environ.get("CI") == "yes":
-        result = True
+    try:
+        if os.environ.get("CI") == "yes":
+            result = True
+    except:
+        return result
     return result
 
 
@@ -330,29 +333,60 @@ def Help():
             log.Info("./install.py [options]")
             log.Info("Options:")
             log.Info(
-                "-u option, --update=option       | option = linux,darwin,sym,node"
+                "-u option, --update=option       | option = linux,darwin,sym,node,pip,cargo,go"
+                "-i option, --install=option       | option = linux,darwin,sym,node,pip,cargo,go"
             )
             sys.exit(0)
 
 
-def UpgradeDarwin():
+def UpdateDarwin():
     for option in sys.argv:
         if option == "--update=darwin" or option == "-u darwin":
             InstallCliPackages("brew upgrade", brew_dependencies)
             sys.exit(0)
 
 
-def UpgradeLinux():
+def UpdateLinux():
     for option in sys.argv:
         if option == "--update=linux" or option == "-u linux":
             InstallCliPackages("yay -Syu", [""])
             sys.exit(0)
 
 
+def InstallNode():
+    for option in sys.argv:
+        if option == "--install=node" or option == "-i node":
+            InstallCliPackages("npm install -g", node_packages)
+            sys.exit(0)
+
+def InstallPip():
+    for option in sys.argv:
+        if option == "--install=pip" or option == "-i pip":
+            InstallCliPackages("pip install", pip_packages)
+            sys.exit(0)
+
+def UpdatePip():
+    for option in sys.argv:
+        if option == "--update=pip" or option == "-u pip":
+            InstallCliPackages("pip update", pip_packages)
+            sys.exit(0)
+
+def InstallCargo():
+    for option in sys.argv:
+        if option == "--install=cargo" or option == "-i cargo":
+            InstallCliPackages("cargo install ", rust_packages)
+            sys.exit(0)
+
+def InstallGo():
+    for option in sys.argv:
+        if option == "--install=go" or option == "-i go":
+            InstallCliPackages("go get ", go_packages)
+            sys.exit(0)
+
 def UpdateNode():
     for option in sys.argv:
         if option == "--update=node" or option == "-u node":
-            InstallCliPackages("npm install -g", node_packages)
+            InstallCliPackages("npm upgrade -g", node_packages)
             sys.exit(0)
 
 
@@ -367,9 +401,13 @@ def Linux():
     log = Log()
     Install("mkdir -p " + home + "/Pictures/Screenshots")
     Install("mkdir -p " + home + "/.config")
-    UpgradeLinux()
+    UpdateLinux()
     UpdateSymLinks(linking_files_arch)
     UpdateNode()
+    UpdatePip()
+    InstallCargo()
+    InstallNode()
+    InstallGo()
     log.Critical("Linux is WIP")
 
     # git submodule pull
@@ -378,6 +416,7 @@ def Linux():
 
     # cloning dependencies zsh theme and plugins
     try:
+        log.Step("Install System Dependencies")
         Install(
             "sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja"
         )
@@ -385,28 +424,33 @@ def Linux():
             "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont ttf-nerd-fonts-hack-complete-git bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
         )
 
+        log.Step("Install nodenv")
         # nodenv setup
         Install("nodenv install 16.4.2")
         Install("nodenv install 12.8.0")
         Install("nodenv global 16.4.2")
 
+        log.Step("Install pip dependencies")
         # python setup
-        Install("pip install neovim bpytop")
-        Install("pip2 install neovim")
+        InstallCliPackages("pip install", pip_packages)
 
+        log.Step("Install npm dependencies")
         # npm
         InstallCliPackages("npm install -g", node_packages)
 
+        log.Step("Install rustup components")
         # rust setup
         Install("rustup install nightly")
         Install("rustup +nightly component add rust-analyzer-preview")
 
+        log.Step("Install langservers")
         # langservers
         Install("go get github.com/mattn/efm-langserver")
 
         # lua lsp
         Install("git clone https://github.com/sumneko/lua-language-server")
 
+        log.Step("Install zsh plugins")
         # autosuggest
         Install(
             "git clone https://github.com/zsh-users/zsh-autosuggestions "
@@ -431,14 +475,6 @@ def Linux():
             + "/themes/powerlevel10k"
         )
 
-        # tmux plugin manager
-        Install("mkdir -p " + home + "/.tmux/plugins/tpm")
-        Install(
-            "git clone https://github.com/tmux-plugins/tpm "
-            + home
-            + "/.tmux/plugins/tpm"
-        )
-
         # fzf docker
         Install(
             "git clone https://github.com/pierpo/fzf-docker "
@@ -447,6 +483,17 @@ def Linux():
             + "/plugins/fzf-docker"
         )
 
+        log.Step("Install tmux plugin manager")
+        # tmux plugin manager
+        Install("mkdir -p " + home + "/.tmux/plugins/tpm")
+        Install(
+            "git clone https://github.com/tmux-plugins/tpm "
+            + home
+            + "/.tmux/plugins/tpm"
+        )
+
+
+        log.Step("Sym Linking Folders")
         # linking
         Install("mkdir -p " + home + "/.config/")
         LinkFiles(linking_files_arch)
@@ -467,9 +514,12 @@ def Darwin():
     Install("mkdir -p " + home + "/Pictures/Screenshots")
     Install("mkdir -p " + home + "/.config/skhd")
     Install("mkdir -p " + home + "/.config/yabai")
+    UpdateDarwin()
     UpdateSymLinks(linking_files_mac)
     UpdateNode()
-    UpgradeDarwin()
+    InstallCargo()
+    InstallGo()
+    InstallNode()
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
 
@@ -516,8 +566,8 @@ def Darwin():
     # install node
     log.Step("Installing Node")
     Install("nodenv install 12.8.0")
-    Install("nodenv install 14.16.0")
-    Install("nodenv global 14.16.0")
+    Install("nodenv install 16.4.2")
+    Install("nodenv global 16.4.2")
 
     # node packages
     log.Step("Installing Node Packages")
@@ -585,13 +635,16 @@ def Darwin():
 if __name__ == "__main__":
     Help()
     log.Info("Detected system is {0}".format(sys.platform))
-    if sys.platform == "linux":
-        Linux()
 
-    if sys.platform == "darwin":
-        Darwin()
+    try:
+        if sys.platform == "cygwin":
+            Cygwin()
 
-    if sys.platform == "cygwin":
-        Cygwin()
+        if sys.platform == "darwin":
+            Darwin()
 
-sys.exit(0)
+        if sys.platform == "linux":
+            Linux()
+
+    except:
+        log.Error("Error While Installing")
