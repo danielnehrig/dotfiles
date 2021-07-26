@@ -7,17 +7,17 @@ help:
 	@echo "help"
 	./install.py --help
 
-upgrade:
+node:
 	@echo "Upgrade Dependencies"
-	./install.py --upgrade
+	./install.py --upgrade=node
+
+sym:
+	@echo "Upgrade Dependencies"
+	./install.py --upgrade=sym
 
 build:
 	@echo "Install"
 	./install.py
-
-all:
-	@echo "Install and Compile"
-	./install.py --all
 
 
 # vim:ft=make
