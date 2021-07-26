@@ -10,7 +10,7 @@ _repo has to be cloned to $HOME dir_
 **General**  
 - tmux
 - neovim
-- vim
+- zsh
 
 **Mac**  
 - yabai
