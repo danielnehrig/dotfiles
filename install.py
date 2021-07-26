@@ -63,7 +63,7 @@ linking_files_arch = [
     {"source": "polybar-powerline", "dest": ".config/polybar"},
 ]
 
-pip_packages = ["psutil"]
+pip_packages = ["psutil", "black", "aiohttp", "aiohttp_cors"]
 
 brew_dependencies = [
     "mono",
