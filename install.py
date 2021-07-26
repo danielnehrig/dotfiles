@@ -286,7 +286,7 @@ log = Log()
 
 def IsCI():
     result = False
-    if os.environ["CI"] == 'yes':
+    if os.environ.get('CI') == 'yes':
         result = True
     return result
 
@@ -407,7 +407,7 @@ def Help():
         if option == '--help' or option == '-h':
             log.Info('./install.py [options]')
             log.Info('Options:')
-            log.Info('-u option, --update=option       | option = linux,darwin,sym')
+            log.Info('-u option, --update=option       | option = linux,darwin,sym,node')
             sys.exit(0)
 
 
