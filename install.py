@@ -159,37 +159,37 @@ class Log(Colors):
         time = datetime.now()
         return time.strftime("%H:%M:%S")
 
-    def buildLogString(self, kind, color):
+    def buildLogString(self, kind: str, color: str):
         start = "{2} {0} " + color + "{1}:" + kind + " " + self.ENDC
         attach = self.HEADER + ": {3}" + self.ENDC
         return start + attach
 
-    def buildStepString(self, kind, color):
+    def buildStepString(self, kind: str, color: str):
         start = "{2} {0} " + color + "{1}:" + kind + " {4}/16" + self.ENDC
         attach = self.BOLD + ": {3}" + self.ENDC
         return start + attach
 
-    def Success(self, string):
+    def Success(self, string: str):
         st = self.buildLogString("SUCCESS", self.OKGREEN)
         print(st.format(self.now(), self.user, arrow, string))
 
-    def Warning(self, string):
+    def Warning(self, string: str):
         st = self.buildLogString("WARNING", self.WARNING)
         print(st.format(self.now(), self.user, arrow, string))
 
-    def Error(self, string):
+    def Error(self, string: str):
         st = self.buildLogString("ERROR", self.FAIL)
         print(st.format(self.now(), self.user, arrow, string))
 
-    def Critical(self, string):
+    def Critical(self, string: str):
         st = self.buildLogString("CRITICAL", self.FAIL)
         print(st.format(self.now(), self.user, arrow, string))
 
-    def Info(self, string):
+    def Info(self, string: str):
         st = self.buildLogString("INFO", self.OKBLUE)
         print(st.format(self.now(), self.user, arrow, string))
 
-    def Step(self, string):
+    def Step(self, string: str):
         st = self.buildStepString("STEP", self.OKBLUE)
         print(st.format(self.now(), self.user, arrow, string, self.counter))
         self.counter = self.counter + 1
@@ -208,7 +208,7 @@ def IsCI():
     return result
 
 
-def Call(cmd):
+def Call(cmd: str):
     try:
         inPath = find_executable(cmd) is not None
         if not inPath:
@@ -220,19 +220,7 @@ def Call(cmd):
         )
 
 
-def CompileDependency(arg):
-    try:
-        log.Info("Compile {0}".format(arg))
-        cmdArr = arg.split()
-        with open(os.devnull, "w") as f:
-            subprocess.call(cmdArr, stdout=f)
-            f.close()
-        log.Success("Success Compile")
-    except subprocess.CalledProcessError as e:
-        log.Error("Compilation Failed with return code {0}".format(e))
-
-
-def InstallCliPackages(installCall, arr, options=""):
+def InstallCliPackages(installCall: str, arr: list[str], options: str =""):
     for package in arr:
         log.Info("Installing CLI Package {0}".format(package))
         install = "{0} {1} {2}".format(installCall, package, options)
@@ -250,7 +238,7 @@ def InstallCliPackages(installCall, arr, options=""):
             )
 
 
-def InstallPackages(installCall, arr, options=""):
+def InstallPackages(installCall: str, arr: list[str], options: str =""):
     for package in arr:
         log.Info("Installing Package {0}".format(package))
         install = "{0} {1} {2}".format(installCall, package, options)
@@ -266,7 +254,7 @@ def InstallPackages(installCall, arr, options=""):
             )
 
 
-def InstallTap(tap):
+def InstallTap(tap: str):
     try:
         log.Info("Installing tap {0}".format(tap))
         with open(os.devnull, "w") as f:
@@ -277,7 +265,7 @@ def InstallTap(tap):
         log.Error("Failed to install {0} with code {1}".format(tap, e.returncode))
 
 
-def Install(call):
+def Install(call: str):
     try:
         log.Info("Installing {0}".format(call))
         cmdArr = call.split()
@@ -288,9 +276,11 @@ def Install(call):
         log.Error("Failed to install {0}".format(call))
 
 
-def LinkFile(source, dest):
+def LinkFile(source: str | None, dest: str | None):
     "Creates a Symbolic Link"
     try:
+        if not source or not dest:
+            raise LookupError("Shit")
         log.Info("Linking File {0} to {1}".format(source, dest))
         with open(os.devnull, "w") as f:
             subprocess.call(
@@ -302,7 +292,7 @@ def LinkFile(source, dest):
         log.Error("Failed to Link {0} to {1}".format(source, dest))
 
 
-def LinkFiles(files):
+def LinkFiles(files: list[dict[str, str]]):
     for dic in files:
         source = None
         dest = None
@@ -317,7 +307,7 @@ def LinkFiles(files):
         LinkFile(source, dest)
 
 
-def Copy(source, dest):
+def Copy(source: str, dest: str):
     try:
         log.Info("Copy File {0}".format(source))
         system("rm {0}".format(dest))
@@ -390,7 +380,7 @@ def UpdateNode():
             sys.exit(0)
 
 
-def UpdateSymLinks(files_dict):
+def UpdateSymLinks(files_dict: list[dict[str, str]]):
     for option in sys.argv:
         if option == "--update=sym" or option == "-u sym":
             LinkFiles(files_dict)
