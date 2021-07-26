@@ -147,6 +147,7 @@ linking_files_arch = [
         "dest": ".config/polybar"
     }
 ]
+
 pip_packages = [
     "psutil"
 ]
@@ -171,12 +172,11 @@ brew_dependencies = [
     "tmux",
     "ruby",
     "go",
-    "rust",
     "perl",
     "github/gh/gh",
     "hub",
     "lua",
-    "neovim --HEAD",
+    "--HEAD neovim",
     "zsh",
     "nodenv",
     "docker",
@@ -223,6 +223,7 @@ node_packages = [
 go_packages = [
     "mvdan.cc/sh/v3/cmd/shfmt"
 ]
+
 rust_packages = []
 
 arrow = '====>'
@@ -241,6 +242,7 @@ class Colors:
 
 class Log(Colors):
     user = getuser()
+    counter = 0
 
     def now(self):
         time = datetime.now()
@@ -276,9 +278,10 @@ class Log(Colors):
         st = self.buildLogString('INFO', self.OKBLUE)
         print(st.format(self.now(), self.user, arrow, string))
 
-    def Step(self, string, step):
+    def Step(self, string):
         st = self.buildStepString('STEP', self.OKBLUE)
-        print(st.format(self.now(), self.user, arrow, string, step))
+        print(st.format(self.now(), self.user, arrow, string, self.counter))
+        self.counter = self.counter + 1
 
 
 log = Log()
@@ -436,15 +439,16 @@ def UpdateSymLinks(files_dict):
             sys.exit(0)
 
 def Linux():
+    log = Log()
+    Install('mkdir -p ' + home + '/Pictures/Screenshots')
+    Install('mkdir -p ' + home + '/.config')
     UpgradeLinux()
     UpdateSymLinks(linking_files_arch)
     UpdateNode()
     log.Critical('Linux is WIP')
-    Install('mkdir -p ' + home + '/Pictures/Screenshots')
-    Install('mkdir -p ' + home + '/.config')
 
     # git submodule pull
-    log.Step("Pulling submodules", 1)
+    log.Step("Pulling submodules")
     Install('git submodule update --init --recursive')
 
     # cloning dependencies zsh theme and plugins
@@ -453,10 +457,9 @@ def Linux():
         Install('yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont ttf-nerd-fonts-hack-complete-git bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx')
 
         # nodenv setup
-        Install('nodenv install 14.0.1')
+        Install('nodenv install 16.4.2')
         Install('nodenv install 12.8.0')
-        Install('nodenv install 14.16.0')
-        Install('nodenv global 14.16.0')
+        Install('nodenv global 16.4.2')
 
         # python setup
         Install('pip install neovim bpytop')
@@ -501,11 +504,13 @@ def Linux():
     sys.exit(0)
 
 def Cygwin():
+    log = Log()
     log.Critical('Cygwin is Not Supported Yet')
     sys.exit(0)
 
 
 def Darwin():
+    log = Log()
     Install('mkdir -p ' + home + '/Pictures/Screenshots')
     Install('mkdir -p ' + home + '/.config/skhd')
     Install('mkdir -p ' + home + '/.config/yabai')
@@ -517,7 +522,7 @@ def Darwin():
 
     # check if git is installed
     try:
-        log.Step("Check if git is installed", 1)
+        log.Step("Check if git is installed")
         if not Call("git"):
             Install('xcode-select --install')
     except OSError:
@@ -526,50 +531,50 @@ def Darwin():
 
     # check if brew is installed
     try:
-        log.Step("Check if Homebrew is installed", 2)
+        log.Step("Check if Homebrew is installed")
         if not Call("brew"):
             system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
     except OSError:
         log.Error("brew not found installing brew")
 
     # git submodule pull
-    log.Step("Pulling submodules", 4)
+    log.Step("Pulling submodules")
     Install('git submodule update --init --recursive')
 
     # install brew taps
-    log.Step("Installing Homebrew Taps", 5)
+    log.Step("Installing Homebrew Taps")
     InstallTap('homebrew/cask-fonts')
 
     # install brew dependencies
-    log.Step("Installing Homebrew CLI dependencies", 6)
+    log.Step("Installing Homebrew CLI dependencies")
     InstallCliPackages('brew install', brew_dependencies)
 
     # install git lfs
-    log.Step("Installing git lfs", 6)
+    log.Step("Installing git lfs")
     Install('git lfs install')
 
     # install cask dependencies
     if not IsCI():
-        log.Step("Installing Homebrew GUI dependencies", 7)
+        log.Step("Installing Homebrew GUI dependencies")
         InstallPackages('brew install --cask', cask_dependencies)
 
     # install node
-    log.Step("Installing Node", 8)
+    log.Step("Installing Node")
     Install('nodenv install 12.8.0')
     Install('nodenv install 14.16.0')
     Install('nodenv global 14.16.0')
 
     # node packages
-    log.Step("Installing Node Packages", 9)
+    log.Step("Installing Node Packages")
     InstallCliPackages('npm install -g', node_packages)
 
     # install python packages
-    log.Step("Installing Python PIP Packages", 10)
+    log.Step("Installing Python PIP Packages")
     InstallPackages('pip3 install', pip_packages)
 
     # cloning dependencies zsh theme and plugins
     try:
-        log.Step("Cloning Shell Dependencies Themes Plugins", 13)
+        log.Step("Cloning Shell Dependencies Themes Plugins")
         # autosuggest
         Install('git clone https://github.com/zsh-users/zsh-autosuggestions ' + current_folder + '/oh-my-zsh/custom' + '/plugins/zsh-autosuggestions')
 
@@ -584,14 +589,14 @@ def Darwin():
 
     # linking files
     try:
-        log.Step("Linking zsh and vim files Symbolic", 14)
+        log.Step("Linking zsh and vim files Symbolic")
         LinkFiles(linking_files_mac)
     except OSError:
         log.Error("Error while linking files")
 
     # set default shell
     try:
-        log.Step("Set zsh default shell", 15)
+        log.Step("Set zsh default shell")
         Install('sudo chsh -s /usr/local/bin/zsh ' + user)
     except OSError:
         log.Error("Error while settings zsh shell")
@@ -605,9 +610,14 @@ def Darwin():
 
 if __name__ == "__main__":
     Help()
+    log.Info("Detected system is {0}".format(sys.platform))
     if sys.platform == 'linux':
         Linux()
+
     if sys.platform == 'darwin':
         Darwin()
+
     if sys.platform == 'cygwin':
         Cygwin()
+
+    sys.exit(0)
