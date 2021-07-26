@@ -50,7 +50,7 @@ local function load_options()
     opt.timeoutlen = 500
     opt.clipboard = "unnamedplus" -- clipboard yank
     opt.wildmenu = true
-    opt.wildmode = "longest,list,full"
+    opt.wildmode = "longest,full"
     opt.fileformats = "unix,dos,mac"
 
     -- fast
