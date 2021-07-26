@@ -60,6 +60,7 @@ local function init()
             use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"javascript", "typescript", "lua"}} -- code playground in buffer executed
             use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
+            use {"nvim-treesitter/playground", cmd = "TSPlaygroundToggle"}
             use "RRethy/nvim-treesitter-textsubjects"
             use {
                 "lewis6991/spellsitter.nvim",
@@ -171,6 +172,9 @@ local function init()
             use {"ggandor/lightspeed.nvim", keys = {"s"}} -- lightspeed motion
 
             -- quality of life
+            use {
+                "ThePrimeagen/refactoring.nvim"
+            }
             use {
                 "hkupty/nvimux",
                 keys = {"<C-a>"},
