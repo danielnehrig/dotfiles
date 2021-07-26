@@ -506,11 +506,14 @@ def Cygwin():
 
 
 def Darwin():
+    Install('mkdir -p ' + home + '/Pictures/Screenshots')
+    Install('mkdir -p ' + home + '/.config/skhd')
+    Install('mkdir -p ' + home + '/.config/yabai')
+    UpdateSymLinks(linking_files_mac)
+    UpdateNode()
     UpgradeDarwin()
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
-    Install('mkdir -p ' + home + '/Pictures/Screenshots')
-    Install('mkdir -p ' + home + '/.config')
 
     # check if git is installed
     try:
