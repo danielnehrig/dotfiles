@@ -220,7 +220,7 @@ def Call(cmd: str):
         )
 
 
-def InstallCliPackages(installCall: str, arr: list[str], options: str =""):
+def InstallCliPackages(installCall: str, arr: list[str], options: str = ""):
     for package in arr:
         log.Info("Installing CLI Package {0}".format(package))
         install = "{0} {1} {2}".format(installCall, package, options)
@@ -238,7 +238,7 @@ def InstallCliPackages(installCall: str, arr: list[str], options: str =""):
             )
 
 
-def InstallPackages(installCall: str, arr: list[str], options: str =""):
+def InstallPackages(installCall: str, arr: list[str], options: str = ""):
     for package in arr:
         log.Info("Installing Package {0}".format(package))
         install = "{0} {1} {2}".format(installCall, package, options)
@@ -349,11 +349,13 @@ def InstallNode():
             InstallCliPackages("npm install -g", node_packages)
             sys.exit(0)
 
+
 def InstallPip():
     for option in sys.argv:
         if option == "--install=pip" or option == "-i pip":
             InstallCliPackages("pip install", pip_packages)
             sys.exit(0)
+
 
 def UpdatePip():
     for option in sys.argv:
@@ -361,17 +363,20 @@ def UpdatePip():
             InstallCliPackages("pip update", pip_packages)
             sys.exit(0)
 
+
 def InstallCargo():
     for option in sys.argv:
         if option == "--install=cargo" or option == "-i cargo":
             InstallCliPackages("cargo install ", rust_packages)
             sys.exit(0)
 
+
 def InstallGo():
     for option in sys.argv:
         if option == "--install=go" or option == "-i go":
             InstallCliPackages("go get ", go_packages)
             sys.exit(0)
+
 
 def UpdateNode():
     for option in sys.argv:
@@ -440,39 +445,6 @@ def Linux():
         # lua lsp
         Install("git clone https://github.com/sumneko/lua-language-server")
 
-        log.Step("Install zsh plugins")
-        # autosuggest
-        Install(
-            "git clone https://github.com/zsh-users/zsh-autosuggestions "
-            + current_folder
-            + "/oh-my-zsh/custom"
-            + "/plugins/zsh-autosuggestions"
-        )
-
-        # highlight
-        Install(
-            "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "
-            + current_folder
-            + "/oh-my-zsh/custom"
-            + "/plugins/zsh-syntax-highlighting"
-        )
-
-        # powerlevel10k
-        Install(
-            "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "
-            + current_folder
-            + "/oh-my-zsh/custom"
-            + "/themes/powerlevel10k"
-        )
-
-        # fzf docker
-        Install(
-            "git clone https://github.com/pierpo/fzf-docker "
-            + current_folder
-            + "/oh-my-zsh/custom"
-            + "/plugins/fzf-docker"
-        )
-
         log.Step("Install tmux plugin manager")
         # tmux plugin manager
         Install("mkdir -p " + home + "/.tmux/plugins/tpm")
@@ -481,7 +453,6 @@ def Linux():
             + home
             + "/.tmux/plugins/tpm"
         )
-
 
         log.Step("Sym Linking Folders")
         # linking
@@ -567,39 +538,9 @@ def Darwin():
     log.Step("Installing Python PIP Packages")
     InstallPackages("pip3 install", pip_packages)
 
-    # cloning dependencies zsh theme and plugins
-    try:
-        log.Step("Cloning Shell Dependencies Themes Plugins")
-        # autosuggest
-        Install(
-            "git clone https://github.com/zsh-users/zsh-autosuggestions "
-            + current_folder
-            + "/oh-my-zsh/custom"
-            + "/plugins/zsh-autosuggestions"
-        )
-
-        Install(
-            "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "
-            + current_folder
-            + "/oh-my-zsh/custom"
-            + "/themes/powerlevel10k"
-        )
-
-        Install(
-            "git clone https://github.com/tmux-plugins/tpm "
-            + home
-            + "/.tmux/plugins/tpm"
-        )
-
-        # fzf docker
-        Install(
-            "git clone https://github.com/pierpo/fzf-docker "
-            + current_folder
-            + "/oh-my-zsh/custom"
-            + "/plugins/fzf-docker"
-        )
-    except OSError:
-        log.Error("Error while cloning")
+    Install(
+        "git clone https://github.com/tmux-plugins/tpm " + home + "/.tmux/plugins/tpm"
+    )
 
     # linking files
     try:

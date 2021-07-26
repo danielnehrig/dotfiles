@@ -7,7 +7,8 @@ export HOSTS=/etc/hosts
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-
+alias krtlc="kubectl config rename-context gke-production rtl-production"
+alias kcc="kubectl config use-context"
 alias kbl="setxkbmap -layout us,de -option caps:escape -option 'grp:alt_shift_toggle'"
 alias ca='clear && neofetch'
 alias cao='clear && archey'

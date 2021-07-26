@@ -5,31 +5,38 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/dotfiles/.zsh/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle pip
+antigen bundle lein
+antigen bundle npm
+antigen bundle yarn
+antigen bundle docker
+antigen bundle github
+antigen bundle command-not-found
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle jeffreytse/zsh-vi-mode
+
+antigen theme romkatv/powerlevel10k
+
+antigen apply
+
 # User Settings
+source <(kubectl completion zsh)
+source <(kustomize completion zsh)
 source ~/dotfiles/.zsh/export.zsh
 source ~/dotfiles/.zsh/settings.zsh
 source ~/dotfiles/.zsh/function.zsh
 source ~/dotfiles/.zsh/alias.zsh
 source ~/dotfiles/.zsh/github.zsh
 source ~/dotfiles/.zsh/tokens.zsh
-
-# Nodenv init
-eval "$(nodenv init -)"
-
-plugins=(git tmux osx zsh-syntax-highlighting yarn npm docker fzf fzf-docker zsh-autosuggestions ssh-agent github vi-mode)
-export FZF_DEFAULT_COMMAND='find -L . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
-export FZF_CTRL_T_COMMAND='find -L . -type f ! -path "*/\.git/*" ! -path "*/\node_modules/*" ! -path "*/\coverage/*" ! -path "*/\npm-packages-offline-cache/*"'
-# export FZF_DEFAULT_OPTS="-i --preview 'bat --style=numbers --color=always {}'"
-export FZF_DEFAULT_OPTS="-i"
-
-source ~/dotfiles/oh-my-zsh/oh-my-zsh.sh
 source ~/dotfiles/.zsh/forgit.zsh
 [[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/dotfiles/.zsh/.p10k.zsh
 
-source <(kubectl completion zsh)
-source <(kustomize completion zsh)
-alias krtlc="kubectl config rename-context gke-production rtl-production"
-alias kcc="kubectl config use-context"
-if [ -e /home/$USER/.nix-profile/etc/profile.d/nix.sh ]; then . /home/$USER/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-alias luamake=/Users/$USER/dotfiles/lua-language-server/3rd/luamake/luamake
+# Nodenv init
+eval "$(nodenv init -)"
