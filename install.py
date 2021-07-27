@@ -276,7 +276,7 @@ def Install(call: str):
         log.Error("Failed to install {0}".format(call))
 
 
-def LinkFile(source: str | None, dest: str | None):
+def LinkFile(source: str, dest: str):
     "Creates a Symbolic Link"
     try:
         if not source or not dest:
@@ -304,7 +304,8 @@ def LinkFiles(files: list[dict[str, str]]):
             # this loop is needed becouse chaining it into a string will result
             # in a cancelation of the installation of the packages if a brew package gets removed
 
-        LinkFile(source, dest)
+        if source and dest:
+            LinkFile(source, dest)
 
 
 def Copy(source: str, dest: str):
