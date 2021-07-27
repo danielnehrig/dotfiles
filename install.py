@@ -63,79 +63,89 @@ linking_files_arch = [
     {"source": "polybar-powerline", "dest": ".config/polybar"},
 ]
 
-pip_packages = ["psutil", "black", "aiohttp", "aiohttp_cors", "neovim"]
+pip_packages = [
+    [ "psutil", "psutil" ],
+    [ "black", "blackd" ],
+    [ "aiohttp", "aiohttp" ],
+    [ "aiohttp_cors", "aiohttp_cors" ],
+    [ "neovim", "nvim" ]
+]
 
 brew_dependencies = [
-    "mono",
-    "tree",
-    "gdb",
-    "fzf",
-    "bat",
-    "unrar",
-    "cmake",
-    "kubectl",
-    "neofetch",
-    "git-lfs",
-    "neofetch",
-    "radare2",
-    "gcc",
-    "htop",
-    "make",
-    "python",
-    "tmux",
-    "ruby",
-    "go",
-    "perl",
-    "github/gh/gh",
-    "hub",
-    "lua",
-    "--HEAD neovim",
-    "zsh",
-    "nodenv",
-    "docker",
-    "koekeishiya/formulae/skhd",
-    "koekeishiya/formulae/yabai",
-    "docker-compose",
+    [ "mono", "mono" ],
+    [ "tree",  "tree" ],
+    [ "gdb", "gdb" ],
+    [ "fzf", "fzf" ],
+    [ "bat", "bat" ],
+    [ "unrar", "unrar" ],
+    [ "cmake", "cmake" ],
+    [ "kubectl", "kubectl" ],
+    [ "neofetch", "neofetch" ],
+    [ "git-lfs", "git-lfs" ],
+    [ "neofetch", "neofetch" ],
+    [ "radare2", "radare2" ],
+    [ "gcc", "gcc" ],
+    [ "htop", "htop" ],
+    [ "make", "make" ],
+    [ "python", "python" ],
+    [ "tmux", "tmux" ],
+    [ "ruby", "ruby" ],
+    [ "go", "go" ],
+    [ "perl", "perl" ],
+    [ "github/gh/gh", "gh" ],
+    [ "hub", "hub" ],
+    [ "lua", "lua" ],
+    [ "--HEAD neovim", "nvim" ],
+    [ "zsh", "zsh" ],
+    [ "nodenv", "nodenv" ],
+    [ "docker", "docker" ],
+    [ "koekeishiya/formulae/skhd", "skhd" ],
+    [ "koekeishiya/formulae/yabai", "yabai" ],
+    [ "docker-compose", "docker-compose" ],
 ]
 
 cask_dependencies = [
-    "virtualbox",
-    "google-chrome",
-    "brave-browser",
-    "google-cloud-sdk",
-    "firefox",
-    "ghidra",
-    "abstract",
-    "visual-studio-code",
-    "microsoft-office",
-    "postman",
-    "docker",
-    "alacritty",
-    "whatsapp",
-    "discord",
-    "font-hack-nerd-font",
+    [ "virtualbox", "virtualbox" ],
+    [ "google-chrome", "google-chrome" ],
+    [ "brave-browser", "brave-browser" ],
+    [ "google-cloud-sdk", "google-cloud-sdk" ],
+    [ "firefox", "firefox" ],
+    [ "ghidra", "ghidra" ],
+    [ "abstract", "abstract" ],
+    [ "visual-studio-code", "visual-studio-code" ],
+    [ "microsoft-office", "microsoft-office" ],
+    [ "postman", "postman" ],
+    [ "docker", "docker" ],
+    [ "alacritty", "alacritty" ],
+    [ "whatsapp", "whatsapp" ],
+    [ "discord", "discord" ],
+    [ "font-hack-nerd-font", "font-hack-nerd-font" ],
 ]
 
 node_packages = [
-    "nodemon",
-    "yarn",
-    "typescript-language-server",
-    "typescript",
-    "lua-fmt",
-    "vscode-html-languageserver-bin",
-    "css-language-server",
-    "svelte-language-server",
-    "bash-language-server",
-    "yaml-language-server",
-    "dockerfile-language-server-nodejs",
-    "dprint",
-    "pyright",
-    "@bitwarden/cli",
+    [ "nodemon", "nodemon" ],
+    [ "yarn", "yarn" ],
+    [ "typescript-language-server", "typescript-language-server" ],
+    [ "typescript", "tsc" ],
+    [ "lua-fmt", "luafmt" ],
+    [ "vscode-html-languageserver-bin", "vscode-html-languageserver-bin" ],
+    [ "css-language-server", "css-language-server" ],
+    [ "svelte-language-server", "svelte-language-server" ],
+    [ "bash-language-server", "bash-language-server" ],
+    [ "yaml-language-server", "yaml-language-server" ],
+    [ "dockerfile-language-server-nodejs", "dockerfile-language-server-nodejs" ],
+    [ "dprint", "dprint" ],
+    [ "pyright", "pyright" ],
+    [ "@bitwarden/cli", "bw" ],
 ]
 
-go_packages = ["mvdan.cc/sh/v3/cmd/shfmt"]
+go_packages = [
+    [ "mvdan.cc/sh/v3/cmd/shfmt", "shfmt" ]
+]
 
-rust_packages = ["blackd-client"]
+rust_packages = [
+    [ "blackd-client", "blackd-client" ]
+]
 
 arrow = "====>"
 
@@ -220,13 +230,13 @@ def Call(cmd: str):
         )
 
 
-def InstallCliPackages(installCall: str, arr: list[str], options: str = ""):
+def InstallCliPackages(installCall: str, arr: list[list[str]], options: str = ""):
     for package in arr:
         log.Info("Installing CLI Package {0}".format(package))
-        install = "{0} {1} {2}".format(installCall, package, options)
+        install = "{0} {1} {2}".format(installCall, package[0], options)
         cmdArr = install.split()
         try:
-            inPath = Call(package)
+            inPath = Call(package[1])
             if not inPath:
                 with open(os.devnull, "w") as f:
                     subprocess.call(cmdArr, stdout=f)
@@ -340,7 +350,7 @@ def UpdateDarwin():
 def UpdateLinux():
     for option in sys.argv:
         if option == "--update=linux" or option == "-u linux":
-            InstallCliPackages("yay -Syu", [""])
+            InstallCliPackages("yay -Syu", [["",""]])
             sys.exit(0)
 
 
@@ -352,8 +362,8 @@ def InstallNode():
 
 
 def InstallPip():
-    for option in sys.argv:
-        if option == "--install=pip" or option == "-i pip":
+    for key, option in enumerate(sys.argv):
+        if option == "--install=pip" or (option == "-i" and sys.argv[key+1] == "pip"):
             InstallCliPackages("pip3.9 install", pip_packages)
             sys.exit(0)
 
@@ -526,7 +536,7 @@ def Darwin():
     # install cask dependencies
     if not IsCI():
         log.Step("Installing Homebrew GUI dependencies")
-        InstallPackages("brew install --cask", cask_dependencies)
+        InstallCliPackages("brew install --cask", cask_dependencies)
 
     # install node
     log.Step("Installing Node")
@@ -540,7 +550,7 @@ def Darwin():
 
     # install python packages
     log.Step("Installing Python PIP Packages")
-    InstallPackages("pip3.9 install", pip_packages)
+    InstallCliPackages("pip3.9 install", pip_packages)
 
     Install(
         "git clone https://github.com/tmux-plugins/tpm " + home + "/.tmux/plugins/tpm"
