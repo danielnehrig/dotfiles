@@ -481,7 +481,7 @@ def Linux():
 
 def Cygwin():
     log = Log()
-    log.Critical("Cygwin is Not Supported Yet")
+    log.Critical("Cygwin is Not Supported")
     sys.exit(0)
 
 
