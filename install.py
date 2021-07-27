@@ -344,22 +344,22 @@ def Help():
 
 
 def UpdateDarwin():
-    for option in sys.argv:
-        if option == "--update=darwin" or option == "-u darwin":
+    for key, option in enumerate(sys.argv):
+        if option == "--update=darwin" or (option == "-u" and sys.argv[key+1] == "darwin"):
             InstallCliPackages("brew upgrade", brew_dependencies)
             sys.exit(0)
 
 
 def UpdateLinux():
-    for option in sys.argv:
-        if option == "--update=linux" or option == "-u linux":
+    for key, option in enumerate(sys.argv):
+        if option == "--update=linux" or (option == "-u" and sys.argv[key+1] == "linux"):
             InstallCliPackages("yay -Syu", [["",""]])
             sys.exit(0)
 
 
 def InstallNode():
-    for option in sys.argv:
-        if option == "--install=node" or option == "-i node":
+    for key, option in enumerate(sys.argv):
+        if option == "--install=node" or (option == "-i" and sys.argv[key+1] == "node"):
             InstallCliPackages("npm install -g", node_packages)
             sys.exit(0)
 
@@ -372,36 +372,36 @@ def InstallPip():
 
 
 def UpdatePip():
-    for option in sys.argv:
-        if option == "--update=pip" or option == "-u pip":
+    for key, option in enumerate(sys.argv):
+        if option == "--update=pip" or (option == "-u" and sys.argv[key+1] == "pip"):
             InstallCliPackages("pip3.9 update", pip_packages)
             sys.exit(0)
 
 
 def InstallCargo():
-    for option in sys.argv:
-        if option == "--install=cargo" or option == "-i cargo":
+    for key, option in enumerate(sys.argv):
+        if option == "--install=cargo" or (option == "-i" and sys.argv[key+1] == "cargo"):
             InstallCliPackages("cargo install ", rust_packages)
             sys.exit(0)
 
 
 def InstallGo():
-    for option in sys.argv:
-        if option == "--install=go" or option == "-i go":
+    for key, option in enumerate(sys.argv):
+        if option == "--install=go" or (option == "-i" and sys.argv[key+1] == "go"):
             InstallCliPackages("go get ", go_packages)
             sys.exit(0)
 
 
 def UpdateNode():
-    for option in sys.argv:
-        if option == "--update=node" or option == "-u node":
+    for key, option in enumerate(sys.argv):
+        if option == "--update=node" or (option == "-u" and sys.argv[key+1] == "node"):
             InstallCliPackages("npm upgrade -g", node_packages)
             sys.exit(0)
 
 
 def UpdateSymLinks(files_dict: list[dict[str, str]]):
-    for option in sys.argv:
-        if option == "--update=sym" or option == "-u sym":
+    for key, option in enumerate(sys.argv):
+        if option == "--update=sym" or (option == "-u" and sys.argv[key+1] == "sym"):
             LinkFiles(files_dict)
             sys.exit(0)
 
