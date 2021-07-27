@@ -1,3 +1,5 @@
+-- this is loaded after bootstrapping packer
+-- and or if packer plugins are installed
 -- load configs for packer plugins
 require("plugins.build")
 require("plugins.indent-blankline")
