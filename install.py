@@ -89,6 +89,7 @@ brew_dependencies = [
     [ "radare2", "radare2" ],
     [ "gcc", "gcc" ],
     [ "htop", "htop" ],
+    [ "bashtop", "bashtop" ],
     [ "make", "make" ],
     [ "python", "python" ],
     [ "tmux", "tmux" ],
