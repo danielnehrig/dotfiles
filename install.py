@@ -354,14 +354,14 @@ def InstallNode():
 def InstallPip():
     for option in sys.argv:
         if option == "--install=pip" or option == "-i pip":
-            InstallCliPackages("pip install", pip_packages)
+            InstallCliPackages("pip3.9 install", pip_packages)
             sys.exit(0)
 
 
 def UpdatePip():
     for option in sys.argv:
         if option == "--update=pip" or option == "-u pip":
-            InstallCliPackages("pip update", pip_packages)
+            InstallCliPackages("pip3.9 update", pip_packages)
             sys.exit(0)
 
 
@@ -401,6 +401,7 @@ def Linux():
     UpdateSymLinks(linking_files_arch)
     UpdateNode()
     UpdatePip()
+    InstallPip()
     InstallCargo()
     InstallNode()
     InstallGo()
@@ -428,7 +429,7 @@ def Linux():
 
         log.Step("Install pip dependencies")
         # python setup
-        InstallCliPackages("pip install", pip_packages)
+        InstallCliPackages("pip3.9 install", pip_packages)
 
         log.Step("Install npm dependencies")
         # npm
@@ -479,6 +480,8 @@ def Darwin():
     UpdateDarwin()
     UpdateSymLinks(linking_files_mac)
     UpdateNode()
+    UpdatePip()
+    InstallPip()
     InstallCargo()
     InstallGo()
     InstallNode()
@@ -537,7 +540,7 @@ def Darwin():
 
     # install python packages
     log.Step("Installing Python PIP Packages")
-    InstallPackages("pip3 install", pip_packages)
+    InstallPackages("pip3.9 install", pip_packages)
 
     Install(
         "git clone https://github.com/tmux-plugins/tpm " + home + "/.tmux/plugins/tpm"
