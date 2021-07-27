@@ -28,13 +28,14 @@ antigen apply
 
 # User Settings
 source <(kubectl completion zsh)
+source <(npm completion zsh)
 source <(kustomize completion zsh)
 source ~/dotfiles/.zsh/export.zsh
 source ~/dotfiles/.zsh/settings.zsh
 source ~/dotfiles/.zsh/function.zsh
 source ~/dotfiles/.zsh/alias.zsh
 source ~/dotfiles/.zsh/github.zsh
-source ~/dotfiles/.zsh/tokens.zsh
+[[ ! -f ~/dotfiles/tokens/tokens.zsh ]] || source ~/dotfiles/tokens/tokens.zsh
 source ~/dotfiles/.zsh/forgit.zsh
 [[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/dotfiles/.zsh/.p10k.zsh
 

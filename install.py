@@ -12,6 +12,8 @@
 # note : see following arrays and or adjust them
 # TODO: Get list of installed dependencies from stdout
 # example: pip list
+# pacman -Q
+# pacman -Qm = yay dep
 
 import subprocess
 import os
