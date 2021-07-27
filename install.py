@@ -6,11 +6,12 @@
 # brew cask packages
 # node packages
 # python packages
+# cargo packages
+# go packages
 # symbolic links
-# fonts
-# powerline tmux theme
-# pwndbg
 # note : see following arrays and or adjust them
+# TODO: Get list of installed dependencies from stdout
+# example: pip list
 
 import subprocess
 import os
@@ -431,8 +432,8 @@ def Linux():
             "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont ttf-nerd-fonts-hack-complete-git bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
         )
 
-        log.Step("Install nodenv")
         # nodenv setup
+        log.Step("Install nodenv")
         Install("nodenv install 16.4.2")
         Install("nodenv install 12.8.0")
         Install("nodenv global 16.4.2")
@@ -441,17 +442,17 @@ def Linux():
         # python setup
         InstallCliPackages("pip3.9 install", pip_packages)
 
-        log.Step("Install npm dependencies")
         # npm
+        log.Step("Install npm dependencies")
         InstallCliPackages("npm install -g", node_packages)
 
-        log.Step("Install rustup components")
         # rust setup
+        log.Step("Install rustup components")
         Install("rustup install nightly")
         Install("rustup +nightly component add rust-analyzer-preview")
 
-        log.Step("Install langservers")
         # langservers
+        log.Step("Install langservers")
         Install("go get github.com/mattn/efm-langserver")
 
         # lua lsp
@@ -466,9 +467,8 @@ def Linux():
             + "/.tmux/plugins/tpm"
         )
 
-        log.Step("Sym Linking Folders")
         # linking
-        Install("mkdir -p " + home + "/.config/")
+        log.Step("Sym Linking Folders")
         LinkFiles(linking_files_arch)
     except OSError:
         log.Error("Error while install")
@@ -592,4 +592,5 @@ if __name__ == "__main__":
             Linux()
 
     except:
+        # TODO: figure out why error
         log.Error("Error While Installing")
