@@ -152,11 +152,10 @@ local function init()
             use {
                 "nvim-telescope/telescope.nvim",
                 cmd = {"Telescope", "Octo"},
-                branch = "async_v2",
                 config = require("plugins.telescope"),
                 requires = {
                     {"nvim-lua/popup.nvim", opt = true},
-                    {"nvim-lua/plenary.nvim", opt = true, branch = "async_jobs_v2"},
+                    {"nvim-lua/plenary.nvim", opt = true},
                     {"nvim-telescope/telescope-project.nvim", opt = true},
                     {"nvim-telescope/telescope-fzf-native.nvim", opt = true, run = "make"}
                 }
@@ -195,8 +194,15 @@ local function init()
                 after = {"nvim-compe"} -- if a completion plugin is using tabs load it before
             }
             use {
-                "ThePrimeagen/refactoring.nvim"
+                "~/code/lua/refactoring.nvim",
+                config = require("plugins.refactoring").init,
+                opt = true,
+                requires = {
+                    {"nvim-treesitter/nvim-treesitter"},
+                    {"nvim-lua/plenary.nvim", opt = true}
+                }
             }
+            use {"nvim-lua/plenary.nvim"}
             use {
                 "hkupty/nvimux",
                 keys = {"<C-a>"},
@@ -265,7 +271,7 @@ local function init()
             use {
                 "ruifm/gitlinker.nvim",
                 requires = {
-                    {"nvim-lua/plenary.nvim", opt = true, branch = "async_jobs_v2"}
+                    {"nvim-lua/plenary.nvim", opt = true}
                 },
                 opt = true
             } -- get repo file on remote as url

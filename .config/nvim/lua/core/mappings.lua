@@ -50,7 +50,10 @@ remap("i", "<C-d>", "compe#scroll({ delta: -4 })", true)
 remap("n", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):normal()<CR>]])
 remap("v", "<Leader>gy", [[ <Cmd>lua require('plugins.gitlinker'):visual()<CR>]])
 
-remap("v", "<Leader>re", [[ <Cmd>lua require('refactoring').extract()<CR>]])
+-- refactor: NOTE: Lazyloaded
+remap("v", "<Leader>re", [[ <Cmd>lua require('plugins.refactoring'):extract()<CR>]])
+remap("v", "<Leader>rf", [[ <Cmd>lua require('plugins.refactoring'):extract_to_file()<CR>]])
+remap("v", "<Leader>rt", [[ <Cmd>lua require('plugins.refactoring'):telescope()<CR>]])
 
 -- marker: NOTE: Lazyloaded
 remap("v", "<Leader>1", ":<c-u>HSHighlight 1<CR>")
