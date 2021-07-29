@@ -64,7 +64,13 @@ local function init()
                 "winston0410/commented.nvim",
                 keys = {"<space>cc"},
                 config = function()
-                    require("commented").setup()
+                    require("commented").setup(
+                        {
+                            hooks = {
+                                before_comment = require("ts_context_commentstring.internal").update_commentstring
+                            }
+                        }
+                    )
                 end
             }
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
