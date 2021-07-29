@@ -208,7 +208,7 @@ local function init()
                 after = {"nvim-compe"} -- if a completion plugin is using tabs load it before
             }
             use {
-                "~/code/lua/refactoring.nvim",
+                "ThePrimeagen/refactoring.nvim",
                 config = require("plugins.refactoring").init,
                 opt = true,
                 requires = {
