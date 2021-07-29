@@ -58,7 +58,21 @@ local function init()
                 cmd = "MarkdownPreview"
             } -- markdown previewer
             use {"metakirby5/codi.vim", cmd = {"Codi"}, ft = {"javascript", "typescript", "lua"}} -- code playground in buffer executed
-            use "nvim-treesitter/nvim-treesitter" -- syntax highlight indent etc
+            use {"nvim-treesitter/nvim-treesitter"} -- syntax highlight indent etc
+            use {"JoosepAlviste/nvim-ts-context-commentstring"}
+            use {
+                "winston0410/commented.nvim",
+                keys = {"<space>cc"},
+                config = function()
+                    require("commented").setup(
+                        {
+                            hooks = {
+                                before_comment = require("ts_context_commentstring.internal").update_commentstring
+                            }
+                        }
+                    )
+                end
+            }
             use "nvim-treesitter/nvim-treesitter-textobjects" -- custom textobjects
             use {"nvim-treesitter/playground", cmd = "TSPlaygroundToggle"}
             use "RRethy/nvim-treesitter-textsubjects"
@@ -194,7 +208,7 @@ local function init()
                 after = {"nvim-compe"} -- if a completion plugin is using tabs load it before
             }
             use {
-                "~/code/lua/refactoring.nvim",
+                "ThePrimeagen/refactoring.nvim",
                 config = require("plugins.refactoring").init,
                 opt = true,
                 requires = {
