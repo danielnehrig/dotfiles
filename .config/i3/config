@@ -78,6 +78,7 @@ for_window [title="video2 - mpv"] sticky enabled
 no_focus [class="Conky"]
 
 # custom scripts controlls
+bindsym $mod+mod1+e exec --no-startup-id "neovide --multiGrid --remote-tcp=localhost:6666"
 bindsym $mod+shift+m exec --no-startup-id dm-tool lock
 bindsym $mod+mod1+k exec "pkill ffmpeg || ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f pulse -ac 2 -i default output.mkv"
 bindsym $mod+c exec --no-startup-id ~/dotfiles/scripts/cam.sh
@@ -104,7 +105,7 @@ bindsym $mod+shift+z exec "import -window root snap.png"
 
 # change focus between tiling / floating windows
 bindsym $mod+shift+space focus mode_toggle
-bindsym $mod+shift+d exec "alacritty -e vim ~/dotfiles/.config/i3/config"
+bindsym $mod+shift+d exec "alacritty -e nvim ~/dotfiles/.config/i3/config"
 
 # focus the parent container
 #bindsym $mod+a focus parent
@@ -273,11 +274,9 @@ exec --no-startup-id xrandr --dpi 220 &
 exec --no-startup-id xset s 300
 exec --no-startup-id xset r rate 300 60 &
 exec_always --no-startup-id light-locker --lock-after-screensaver=30 &
-# exec_always --no-startup-id aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log &
-# exec_always --no-startup-id lxpolkit &
 exec_always --no-startup-id killall picom || picom --shadow-exclude "! name~=''" --blur-background-exclude  "! name~=''" --experimental-backends &
 exec_always --no-startup-id dunst &
-# exec_always --no-startup-id gromit-mpx
+exec_always --no-startup-id ~/dotfiles/scripts/nvimServer.sh
 
 
 
