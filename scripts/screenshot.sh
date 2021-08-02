@@ -7,4 +7,4 @@
 #
 
 
-maim -s -u ~/Pictures/Screenshots/%b%d-%H%M%S.png
+maim -s -u ~/Pictures/Screenshots/$(date +%F-%H:%M:%S).png
