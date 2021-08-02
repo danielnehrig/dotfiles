@@ -66,6 +66,7 @@ linking_files_arch = [
     {"source": "polybar-powerline", "dest": ".config/polybar"},
 ]
 
+# python packages
 pip_packages = [
     [ "psutil", "psutil" ],
     [ "black", "blackd" ],
@@ -74,6 +75,7 @@ pip_packages = [
     [ "neovim", "nvim" ]
 ]
 
+# mac osx packages
 brew_dependencies = [
     [ "mono", "mono" ],
     [ "tree",  "tree" ],
@@ -108,6 +110,7 @@ brew_dependencies = [
     [ "docker-compose", "docker-compose" ],
 ]
 
+# mac desktop apps
 cask_dependencies = [
     [ "virtualbox", "virtualbox" ],
     [ "google-chrome", "google-chrome" ],
@@ -126,6 +129,7 @@ cask_dependencies = [
     [ "font-hack-nerd-font", "font-hack-nerd-font" ],
 ]
 
+# nodejs global bins
 node_packages = [
     [ "nodemon", "nodemon" ],
     [ "yarn", "yarn" ],
@@ -143,10 +147,12 @@ node_packages = [
     [ "@bitwarden/cli", "bw" ],
 ]
 
+# go bins
 go_packages = [
     [ "mvdan.cc/sh/v3/cmd/shfmt", "shfmt" ]
 ]
 
+# rust bins
 rust_packages = [
     [ "blackd-client", "blackd-client" ]
 ]
