@@ -1,6 +1,3 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/dotfiles/oh-my-zsh"
-
 # Adding Path Data Linux
 if [[ `uname` == "Linux"  ]]; then
 PATH+=":$HOME/.local/lib/python3.9/site-packages"
