@@ -35,8 +35,13 @@ local function init()
             use {
                 "Murtaza-Udaipurwala/gruvqueen",
                 config = function()
-                    vim.g.gruvqueen_transparent_background = true
-                    -- vim.g.gruvqueen_background_color = "#10151a"
+
+                    if not vim.g.neovide then
+                      vim.g.gruvqueen_transparent_background = true
+                    else
+                      vim.g.gruvqueen_transparent_background = false
+                    end
+                    vim.g.gruvqueen_background_color = "#10151a"
                     vim.g.gruvqueen_italic_comments = true
                     vim.g.gruvqueen_italic_keywords = true
                     vim.g.gruvqueen_italic_functions = true
