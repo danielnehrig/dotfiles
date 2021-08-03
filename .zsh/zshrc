@@ -41,6 +41,10 @@ if command -v kustomize &> /dev/null
 then
   source <(kustomize completion zsh)
 fi
+if command -v circleci &> /dev/null
+then
+  source <(circleci completion zsh)
+fi
 source ~/dotfiles/.zsh/export.zsh
 source ~/dotfiles/.zsh/settings.zsh
 source ~/dotfiles/.zsh/function.zsh
