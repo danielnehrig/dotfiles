@@ -5,6 +5,7 @@ PATH+=":$HOME/.local/bin"
 PATH+=":$HOME/.cargo/bin"
 PATH+=":$HOME/go/bin"
 PATH+=":$HOME/.gem/ruby/2.7.0/bin"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
 # User exports
