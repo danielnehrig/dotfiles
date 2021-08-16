@@ -22,3 +22,4 @@ export DEFAULT_USER="$USER"
 export UNCRUSTIFY_CONFIG=~/dotfiles/.uncrustify
 export COMPOSE_PARALLEL_LIMIT=1000
 export COMPOSE_HTTP_TIMEOUT=120
+export KUBE_SA="gcloud container clusters get-credentials gke-ref-service-cluster-v2 --region europe-west3 --project gke-reference"
