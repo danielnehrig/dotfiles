@@ -73,6 +73,11 @@ function tarPackUnpack() {
   esac
 }
 
+function seal() {
+  # echo -n "$1" | kubeseal checkout checkout-credentials-v1 cert.pem az.username
+  echo -n "$1" | kubeseal checkout $2 cert.pem $3
+}
+
 function nodeClear() {
   rm -rf node_modules
   rm package-lock.json

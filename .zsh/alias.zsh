@@ -25,7 +25,6 @@ alias gcosh='shopCheckout'
 alias wlanM='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I en1'
 alias oyna=nvim
 alias la='colorls -la'
-# alias j='autojump'
 
 # Linux virt manager qemu boxes
 if [[ `uname` == 'Linux' ]]; then
