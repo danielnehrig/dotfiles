@@ -23,8 +23,6 @@ alias git-pupf='gitcommitcheckpupf'
 alias updateAll='brew update'
 alias gcosh='shopCheckout'
 alias wlanM='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I en1'
-alias oyna=nvim
-alias la='colorls -la'
 
 # Linux virt manager qemu boxes
 if [[ `uname` == 'Linux' ]]; then
