@@ -55,7 +55,6 @@ source ~/dotfiles/.zsh/function.zsh
 source ~/dotfiles/.zsh/alias.zsh
 source ~/dotfiles/.zsh/github.zsh
 source ~/dotfiles/.zsh/forgit.zsh
-[[ ! -f /etc/profile.d/autojump.zsh ]] || source /etc/profile.d/autojump.zsh
 [[ ! -f ~/dotfiles/tokens/zsh/tokens.zsh ]] || source ~/dotfiles/tokens/zsh/tokens.zsh
 [[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/dotfiles/.zsh/.p10k.zsh
 
