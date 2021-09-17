@@ -154,7 +154,7 @@ go_packages = [
 
 # rust bins
 rust_packages = [
-    [ "blackd-client", "blackd-client" ]
+    [ "blackd-client", "blackd-client", "stylua" ]
 ]
 
 arrow = "====>"
