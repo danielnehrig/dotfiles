@@ -6,7 +6,7 @@ font pango:SauceCodePro Nerd Font Mono
 floating_modifier Mod1
 
 ###################start a terminal###################
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 ###################i3 window controls###################
 #kill focused window
@@ -105,7 +105,7 @@ bindsym $mod+shift+z exec "import -window root snap.png"
 
 # change focus between tiling / floating windows
 bindsym $mod+shift+space focus mode_toggle
-bindsym $mod+shift+d exec "alacritty -e nvim ~/dotfiles/.config/i3/config"
+bindsym $mod+shift+d exec "kitty -e nvim ~/dotfiles/.config/i3/config"
 
 # focus the parent container
 #bindsym $mod+a focus parent
