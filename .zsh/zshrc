@@ -32,11 +32,6 @@ then
   source <(kubectl completion zsh)
 fi
 
-if command -v npm &> /dev/null
-then
-  source <(npm completion zsh)
-fi
-
 if command -v kustomize &> /dev/null
 then
   source <(kustomize completion zsh)
@@ -62,4 +57,9 @@ source ~/dotfiles/.zsh/forgit.zsh
 if command -v nodenv &> /dev/null
 then
   eval "$(nodenv init -)"
+fi
+
+if command -v npm &> /dev/null
+then
+  source <(npm completion zsh)
 fi
