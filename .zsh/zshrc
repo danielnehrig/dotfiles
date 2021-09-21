@@ -63,3 +63,5 @@ if command -v npm &> /dev/null
 then
   source <(npm completion zsh)
 fi
+
+alias luamake=/home/dashie/dotfiles/lua-language-server/3rd/luamake/luamake

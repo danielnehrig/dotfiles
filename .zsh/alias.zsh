@@ -12,6 +12,8 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 alias iLock='pmset displaysleepnow'
 alias gatling='vagrant gatling-rsync-auto'
 alias grname='git config --get remote.origin.url'
+alias la='exa -la --icons'
+alias ls='exa'
 
 # Linux virt manager qemu boxes
 if [[ `uname` == 'Linux' ]]; then
