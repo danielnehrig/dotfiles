@@ -26,24 +26,6 @@ antigen theme romkatv/powerlevel10k
 
 antigen apply
 
-# User Settings
-if command -v kubectl &> /dev/null
-then
-  source <(kubectl completion zsh)
-fi
-
-if command -v kustomize &> /dev/null
-then
-  source <(kustomize completion zsh)
-fi
-if command -v circleci &> /dev/null
-then
-  source <(circleci completion zsh)
-fi
-if command -v zoxide &> /dev/null
-then
-  source <(zoxide init zsh)
-fi
 source ~/dotfiles/.zsh/export.zsh
 source ~/dotfiles/.zsh/settings.zsh
 source ~/dotfiles/.zsh/function.zsh
@@ -52,16 +34,11 @@ source ~/dotfiles/.zsh/github.zsh
 source ~/dotfiles/.zsh/forgit.zsh
 [[ ! -f ~/dotfiles/tokens/zsh/tokens.zsh ]] || source ~/dotfiles/tokens/zsh/tokens.zsh
 [[ ! -f ~/dotfiles/.zsh/.p10k.zsh ]] || source ~/dotfiles/.zsh/.p10k.zsh
+[[ ! -n $(command -v nodenv) ]] || eval "$(nodenv init -)"
+[[ ! -n $(command -v npm) ]] || source <(npm completion zsh)
+[[ ! -n $(command -v kubectl) ]] || source <(kubectl completion zsh)
+[[ ! -n $(command -v kustomize) ]] || source <(kustomize completion zsh)
+[[ ! -n $(command -v circleci) ]] || source <(circleci completion zsh)
+[[ ! -n $(command -v zoxide) ]] || source <(zoxide init zsh)
+[[ ! -n $(command -v rustup) ]] || source <(rustup completions zsh)
 
-# Nodenv init
-if command -v nodenv &> /dev/null
-then
-  eval "$(nodenv init -)"
-fi
-
-if command -v npm &> /dev/null
-then
-  source <(npm completion zsh)
-fi
-
-alias luamake=/home/dashie/dotfiles/lua-language-server/3rd/luamake/luamake
