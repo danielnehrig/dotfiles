@@ -365,7 +365,6 @@ def update_sym_links(files_dict: list[dict[str, str]]):
 
 
 def Linux():
-    log = Log()
     cmd("mkdir -p " + home + "/Pictures/Screenshots")
     cmd("mkdir -p " + home + "/.config")
     cmd("mkdir -p " + home + "/code/work")
@@ -426,13 +425,11 @@ def Linux():
 
 
 def Cygwin():
-    log = Log()
     log.Critical("Cygwin is Not Supported")
     sys.exit(0)
 
 
 def Darwin():
-    log = Log()
     cmd("mkdir -p " + home + "/Pictures/Screenshots")
     cmd("mkdir -p " + home + "/.config/skhd")
     cmd("mkdir -p " + home + "/.config/yabai")
