@@ -284,13 +284,13 @@ def InstallTap(tap: str):
 
 def Cmd(call: str):
     try:
-        log.Info("Installing {0}".format(call))
+        log.Info("Executing {0}".format(call))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
             f.close()
     except subprocess.CalledProcessError:
-        log.Error("Failed to install {0}".format(call))
+        log.Error("Failed to execute {0}".format(call))
 
 
 def LinkFile(source: str, dest: str):
@@ -477,22 +477,22 @@ def Linux():
         # DAP install for those that need to be installed manually
         log.Step("Install DAP Adapters")
         log.Info("Install debugpy")
-        Cmd("mkdir ~/.virtualenvs")
-        Cmd("cd ~/.virtualenvs")
+        Cmd("mkdir " + home + ".virtualenvs")
+        os.chdir(home + ".virtualenvs")
         Cmd("python -m venv debugpy")
         Cmd("debugpy/bin/python -m pip install debugpy")
-        Cmd("popd")
+        os.chdir(current_folder)
 
         log.Info("Install java")
-        Cmd("git clone https://github.com/microsoft/java-debug " + home + "/dap/java-debug")
-        Cmd("git clone https://github.com/microsoft/vscode-java-test " + home + "/dap/vscode-java-test")
-        Cmd("~/dap/java-debug")
+        Cmd("git clone https://github.com/microsoft/java-debug " + home + "dap/java-debug")
+        Cmd("git clone https://github.com/microsoft/vscode-java-test " + home + "dap/vscode-java-test")
+        os.chdir(home + "dap/java-debug")
         Cmd("./mvnw clean install")
-        Cmd("popd")
-        Cmd("~/dap/vscode-java-test")
+        os.chdir(current_folder)
+        os.chdir(home + "dap/vscode-java-test")
         Cmd("npm install")
         Cmd("npm run build-plugin")
-        Cmd("popd")
+        os.chdir(current_folder)
 
         log.Step("Install tmux plugin manager")
         # tmux plugin manager
