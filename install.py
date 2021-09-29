@@ -282,7 +282,7 @@ def InstallTap(tap: str):
         log.Error("Failed to install {0} with code {1}".format(tap, e.returncode))
 
 
-def Install(call: str):
+def Cmd(call: str):
     try:
         log.Info("Installing {0}".format(call))
         cmdArr = call.split()
@@ -412,9 +412,9 @@ def UpdateSymLinks(files_dict: list[dict[str, str]]):
 
 def Linux():
     log = Log()
-    Install("mkdir -p " + home + "/Pictures/Screenshots")
-    Install("mkdir -p " + home + "/.config")
-    Install("mkdir -p " + home + "/code/work")
+    Cmd("mkdir -p " + home + "/Pictures/Screenshots")
+    Cmd("mkdir -p " + home + "/.config")
+    Cmd("mkdir -p " + home + "/code/work")
     UpdateLinux()
     UpdateSymLinks(linking_files_arch)
     UpdateNode()
@@ -427,22 +427,22 @@ def Linux():
 
     # git submodule pull
     log.Step("Pulling submodules")
-    Install("git submodule update --init --recursive")
+    Cmd("git submodule update --init --recursive")
 
     # cloning dependencies zsh theme and plugins
     try:
         log.Step("Install System Dependencies")
-        Install(
+        Cmd(
             "sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty tree maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja"
         )
-        Install(
-            "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont nerd-fonts-fira-mono nerd-fonts-noto-sans-mono nerd-fonts-complete bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
+        Cmd(
+            "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont nerd-fonts-fira-mono nerd-fonts-noto-sans-mono nerd-fonts-complete bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
         )
 
         # nodenv setup
         log.Step("Install nodenv")
-        Install("nodenv install 16.4.2")
-        Install("nodenv global 16.4.2")
+        Cmd("nodenv install 16.4.2")
+        Cmd("nodenv global 16.4.2")
 
         log.Step("Install pip dependencies")
         # python setup
@@ -454,20 +454,30 @@ def Linux():
 
         # rust setup
         log.Step("Install rustup components")
-        Install("rustup install nightly")
-        Install("rustup +nightly component add rust-analyzer-preview")
+        Cmd("rustup install nightly")
+        Cmd("rustup +nightly component add rust-analyzer-preview")
 
         # langservers
         log.Step("Install langservers")
-        Install("go get github.com/mattn/efm-langserver")
+        Cmd("go get github.com/mattn/efm-langserver")
 
         # lua lsp
-        Install("git clone https://github.com/sumneko/lua-language-server")
+        log.Step("Install lua langserver")
+        Cmd("git clone https://github.com/sumneko/lua-language-server")
+        Cmd("cd ./lua-language-server")
+        Cmd("git submodule update --init --recursive")
+        Cmd("popd")
+        Cmd("cd ./lua-language-server/3rd/luamake")
+        Cmd("compile/install.sh")
+        Cmd("popd")
+        Cmd("cd ./lua-language-server")
+        Cmd("3rd/luamake/luamake rebuild")
+        Cmd("popd")
 
         log.Step("Install tmux plugin manager")
         # tmux plugin manager
-        Install("mkdir -p " + home + "/.tmux/plugins/tpm")
-        Install(
+        Cmd("mkdir -p " + home + "/.tmux/plugins/tpm")
+        Cmd(
             "git clone https://github.com/tmux-plugins/tpm "
             + home
             + "/.tmux/plugins/tpm"
@@ -490,9 +500,9 @@ def Cygwin():
 
 def Darwin():
     log = Log()
-    Install("mkdir -p " + home + "/Pictures/Screenshots")
-    Install("mkdir -p " + home + "/.config/skhd")
-    Install("mkdir -p " + home + "/.config/yabai")
+    Cmd("mkdir -p " + home + "/Pictures/Screenshots")
+    Cmd("mkdir -p " + home + "/.config/skhd")
+    Cmd("mkdir -p " + home + "/.config/yabai")
     UpdateDarwin()
     UpdateSymLinks(linking_files_mac)
     UpdateNode()
@@ -508,10 +518,10 @@ def Darwin():
     try:
         log.Step("Check if git is installed")
         if not Call("git"):
-            Install("xcode-select --install")
+            Cmd("xcode-select --install")
     except OSError:
         log.Error("git not found installing dev tools")
-        Install("xcode-select --install")
+        Cmd("xcode-select --install")
 
     # check if brew is installed
     try:
@@ -525,7 +535,7 @@ def Darwin():
 
     # git submodule pull
     log.Step("Pulling submodules")
-    Install("git submodule update --init --recursive")
+    Cmd("git submodule update --init --recursive")
 
     # install brew taps
     log.Step("Installing Homebrew Taps")
@@ -537,7 +547,7 @@ def Darwin():
 
     # install git lfs
     log.Step("Installing git lfs")
-    Install("git lfs install")
+    Cmd("git lfs install")
 
     # install cask dependencies
     if not IsCI():
@@ -546,9 +556,9 @@ def Darwin():
 
     # install node
     log.Step("Installing Node")
-    Install("nodenv install 12.8.0")
-    Install("nodenv install 16.4.2")
-    Install("nodenv global 16.4.2")
+    Cmd("nodenv install 12.8.0")
+    Cmd("nodenv install 16.4.2")
+    Cmd("nodenv global 16.4.2")
 
     # node packages
     log.Step("Installing Node Packages")
@@ -558,7 +568,7 @@ def Darwin():
     log.Step("Installing Python PIP Packages")
     InstallCliPackages("pip3.9 install", pip_packages)
 
-    Install(
+    Cmd(
         "git clone https://github.com/tmux-plugins/tpm " + home + "/.tmux/plugins/tpm"
     )
 
@@ -572,7 +582,7 @@ def Darwin():
     # set default shell
     try:
         log.Step("Set zsh default shell")
-        Install("sudo chsh -s /usr/local/bin/zsh " + user)
+        Cmd("sudo chsh -s /usr/local/bin/zsh " + user)
     except OSError:
         log.Error("Error while settings zsh shell")
 
