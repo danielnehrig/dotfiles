@@ -464,15 +464,15 @@ def Linux():
         # lua lsp
         log.Info("Install lua langserver")
         Cmd("git clone https://github.com/sumneko/lua-language-server")
-        Cmd("cd ./lua-language-server")
+        os.chdir("./lua-language-server")
         Cmd("git submodule update --init --recursive")
-        Cmd("popd")
-        Cmd("cd ./lua-language-server/3rd/luamake")
+        os.chdir(current_folder)
+        os.chdir("./lua-language-server/3rd/luamake")
         Cmd("compile/install.sh")
-        Cmd("popd")
-        Cmd("cd ./lua-language-server")
+        os.chdir(current_folder)
+        os.chdir("./lua-language-server")
         Cmd("3rd/luamake/luamake rebuild")
-        Cmd("popd")
+        os.chdir(current_folder)
 
         # DAP install for those that need to be installed manually
         log.Step("Install DAP Adapters")
