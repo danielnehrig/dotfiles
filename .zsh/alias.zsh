@@ -14,6 +14,10 @@ alias gatling='vagrant gatling-rsync-auto'
 alias grname='git config --get remote.origin.url'
 alias la='exa -la --icons'
 alias ls='exa'
+alias n='nvim'
+alias nv='nvim'
+alias vim='nvim'
+alias vi='nvim'
 
 # Linux virt manager qemu boxes
 if [[ `uname` == 'Linux' ]]; then
