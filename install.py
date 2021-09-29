@@ -10,10 +10,6 @@
 # go packages
 # symbolic links
 # note : see following arrays and or adjust them
-# TODO: Get list of installed dependencies from stdout
-# example: pip list
-# pacman -Q
-# pacman -Qm = yay dep
 
 import subprocess
 import os
@@ -418,6 +414,7 @@ def Linux():
     log = Log()
     Install("mkdir -p " + home + "/Pictures/Screenshots")
     Install("mkdir -p " + home + "/.config")
+    Install("mkdir -p " + home + "/code/work")
     UpdateLinux()
     UpdateSymLinks(linking_files_arch)
     UpdateNode()
@@ -436,16 +433,15 @@ def Linux():
     try:
         log.Step("Install System Dependencies")
         Install(
-            "sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja"
+            "sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty tree maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja"
         )
         Install(
-            "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont ttf-nerd-fonts-hack-complete-git bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
+            "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-nightly-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont nerd-fonts-fira-mono nerd-fonts-noto-sans-mono nerd-fonts-complete bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
         )
 
         # nodenv setup
         log.Step("Install nodenv")
         Install("nodenv install 16.4.2")
-        Install("nodenv install 12.8.0")
         Install("nodenv global 16.4.2")
 
         log.Step("Install pip dependencies")
@@ -603,4 +599,5 @@ if __name__ == "__main__":
 
     except:
         # TODO: figure out why error
+        # if it throws one
         log.Error("Error While Installing")
