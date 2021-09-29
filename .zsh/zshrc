@@ -41,4 +41,3 @@ source ~/dotfiles/.zsh/forgit.zsh
 [[ ! -n $(command -v circleci) ]] || source <(circleci completion zsh)
 [[ ! -n $(command -v zoxide) ]] || source <(zoxide init zsh)
 # [[ ! -n $(command -v rustup) ]] || eval $(rustup completions zsh)
-
