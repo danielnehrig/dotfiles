@@ -462,7 +462,7 @@ def Linux():
         Cmd("go get github.com/mattn/efm-langserver")
 
         # lua lsp
-        log.Step("Install lua langserver")
+        log.Info("Install lua langserver")
         Cmd("git clone https://github.com/sumneko/lua-language-server")
         Cmd("cd ./lua-language-server")
         Cmd("git submodule update --init --recursive")
@@ -472,6 +472,26 @@ def Linux():
         Cmd("popd")
         Cmd("cd ./lua-language-server")
         Cmd("3rd/luamake/luamake rebuild")
+        Cmd("popd")
+
+        # DAP install for those that need to be installed manually
+        log.Step("Install DAP Adapters")
+        log.Info("Install debugpy")
+        Cmd("mkdir ~/.virtualenvs")
+        Cmd("cd ~/.virtualenvs")
+        Cmd("python -m venv debugpy")
+        Cmd("debugpy/bin/python -m pip install debugpy")
+        Cmd("popd")
+
+        log.Info("Install java")
+        Cmd("git clone https://github.com/microsoft/java-debug " + home + "/dap/java-debug")
+        Cmd("git clone https://github.com/microsoft/vscode-java-test " + home + "/dap/vscode-java-test")
+        Cmd("~/dap/java-debug")
+        Cmd("./mvnw clean install")
+        Cmd("popd")
+        Cmd("~/dap/vscode-java-test")
+        Cmd("npm install")
+        Cmd("npm run build-plugin")
         Cmd("popd")
 
         log.Step("Install tmux plugin manager")
