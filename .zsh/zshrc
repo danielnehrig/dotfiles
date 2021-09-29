@@ -42,3 +42,5 @@ source ~/dotfiles/.zsh/forgit.zsh
 [[ ! -n $(command -v zoxide) ]] || source <(zoxide init zsh)
 # [[ ! -n $(command -v rustup) ]] || eval $(rustup completions zsh)
 
+
+alias luamake=/home/dnehrig/dotfiles/lua-language-server/3rd/luamake/luamake
