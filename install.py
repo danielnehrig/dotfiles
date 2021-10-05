@@ -14,10 +14,15 @@
 import subprocess
 import os
 import sys
+from typing import TypedDict, List
 from os import system
 from getpass import getuser
 from datetime import datetime
 from distutils.spawn import find_executable
+
+class SymLink(TypedDict):
+    source: str
+    dest: str
 
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
@@ -27,7 +32,7 @@ home = "{0}{1}".format(os.environ.get("HOME"), "/")
 pacman_packages = []
 
 # source is context current folder + repo item
-linking_files_mac = [
+linking_files_mac: List[SymLink] = [
     {"source": ".config/alacritty_mac.yml", "dest": ".config/alacritty.yml"},
     {"source": ".tmux.mac.conf", "dest": ".tmux.conf"},
     {"source": ".config/yabai/yabairc", "dest": ".config/yabai/yabairc"},
@@ -42,9 +47,9 @@ linking_files_mac = [
 ]
 
 # TODO add logic to link executables to path
-bin_files_arch = [{"source": "./scripts/locker.sh", "dest": "/usr/local/bin"}]
+bin_files_arch: List[SymLink] = [{"source": "./scripts/locker.sh", "dest": "/usr/local/bin"}]
 
-linking_files_arch = [
+linking_files_arch: List[SymLink] = [
     {"source": ".tmux.conf", "dest": ".tmux.conf"},
     {"source": ".zsh/zshrc", "dest": ".zshrc"},
     {"source": ".ssh/config", "dest": ".ssh/config"},
@@ -186,17 +191,7 @@ class Log(Colors):
         self.counter = self.counter + 1
 
 
-log = Log()
-
-
-def IsCI():
-    result = False
-    try:
-        if os.environ.get("CI") == "yes":
-            result = True
-    except:
-        return result
-    return result
+log: Log = Log()
 
 
 def cmd(call: str):
@@ -269,7 +264,7 @@ def link_file(source: str, dest: str):
         log.Error("Trace {0}".format(er))
 
 
-def link_files(files: list[dict[str, str]]):
+def link_files(files: List[SymLink]):
     for dic in files:
         source = None
         dest = None
@@ -307,74 +302,10 @@ def help():
             sys.exit(0)
 
 
-def update_darwin():
-    for key, option in enumerate(sys.argv):
-        if option == "--update=darwin" or (
-            option == "-u" and sys.argv[key + 1] == "darwin"
-        ):
-            install_cli_packages("brew", "upgrade", brew_dependencies)
-            sys.exit(0)
-
-
-def update_linux():
-    for key, option in enumerate(sys.argv):
-        if option == "--update=linux" or (
-            option == "-u" and sys.argv[key + 1] == "linux"
-        ):
-            install_cli_packages("yay", "-Syu", [["", ""]])
-            sys.exit(0)
-
-
-def install_node():
-    for key, option in enumerate(sys.argv):
-        if option == "--install=node" or (
-            option == "-i" and sys.argv[key + 1] == "node"
-        ):
-            install_cli_packages("npm", "install -g", node_packages)
-            sys.exit(0)
-
-
-def install_pip():
-    for key, option in enumerate(sys.argv):
-        if option == "--install=pip" or (option == "-i" and sys.argv[key + 1] == "pip"):
-            install_cli_packages("pip3.9", "install", pip_packages)
-            sys.exit(0)
-
-
-def update_pip():
-    for key, option in enumerate(sys.argv):
-        if option == "--update=pip" or (option == "-u" and sys.argv[key + 1] == "pip"):
-            install_cli_packages("pip3.9", "update", pip_packages)
-            sys.exit(0)
-
-
-def update_node():
-    for key, option in enumerate(sys.argv):
-        if option == "--update=node" or (
-            option == "-u" and sys.argv[key + 1] == "node"
-        ):
-            install_cli_packages("npm", "upgrade -g", node_packages)
-            sys.exit(0)
-
-
-def update_sym_links(files_dict: list[dict[str, str]]):
-    for key, option in enumerate(sys.argv):
-        if option == "--update=sym" or (option == "-u" and sys.argv[key + 1] == "sym"):
-            link_files(files_dict)
-            sys.exit(0)
-
-
 def Linux():
     cmd("mkdir -p " + home + "/Pictures/Screenshots")
     cmd("mkdir -p " + home + "/.config")
     cmd("mkdir -p " + home + "/code/work")
-    update_linux()
-    update_sym_links(linking_files_arch)
-    update_node()
-    update_pip()
-    install_pip()
-    install_node()
-    log.Critical("Linux is WIP")
 
     # git submodule pull
     log.Step("Pulling submodules")
@@ -433,12 +364,6 @@ def Darwin():
     cmd("mkdir -p " + home + "/Pictures/Screenshots")
     cmd("mkdir -p " + home + "/.config/skhd")
     cmd("mkdir -p " + home + "/.config/yabai")
-    update_darwin()
-    update_sym_links(linking_files_mac)
-    update_node()
-    update_pip()
-    install_pip()
-    install_node()
     log.Info("Starting Installation")
     log.Info("Installing Dependencies")
 
@@ -478,9 +403,8 @@ def Darwin():
     cmd("git lfs install")
 
     # install cask dependencies
-    if not IsCI():
-        log.Step("Installing Homebrew GUI dependencies")
-        install_cli_packages("brew", "install --cask", cask_dependencies)
+    log.Step("Installing Homebrew GUI dependencies")
+    install_cli_packages("brew", "install --cask", cask_dependencies)
 
     # install node
     log.Step("Installing Node")
