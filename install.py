@@ -412,11 +412,11 @@ def Linux():
 
         log.Step("Install pip dependencies")
         # python setup
-        install_cli_packages("pip3.9", "install", pip_packages)
+        install_cli_packages(python)
 
         # npm
         log.Step("Install npm dependencies")
-        install_cli_packages("npm", "install -g", node_packages)
+        install_cli_packages(node)
 
         # rust setup
         log.Step("Install rustup components")
@@ -480,7 +480,7 @@ def Darwin():
 
     # install brew dependencies
     log.Step("Installing Homebrew CLI dependencies")
-    install_cli_packages("brew", "install", brew_dependencies)
+    install_cli_packages(brew)
 
     # install git lfs
     log.Step("Installing git lfs")
@@ -488,7 +488,7 @@ def Darwin():
 
     # install cask dependencies
     log.Step("Installing Homebrew GUI dependencies")
-    install_cli_packages("brew", "install --cask", cask_dependencies)
+    install_cli_packages(brew_cask)
 
     # install node
     log.Step("Installing Node")
@@ -498,11 +498,11 @@ def Darwin():
 
     # node packages
     log.Step("Installing Node Packages")
-    install_cli_packages("npm", "install -g", node_packages)
+    install_cli_packages(node)
 
     # install python packages
     log.Step("Installing Python PIP Packages")
-    install_cli_packages("pip3.9", "install", pip_packages)
+    install_cli_packages(python)
 
     cmd("git clone https://github.com/tmux-plugins/tpm " + home + "/.tmux/plugins/tpm")
 
