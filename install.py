@@ -20,16 +20,38 @@ from getpass import getuser
 from datetime import datetime
 from distutils.spawn import find_executable
 
+
 class SymLink(TypedDict):
     source: str
     dest: str
 
-now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
-current_folder = os.path.abspath(os.getcwd())
-user = getuser()
-home = "{0}{1}".format(os.environ.get("HOME"), "/")
-pacman_packages = []
+
+# Modes available to Package managers
+class Modes(TypedDict):
+    # Install Packages
+    install: str
+    # Update Packages hint: update can also be install as a value
+    # becouse some package managers don't do update commands
+    # might make this optional
+    update: str
+
+
+class PackageManager(TypedDict):
+    # cli tool name (package manager name)
+    cli_tool: str
+    # index[0] is the package name index[1] is the bin name in path
+    packages: list[list[str]]
+    # the mode key is the internal compression check for behaviour in doing cli commands
+    # on a package manager and the value is the command passed to the package manager
+    modes: Modes
+
+
+steps: int = 0
+now: datetime = datetime.now()
+current_time: str = now.strftime("%H:%M:%S")
+current_folder: str = os.path.abspath(os.getcwd())
+user: str = getuser()
+home: str = "{0}{1}".format(os.environ.get("HOME"), "/")
 
 # source is context current folder + repo item
 linking_files_mac: List[SymLink] = [
@@ -47,7 +69,9 @@ linking_files_mac: List[SymLink] = [
 ]
 
 # TODO add logic to link executables to path
-bin_files_arch: List[SymLink] = [{"source": "./scripts/locker.sh", "dest": "/usr/local/bin"}]
+bin_files_arch: List[SymLink] = [
+    {"source": "./scripts/locker.sh", "dest": "/usr/local/bin"}
+]
 
 linking_files_arch: List[SymLink] = [
     {"source": ".tmux.conf", "dest": ".tmux.conf"},
@@ -67,71 +91,89 @@ linking_files_arch: List[SymLink] = [
     {"source": "polybar-powerline", "dest": ".config/polybar"},
 ]
 
-# python packages
-pip_packages = [["psutil", "psutil"], ["neovim", "nvim"]]
+# Python PIP Package Manager
+python: PackageManager = {
+    "cli_tool": "pip",
+    "modes": {"install": "install", "update": "install"},
+    "packages": [["psutil", "psutil"], ["neovim", "nvim"]],
+}
 
-# mac osx packages
-brew_dependencies = [
-    ["exa", "exa"],
-    ["mono", "mono"],
-    ["tree", "tree"],
-    ["gdb", "gdb"],
-    ["fzf", "fzf"],
-    ["bat", "bat"],
-    ["unrar", "unrar"],
-    ["cmake", "cmake"],
-    ["kubectl", "kubectl"],
-    ["neofetch", "neofetch"],
-    ["git-lfs", "git-lfs"],
-    ["neofetch", "neofetch"],
-    ["radare2", "radare2"],
-    ["gcc", "gcc"],
-    ["htop", "htop"],
-    ["bashtop", "bashtop"],
-    ["make", "make"],
-    ["python", "python"],
-    ["tmux", "tmux"],
-    ["ruby", "ruby"],
-    ["go", "go"],
-    ["perl", "perl"],
-    ["github/gh/gh", "gh"],
-    ["hub", "hub"],
-    ["lua", "lua"],
-    ["--HEAD neovim", "nvim"],
-    ["zsh", "zsh"],
-    ["nodenv", "nodenv"],
-    ["docker", "docker"],
-    ["koekeishiya/formulae/skhd", "skhd"],
-    ["koekeishiya/formulae/yabai", "yabai"],
-    ["docker-compose", "docker-compose"],
-]
 
-# mac desktop apps
-cask_dependencies = [
-    ["virtualbox", "virtualbox"],
-    ["google-chrome", "google-chrome"],
-    ["brave-browser", "brave-browser"],
-    ["google-cloud-sdk", "google-cloud-sdk"],
-    ["firefox", "firefox"],
-    ["ghidra", "ghidra"],
-    ["abstract", "abstract"],
-    ["visual-studio-code", "visual-studio-code"],
-    ["microsoft-office", "microsoft-office"],
-    ["postman", "postman"],
-    ["docker", "docker"],
-    ["alacritty", "alacritty"],
-    ["whatsapp", "whatsapp"],
-    ["discord", "discord"],
-    ["font-hack-nerd-font", "font-hack-nerd-font"],
-]
+# Node NPM Package Manager
+brew: PackageManager = {
+    "cli_tool": "brew",
+    "modes": {"install": "install -g", "update": "upgrade -g"},
+    "packages": [
+        ["exa", "exa"],
+        ["mono", "mono"],
+        ["tree", "tree"],
+        ["gdb", "gdb"],
+        ["fzf", "fzf"],
+        ["bat", "bat"],
+        ["unrar", "unrar"],
+        ["cmake", "cmake"],
+        ["kubectl", "kubectl"],
+        ["neofetch", "neofetch"],
+        ["git-lfs", "git-lfs"],
+        ["neofetch", "neofetch"],
+        ["radare2", "radare2"],
+        ["gcc", "gcc"],
+        ["htop", "htop"],
+        ["bashtop", "bashtop"],
+        ["make", "make"],
+        ["python", "python"],
+        ["tmux", "tmux"],
+        ["ruby", "ruby"],
+        ["go", "go"],
+        ["perl", "perl"],
+        ["github/gh/gh", "gh"],
+        ["hub", "hub"],
+        ["lua", "lua"],
+        ["--HEAD neovim", "nvim"],
+        ["zsh", "zsh"],
+        ["nodenv", "nodenv"],
+        ["docker", "docker"],
+        ["koekeishiya/formulae/skhd", "skhd"],
+        ["koekeishiya/formulae/yabai", "yabai"],
+        ["docker-compose", "docker-compose"],
+    ],
+}
 
-# nodejs global bins
-node_packages = [
-    ["nodemon", "nodemon"],
-    ["yarn", "yarn"],
-    ["typescript", "tsc"],
-    ["@bitwarden/cli", "bw"],
-]
+# Node NPM Package Manager
+node: PackageManager = {
+    "cli_tool": "npm",
+    "modes": {"install": "install -g", "update": "upgrade -g"},
+    "packages": [
+        ["nodemon", "nodemon"],
+        ["yarn", "yarn"],
+        ["typescript", "tsc"],
+        ["@bitwarden/cli", "bw"],
+    ],
+}
+
+# Node NPM Package Manager
+brew_cask: PackageManager = {
+    "cli_tool": "brew",
+    "modes": {"install": "install -g", "update": "upgrade -g"},
+    "packages": [
+        ["virtualbox", "virtualbox"],
+        ["google-chrome", "google-chrome"],
+        ["brave-browser", "brave-browser"],
+        ["google-cloud-sdk", "google-cloud-sdk"],
+        ["firefox", "firefox"],
+        ["ghidra", "ghidra"],
+        ["abstract", "abstract"],
+        ["visual-studio-code", "visual-studio-code"],
+        ["microsoft-office", "microsoft-office"],
+        ["postman", "postman"],
+        ["docker", "docker"],
+        ["alacritty", "alacritty"],
+        ["whatsapp", "whatsapp"],
+        ["discord", "discord"],
+        ["font-hack-nerd-font", "font-hack-nerd-font"],
+    ],
+}
+
 
 arrow = "====>"
 
@@ -148,55 +190,62 @@ class Colors:
 
 
 class Log(Colors):
-    user = getuser()
-    counter = 0
+    user: str = getuser()
+    counter: int = 0
+    # TODO
+    loglevel: str = "info"
 
-    def now(self):
-        time = datetime.now()
+    def now(self) -> str:
+        time: datetime = datetime.now()
         return time.strftime("%H:%M:%S")
 
-    def buildLogString(self, kind: str, color: str):
-        start = "{2} {0} " + color + "{1}:" + kind + " " + self.ENDC
-        attach = self.HEADER + ": {3}" + self.ENDC
+    def buildLogString(self, kind: str, color: str) -> str:
+        start: str = "{2} {0} " + color + "{1}:" + kind + "\t" + self.ENDC
+        attach: str = self.BOLD + "\t--> {3}" + self.ENDC
         return start + attach
 
-    def buildStepString(self, kind: str, color: str):
-        start = "{2} {0} " + color + "{1}:" + kind + " {4}/16" + self.ENDC
-        attach = self.BOLD + ": {3}" + self.ENDC
+    def buildStepString(self, kind: str, color: str) -> str:
+        start: str = "{2} {0} " + color + "{1}:" + kind + "\t{4}/" + "{5}" + self.ENDC
+        attach: str = self.BOLD + "\t--> {3}" + self.ENDC
         return start + attach
 
-    def Success(self, string: str):
-        st = self.buildLogString("SUCCESS", self.OKGREEN)
-        print(st.format(self.now(), self.user, arrow, string))
-
-    def Warning(self, string: str):
-        st = self.buildLogString("WARNING", self.WARNING)
-        print(st.format(self.now(), self.user, arrow, string))
-
-    def Error(self, string: str):
-        st = self.buildLogString("ERROR", self.FAIL)
-        print(st.format(self.now(), self.user, arrow, string))
-
-    def Critical(self, string: str):
-        st = self.buildLogString("CRITICAL", self.FAIL)
-        print(st.format(self.now(), self.user, arrow, string))
-
-    def Info(self, string: str):
-        st = self.buildLogString("INFO", self.OKBLUE)
-        print(st.format(self.now(), self.user, arrow, string))
-
-    def Step(self, string: str):
-        st = self.buildStepString("STEP", self.OKBLUE)
-        print(st.format(self.now(), self.user, arrow, string, self.counter))
+    def Success(self, string: str) -> None:
+        st: str = self.buildStepString("SUCCESS", self.OKGREEN)
+        print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
         self.counter = self.counter + 1
+
+    def Warning(self, string: str) -> None:
+        st: str = self.buildLogString("WARNING", self.WARNING)
+        print(st.format(self.now(), self.user, arrow, string))
+
+    def Error(self, string: str) -> None:
+        st: str = self.buildLogString("ERROR", self.FAIL)
+        print(st.format(self.now(), self.user, arrow, string))
+
+    def Critical(self, string: str) -> None:
+        st: str = self.buildLogString("CRITICAL", self.FAIL)
+        print(st.format(self.now(), self.user, arrow, string))
+
+    def Info(self, string: str) -> None:
+        st: str = self.buildLogString("INFO", self.OKBLUE)
+        print(st.format(self.now(), self.user, arrow, string))
+
+    def Skip(self, string: str) -> None:
+        st: str = self.buildStepString("SKIP", self.OKBLUE)
+        print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
+        self.counter = self.counter + 1
+
+    def Step(self, string: str) -> None:
+        st: str = self.buildStepString("STEP", self.OKBLUE)
+        print(st.format(self.now(), self.user, arrow, string, self.counter, steps))
 
 
 log: Log = Log()
 
 
-def cmd(call: str):
+def cmd(call: str) -> None:
     try:
-        log.Info("Executing {0}".format(call))
+        log.Info("Executing {0}{1}{2}".format(Colors.WARNING, call, Colors.ENDC))
         cmdArr = call.split()
         with open(os.devnull, "w") as f:
             subprocess.call(cmdArr, stdout=f)
@@ -206,33 +255,59 @@ def cmd(call: str):
         log.Error("Trace {0}".format(err))
 
 
-def in_path(cmd: str):
+def in_path(cmd: str) -> bool:
+    inPath = False
     try:
         inPath = find_executable(cmd) is not None
-        return inPath
     except subprocess.CalledProcessError as e:
         log.Error(
             "Call Check {0} Failed with return code {1}".format(cmd, e.returncode)
         )
 
+    return inPath
 
-def install_cli_packages(
-    cli_tool: str, cli_options: str, arr: list[list[str]], options: str = ""
-):
-    if not in_path(cli_tool):
-        log.Warning("{0} not in path skipping installing".format(cli_tool))
+
+def install_cli_packages(package_manager: PackageManager):
+    if not in_path(package_manager["cli_tool"]):
+        log.Error(
+            "{0}{1}{2} not in path skipping installing".format(
+                Colors.FAIL, package_manager["cli_tool"]
+            )
+        )
         return
-    for package in arr:
-        log.Info("Installing CLI Package {0}".format(package[0]))
-        install = "{0} {1} {2} {3}".format(cli_tool, cli_options, package[0], options)
+    mode = get_package_mode()
+    for package in package_manager["packages"]:
+        install = "{0} {1} {2}".format(
+            package_manager["cli_tool"], package_manager["modes"][mode], package[0]
+        )
         try:
             inPath = in_path(package[1])
-            if not inPath:
+            isForce = mode == "update" and True or False
+            for _, option in enumerate(sys.argv):
+                if option == "--force":
+                    isForce = True
+
+            if not inPath or isForce:
+                log.Info(
+                    "Installing CLI Package {0}{1}".format(Colors.OKGREEN, package[0])
+                )
                 cmd(install)
-                log.Success("Success Installing package {0}".format(package[0]))
+                log.Success(
+                    "Success Installing package {0}{1}".format(
+                        Colors.OKGREEN, package[0]
+                    )
+                )
+            else:
+                log.Skip(
+                    "CLI Package {0}{1}{2} in path".format(
+                        Colors.OKBLUE, package[0], Colors.ENDC
+                    )
+                )
         except subprocess.CalledProcessError as e:
             log.Error(
-                "Failed to install {0} with code {1}".format(package, e.returncode)
+                "Failed to install {0}{1}{2} with code {3}".format(
+                    Colors.FAIL, package, Colors.ENDC, e.returncode
+                )
             )
 
 
@@ -300,6 +375,15 @@ def help():
                 "-i option, --install=option       | option = linux,darwin,sym,node,pip,cargo,go"
             )
             sys.exit(0)
+
+
+def get_package_mode() -> str:
+    mode = "install"
+    for option in sys.argv:
+        if option == "--update" or option == "-u":
+            mode = "update"
+
+    return mode
 
 
 def Linux():

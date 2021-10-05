@@ -13,6 +13,7 @@ if [[ `uname` == "Darwin"  ]]; then
 PATH+=":/usr/local/share/dotnet"
 PATH+=":/usr/local/opt/llvm/bin/"
 PATH+=":$HOME/go/bin"
+PATH+=":$HOME/.dotnet/tools"
 fi
 
 export EDITOR='nvim'
