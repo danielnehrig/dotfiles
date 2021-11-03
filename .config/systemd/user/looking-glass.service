@@ -1,0 +1,9 @@
+[Unit]
+Description=LookingGlass
+
+[Service]
+ExecStart=/home/dnehrig/LookingGlass/host/build/looking-glass-host app:shmFile=/dev/kvmfr1 app:throttleFPS=60
+Restart=always
+
+[Install]
+WantedBy=default.target
