@@ -281,7 +281,7 @@ exec_always --no-startup-id ~/dotfiles/scripts/nvimServer.sh
 
 
 ################## change wallpaper ######################
-exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/herbst.png
+exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/forest.png
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
