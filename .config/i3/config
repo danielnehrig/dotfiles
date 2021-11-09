@@ -2,8 +2,12 @@
 set $mod Mod4
 
 ###################set font###################
-font pango:SauceCodePro Nerd Font Mono
+font pango:Fira Code Regular Nerd Font Complete 0
 floating_modifier Mod1
+force_focus_wrapping yes
+default_border none
+hide_edge_borders both
+default_floating_border 1pixel
 
 ###################start a terminal###################
 bindsym $mod+Return exec kitty
