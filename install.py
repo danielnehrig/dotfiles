@@ -82,6 +82,7 @@ linking_files_arch: List[SymLink] = [
     {"source": ".dotfiles-vim/vimrc", "dest": ".vimrc"},
     {"source": ".config/nvim", "dest": ".config/nvim"},
     {"source": ".config/i3", "dest": ".config/i3"},
+    {"source": ".config/sway", "dest": ".config/sway"},
     {"source": ".config/dunst", "dest": ".config/dunst"},
     {"source": "themes/rofi/oxide", "dest": ".config/rofi"},
     {"source": ".config/picom.conf", "dest": ".config/picom.conf"},

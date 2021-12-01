@@ -1,0 +1,6 @@
+1. Move _conkyrc file to home and rename ".conkyrc" and install included fonts.
+2. Apply the background of your choice to a wallpaper using an image editor such as Gimp. Place wherever you like.
+3. Run conky
+4. Move conky into desired location (in front of the bg) by hilding alt+z and dragging the window with your mouse or by editing the x and y placement values withing conkyrc.
+
+Enjoy :)

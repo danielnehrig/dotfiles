@@ -203,7 +203,7 @@
 
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=214
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=004
   # Default current directory foreground color.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=239
   # If directory is too long, shorten some of its segments to the shortest possible unique
