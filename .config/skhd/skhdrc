@@ -76,7 +76,7 @@
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
 #
-alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+alt - return : /Applications/kitty.app/Contents/MacOS/kitty
 
 # focus window
 alt - x : yabai -m window --focus recent

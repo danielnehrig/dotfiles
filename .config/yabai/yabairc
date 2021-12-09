@@ -42,7 +42,7 @@ yabai -m space 7
 yabai -m space 8 
 
 # window rules
-yabai -m rule --add app="^Alacritty$" space=1
+yabai -m rule --add app="^Kitty$" space=1
 yabai -m rule --add app="^Mail$" space=mail
 yabai -m rule --add app="^Safari$" space=2
 yabai -m rule --add app="^Chrome$" space=2
