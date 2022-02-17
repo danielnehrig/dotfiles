@@ -208,7 +208,7 @@ bindsym $mod+Shift+F4 exec --no-startup-id scrot -u -e 'feh $f -x'
 
 ################### assign specific apps to keybindings ###################
 
-bindsym $mod+d exec rofi -dpi 150 -show drun
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/bin/launcher_text
 bindsym $mod+Shift+q exec rofi -dpi 150 -show emoji -modi emoji
 bindsym $mod+b exec bwmenu
 bindsym $mod+x exec i3lock-fancy
