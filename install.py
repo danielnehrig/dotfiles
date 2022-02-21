@@ -134,6 +134,7 @@ brew: PackageManager = {
         ["zsh", "zsh"],
         ["nodenv", "nodenv"],
         ["docker", "docker"],
+        ["onefetch", "onefetch"],
         ["koekeishiya/formulae/skhd", "skhd"],
         ["koekeishiya/formulae/yabai", "yabai"],
         ["docker-compose", "docker-compose"],
@@ -400,7 +401,7 @@ def Linux():
     try:
         log.Step("Install System Dependencies")
         cmd(
-            "sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty tree maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja"
+            "sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty tree maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja onefetch"
         )
         cmd(
             "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont nerd-fonts-fira-mono nerd-fonts-noto-sans-mono nerd-fonts-complete bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
