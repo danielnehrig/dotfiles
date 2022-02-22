@@ -392,6 +392,7 @@ def Linux():
     cmd("mkdir -p " + home + "/Pictures/Screenshots")
     cmd("mkdir -p " + home + "/.config")
     cmd("mkdir -p " + home + "/code/work")
+    cmd("mkdir -p " + home + "/Video/screencast")
 
     # git submodule pull
     log.Step("Pulling submodules")
@@ -401,10 +402,10 @@ def Linux():
     try:
         log.Step("Install System Dependencies")
         cmd(
-            "sudo pacman -S base-devel nvidia zsh docker docker-compose alacritty tree maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter vim tmux i3-gaps xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip rust-analyzer ninja onefetch"
+            "sudo pacman -S base-devel nvidia-dkms zsh docker docker-compose kitty tree maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter tmux i3 xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip ninja onefetch zoxide"
         )
         cmd(
-            "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont nerd-fonts-fira-mono nerd-fonts-noto-sans-mono nerd-fonts-complete bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx"
+            "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont nerd-fonts-fira-code nerd-fonts-noto-sans-mono bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx ttf-meslo-nerd-font-powerlevel10k"
         )
 
         # nodenv setup
