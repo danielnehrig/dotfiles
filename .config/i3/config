@@ -262,7 +262,8 @@ exec_always --no-startup-id dunst &
 
 ################## change wallpaper ######################
 # exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/forest.png
-exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/anime_girl_1.png
+# exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/anime_girl_1.png
+exec xwinwrap -g 1920x1080 -ni -s -nf -b -un -ov -fdt -argb -- mpv --mute=yes --no-audio --no-osc --no-osd-bar --quiet --screen=0 -wid WID --loop ~/dotfiles/wallpapers/wall.gif
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
