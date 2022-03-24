@@ -259,6 +259,7 @@ exec_always --no-startup-id light-locker --lock-after-screensaver=30 &
 exec_always --no-startup-id killall picom || picom --shadow-exclude "! name~=''" --blur-background-exclude  "! name~=''" --experimental-backends &
 exec_always --no-startup-id dunst &
 # exec_always --no-startup-id ~/dotfiles/scripts/nvimServer.sh
+exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 ################## change wallpaper ######################
 # exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/forest.png
