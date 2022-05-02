@@ -259,10 +259,12 @@ exec_always --no-startup-id light-locker --lock-after-screensaver=30 &
 exec_always --no-startup-id killall picom || picom --shadow-exclude "! name~=''" --blur-background-exclude  "! name~=''" --experimental-backends &
 exec_always --no-startup-id dunst &
 # exec_always --no-startup-id ~/dotfiles/scripts/nvimServer.sh
+exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 ################## change wallpaper ######################
 # exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/forest.png
-exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/anime_girl_1.png
+# exec_always --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/anime_girl_1.png
+exec xwinwrap -g 1920x1080 -ni -s -nf -b -un -ov -fdt -argb -- mpv --mute=yes --no-audio --no-osc --no-osd-bar --quiet --screen=0 -wid WID --loop ~/dotfiles/wallpapers/wall.gif
 
 ################### keybindings to custom script initialization ###################
 ## to start polybar ##
