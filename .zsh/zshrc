@@ -44,5 +44,3 @@ source ~/dotfiles/.zsh/forgit.zsh
 [[ ! -n $(command -v zoxide) ]] || source <(zoxide init zsh)
 
 source ~/dotfiles/.zsh/overwrite.zsh
-
-alias luamake=/Users/dnehrig/.local/share/nvim/lsp/lua/3rd/luamake/luamake
