@@ -14,7 +14,7 @@
 import subprocess
 import os
 import sys
-from typing import TypedDict, List
+from typing import TypedDict, List, Union
 from os import system
 from getpass import getuser
 from datetime import datetime
@@ -40,7 +40,7 @@ class PackageManager(TypedDict):
     # cli tool name (package manager name)
     cli_tool: str
     # index[0] is the package name index[1] is the bin name in path
-    packages: list[list[str]]
+    packages: list[tuple[str, Union[str, None]]]
     # the mode key is the internal compression check for behaviour in doing cli commands
     # on a package manager and the value is the command passed to the package manager
     modes: Modes
@@ -96,7 +96,7 @@ linking_files_arch: List[SymLink] = [
 python: PackageManager = {
     "cli_tool": "pip",
     "modes": {"install": "install", "update": "install"},
-    "packages": [["psutil", "psutil"], ["neovim", "nvim"]],
+    "packages": [("psutil", None), ("neovim", None)],
 }
 
 
@@ -105,39 +105,39 @@ brew: PackageManager = {
     "cli_tool": "brew",
     "modes": {"install": "install -g", "update": "upgrade -g"},
     "packages": [
-        ["exa", "exa"],
-        ["mono", "mono"],
-        ["tree", "tree"],
-        ["gdb", "gdb"],
-        ["fzf", "fzf"],
-        ["bat", "bat"],
-        ["unrar", "unrar"],
-        ["cmake", "cmake"],
-        ["kubectl", "kubectl"],
-        ["neofetch", "neofetch"],
-        ["git-lfs", "git-lfs"],
-        ["neofetch", "neofetch"],
-        ["radare2", "radare2"],
-        ["gcc", "gcc"],
-        ["htop", "htop"],
-        ["bashtop", "bashtop"],
-        ["make", "make"],
-        ["python", "python"],
-        ["tmux", "tmux"],
-        ["ruby", "ruby"],
-        ["go", "go"],
-        ["perl", "perl"],
-        ["github/gh/gh", "gh"],
-        ["hub", "hub"],
-        ["lua", "lua"],
-        ["--HEAD neovim", "nvim"],
-        ["zsh", "zsh"],
-        ["nodenv", "nodenv"],
-        ["docker", "docker"],
-        ["onefetch", "onefetch"],
-        ["koekeishiya/formulae/skhd", "skhd"],
-        ["koekeishiya/formulae/yabai", "yabai"],
-        ["docker-compose", "docker-compose"],
+        ("exa", "exa"),
+        ("mono", "mono"),
+        ("tree", "tree"),
+        ("gdb", "gdb"),
+        ("fzf", "fzf"),
+        ("bat", "bat"),
+        ("unrar", "unrar"),
+        ("cmake", "cmake"),
+        ("kubectl", "kubectl"),
+        ("neofetch", "neofetch"),
+        ("git-lfs", "git-lfs"),
+        ("neofetch", "neofetch"),
+        ("radare2", "radare2"),
+        ("gcc", "gcc"),
+        ("htop", "htop"),
+        ("bashtop", "bashtop"),
+        ("make", "make"),
+        ("python", "python"),
+        ("tmux", "tmux"),
+        ("ruby", "ruby"),
+        ("go", "go"),
+        ("perl", "perl"),
+        ("github/gh/gh", "gh"),
+        ("hub", "hub"),
+        ("lua", "lua"),
+        ("--HEAD neovim", "nvim"),
+        ("zsh", "zsh"),
+        ("nodenv", "nodenv"),
+        ("docker", "docker"),
+        ("onefetch", "onefetch"),
+        ("koekeishiya/formulae/skhd", "skhd"),
+        ("koekeishiya/formulae/yabai", "yabai"),
+        ("docker-compose", "docker-compose"),
     ],
 }
 
@@ -146,10 +146,10 @@ node: PackageManager = {
     "cli_tool": "npm",
     "modes": {"install": "install -g", "update": "upgrade -g"},
     "packages": [
-        ["nodemon", "nodemon"],
-        ["yarn", "yarn"],
-        ["typescript", "tsc"],
-        ["@bitwarden/cli", "bw"],
+        ("nodemon", "nodemon"),
+        ("yarn", "yarn"),
+        ("typescript", "tsc"),
+        ("@bitwarden/cli", "bw"),
     ],
 }
 
@@ -158,21 +158,20 @@ brew_cask: PackageManager = {
     "cli_tool": "brew",
     "modes": {"install": "install -g", "update": "upgrade -g"},
     "packages": [
-        ["virtualbox", "virtualbox"],
-        ["google-chrome", "google-chrome"],
-        ["brave-browser", "brave-browser"],
-        ["google-cloud-sdk", "google-cloud-sdk"],
-        ["firefox", "firefox"],
-        ["ghidra", "ghidra"],
-        ["abstract", "abstract"],
-        ["visual-studio-code", "visual-studio-code"],
-        ["microsoft-office", "microsoft-office"],
-        ["postman", "postman"],
-        ["docker", "docker"],
-        ["alacritty", "alacritty"],
-        ["whatsapp", "whatsapp"],
-        ["discord", "discord"],
-        ["font-hack-nerd-font", "font-hack-nerd-font"],
+        ("virtualbox", None),
+        ("google-chrome", None),
+        ("brave-browser", None),
+        ("google-cloud-sdk", None),
+        ("firefox", None),
+        ("ghidra", None),
+        ("visual-studio-code", None),
+        ("microsoft-office", None),
+        ("postman", None),
+        ("docker", "docker"),
+        ("kitty", None),
+        ("whatsapp", None),
+        ("discord", None),
+        ("font-hack-nerd-font", None),
     ],
 }
 
@@ -283,7 +282,10 @@ def install_cli_packages(package_manager: PackageManager):
             package_manager["cli_tool"], package_manager["modes"][mode], package[0]
         )
         try:
-            inPath = in_path(package[1])
+            if package[1]:
+                inPath = in_path(package[1])
+            else:
+                inPath = False
             isForce = mode == "update" and True or False
             for _, option in enumerate(sys.argv):
                 if option == "--force":
