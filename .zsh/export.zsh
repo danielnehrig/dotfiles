@@ -10,6 +10,7 @@ fi
 
 # User exports
 if [[ `uname` == "Darwin"  ]]; then
+ulimit -n 4096
 PATH+=":/usr/local/share/dotnet"
 PATH+=":/usr/local/opt/llvm/bin/"
 PATH+=":$HOME/go/bin"

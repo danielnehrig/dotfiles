@@ -16,7 +16,7 @@ alias la='exa -la --icons'
 alias ls='exa'
 alias n='nvim'
 alias nv='nvim'
-alias vim='nvim'
+alias nvc='nvim --clean -u ~/.config/nvim/minimal.lua'
 alias vi='nvim'
 
 # Linux virt manager qemu boxes
