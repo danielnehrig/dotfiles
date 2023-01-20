@@ -103,7 +103,7 @@ python: PackageManager = {
 # Node NPM Package Manager
 brew: PackageManager = {
     "cli_tool": "brew",
-    "modes": {"install": "install -g", "update": "upgrade -g"},
+    "modes": {"install": "install", "update": "upgrade"},
     "packages": [
         ("exa", "exa"),
         ("mono", "mono"),
@@ -133,7 +133,6 @@ brew: PackageManager = {
         ("--HEAD neovim", "nvim"),
         ("zsh", "zsh"),
         ("nodenv", "nodenv"),
-        ("docker", "docker"),
         ("onefetch", "onefetch"),
         ("koekeishiya/formulae/skhd", "skhd"),
         ("koekeishiya/formulae/yabai", "yabai"),
@@ -156,7 +155,7 @@ node: PackageManager = {
 # Node NPM Package Manager
 brew_cask: PackageManager = {
     "cli_tool": "brew",
-    "modes": {"install": "install -g", "update": "upgrade -g"},
+    "modes": {"install": "install --cask", "update": "upgrade --cask"},
     "packages": [
         ("virtualbox", None),
         ("google-chrome", None),
