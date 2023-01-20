@@ -14,6 +14,7 @@ if [[ `uname` == "Darwin"  ]]; then
 ulimit -n 4096
 PATH+=":/usr/local/share/dotnet"
 PATH+=":/usr/local/opt/llvm/bin/"
+PATH+=":/usr/local/sbin"
 PATH+=":$HOME/go/bin"
 PATH+=":$HOME/.luarocks/bin"
 PATH+=":$HOME/.dotnet/tools"

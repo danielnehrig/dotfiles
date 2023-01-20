@@ -18,6 +18,9 @@ alias n='nvim'
 alias nv='nvim'
 alias nvc='nvim --clean -u ~/.config/nvim/minimal.lua'
 alias vi='nvim'
+alias gke-gloo-poc='gcloud beta container clusters get-credentials gloo-poc-gw-1  --region europe-west3 --project gke-reference'
+alias gke-shared-ref='gcloud beta container clusters get-credentials shared-reference  --region europe-west3 --project gke-reference'
+alias gke-ref='gcloud beta container clusters get-credentials gke-ref-service-cluster-v2 --region europe-west3 --project gke-reference'
 
 # Linux virt manager qemu boxes
 if [[ `uname` == 'Linux' ]]; then
