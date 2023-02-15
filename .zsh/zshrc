@@ -19,14 +19,16 @@ antigen bundle docker
 antigen bundle github
 antigen bundle command-not-found
 
-antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle jeffreytse/zsh-vi-mode
+# antigen bundle jeffreytse/zsh-vi-mode 
+# Syntax fix
+antigen bundle fbearoff/zsh-vi-mode
 antigen bundle zsh-users/zsh-completions
 
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme romkatv/powerlevel10k
-
 antigen apply
+
 
 source ~/dotfiles/.zsh/export.zsh
 source ~/dotfiles/.zsh/settings.zsh
