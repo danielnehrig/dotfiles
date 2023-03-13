@@ -7,7 +7,6 @@ NEW_PATH+=":$HOME/.cargo/bin"
 NEW_PATH+=":$HOME/go/bin"
 NEW_PATH+=":$HOME/.gem/ruby/2.7.0/bin"
 PATH=$NEW_PATH$PATH
-eval $(ssh-agent -s)
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
