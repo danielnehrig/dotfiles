@@ -16,47 +16,6 @@ function printColors() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
-function gitcommitcheck() {
-  isShopRepo=$(git remote -v)
-  if ! [[ $isShopRepo =~ '(shop-apotheke|shopeav)' ]]; then
-      echo "Not In Shop Repo"
-      return
-  fi
-  currentbranch=$(git branch | grep \* | cut -d ' ' -f2 | cut -d '/' -f2)
-  if [[ $currentbranch =~ 'PTBUY-[0-9]{1-4}' ]]
-  then
-    if [[ ! -z $1 ]]
-    then
-      commitname=$(echo $currentbranch-$1)
-      git commit -m "$currentbranch: $1"
-    else
-      echo 'No Changes specified'
-      return
-    fi
-  else
-    echo 'Branch has wrong Formating'
-    return
-  fi
-}
-
-function gitcommitcheckpupf() {
-  currentbranch=$(git branch | grep \* | cut -d ' ' -f2 | cut -d '/' -f2)
-  if [[ $currentbranch =~ 'PTBUY-[0-9]{1-4}' ]]
-  then
-    if [[ ! -z $1 ]]
-    then
-      commitname=$(echo "($currentbranch): $1")
-      git commit -m "fix($currentbranch): $1"
-    else
-      echo 'No Changes specified'
-      return
-    fi
-  else
-    echo 'Not IN Pupf Repo'
-    return
-  fi
-}
-
 function tarPackUnpack() {
   case "$1" in
     pack)
@@ -158,16 +117,3 @@ function swagger_preview() {
     fi
 }
 
-LAST_REPO=""
-
-cd() {
-  builtin cd "$@"
-  git rev-parse 2>/dev/null
-
-  if [ $? -eq 0 ]; then
-    if [ "$LAST_REPO" != $(basename $(git rev-parse --show-toplevel)) ]; then
-      onefetch
-      LAST_REPO=$(basename $(git rev-parse --show-toplevel))
-    fi
-  fi
-}

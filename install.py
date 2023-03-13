@@ -395,25 +395,8 @@ def Linux():
     cmd("mkdir -p " + home + "/code/work")
     cmd("mkdir -p " + home + "/Video/screencast")
 
-    # git submodule pull
-    log.Step("Pulling submodules")
-    cmd("git submodule update --init --recursive")
-
     # cloning dependencies zsh theme and plugins
     try:
-        log.Step("Install System Dependencies")
-        cmd(
-            "sudo pacman -S base-devel nvidia-dkms zsh docker docker-compose kitty tree maim exa network-manager-applet kubectl xclip go rustup clang gcc cmake lightdm lightdm-webkit2-greeter tmux i3 xorg networkmanager pulseaudio bat fd ripgrep neofetch python2 pyhton2-pip python python-pip ninja onefetch zoxide"
-        )
-        cmd(
-            "yay -S nodenv nodenv-node-build-git brave-bin python-pynvim ueberzug neovim-git dunst-git polybar-git rofi-git picom-ibhagwan-git ttf-material-design-icon-webfont nerd-fonts-fira-code nerd-fonts-noto-sans-mono bitwarden-bin bitwarden-rofi-git git-delta lightdm-webkit2-theme-glorious jdtls teams-for-linux rofi-emoji gromit-mpx ttf-meslo-nerd-font-powerlevel10k"
-        )
-
-        # nodenv setup
-        log.Step("Install nodenv")
-        cmd("nodenv install 16.4.2")
-        cmd("nodenv global 16.4.2")
-
         log.Step("Install pip dependencies")
         # python setup
         install_cli_packages(python)

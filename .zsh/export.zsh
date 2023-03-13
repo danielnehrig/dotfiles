@@ -1,11 +1,13 @@
 # Adding Path Data Linux
 if [[ `uname` == "Linux"  ]]; then
-PATH+=":$HOME/.local/lib/python3.9/site-packages"
-PATH+=":$HOME/.local/bin"
-PATH+=":$HOME/.luarocks/bin"
-PATH+=":$HOME/.cargo/bin"
-PATH+=":$HOME/go/bin"
-PATH+=":$HOME/.gem/ruby/2.7.0/bin"
+NEW_PATH+=":$HOME/.local/lib/python3.9/site-packages"
+NEW_PATH+=":$HOME/.local/bin"
+NEW_PATH+=":$HOME/.luarocks/bin"
+NEW_PATH+=":$HOME/.cargo/bin"
+NEW_PATH+=":$HOME/go/bin"
+NEW_PATH+=":$HOME/.gem/ruby/2.7.0/bin"
+PATH=$NEW_PATH$PATH
+eval $(ssh-agent -s)
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
