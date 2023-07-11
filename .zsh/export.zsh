@@ -26,3 +26,4 @@ export DEFAULT_USER="$USER"
 export UNCRUSTIFY_CONFIG=$HOME/dotfiles/.uncrustify
 export COMPOSE_PARALLEL_LIMIT=1000
 export COMPOSE_HTTP_TIMEOUT=120
+export COLORTERM=truecolor
