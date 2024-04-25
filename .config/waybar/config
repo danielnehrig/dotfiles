@@ -151,10 +151,10 @@
       "tooltip": false,
       "on-click": "~/.config/rofi/powermenu/type-2/powermenu.sh &"
     },
-    "custom/ibus": {
+    "custom/vmbox": {
       "format": "{}",
-      "exec": "/home/tdm/.config/waybar/scripts/input.sh &",
-      "interval": 1,
+      "exec": "/home/dashie/dotfiles/scripts/vm.sh &",
+      "interval": 2,
       "tooltip": false,
       "tooltip-format": "{}",
       "on-click": "/home/tdm/.config/waybar/scripts/ibus.sh &",
