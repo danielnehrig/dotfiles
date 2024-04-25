@@ -39,25 +39,18 @@ browser = brave
 mouse_left_click = close_current
 mouse_middle_click = do_action
 mouse_right_click = close_all
-
-[shortcuts]
-close = ctrl+space
-close_all = ctrl+shift+space
-history = ctrl+Escape
-context = ctrl+shift+period
+frame_color = "#8caaee"
+separator_color= frame
 
 [urgency_low]
-timeout = 5
-background = "#3d3d3d"
-foreground = "#ffffff"
+background = "#303446"
+foreground = "#c6d0f5"
 
 [urgency_normal]
-timeout = 6
-background = "#3d3d3d"
-foreground = "#ffffff"
+background = "#303446"
+foreground = "#c6d0f5"
 
 [urgency_critical]
-timeout = 0
-background = "#3d3d3d"
-foreground = "#ffffff"
-
+background = "#303446"
+foreground = "#c6d0f5"
+frame_color = "#ef9f76"

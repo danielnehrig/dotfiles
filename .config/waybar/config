@@ -1,0 +1,173 @@
+{
+  "layer": "top",
+    "position": "top",
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "height": 30,
+    "spacing": 0,
+    "modules-left": ["custom/launcher","hyprland/workspaces","cpu","memory","hyprland/window"],
+    "modules-center": ["custom/spotify", "cava"],
+    "modules-right": ["idle_inhibitor","tray","bluetooth", "network", "wireplumber","clock","custom/powermenu"],
+    "bluetooth": {
+      "format": " {status}",
+      "format-connected": " {device_alias}",
+      "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+      // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "cava": {
+      "framerate": 30,
+      "autosens": 1,
+      "sensitivity": 1,
+      "bars": 14,
+      "lower_cutoff_freq": 50,
+      "min-length": 20,
+      "higher_cutoff_freq": 10000,
+      "method": "pulse",
+      "source": "auto",
+      "stereo": true,
+      "reverse": false,
+      "bar_delimiter": 0,
+      "monstercat": false,
+      "waves": false,
+      "noise_reduction": 0.77,
+      "input_delay": 2,
+      "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+      "actions": {
+        "on-click-right": "mode"
+      }
+    },
+    "wireplumber": {
+      "format": "{icon}",
+      "nospacing": 1,
+      "tooltip-format": "Volume : {volume}%",
+      "format-muted": "󰝟 ",
+      "on-click": "helvum",
+      "format-icons": {
+        "headphone": " ",
+        "default": ["󰕿 ", "󰖀 ", "󰕾 "]
+      },
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "hyprland/window": {
+      "format": "👉 {}",
+      "rewrite": {
+        "(.*) - Brave": "🌎 $1",
+        "(.*) - zsh": "> [$1]"
+      },
+      "separate-outputs": true
+    },
+    "hyprland/workspaces": {
+      "on-click": "activate",
+      "format": "{icon}",
+      "format-icons": {
+        "default": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "active": "󱓻",
+        "urgent": "󱓻",
+      },
+      "persistent-workspaces": {
+        "*": 4,
+      }
+    },
+    "memory": {
+      "interval": 3,
+      "format": "   {}% ",
+      "max-length": 10
+    },
+    "cpu": {
+      "interval": 1,
+      "format": "   {}% ",
+      "max-length": 10
+    },
+    "tray": {
+      // "icon-size": 21,
+      "spacing": 10
+    },
+    "clock": {
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "format-alt": "  {:%a, %d %b %Y} ",
+      "format": "   {:%H:%M} ",
+      "calendar": {
+        "weeks-pos"     : "none",
+        "on-scroll"     : 1,
+        "format": {
+          "months":     "<span color='#8fbcbb'><b>{}</b></span>",
+          "days":       "<span color='#8a909e'>{}</span>",
+          "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+          "weekdays":   "<span color='#81a1c1'><b>{}</b></span>",
+          "today":      "<span color='#88c0d0'><b>{}</b></span>"
+        }
+      },
+      "actions":  {
+        "on-click-right": "none",
+        "on-click-forward": "tz_up",
+        "on-click-backward": "tz_down",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
+      }
+    },
+    "network": {
+      "format-wifi": "{icon}",
+      "format-disconnected": "󰤭 ",
+      "format-icons": ["󰤯 ","󰤟 ","󰤢 ","󰤥 ","󰤨 "],
+      "tooltip-format-wifi": "{essid}",
+      "tooltip-format-disconnected": "Disconnected",
+      "nospacing": 1,
+    },
+    "pulseaudio": {
+      "format": "{icon}",
+      "nospacing": 1,
+      "tooltip-format": "Volume : {volume}%",
+      "format-muted": "󰝟 ",
+      "format-icons": {
+        "headphone": " ",
+        "default": ["󰕿 ", "󰖀 ", "󰕾 "]
+      },
+      "on-click": "pamixer -t",
+      "on-click-right": "pavucontrol",
+      "scroll-step": 5,
+    },
+    "custom/launcher": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "/home/tdm/.config/rofi/launchers/misc/launcher.sh &"
+    },
+    "custom/powermenu": {
+      "format": "⏻ ",
+      "tooltip": false,
+      "on-click": "~/.config/rofi/powermenu/type-2/powermenu.sh &"
+    },
+    "custom/ibus": {
+      "format": "{}",
+      "exec": "/home/tdm/.config/waybar/scripts/input.sh &",
+      "interval": 1,
+      "tooltip": false,
+      "tooltip-format": "{}",
+      "on-click": "/home/tdm/.config/waybar/scripts/ibus.sh &",
+    },
+    "custom/spotify": {
+      "exec": "python3 ~/.config/waybar/scripts/mediaplayer.py",
+      "format": "{icon} {}",
+      "format-icons": {
+        "spotify": "",
+        "brave": "🌎",
+        "default": ""
+      },
+      "return-type": "json",
+      "on-click": "playerctl play-pause",
+    },
+}
