@@ -77,9 +77,6 @@ linking_files_arch: List[SymLink] = [
     {"source": ".tmux.conf", "dest": ".tmux.conf"},
     {"source": ".zsh/zshrc", "dest": ".zshrc"},
     {"source": ".ssh/config", "dest": ".ssh/config"},
-    {"source": ".dotfiles-vim", "dest": ".vim"},
-    {"source": ".config/kak", "dest": ".config/kak"},
-    {"source": ".dotfiles-vim/vimrc", "dest": ".vimrc"},
     {"source": ".config/nvim", "dest": ".config/nvim"},
     {"source": ".config/i3", "dest": ".config/i3"},
     {"source": ".config/hypr", "dest": ".config/hypr"},
@@ -88,7 +85,8 @@ linking_files_arch: List[SymLink] = [
     {"source": ".config/dunst", "dest": ".config/dunst"},
     {"source": "themes/rofi/oxide", "dest": ".config/rofi"},
     {"source": ".config/picom.conf", "dest": ".config/picom.conf"},
-    {"source": ".config/alacritty.yml", "dest": ".config/alacritty.yml"},
+    #  {"source": ".config/alacritty.yml", "dest": ".config/alacritty.yml"},
+    {"source": ".config/kitty", "dest": ".config/kitty"},
     {"source": ".xinitrc", "dest": ".xinitrc"},
     {"source": ".Xresources", "dest": ".Xresources"},
     {"source": "polybar-powerline", "dest": ".config/polybar"},
@@ -399,27 +397,27 @@ def Linux():
 
     # cloning dependencies zsh theme and plugins
     try:
-        log.Step("Install pip dependencies")
-        # python setup
-        install_cli_packages(python)
+        #  log.Step("Install pip dependencies")
+        #  # python setup
+        #  install_cli_packages(python)
 
-        # npm
-        log.Step("Install npm dependencies")
-        install_cli_packages(node)
+        #  # npm
+        #  log.Step("Install npm dependencies")
+        #  install_cli_packages(node)
 
-        # rust setup
-        log.Step("Install rustup components")
-        cmd("rustup install nightly")
-        cmd("rustup +nightly component add rust-analyzer-preview")
+        #  # rust setup
+        #  log.Step("Install rustup components")
+        #  cmd("rustup install nightly")
+        #  cmd("rustup +nightly component add rust-analyzer-preview")
 
-        log.Step("Install tmux plugin manager")
-        # tmux plugin manager
-        cmd("mkdir -p " + home + "/.tmux/plugins/tpm")
-        cmd(
-            "git clone https://github.com/tmux-plugins/tpm "
-            + home
-            + "/.tmux/plugins/tpm"
-        )
+        #  log.Step("Install tmux plugin manager")
+        #  # tmux plugin manager
+        #  cmd("mkdir -p " + home + "/.tmux/plugins/tpm")
+        #  cmd(
+            #  "git clone https://github.com/tmux-plugins/tpm "
+            #  + home
+            #  + "/.tmux/plugins/tpm"
+        #  )
 
         # linking
         log.Step("Sym Linking Folders")
